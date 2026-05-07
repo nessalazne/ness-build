@@ -538,6 +538,280 @@ section, header, footer, nav { position: relative; z-index: 1; }
 }
 
 /* ================================================================
+   FOUNDING MEMBER BANNER
+   ================================================================ */
+.founding-section {
+  padding: 0 var(--pad-x);
+  max-width: calc(var(--content-max) + 2 * var(--pad-x));
+  margin: clamp(2rem, 4vw, 4rem) auto;
+}
+
+.founding-banner {
+  border: 1px solid var(--accent);
+  background: rgba(216,118,87,0.06);
+  border-radius: 16px;
+  padding: clamp(2rem, 4vw, 3.5rem);
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .founding-banner { grid-template-columns: 1fr; }
+}
+
+.founding-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--teal);
+  padding: 6px 14px;
+  border: 1px solid rgba(255,222,89,0.2);
+  border-radius: 100px;
+  background: rgba(255,222,89,0.05);
+  margin-bottom: 1.4rem;
+  width: fit-content;
+}
+.founding-kicker .dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 8px var(--teal-glow);
+  animation: blink 2.2s ease-in-out infinite;
+}
+
+.founding-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  color: var(--text-paper);
+  margin-bottom: 0.4rem;
+}
+
+.founding-subtitle {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--muted);
+  margin-bottom: 1.4rem;
+}
+
+.founding-body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: clamp(0.9rem, 1.1vw, 1rem);
+  color: var(--text-dim);
+  line-height: 1.7;
+  margin-bottom: 1.8rem;
+}
+
+.founding-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 1.4rem;
+}
+.founding-list li {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.founding-list .check { color: var(--accent); margin-right: 8px; }
+
+.founding-extras {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.founding-extras span {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--teal);
+  letter-spacing: 0.06em;
+}
+
+/* Founding pricing card */
+.founding-pricing {
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: clamp(1.8rem, 3vw, 2.6rem);
+  text-align: center;
+}
+
+.founding-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  padding: 5px 14px;
+  border: 1px solid rgba(216,118,87,0.3);
+  border-radius: 100px;
+  background: rgba(216,118,87,0.08);
+  margin-bottom: 1.4rem;
+}
+
+.founding-price {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 8vw, 6rem);
+  color: var(--text-paper);
+  line-height: 1;
+}
+
+.founding-price-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--teal);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  margin-top: 0.4rem;
+  margin-bottom: 1.8rem;
+}
+
+.founding-compare {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  text-decoration: line-through;
+  margin-bottom: 0.4rem;
+}
+
+.founding-savings {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--green);
+  margin-bottom: 2rem;
+}
+
+.btn-founding {
+  display: block;
+  width: 100%;
+  background: var(--accent);
+  color: #000;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 14px 24px;
+  border-radius: 10px;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.3s var(--ease);
+  box-shadow: 0 0 24px var(--accent-glow);
+}
+.btn-founding:hover { transform: scale(1.03); box-shadow: 0 0 40px var(--accent-glow); }
+
+.founding-note {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 1rem;
+  line-height: 1.6;
+}
+
+.founding-urgency {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--teal);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-top: 0.8rem;
+}
+.founding-urgency .pulse {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+  flex-shrink: 0;
+  animation: blink 2.2s ease-in-out infinite;
+}
+
+/* ================================================================
+   WAITLIST SECTION
+   ================================================================ */
+.waitlist-section {
+  padding: clamp(4rem,8vw,8rem) var(--pad-x);
+  max-width: calc(var(--content-max) + 2 * var(--pad-x));
+  margin: 0 auto;
+}
+
+.waitlist-inner { max-width: 600px; }
+
+.waitlist-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: clamp(1.8rem, 3vw, 2.6rem);
+}
+
+.waitlist-input,
+.waitlist-select {
+  width: 100%;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 18px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text);
+  letter-spacing: 0.06em;
+  outline: none;
+  transition: border-color 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.waitlist-input::placeholder { color: var(--muted); }
+.waitlist-input:focus,
+.waitlist-select:focus { border-color: var(--accent); }
+.waitlist-select { cursor: pointer; }
+.waitlist-select option { background: #0a0a0a; color: var(--text); }
+
+.btn-waitlist {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--teal);
+  color: #000;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+  width: fit-content;
+  box-shadow: 0 0 24px var(--teal-glow);
+}
+.btn-waitlist:hover { transform: scale(1.04); }
+
+.waitlist-note {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* ================================================================
    FOOTER
    ================================================================ */
 footer {
@@ -588,6 +862,7 @@ footer {
   .section-header { flex-direction: column; gap: 1rem; }
   footer { flex-direction: column; text-align: center; }
   .hero-meta { gap: 1.6rem; }
+  .founding-banner { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -604,7 +879,6 @@ footer {
     <span>AISocialHub</span>
   </a>
   <div class="nav-links">
-    <a href="https://digicuratoragency.com/vibe-coding-mastery" class="nav-link">Vibe Coding Mastery</a>
     <a href="https://digicuratoragency.com/aisocialhub_freeplan" class="nav-link">Free Plan</a>
   </div>
 </nav>
@@ -658,7 +932,7 @@ footer {
         Pick your <em>build.</em>
       </h2>
     </div>
-    <div class="builds-count reveal">1 session available</div>
+    <div class="builds-count reveal">6 sessions · 1 live · 5 coming soon</div>
   </div>
 
   <div class="builds-grid">
@@ -699,14 +973,254 @@ footer {
       </div>
     </a>
 
-    <!-- ── PLACEHOLDER — next build ── -->
-    <div class="build-card placeholder reveal reveal-d2">
-      <div class="placeholder-inner">
-        <div class="placeholder-icon">◎</div>
-        <div class="placeholder-text">Next build · Coming soon</div>
+    <!-- ── SYSTEM 02 · SEO Blog Publisher ── -->
+    <div class="build-card reveal reveal-d2" style="opacity:0.75; cursor:default;">
+      <div class="card-top">
+        <span class="system-number">System 02</span>
+        <span class="status-badge coming-soon">
+          <span class="bdot"></span>
+          Coming Soon
+        </span>
+      </div>
+
+      <div class="card-title">SEO Blog<br><em>Publisher</em></div>
+
+      <p class="card-desc">
+        Build an AI system that researches, writes, and publishes SEO-optimized blog posts automatically — keyword research, internal linking, meta tags, and scheduled publishing. All hands-free.
+      </p>
+
+      <div class="card-pills">
+        <span class="card-pill">Claude Code</span>
+        <span class="card-pill">Airtable</span>
+        <span class="card-pill">WordPress API</span>
+        <span class="card-pill">Make.com</span>
+        <span class="card-pill">Google Search Console</span>
+      </div>
+
+      <div class="card-divider"></div>
+
+      <div class="card-cta-row">
+        <div>
+          <div class="card-price">$117</div>
+          <div class="card-price-label">One-time · 20 spots</div>
+        </div>
+        <a href="#waitlist" class="card-btn coming">Join Waitlist →</a>
       </div>
     </div>
 
+    <!-- ── SYSTEM 03 · Freebie Generator ── -->
+    <div class="build-card reveal reveal-d3" style="opacity:0.75; cursor:default;">
+      <div class="card-top">
+        <span class="system-number">System 03</span>
+        <span class="status-badge coming-soon">
+          <span class="bdot"></span>
+          Coming Soon
+        </span>
+      </div>
+
+      <div class="card-title">Freebie<br><em>Generator</em></div>
+
+      <p class="card-desc">
+        Build an AI system that generates lead magnet PDFs automatically — cover design, content, opt-in page, and email delivery. Turn any topic into a downloadable freebie in minutes.
+      </p>
+
+      <div class="card-pills">
+        <span class="card-pill">Claude Code</span>
+        <span class="card-pill">ElevenLabs</span>
+        <span class="card-pill">Airtable</span>
+        <span class="card-pill">Remotion</span>
+        <span class="card-pill">Make.com</span>
+      </div>
+
+      <div class="card-divider"></div>
+
+      <div class="card-cta-row">
+        <div>
+          <div class="card-price">$127</div>
+          <div class="card-price-label">One-time · 20 spots</div>
+        </div>
+        <a href="#waitlist" class="card-btn coming">Join Waitlist →</a>
+      </div>
+    </div>
+
+    <!-- ── SYSTEM 04 · AI Website Builder ── -->
+    <div class="build-card reveal reveal-d4" style="opacity:0.75; cursor:default;">
+      <div class="card-top">
+        <span class="system-number">System 04</span>
+        <span class="status-badge coming-soon">
+          <span class="bdot"></span>
+          Coming Soon
+        </span>
+      </div>
+
+      <div class="card-title">AI Website<br><em>Builder</em></div>
+
+      <p class="card-desc">
+        Build a fully deployed website with AI-generated copy, images, and layout — connected to your domain and live on the internet. No Webflow. No WordPress. Pure Claude Code.
+      </p>
+
+      <div class="card-pills">
+        <span class="card-pill">Claude Code</span>
+        <span class="card-pill">Antigravity</span>
+        <span class="card-pill">GitHub Pages</span>
+        <span class="card-pill">Cloudflare</span>
+        <span class="card-pill">Airtable</span>
+      </div>
+
+      <div class="card-divider"></div>
+
+      <div class="card-cta-row">
+        <div>
+          <div class="card-price">$147</div>
+          <div class="card-price-label">One-time · 20 spots</div>
+        </div>
+        <a href="#waitlist" class="card-btn coming">Join Waitlist →</a>
+      </div>
+    </div>
+
+    <!-- ── SYSTEM 05 · Cinematic Ads Agent ── -->
+    <div class="build-card reveal reveal-d5" style="opacity:0.75; cursor:default;">
+      <div class="card-top">
+        <span class="system-number">System 05</span>
+        <span class="status-badge coming-soon">
+          <span class="bdot"></span>
+          Coming Soon
+        </span>
+      </div>
+
+      <div class="card-title">Cinematic<br><em>Ads Agent</em></div>
+
+      <p class="card-desc">
+        Build an AI agent that writes ad scripts, generates emotional voiceovers, creates talking avatar videos, and composes cinematic short-form ads — ready for Meta, YouTube, and TikTok in minutes.
+      </p>
+
+      <div class="card-pills">
+        <span class="card-pill">Claude Code</span>
+        <span class="card-pill">HeyGen</span>
+        <span class="card-pill">ElevenLabs V3</span>
+        <span class="card-pill">Remotion</span>
+        <span class="card-pill">Airtable</span>
+      </div>
+
+      <div class="card-divider"></div>
+
+      <div class="card-cta-row">
+        <div>
+          <div class="card-price">$167</div>
+          <div class="card-price-label">One-time · 20 spots</div>
+        </div>
+        <a href="#waitlist" class="card-btn coming">Join Waitlist →</a>
+      </div>
+    </div>
+
+    <!-- ── SYSTEM 06 · Creator CRM ── -->
+    <div class="build-card reveal reveal-d1" style="opacity:0.75; cursor:default;">
+      <div class="card-top">
+        <span class="system-number">System 06</span>
+        <span class="status-badge coming-soon">
+          <span class="bdot"></span>
+          Coming Soon
+        </span>
+      </div>
+
+      <div class="card-title">Creator<br><em>CRM</em></div>
+
+      <p class="card-desc">
+        Build a custom CRM for creators — track brand deals, manage content pipelines, log collaboration requests, and automate follow-up emails. Everything in one system built for how creators actually work.
+      </p>
+
+      <div class="card-pills">
+        <span class="card-pill">Claude Code</span>
+        <span class="card-pill">Airtable</span>
+        <span class="card-pill">Make.com</span>
+        <span class="card-pill">Claude API</span>
+        <span class="card-pill">Blotato</span>
+      </div>
+
+      <div class="card-divider"></div>
+
+      <div class="card-cta-row">
+        <div>
+          <div class="card-price">$197</div>
+          <div class="card-price-label">One-time · 20 spots</div>
+        </div>
+        <a href="#waitlist" class="card-btn coming">Join Waitlist →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- FOUNDING MEMBER BANNER -->
+<section class="founding-section reveal">
+  <div class="founding-banner">
+    <div class="founding-left">
+      <div class="founding-kicker">
+        <span class="dot"></span>
+        ⚡ Founding Member — Limited Time
+      </div>
+      <h2 class="founding-title">Get all 6 systems for $297.</h2>
+      <p class="founding-subtitle">The lowest price this will ever be.</p>
+      <p class="founding-body">
+        Buy all 6 Live Build Sessions today at the founding member price — before Session 1 even runs. Every session, every recording, every GitHub project, every master prompt kit. Yours forever.<br><br>
+        After Session 1 runs this goes to $397.<br>
+        After Session 3 it goes to $497.<br>
+        After all 6 complete — $597.
+      </p>
+      <ul class="founding-list">
+        <li><span class="check">✓</span> System 01 · YouTube Repurposer</li>
+        <li><span class="check">✓</span> System 02 · SEO Blog Publisher</li>
+        <li><span class="check">✓</span> System 03 · Freebie Generator</li>
+        <li><span class="check">✓</span> System 04 · AI Website Builder</li>
+        <li><span class="check">✓</span> System 05 · Cinematic Ads Agent</li>
+        <li><span class="check">✓</span> System 06 · Creator CRM</li>
+      </ul>
+      <div class="founding-extras">
+        <span>+ All recordings · Lifetime access</span>
+        <span>+ All GitHub projects · Fork and own</span>
+        <span>+ All master prompt kits · Included</span>
+      </div>
+    </div>
+    <div class="founding-pricing">
+      <div class="founding-badge">Founding Member Price</div>
+      <div class="founding-price">$297</div>
+      <div class="founding-price-label">One-time · No subscription</div>
+      <div class="founding-compare">$852 if bought separately</div>
+      <div class="founding-savings">You save $555</div>
+      <a href="https://digicuratoragency.com/vibe-coding-mastery" class="btn-founding">Become a Founding Member →</a>
+      <div class="founding-note">Price increases to $397 after Session 1 runs<br>on Wednesday · 12–3pm EST</div>
+      <div class="founding-urgency">
+        <span class="pulse"></span>
+        20 founding member spots only
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- WAITLIST -->
+<section class="waitlist-section" id="waitlist">
+  <div class="waitlist-inner">
+    <div class="kicker reveal">Join the Waitlist</div>
+    <h2 class="section-title reveal reveal-d1">Get early access to<br><em>every session.</em></h2>
+    <p class="hero-sub reveal reveal-d2" style="margin-top:1rem; margin-bottom:0;">
+      Join the waitlist. Waitlist members get 48hr early access and founding member pricing.
+    </p>
+    <form class="waitlist-form reveal reveal-d3" onsubmit="return false;">
+      <input type="email" class="waitlist-input" placeholder="Your email address" required />
+      <select class="waitlist-select">
+        <option value="">Which session interests you most?</option>
+        <option value="all">All of them</option>
+        <option value="02">System 02 · SEO Blog</option>
+        <option value="03">System 03 · Freebie Generator</option>
+        <option value="04">System 04 · Website Builder</option>
+        <option value="05">System 05 · Cinematic Ads</option>
+        <option value="06">System 06 · Creator CRM</option>
+      </select>
+      <button type="submit" class="btn-waitlist">Join Waitlist →</button>
+      <p class="waitlist-note">No spam. Just early access and session announcements.</p>
+    </form>
   </div>
 </section>
 
@@ -781,7 +1295,6 @@ footer {
   </a>
   <div class="footer-links">
     <a href="https://blog.digicuratoragency.com">digicuratoragency.com</a>
-    <a href="https://digicuratoragency.com/vibe-coding-mastery">Vibe Coding Mastery</a>
     <a href="https://digicuratoragency.com/aisocialhub_freeplan">Free Plan</a>
   </div>
 </footer>
@@ -799,8 +1312,8 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-/* Button click → open checkout + #deb4b4 color */
-document.querySelectorAll('.card-btn').forEach(btn => {
+/* System 01 "Save My Spot" → open checkout + pink color state */
+document.querySelectorAll('.card-btn:not(.coming)').forEach(btn => {
   btn.addEventListener('click', function (e) {
     e.preventDefault();
     e.stopPropagation();
