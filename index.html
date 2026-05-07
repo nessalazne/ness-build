@@ -595,7 +595,7 @@ footer {
 
 <!-- NAV -->
 <nav class="top-nav">
-  <a href="https://digicuratoragency.com" class="nav-brand">
+  <a href="https://blog.digicuratoragency.com" class="nav-brand">
     <svg width="16" height="16" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M24 6l18 10v16L24 42 6 32V16Z"/>
       <path d="M24 6v16l18 10" opacity="0.5"/>
@@ -711,9 +711,67 @@ footer {
 </section>
 
 
+<div class="divider"></div>
+
+
+<!-- BONUS COURSES -->
+<section class="builds-section" style="padding-top:clamp(4rem,7vw,7rem); padding-bottom:clamp(4rem,7vw,7rem);">
+  <div class="section-header">
+    <div>
+      <div class="kicker reveal">Also Included</div>
+      <h2 class="section-title reveal reveal-d1">
+        Bonus <em>courses.</em>
+      </h2>
+    </div>
+  </div>
+
+  <div class="builds-grid">
+
+    <div class="build-card reveal reveal-d1" style="cursor:default; pointer-events:auto;">
+      <div class="card-top">
+        <span class="system-number">Bonus Course 01</span>
+        <span class="status-badge live">
+          <span class="bdot"></span>
+          Included
+        </span>
+      </div>
+      <div class="card-title" style="font-size:clamp(1.6rem,3.5vw,2.6rem);">The AI Audit<br><em>Method</em></div>
+      <p class="card-desc">
+        Turn your AI skills into a consulting business. The exact process to land your very first client — starting today. 13 lessons. Zero fluff. Real results. Let's get started.
+      </p>
+      <div class="card-pills">
+        <span class="card-pill">13 Lessons</span>
+        <span class="card-pill">Consulting</span>
+        <span class="card-pill">Zero fluff</span>
+      </div>
+    </div>
+
+    <div class="build-card reveal reveal-d2" style="cursor:default; pointer-events:auto;">
+      <div class="card-top">
+        <span class="system-number">Bonus Course 02</span>
+        <span class="status-badge live" style="color:var(--teal);border-color:rgba(255,222,89,0.3);background:rgba(255,222,89,0.06);">
+          <span class="bdot" style="background:var(--teal);box-shadow:0 0 8px var(--teal-glow);"></span>
+          Included
+        </span>
+      </div>
+      <div class="card-title" style="font-size:clamp(1.6rem,3.5vw,2.6rem);">AISHA<br><em>Engine</em></div>
+      <p class="card-desc">
+        Build an AI creator brand that runs without you being on camera. Create a hyper-realistic avatar, automated content across major platforms, and an always-on monetization engine — no filming, no daily posting.
+      </p>
+      <div class="card-pills">
+        <span class="card-pill">AI Avatar</span>
+        <span class="card-pill">Auto Content</span>
+        <span class="card-pill">Monetization</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
 <!-- FOOTER -->
 <footer>
-  <a href="https://digicuratoragency.com" class="footer-brand">
+  <a href="https://blog.digicuratoragency.com" class="footer-brand">
     <svg width="14" height="14" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M24 6l18 10v16L24 42 6 32V16Z"/>
       <path d="M24 6v16l18 10" opacity="0.5"/>
@@ -722,7 +780,7 @@ footer {
     AISocialHub · Ness Alazne
   </a>
   <div class="footer-links">
-    <a href="https://digicuratoragency.com">digicuratoragency.com</a>
+    <a href="https://blog.digicuratoragency.com">digicuratoragency.com</a>
     <a href="https://digicuratoragency.com/vibe-coding-mastery">Vibe Coding Mastery</a>
     <a href="https://digicuratoragency.com/aisocialhub_freeplan">Free Plan</a>
   </div>
@@ -741,12 +799,15 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-/* Button click → #deb4b4 color */
+/* Button click → open checkout + #deb4b4 color */
 document.querySelectorAll('.card-btn').forEach(btn => {
-  btn.addEventListener('click', function () {
+  btn.addEventListener('click', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
     this.style.background = '#deb4b4';
     this.style.boxShadow = 'none';
     this.style.color = '#000';
+    window.open('https://pay.digicuratoragency.com/checkout/a6123cdaa89fa3e1ff1e1abb2ab53e7c', '_blank');
   });
 });
 </script>
