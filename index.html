@@ -490,7 +490,7 @@ section, header, footer, nav { position: relative; z-index: 1; }
   letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 12px 22px;
-  border-radius: 100px;
+  border-radius: 10px;
   text-decoration: none;
   transition: all 0.3s var(--ease);
   box-shadow: 0 0 24px var(--accent-glow);
@@ -740,6 +740,15 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* Button click → #deb4b4 color */
+document.querySelectorAll('.card-btn').forEach(btn => {
+  btn.addEventListener('click', function () {
+    this.style.background = '#deb4b4';
+    this.style.boxShadow = 'none';
+    this.style.color = '#000';
+  });
+});
 </script>
 
 </body>
