@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vibe Coding Live Builds · AISocialHub</title>
+<meta name="description" content="Deployable systems. Built live. Yours to keep. Each session is a real system built with Claude Code — from scratch, live on Zoom." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+
+<style>
+/* ================================================================
+   DESIGN TOKENS — AISocialHub Black
+   ================================================================ */
+:root {
+  --bg:               #050505;
+  --bg-elev:          #0a0a0a;
+  --surface:          #111111;
+  --border:           #1a1a1a;
+  --border-hover:     #2a2a2a;
+  --text:             #f0e8e8;
+  --text-paper:       #fdf5f0;
+  --text-dim:         #c8bfbf;
+  --muted:            #9a8f8f;
+  --accent:           #d87657;
+  --accent-hl:        rgba(216,118,87,0.28);
+  --accent-glow:      rgba(216,118,87,0.3);
+  --teal:             #ffde59;
+  --teal-glow:        rgba(255,222,89,0.28);
+  --green:            #50e3c2;
+  --green-glow:       rgba(80,227,194,0.25);
+  --pink:             #deb4b4;
+
+  --font-display: 'Instrument Serif', serif;
+  --font-body:    'Plus Jakarta Sans', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --pad-x: clamp(1.5rem, 8vw, 9rem);
+  --content-max: 1100px;
+}
+
+/* ================================================================
+   RESET + BASE
+   ================================================================ */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(216,118,87,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 10% 110%, rgba(255,222,89,0.04) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 60% at 90% 50%, rgba(222,180,180,0.03) 0%, transparent 55%);
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+}
+
+section, header, footer, nav { position: relative; z-index: 1; }
+
+/* ================================================================
+   NAV
+   ================================================================ */
+.top-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px clamp(1.5rem, 5vw, 4rem);
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.nav-brand svg { color: var(--accent); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-link {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-link:hover { color: var(--accent); }
+
+/* ================================================================
+   HERO
+   ================================================================ */
+.hero {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(9rem,16vw,14rem) var(--pad-x) clamp(5rem,8vw,8rem);
+  max-width: calc(var(--content-max) + 2 * var(--pad-x));
+  margin: 0 auto;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--teal);
+  padding: 6px 14px;
+  border: 1px solid rgba(255,222,89,0.2);
+  border-radius: 100px;
+  background: rgba(255,222,89,0.05);
+  margin-bottom: clamp(2rem,3.5vw,3rem);
+  width: fit-content;
+}
+.hero-eyebrow .dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 8px var(--teal-glow);
+  animation: blink 2.2s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%,100% { opacity:1; }
+  50%      { opacity:0.3; }
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(3.5rem, 10vw, 8.5rem);
+  line-height: 0.96;
+  letter-spacing: -0.025em;
+  color: var(--text-paper);
+  margin-bottom: clamp(1.8rem, 3vw, 2.6rem);
+  max-width: 16ch;
+}
+.hero-title em { font-style: italic; color: var(--pink); }
+
+.hero-sub {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+  color: var(--text-dim);
+  line-height: 1.65;
+  max-width: 50ch;
+  margin-bottom: clamp(2.5rem, 4vw, 4rem);
+}
+
+.hero-meta {
+  display: flex;
+  gap: clamp(2rem, 4vw, 4rem);
+  padding-top: clamp(2rem, 3vw, 3rem);
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.meta-item .meta-value {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  color: var(--text-paper);
+  line-height: 1;
+}
+.meta-item .meta-value.accent { color: var(--accent); }
+.meta-item .meta-value.teal   { color: var(--teal); }
+.meta-item .meta-value.green  { color: var(--green); }
+
+.meta-item .meta-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* ================================================================
+   SCROLL REVEAL
+   ================================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+.reveal.in-view { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 0.1s; }
+.reveal-d2 { transition-delay: 0.2s; }
+.reveal-d3 { transition-delay: 0.3s; }
+.reveal-d4 { transition-delay: 0.4s; }
+.reveal-d5 { transition-delay: 0.5s; }
+
+/* ================================================================
+   DIVIDER
+   ================================================================ */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+
+/* ================================================================
+   BUILDS GRID SECTION
+   ================================================================ */
+.builds-section {
+  padding: clamp(5rem,10vw,10rem) var(--pad-x);
+  max-width: calc(var(--content-max) + 2 * var(--pad-x));
+  margin: 0 auto;
+}
+
+.section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: clamp(3rem, 5vw, 5rem);
+}
+
+.kicker {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: clamp(0.65rem, 0.9vw, 0.8rem);
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.26em;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: clamp(1rem, 1.6vw, 1.4rem);
+}
+.kicker::before {
+  content: '';
+  display: inline-block;
+  width: 24px; height: 1px;
+  background: var(--accent);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.8rem, 3.5vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  color: var(--text-paper);
+}
+.section-title em { font-style: italic; color: var(--accent); }
+
+.builds-count {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ================================================================
+   BUILD CARD
+   ================================================================ */
+.builds-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: clamp(16px, 2vw, 24px);
+}
+
+.build-card {
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--bg-elev);
+  padding: clamp(1.8rem, 2.4vw, 2.4rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  transition: border-color 0.3s var(--ease), transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  overflow: hidden;
+}
+
+.build-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  opacity: 0;
+  transition: opacity 0.3s var(--ease);
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(216,118,87,0.06) 0%, transparent 70%);
+}
+
+.build-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px var(--border-hover);
+}
+.build-card:hover::before { opacity: 1; }
+
+/* Card — top row */
+.card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: clamp(1.4rem, 2vw, 1.8rem);
+}
+
+.system-number {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* Status badges */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 100px;
+}
+
+.status-badge .bdot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-badge.live {
+  color: var(--accent);
+  background: rgba(216,118,87,0.12);
+  border: 1px solid rgba(216,118,87,0.2);
+}
+.status-badge.live .bdot {
+  background: var(--accent);
+  box-shadow: 0 0 6px var(--accent-glow);
+  animation: blink 1.8s ease-in-out infinite;
+}
+
+.status-badge.coming-soon {
+  color: var(--teal);
+  background: rgba(255,222,89,0.08);
+  border: 1px solid rgba(255,222,89,0.18);
+}
+.status-badge.coming-soon .bdot {
+  background: var(--teal);
+}
+
+.status-badge.recording {
+  color: var(--green);
+  background: rgba(80,227,194,0.08);
+  border: 1px solid rgba(80,227,194,0.18);
+}
+.status-badge.recording .bdot {
+  background: var(--green);
+}
+
+/* Card — title */
+.card-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  color: var(--text-paper);
+  margin-bottom: clamp(1rem, 1.4vw, 1.2rem);
+}
+.card-title em { font-style: italic; color: var(--pink); }
+
+/* Card — description */
+.card-desc {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: clamp(0.88rem, 1.1vw, 1rem);
+  color: var(--text-dim);
+  line-height: 1.65;
+  flex: 1;
+  margin-bottom: clamp(1.6rem, 2.2vw, 2rem);
+}
+
+/* Card — tech pills */
+.card-pills {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: clamp(1.6rem, 2.2vw, 2rem);
+}
+.card-pill {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  background: transparent;
+}
+
+/* Card — divider */
+.card-divider {
+  height: 1px;
+  background: var(--border);
+  margin-bottom: clamp(1.4rem, 2vw, 1.8rem);
+}
+
+/* Card — CTA row */
+.card-cta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.card-price {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.2vw, 1.8rem);
+  color: var(--text-paper);
+  line-height: 1;
+}
+.card-price-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-top: 2px;
+}
+
+.card-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: #000;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 12px 22px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: all 0.3s var(--ease);
+  box-shadow: 0 0 24px var(--accent-glow);
+  white-space: nowrap;
+}
+.card-btn:hover { transform: scale(1.05); box-shadow: 0 0 40px var(--accent-glow); }
+
+.card-btn.coming {
+  background: transparent;
+  color: var(--teal);
+  border: 1px solid rgba(255,222,89,0.25);
+  box-shadow: none;
+}
+.card-btn.coming:hover { background: rgba(255,222,89,0.06); border-color: var(--teal); }
+
+/* Placeholder card */
+.build-card.placeholder {
+  border-style: dashed;
+  border-color: var(--border);
+  background: transparent;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  cursor: default;
+}
+.build-card.placeholder:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--border-hover);
+}
+.placeholder-inner {
+  text-align: center;
+}
+.placeholder-icon {
+  font-size: 28px;
+  margin-bottom: 14px;
+  opacity: 0.4;
+}
+.placeholder-text {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* ================================================================
+   FOOTER
+   ================================================================ */
+footer {
+  padding: clamp(3rem,5vw,5rem) var(--pad-x);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--border);
+  max-width: calc(var(--content-max) + 2 * var(--pad-x));
+  margin: 0 auto;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.footer-brand svg { color: var(--accent); }
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+.footer-links a {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--accent); }
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+@media (max-width:640px) {
+  .builds-grid { grid-template-columns: 1fr; }
+  .section-header { flex-direction: column; gap: 1rem; }
+  footer { flex-direction: column; text-align: center; }
+  .hero-meta { gap: 1.6rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="top-nav">
+  <a href="https://digicuratoragency.com" class="nav-brand">
+    <svg width="16" height="16" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M24 6l18 10v16L24 42 6 32V16Z"/>
+      <path d="M24 6v16l18 10" opacity="0.5"/>
+      <path d="M24 22L6 32" opacity="0.5"/>
+    </svg>
+    <span>AISocialHub</span>
+  </a>
+  <div class="nav-links">
+    <a href="https://digicuratoragency.com/vibe-coding-mastery" class="nav-link">Vibe Coding Mastery</a>
+    <a href="https://digicuratoragency.com/aisocialhub_freeplan" class="nav-link">Free Plan</a>
+  </div>
+</nav>
+
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-eyebrow reveal">
+    <span class="dot"></span>
+    Live · Build With Claude Code
+  </div>
+
+  <h1 class="hero-title reveal reveal-d1">
+    Vibe Coding<br>Live <em>Builds.</em>
+  </h1>
+
+  <p class="hero-sub reveal reveal-d2">
+    Deployable systems. Built live. Yours to keep.<br>
+    Each session is a real working system built with Claude Code — from scratch, on Zoom, in 2–3 hours.
+  </p>
+
+  <div class="hero-meta reveal reveal-d3">
+    <div class="meta-item">
+      <div class="meta-value teal">2–3h</div>
+      <div class="meta-label">Per session</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-value accent">$97</div>
+      <div class="meta-label">Per build</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-value">20</div>
+      <div class="meta-label">Spots max</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-value green">$0</div>
+      <div class="meta-label">Coding needed</div>
+    </div>
+  </div>
+</header>
+
+<div class="divider"></div>
+
+
+<!-- BUILDS GRID -->
+<section class="builds-section">
+  <div class="section-header">
+    <div>
+      <div class="kicker reveal">All Sessions</div>
+      <h2 class="section-title reveal reveal-d1">
+        Pick your <em>build.</em>
+      </h2>
+    </div>
+    <div class="builds-count reveal">1 session available</div>
+  </div>
+
+  <div class="builds-grid">
+
+    <!-- ── SYSTEM 01 · YouTube Repurposer ── -->
+    <a href="/youtube-repurposer" class="build-card reveal reveal-d1">
+      <div class="card-top">
+        <span class="system-number">System 01</span>
+        <span class="status-badge live">
+          <span class="bdot"></span>
+          Live
+        </span>
+      </div>
+
+      <div class="card-title">YouTube<br><em>Repurposer</em></div>
+
+      <p class="card-desc">
+        Build a Chrome extension that turns any YouTube video into short-form content — script, avatar video, voiceover, captions — posted to 9 platforms automatically.
+      </p>
+
+      <div class="card-pills">
+        <span class="card-pill">Claude Code</span>
+        <span class="card-pill">HeyGen</span>
+        <span class="card-pill">ElevenLabs V3</span>
+        <span class="card-pill">Remotion</span>
+        <span class="card-pill">Blotato</span>
+        <span class="card-pill">Airtable</span>
+      </div>
+
+      <div class="card-divider"></div>
+
+      <div class="card-cta-row">
+        <div>
+          <div class="card-price">$97</div>
+          <div class="card-price-label">One-time · 20 spots</div>
+        </div>
+        <span class="card-btn">Save My Spot →</span>
+      </div>
+    </a>
+
+    <!-- ── PLACEHOLDER — next build ── -->
+    <div class="build-card placeholder reveal reveal-d2">
+      <div class="placeholder-inner">
+        <div class="placeholder-icon">◎</div>
+        <div class="placeholder-text">Next build · Coming soon</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <a href="https://digicuratoragency.com" class="footer-brand">
+    <svg width="14" height="14" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M24 6l18 10v16L24 42 6 32V16Z"/>
+      <path d="M24 6v16l18 10" opacity="0.5"/>
+      <path d="M24 22L6 32" opacity="0.5"/>
+    </svg>
+    AISocialHub · Ness Alazne
+  </a>
+  <div class="footer-links">
+    <a href="https://digicuratoragency.com">digicuratoragency.com</a>
+    <a href="https://digicuratoragency.com/vibe-coding-mastery">Vibe Coding Mastery</a>
+    <a href="https://digicuratoragency.com/aisocialhub_freeplan">Free Plan</a>
+  </div>
+</footer>
+
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in-view');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
