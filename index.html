@@ -1207,9 +1207,9 @@ footer {
     <p class="hero-sub reveal reveal-d2" style="margin-top:1rem; margin-bottom:0;">
       Join the waitlist. Waitlist members get 48hr early access and founding member pricing.
     </p>
-    <form class="waitlist-form reveal reveal-d3" onsubmit="return false;">
-      <input type="email" class="waitlist-input" placeholder="Your email address" required />
-      <select class="waitlist-select">
+    <form id="waitlist-form" class="waitlist-form reveal reveal-d3">
+      <input id="waitlist-email" type="email" class="waitlist-input" placeholder="Your email address" required />
+      <select id="waitlist-session" class="waitlist-select">
         <option value="">Which session interests you most?</option>
         <option value="all">All of them</option>
         <option value="02">System 02 · SEO Blog</option>
@@ -1218,7 +1218,7 @@ footer {
         <option value="05">System 05 · Cinematic Ads</option>
         <option value="06">System 06 · Creator CRM</option>
       </select>
-      <button type="submit" class="btn-waitlist">Join Waitlist →</button>
+      <button id="waitlist-btn" type="submit" class="btn-waitlist">Join Waitlist →</button>
       <p class="waitlist-note">No spam. Just early access and session announcements.</p>
     </form>
   </div>
@@ -1323,6 +1323,38 @@ if (foundingBtn) {
     this.style.boxShadow = 'none';
     this.style.color = '#000';
     window.open('https://pay.digicuratoragency.com/checkout/200df36e42e5afad67f468f011de564c', '_blank');
+  });
+}
+
+/* Waitlist form → POST to Vercel API → Airtable */
+const waitlistForm = document.getElementById('waitlist-form');
+if (waitlistForm) {
+  waitlistForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('waitlist-btn');
+    const email = document.getElementById('waitlist-email').value.trim();
+    const session = document.getElementById('waitlist-session').value;
+    btn.disabled = true;
+    btn.textContent = 'Joining…';
+    try {
+      const res = await fetch('https://ness-freebies.vercel.app/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, session }),
+      });
+      if (res.ok) {
+        btn.textContent = "You're on the list ✓";
+        btn.style.background = 'var(--green)';
+        btn.style.color = '#000';
+        waitlistForm.querySelector('.waitlist-note').textContent = "We'll be in touch with early access details.";
+      } else {
+        btn.textContent = 'Try again →';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Try again →';
+      btn.disabled = false;
+    }
   });
 }
 
