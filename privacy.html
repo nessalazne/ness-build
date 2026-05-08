@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Privacy Policy · Vibe Coding Build Sprint · AISocialHub</title>
+<meta name="description" content="Privacy Policy for Vibe Coding Build Sprint live sessions and digital products by DigicuratorAgency." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+
+<style>
+:root {
+  --bg:               #050505;
+  --bg-elev:          #0a0a0a;
+  --surface:          #111111;
+  --border:           #1a1a1a;
+  --border-hover:     #2a2a2a;
+  --text:             #f0e8e8;
+  --text-paper:       #fdf5f0;
+  --text-dim:         #c8bfbf;
+  --muted:            #9a8f8f;
+  --accent:           #d87657;
+  --accent-hl:        rgba(216,118,87,0.28);
+  --accent-glow:      rgba(216,118,87,0.3);
+  --teal:             #ffde59;
+  --teal-glow:        rgba(255,222,89,0.28);
+  --green:            #50e3c2;
+  --pink:             #deb4b4;
+
+  --font-display: 'Instrument Serif', serif;
+  --font-body:    'Plus Jakarta Sans', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --section-pad-x: clamp(1.5rem, 8vw, 9rem);
+  --content-max: 760px;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; overflow-x:hidden; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(216,118,87,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 10% 110%, rgba(255,222,89,0.04) 0%, transparent 55%);
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+}
+
+section, header, footer, nav { position:relative; z-index:1; }
+
+/* NAV */
+.top-nav {
+  position: fixed;
+  top:0; left:0; right:0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px clamp(1.5rem, 5vw, 4rem);
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.nav-brand svg { color: var(--accent); }
+
+.nav-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border-hover);
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.3s var(--ease);
+}
+.nav-back:hover { border-color: var(--accent); color: var(--accent); }
+
+/* HERO */
+.policy-hero {
+  padding: clamp(8rem,14vw,12rem) var(--section-pad-x) clamp(3rem,5vw,5rem);
+  max-width: calc(var(--content-max) + 2 * clamp(1.5rem,8vw,9rem));
+  margin: 0 auto;
+}
+
+.policy-kicker {
+  font-family: var(--font-mono);
+  font-size: clamp(0.65rem, 0.9vw, 0.78rem);
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.26em;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: clamp(1rem,1.6vw,1.4rem);
+}
+.policy-kicker::before {
+  content: '';
+  display: inline-block;
+  width: 24px; height: 1px;
+  background: var(--accent);
+}
+
+.policy-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.8rem, 7vw, 6rem);
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: var(--text-paper);
+  margin-bottom: clamp(1.2rem,2vw,1.8rem);
+}
+.policy-title em { font-style: italic; color: var(--pink); }
+
+.policy-meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* DIVIDER */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+
+/* DOCUMENT BODY */
+.policy-body {
+  max-width: calc(var(--content-max) + 2 * clamp(1.5rem,8vw,9rem));
+  margin: 0 auto;
+  padding: clamp(3rem,6vw,6rem) var(--section-pad-x) clamp(5rem,8vw,8rem);
+}
+
+.policy-doc {
+  max-width: var(--content-max);
+}
+
+.policy-section {
+  margin-bottom: clamp(2.5rem,4vw,3.5rem);
+}
+
+.policy-section-title {
+  font-family: var(--font-mono);
+  font-size: clamp(0.72rem,0.95vw,0.85rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  margin-bottom: clamp(0.8rem,1.2vw,1rem);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.policy-section-title::before {
+  content: '';
+  display: inline-block;
+  width: 16px; height: 1px;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.policy-section h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.4rem,2.4vw,2rem);
+  color: var(--text-paper);
+  line-height: 1.15;
+  margin-bottom: clamp(0.8rem,1.2vw,1rem);
+}
+.policy-section h2 em { font-style: italic; color: var(--accent); }
+
+.policy-section p {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: clamp(0.92rem,1.2vw,1.05rem);
+  color: var(--text-dim);
+  line-height: 1.75;
+  margin-bottom: 1rem;
+}
+
+.policy-section p:last-child { margin-bottom: 0; }
+
+.policy-section ul, .policy-section ol {
+  margin: 0.6rem 0 1rem 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.policy-section li {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: clamp(0.92rem,1.2vw,1.05rem);
+  color: var(--text-dim);
+  line-height: 1.7;
+  padding: 0.35rem 0 0.35rem 1.4rem;
+  position: relative;
+}
+
+.policy-section li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-family: var(--font-mono);
+}
+
+.policy-section a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.policy-section strong {
+  color: var(--text-paper);
+  font-weight: 600;
+}
+
+/* HIGHLIGHT BOX */
+.policy-box {
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  background: rgba(216,118,87,0.04);
+  border-radius: 0 10px 10px 0;
+  padding: clamp(1.2rem,1.8vw,1.6rem) clamp(1.4rem,2vw,1.8rem);
+  margin: clamp(1.4rem,2vw,1.8rem) 0;
+}
+.policy-box p {
+  margin-bottom: 0 !important;
+  font-size: clamp(0.88rem,1.1vw,1rem) !important;
+}
+
+/* TABLE OF CONTENTS */
+.toc {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: clamp(1.4rem,2vw,1.8rem) clamp(1.6rem,2.2vw,2rem);
+  margin-bottom: clamp(2.5rem,4vw,3.5rem);
+  background: var(--bg-elev);
+}
+.toc-title {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+.toc ol { list-style: none; counter-reset: toc-counter; }
+.toc li {
+  counter-increment: toc-counter;
+  padding: 0.3rem 0;
+  font-size: clamp(0.82rem,1vw,0.92rem) !important;
+  border-bottom: 1px solid var(--border);
+}
+.toc li:last-child { border-bottom: none; }
+.toc li::before {
+  content: counter(toc-counter, decimal-leading-zero) " — ";
+  color: var(--accent) !important;
+  font-family: var(--font-mono);
+  font-size: 10px;
+}
+.toc a {
+  color: var(--text-dim) !important;
+  text-decoration: none !important;
+  transition: color 0.2s;
+}
+.toc a:hover { color: var(--accent) !important; }
+
+/* FOOTER */
+footer {
+  padding: clamp(3rem,5vw,5rem) var(--section-pad-x);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--border);
+  max-width: calc(var(--content-max) + 2 * clamp(1.5rem,8vw,9rem));
+  margin: 0 auto;
+}
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.footer-brand svg { color: var(--accent); }
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+.footer-links a {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--accent); }
+
+@media (max-width:600px) {
+  footer { flex-direction:column; text-align:center; }
+  .toc li::before { display: block; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="top-nav">
+  <a href="https://builds.digicuratoragency.com" class="nav-brand">
+    <svg width="16" height="16" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M24 6l18 10v16L24 42 6 32V16Z"/>
+      <path d="M24 6v16l18 10" opacity="0.5"/>
+      <path d="M24 22L6 32" opacity="0.5"/>
+    </svg>
+    <span>AISocialHub</span>
+  </a>
+  <a href="https://builds.digicuratoragency.com" class="nav-back">← Back to hub</a>
+</nav>
+
+
+<!-- HERO -->
+<header class="policy-hero">
+  <div class="policy-kicker">Legal</div>
+  <h1 class="policy-title">Privacy <em>Policy.</em></h1>
+  <p class="policy-meta">Effective date: May 2026 &nbsp;·&nbsp; DigicuratorAgency.com</p>
+</header>
+
+<div class="divider"></div>
+
+
+<!-- DOCUMENT -->
+<div class="policy-body">
+  <div class="policy-doc">
+
+    <!-- INTRO BOX -->
+    <div class="policy-box">
+      <p>This policy covers all products and live sessions offered under <strong>builds.digicuratoragency.com</strong> — including the Vibe Coding Build Sprint, all individual live build sessions, and any associated digital products. We keep it plain English. If something isn't clear, email us at <a href="mailto:ness@digicuratoragency.com">ness@digicuratoragency.com</a>.</p>
+    </div>
+
+    <!-- TABLE OF CONTENTS -->
+    <div class="toc">
+      <div class="toc-title">Contents</div>
+      <ol>
+        <li><a href="#collect">What we collect</a></li>
+        <li><a href="#use">How we use your data</a></li>
+        <li><a href="#third-parties">Third-party services</a></li>
+        <li><a href="#recordings">Session recordings</a></li>
+        <li><a href="#cookies">Cookies &amp; analytics</a></li>
+        <li><a href="#security">Data security</a></li>
+        <li><a href="#rights">Your rights</a></li>
+        <li><a href="#transfers">International transfers</a></li>
+        <li><a href="#children">Children's privacy</a></li>
+        <li><a href="#changes">Policy changes</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ol>
+    </div>
+
+
+    <!-- 1 -->
+    <div class="policy-section" id="collect">
+      <div class="policy-section-title">01</div>
+      <h2>What we <em>collect</em></h2>
+      <p>When you purchase a session, join the waitlist, or interact with our pages, we may collect:</p>
+      <ul>
+        <li><strong>Identity data</strong> — first name, last name, email address</li>
+        <li><strong>Payment data</strong> — processed entirely by our payment provider (Stripe). We never see or store your full card number.</li>
+        <li><strong>Session data</strong> — the specific build session(s) you purchased and your access status</li>
+        <li><strong>Waitlist data</strong> — email and session interest if you join the waitlist</li>
+        <li><strong>Technical data</strong> — IP address, browser type, device type, referring URL, and pages visited on our site</li>
+        <li><strong>Communications data</strong> — messages you send us directly via email</li>
+      </ul>
+      <p>We collect only what we need to deliver your session and communicate about it.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 2 -->
+    <div class="policy-section" id="use">
+      <div class="policy-section-title">02</div>
+      <h2>How we use <em>your data</em></h2>
+      <ul>
+        <li>To confirm your purchase and deliver access to your live session and recording</li>
+        <li>To send pre-session setup instructions (API keys, pre-work, Zoom link)</li>
+        <li>To notify you of session schedule changes, replays, or follow-up resources</li>
+        <li>To process payment securely via our payment provider</li>
+        <li>To respond to your questions or support requests</li>
+        <li>To send you relevant updates about future build sessions — you can unsubscribe at any time via the link in any email</li>
+        <li>To improve our sessions and pages using aggregated, anonymous analytics</li>
+      </ul>
+      <p>We do not sell your data. We do not rent your email list to advertisers. Marketing emails from us will always be from <strong>ness@digicuratoragency.com</strong> and will always include an unsubscribe link.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 3 -->
+    <div class="policy-section" id="third-parties">
+      <div class="policy-section-title">03</div>
+      <h2>Third-party <em>services</em></h2>
+      <p>We use a small number of trusted third-party services to run our sessions:</p>
+      <ul>
+        <li><strong>Stripe</strong> — payment processing. Stripe's privacy policy applies to all payment data.</li>
+        <li><strong>Zoom</strong> — live session hosting. Zoom's privacy policy applies during sessions.</li>
+        <li><strong>ConvertKit / email provider</strong> — session confirmation and follow-up emails</li>
+        <li><strong>Google Analytics</strong> — anonymous site usage data (page views, traffic sources). No personally identifiable data is shared.</li>
+        <li><strong>GitHub</strong> — you receive access to a private GitHub repository as part of your session. GitHub's terms apply to repository use.</li>
+        <li><strong>Airtable, ElevenLabs, HeyGen, Blotato, Remotion</strong> — referenced in build sessions as tools you set up yourself. We do not share your data with these services on your behalf.</li>
+      </ul>
+      <p>Each third-party service operates under its own privacy policy and terms. We choose providers carefully and review them periodically.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 4 -->
+    <div class="policy-section" id="recordings">
+      <div class="policy-section-title">04</div>
+      <h2>Session <em>recordings</em></h2>
+      <p>Live build sessions are recorded and made available to all session purchasers for lifetime personal access. By attending a live session:</p>
+      <ul>
+        <li>You acknowledge the session is being recorded</li>
+        <li>If you share your screen or speak during Q&A, that content may appear in the recording</li>
+        <li>Recordings are hosted privately — only people who purchased the session can access them</li>
+        <li>If you prefer not to appear in a recording, keep your camera off and use the chat for questions</li>
+      </ul>
+      <p>Recordings are for your personal use only. You may not redistribute, re-sell, or publicly share session recordings. See the Terms of Service for full details.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 5 -->
+    <div class="policy-section" id="cookies">
+      <div class="policy-section-title">05</div>
+      <h2>Cookies &amp; <em>analytics</em></h2>
+      <p>Our pages use minimal cookies:</p>
+      <ul>
+        <li><strong>Essential cookies</strong> — required for the page to function (e.g., remembering your session state)</li>
+        <li><strong>Analytics cookies</strong> — Google Analytics, used to understand how people find and use our pages. All data is aggregated and anonymous.</li>
+      </ul>
+      <p>We do not use advertising cookies or retargeting pixels. You can disable cookies in your browser settings at any time, though some page features may not work as expected.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 6 -->
+    <div class="policy-section" id="security">
+      <div class="policy-section-title">06</div>
+      <h2>Data <em>security</em></h2>
+      <p>We take reasonable technical and organisational measures to protect your personal data, including:</p>
+      <ul>
+        <li>HTTPS encryption on all our pages</li>
+        <li>Stripe handles all payment data — we never store card details</li>
+        <li>Email access is restricted to Ness Alazne and authorised team members only</li>
+      </ul>
+      <p>No method of transmission over the internet is 100% secure. We cannot guarantee absolute security, but we commit to notifying you promptly if a breach affects your data.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 7 -->
+    <div class="policy-section" id="rights">
+      <div class="policy-section-title">07</div>
+      <h2>Your <em>rights</em></h2>
+      <p>Depending on where you live, you may have rights including:</p>
+      <ul>
+        <li><strong>Access</strong> — request a copy of the data we hold about you</li>
+        <li><strong>Correction</strong> — ask us to update inaccurate or incomplete data</li>
+        <li><strong>Deletion</strong> — ask us to delete your personal data (subject to legal obligations)</li>
+        <li><strong>Portability</strong> — receive your data in a common, machine-readable format</li>
+        <li><strong>Unsubscribe</strong> — opt out of marketing emails at any time via the unsubscribe link in any email</li>
+        <li><strong>Objection</strong> — object to processing of your data in certain circumstances</li>
+      </ul>
+      <p>To exercise any of these rights, email <a href="mailto:ness@digicuratoragency.com">ness@digicuratoragency.com</a>. We respond within 30 days.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 8 -->
+    <div class="policy-section" id="transfers">
+      <div class="policy-section-title">08</div>
+      <h2>International <em>transfers</em></h2>
+      <p>DigicuratorAgency is based in the United States. If you access our services from outside the US, your data may be transferred to and processed in the US, where data protection laws may differ from your country. By purchasing a session or joining the waitlist, you consent to this transfer.</p>
+      <p>We use service providers (like Stripe and Zoom) that maintain their own data transfer compliance frameworks, including Standard Contractual Clauses for EU/EEA residents where applicable.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 9 -->
+    <div class="policy-section" id="children">
+      <div class="policy-section-title">09</div>
+      <h2>Children's <em>privacy</em></h2>
+      <p>Our sessions and services are intended for adults (18+). We do not knowingly collect personal data from anyone under 18. If you believe a minor has submitted data to us, please contact us immediately and we will delete it.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 10 -->
+    <div class="policy-section" id="changes">
+      <div class="policy-section-title">10</div>
+      <h2>Policy <em>changes</em></h2>
+      <p>We may update this policy periodically. When we do, we'll update the effective date at the top of this page. For material changes, we'll notify active customers by email. Continued use of our services after a policy update constitutes acceptance of the revised policy.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 11 -->
+    <div class="policy-section" id="contact">
+      <div class="policy-section-title">11</div>
+      <h2>Get in <em>touch</em></h2>
+      <p>Questions, requests, or concerns about this policy:</p>
+      <div class="policy-box">
+        <p><strong>Ness Alazne</strong><br>DigicuratorAgency<br><a href="mailto:ness@digicuratoragency.com">ness@digicuratoragency.com</a></p>
+      </div>
+      <p>We aim to respond to all privacy-related requests within 30 days.</p>
+    </div>
+
+  </div><!-- /.policy-doc -->
+</div><!-- /.policy-body -->
+
+
+<!-- FOOTER -->
+<footer>
+  <a href="https://builds.digicuratoragency.com" class="footer-brand">
+    <svg width="14" height="14" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M24 6l18 10v16L24 42 6 32V16Z"/>
+      <path d="M24 6v16l18 10" opacity="0.5"/>
+      <path d="M24 22L6 32" opacity="0.5"/>
+    </svg>
+    AISocialHub · Ness Alazne
+  </a>
+  <div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);letter-spacing:0.14em;text-transform:uppercase;">
+    Questions? ness@digicuratoragency.com
+  </div>
+  <div class="footer-links">
+    <a href="/privacy.html">Privacy Policy</a>
+    <a href="/terms.html">Terms</a>
+  </div>
+</footer>
+
+</body>
+</html>

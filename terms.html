@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Terms of Service · Vibe Coding Build Sprint · AISocialHub</title>
+<meta name="description" content="Terms of Service for Vibe Coding Build Sprint live sessions and digital products by DigicuratorAgency." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+
+<style>
+:root {
+  --bg:               #050505;
+  --bg-elev:          #0a0a0a;
+  --surface:          #111111;
+  --border:           #1a1a1a;
+  --border-hover:     #2a2a2a;
+  --text:             #f0e8e8;
+  --text-paper:       #fdf5f0;
+  --text-dim:         #c8bfbf;
+  --muted:            #9a8f8f;
+  --accent:           #d87657;
+  --accent-hl:        rgba(216,118,87,0.28);
+  --accent-glow:      rgba(216,118,87,0.3);
+  --teal:             #ffde59;
+  --teal-glow:        rgba(255,222,89,0.28);
+  --green:            #50e3c2;
+  --pink:             #deb4b4;
+
+  --font-display: 'Instrument Serif', serif;
+  --font-body:    'Plus Jakarta Sans', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --section-pad-x: clamp(1.5rem, 8vw, 9rem);
+  --content-max: 760px;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; overflow-x:hidden; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(216,118,87,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 10% 110%, rgba(255,222,89,0.04) 0%, transparent 55%);
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+}
+
+section, header, footer, nav { position:relative; z-index:1; }
+
+/* NAV */
+.top-nav {
+  position: fixed;
+  top:0; left:0; right:0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px clamp(1.5rem, 5vw, 4rem);
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.nav-brand svg { color: var(--accent); }
+
+.nav-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border-hover);
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.3s var(--ease);
+}
+.nav-back:hover { border-color: var(--accent); color: var(--accent); }
+
+/* HERO */
+.policy-hero {
+  padding: clamp(8rem,14vw,12rem) var(--section-pad-x) clamp(3rem,5vw,5rem);
+  max-width: calc(var(--content-max) + 2 * clamp(1.5rem,8vw,9rem));
+  margin: 0 auto;
+}
+
+.policy-kicker {
+  font-family: var(--font-mono);
+  font-size: clamp(0.65rem, 0.9vw, 0.78rem);
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.26em;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: clamp(1rem,1.6vw,1.4rem);
+}
+.policy-kicker::before {
+  content: '';
+  display: inline-block;
+  width: 24px; height: 1px;
+  background: var(--accent);
+}
+
+.policy-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.8rem, 7vw, 6rem);
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: var(--text-paper);
+  margin-bottom: clamp(1.2rem,2vw,1.8rem);
+}
+.policy-title em { font-style: italic; color: var(--pink); }
+
+.policy-meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* DIVIDER */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+
+/* DOCUMENT BODY */
+.policy-body {
+  max-width: calc(var(--content-max) + 2 * clamp(1.5rem,8vw,9rem));
+  margin: 0 auto;
+  padding: clamp(3rem,6vw,6rem) var(--section-pad-x) clamp(5rem,8vw,8rem);
+}
+
+.policy-doc {
+  max-width: var(--content-max);
+}
+
+.policy-section {
+  margin-bottom: clamp(2.5rem,4vw,3.5rem);
+}
+
+.policy-section-title {
+  font-family: var(--font-mono);
+  font-size: clamp(0.72rem,0.95vw,0.85rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  margin-bottom: clamp(0.8rem,1.2vw,1rem);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.policy-section-title::before {
+  content: '';
+  display: inline-block;
+  width: 16px; height: 1px;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.policy-section h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.4rem,2.4vw,2rem);
+  color: var(--text-paper);
+  line-height: 1.15;
+  margin-bottom: clamp(0.8rem,1.2vw,1rem);
+}
+.policy-section h2 em { font-style: italic; color: var(--accent); }
+
+.policy-section p {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: clamp(0.92rem,1.2vw,1.05rem);
+  color: var(--text-dim);
+  line-height: 1.75;
+  margin-bottom: 1rem;
+}
+.policy-section p:last-child { margin-bottom: 0; }
+
+.policy-section ul, .policy-section ol {
+  margin: 0.6rem 0 1rem 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.policy-section li {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: clamp(0.92rem,1.2vw,1.05rem);
+  color: var(--text-dim);
+  line-height: 1.7;
+  padding: 0.35rem 0 0.35rem 1.4rem;
+  position: relative;
+}
+
+.policy-section li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-family: var(--font-mono);
+}
+
+.policy-section a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.policy-section strong {
+  color: var(--text-paper);
+  font-weight: 600;
+}
+
+/* HIGHLIGHT BOXES */
+.policy-box {
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  background: rgba(216,118,87,0.04);
+  border-radius: 0 10px 10px 0;
+  padding: clamp(1.2rem,1.8vw,1.6rem) clamp(1.4rem,2vw,1.8rem);
+  margin: clamp(1.4rem,2vw,1.8rem) 0;
+}
+.policy-box p {
+  margin-bottom: 0 !important;
+  font-size: clamp(0.88rem,1.1vw,1rem) !important;
+}
+
+.policy-box.teal {
+  border-left-color: var(--teal);
+  background: rgba(255,222,89,0.03);
+}
+
+/* TABLE OF CONTENTS */
+.toc {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: clamp(1.4rem,2vw,1.8rem) clamp(1.6rem,2.2vw,2rem);
+  margin-bottom: clamp(2.5rem,4vw,3.5rem);
+  background: var(--bg-elev);
+}
+.toc-title {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+.toc ol { list-style: none; counter-reset: toc-counter; }
+.toc li {
+  counter-increment: toc-counter;
+  padding: 0.3rem 0;
+  font-size: clamp(0.82rem,1vw,0.92rem) !important;
+  border-bottom: 1px solid var(--border);
+}
+.toc li:last-child { border-bottom: none; }
+.toc li::before {
+  content: counter(toc-counter, decimal-leading-zero) " — ";
+  color: var(--accent) !important;
+  font-family: var(--font-mono);
+  font-size: 10px;
+}
+.toc a {
+  color: var(--text-dim) !important;
+  text-decoration: none !important;
+  transition: color 0.2s;
+}
+.toc a:hover { color: var(--accent) !important; }
+
+/* FOOTER */
+footer {
+  padding: clamp(3rem,5vw,5rem) var(--section-pad-x);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--border);
+  max-width: calc(var(--content-max) + 2 * clamp(1.5rem,8vw,9rem));
+  margin: 0 auto;
+}
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.footer-brand svg { color: var(--accent); }
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+.footer-links a {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--accent); }
+
+@media (max-width:600px) {
+  footer { flex-direction:column; text-align:center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="top-nav">
+  <a href="https://builds.digicuratoragency.com" class="nav-brand">
+    <svg width="16" height="16" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M24 6l18 10v16L24 42 6 32V16Z"/>
+      <path d="M24 6v16l18 10" opacity="0.5"/>
+      <path d="M24 22L6 32" opacity="0.5"/>
+    </svg>
+    <span>AISocialHub</span>
+  </a>
+  <a href="https://builds.digicuratoragency.com" class="nav-back">← Back to hub</a>
+</nav>
+
+
+<!-- HERO -->
+<header class="policy-hero">
+  <div class="policy-kicker">Legal</div>
+  <h1 class="policy-title">Terms of <em>Service.</em></h1>
+  <p class="policy-meta">Effective date: May 2026 &nbsp;·&nbsp; DigicuratorAgency.com</p>
+</header>
+
+<div class="divider"></div>
+
+
+<!-- DOCUMENT -->
+<div class="policy-body">
+  <div class="policy-doc">
+
+    <!-- INTRO BOX -->
+    <div class="policy-box">
+      <p>These terms apply to all purchases made through <strong>builds.digicuratoragency.com</strong> — including individual live build sessions, the Founding Member Bundle, and any associated digital products. By completing a purchase, you agree to these terms. Questions? Email <a href="mailto:ness@digicuratoragency.com">ness@digicuratoragency.com</a> before you buy.</p>
+    </div>
+
+    <!-- TABLE OF CONTENTS -->
+    <div class="toc">
+      <div class="toc-title">Contents</div>
+      <ol>
+        <li><a href="#what-you-get">What you receive</a></li>
+        <li><a href="#access">Access &amp; delivery</a></li>
+        <li><a href="#acceptable-use">Acceptable use</a></li>
+        <li><a href="#recordings">Recordings &amp; content</a></li>
+        <li><a href="#payment">Payment terms</a></li>
+        <li><a href="#refunds">Refund policy</a></li>
+        <li><a href="#chargebacks">Chargebacks</a></li>
+        <li><a href="#ip">Intellectual property</a></li>
+        <li><a href="#disclaimer">Disclaimer &amp; results</a></li>
+        <li><a href="#liability">Limitation of liability</a></li>
+        <li><a href="#governing">Governing law</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ol>
+    </div>
+
+
+    <!-- 1 -->
+    <div class="policy-section" id="what-you-get">
+      <div class="policy-section-title">01</div>
+      <h2>What you <em>receive</em></h2>
+      <p>Each live build session purchase includes:</p>
+      <ul>
+        <li>Access to one live Zoom session (2–3 hours) where we build the system together</li>
+        <li>Lifetime access to the full HD session recording</li>
+        <li>Access to the private GitHub project repository to fork and deploy yourself</li>
+        <li>The master Claude Code prompt kit with brand voice placeholders and API setup guide</li>
+        <li>A pre-session setup walkthrough video (API keys, avatar, voice clone)</li>
+        <li>Any session-specific bonus resources listed on the purchase page at the time of purchase</li>
+      </ul>
+      <p>The <strong>Founding Member Bundle ($297)</strong> includes all of the above for all 6 live build sessions — one recording delivered immediately (Session 01), and the remaining five delivered as each session runs live.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 2 -->
+    <div class="policy-section" id="access">
+      <div class="policy-section-title">02</div>
+      <h2>Access &amp; <em>delivery</em></h2>
+      <ul>
+        <li>Your Zoom link and pre-work are delivered to your purchase email within 24 hours of purchase</li>
+        <li>GitHub repository access is granted within 48 hours of purchase</li>
+        <li>Recording links are sent to your email within 24–48 hours after each session ends</li>
+        <li>If you cannot attend live, the recording and all materials are still yours — everything is asynchronous-friendly</li>
+        <li>It is your responsibility to provide a valid email address at checkout. We are not responsible for delivery failures caused by incorrect email addresses or spam filters</li>
+        <li>Access is for the individual purchaser only. Please do not share login links or credentials with others</li>
+      </ul>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 3 -->
+    <div class="policy-section" id="acceptable-use">
+      <div class="policy-section-title">03</div>
+      <h2>Acceptable <em>use</em></h2>
+      <p>Your purchase gives you a personal, non-transferable licence to use all session materials. You may:</p>
+      <ul>
+        <li>Watch the recording as many times as you like, forever</li>
+        <li>Fork the GitHub project and deploy it for your own business or clients</li>
+        <li>Adapt the master prompt kit for your own brand voice and use cases</li>
+        <li>Build systems for clients using what you learned in the session</li>
+      </ul>
+      <p>You may not:</p>
+      <ul>
+        <li>Re-sell, redistribute, or share session recordings, prompt kits, or repository access with anyone who has not purchased</li>
+        <li>Run your own course, workshop, or paid training based substantially on our session materials without written permission</li>
+        <li>Claim our materials as your own original work</li>
+        <li>Share your GitHub repository access link publicly</li>
+      </ul>
+      <p>If you are unsure whether a specific use is permitted, just ask: <a href="mailto:ness@digicuratoragency.com">ness@digicuratoragency.com</a></p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 4 -->
+    <div class="policy-section" id="recordings">
+      <div class="policy-section-title">04</div>
+      <h2>Recordings &amp; <em>content</em></h2>
+      <p>Live sessions are recorded. By attending a live session:</p>
+      <ul>
+        <li>You acknowledge and consent to the session being recorded</li>
+        <li>If you share your screen, speak, or appear on camera during Q&A, your contributions may appear in the recording distributed to other purchasers</li>
+        <li>If you prefer not to appear, keep your camera off and use the text chat for questions</li>
+      </ul>
+      <p>Recordings are provided for your lifetime personal access. All recordings, prompts, and project files remain the intellectual property of DigicuratorAgency. Your right is to use them, not to own or redistribute them.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 5 -->
+    <div class="policy-section" id="payment">
+      <div class="policy-section-title">05</div>
+      <h2>Payment <em>terms</em></h2>
+      <ul>
+        <li>All prices are listed in USD</li>
+        <li>Payment is processed securely by Stripe. We do not store your card details</li>
+        <li>Your purchase is complete when Stripe confirms payment. You will receive a confirmation email immediately</li>
+        <li>If a payment fails, access will not be granted until payment is resolved</li>
+        <li>Prices shown on the purchase page at the time of checkout are the prices you pay — no hidden fees</li>
+      </ul>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 6 -->
+    <div class="policy-section" id="refunds">
+      <div class="policy-section-title">06</div>
+      <h2>Refund <em>policy</em></h2>
+      <div class="policy-box teal">
+        <p>All sales are final. Because sessions include immediate digital delivery (recordings, GitHub access, prompt kits), we do not offer refunds after purchase.</p>
+      </div>
+      <p>We stand behind the quality of our sessions. If something goes wrong on our end — a session is cancelled, materials are not delivered, or there is a technical failure that prevents you from accessing what you paid for — we will make it right. Contact us within 7 days and we will resolve it.</p>
+      <p>If you cannot attend a live session, the recording and all materials are still yours. We do not issue refunds for scheduling conflicts.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 7 -->
+    <div class="policy-section" id="chargebacks">
+      <div class="policy-section-title">07</div>
+      <h2><em>Chargebacks</em></h2>
+      <p>If you initiate a chargeback or payment dispute with your bank or card provider without first contacting us to resolve the issue, we reserve the right to:</p>
+      <ul>
+        <li>Immediately revoke access to all session materials, recordings, and repository access</li>
+        <li>Provide evidence of purchase and delivery to your bank or card network to contest the chargeback</li>
+        <li>Pursue recovery of the disputed amount, including any chargeback fees incurred</li>
+      </ul>
+      <p>If you have a genuine concern about a charge, please email <a href="mailto:ness@digicuratoragency.com">ness@digicuratoragency.com</a> first. We respond quickly and resolve issues fairly.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 8 -->
+    <div class="policy-section" id="ip">
+      <div class="policy-section-title">08</div>
+      <h2>Intellectual <em>property</em></h2>
+      <p>All session content, recordings, master prompts, CLAUDE.md files, system architectures, and written materials created by DigicuratorAgency are our intellectual property.</p>
+      <p>Your purchase grants you a personal, non-exclusive, non-transferable licence to use these materials for your own business purposes as described in Section 03. This licence does not transfer ownership.</p>
+      <p>The systems you <em>build yourself</em> using our prompts and methods are yours. The prompt kits and instructional materials themselves are ours.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 9 -->
+    <div class="policy-section" id="disclaimer">
+      <div class="policy-section-title">09</div>
+      <h2>Disclaimer &amp; <em>results</em></h2>
+      <p>Our sessions teach you how to build AI-powered systems using Claude Code and third-party APIs. Results depend on your effort, your existing setup, and the third-party tools involved.</p>
+      <ul>
+        <li>We make no guarantees regarding income, revenue, or business outcomes from using the systems you build</li>
+        <li>Third-party APIs (ElevenLabs, HeyGen, Blotato, Airtable, Remotion, Stripe) are subject to their own pricing, terms, and availability. We are not responsible for changes to third-party services</li>
+        <li>Claude Code and the Anthropic API are subject to Anthropic's terms. Session content reflects the tool's capabilities at the time of recording and may require adaptation as tools evolve</li>
+        <li>We do our best to keep session materials current but cannot guarantee they will remain accurate indefinitely as APIs and tools change</li>
+      </ul>
+      <p>Our sessions are educational and practical. The value is in what you learn and build — not a guaranteed outcome.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 10 -->
+    <div class="policy-section" id="liability">
+      <div class="policy-section-title">10</div>
+      <h2>Limitation of <em>liability</em></h2>
+      <p>To the maximum extent permitted by law, DigicuratorAgency's total liability for any claim arising from your purchase shall not exceed the amount you paid for the specific session or bundle in question.</p>
+      <p>We are not liable for indirect, incidental, or consequential damages — including lost profits, business interruption, or data loss — arising from your use of session materials or the systems you build.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 11 -->
+    <div class="policy-section" id="governing">
+      <div class="policy-section-title">11</div>
+      <h2>Governing <em>law</em></h2>
+      <p>These terms are governed by the laws of the Commonwealth of Virginia, United States, without regard to conflict-of-law principles.</p>
+      <p>Any dispute that cannot be resolved informally shall be submitted to binding arbitration in Richmond, Virginia, under the American Arbitration Association's Commercial Arbitration Rules. You waive any right to a jury trial or class action in connection with any dispute relating to these terms.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 12 -->
+    <div class="policy-section" id="contact">
+      <div class="policy-section-title">12</div>
+      <h2>Get in <em>touch</em></h2>
+      <p>Questions about these terms or your purchase:</p>
+      <div class="policy-box">
+        <p><strong>Ness Alazne</strong><br>DigicuratorAgency<br><a href="mailto:ness@digicuratoragency.com">ness@digicuratoragency.com</a></p>
+      </div>
+      <p>We aim to respond to all inquiries within 1–2 business days.</p>
+    </div>
+
+  </div><!-- /.policy-doc -->
+</div><!-- /.policy-body -->
+
+
+<!-- FOOTER -->
+<footer>
+  <a href="https://builds.digicuratoragency.com" class="footer-brand">
+    <svg width="14" height="14" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M24 6l18 10v16L24 42 6 32V16Z"/>
+      <path d="M24 6v16l18 10" opacity="0.5"/>
+      <path d="M24 22L6 32" opacity="0.5"/>
+    </svg>
+    AISocialHub · Ness Alazne
+  </a>
+  <div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);letter-spacing:0.14em;text-transform:uppercase;">
+    Questions? ness@digicuratoragency.com
+  </div>
+  <div class="footer-links">
+    <a href="/privacy.html">Privacy Policy</a>
+    <a href="/terms.html">Terms</a>
+  </div>
+</footer>
+
+</body>
+</html>
