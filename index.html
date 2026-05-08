@@ -1348,6 +1348,11 @@ if (waitlistForm) {
         btn.style.color = '#000';
         waitlistForm.querySelector('.waitlist-note').textContent = "We'll be in touch with early access details.";
       } else {
+        const data = await res.json().catch(() => ({}));
+        const isDisposable = data.error && data.error.includes('Disposable');
+        waitlistForm.querySelector('.waitlist-note').textContent = isDisposable
+          ? 'Please use a real email — we need it to send you access details.'
+          : 'Something went wrong. Please try again.';
         btn.textContent = 'Try again →';
         btn.disabled = false;
       }
