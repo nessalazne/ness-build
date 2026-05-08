@@ -1188,7 +1188,7 @@ footer {
       <div class="founding-price-label">One-time · No subscription</div>
       <div class="founding-compare">$852 if bought separately</div>
       <div class="founding-savings">You save $555</div>
-      <a href="https://digicuratoragency.com/vibe-coding-mastery" class="btn-founding">Become a Founding Member →</a>
+      <a href="https://pay.digicuratoragency.com/checkout/200df36e42e5afad67f468f011de564c" class="btn-founding" target="_blank" rel="noopener">Become a Founding Member →</a>
       <div class="founding-note">Price increases to $397 after Session 1 runs<br>on Wednesday · 12–3pm EST</div>
       <div class="founding-urgency">
         <span class="pulse"></span>
@@ -1313,6 +1313,18 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* Founding Member CTA → open checkout + pink color state */
+const foundingBtn = document.querySelector('.btn-founding');
+if (foundingBtn) {
+  foundingBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    this.style.background = '#deb4b4';
+    this.style.boxShadow = 'none';
+    this.style.color = '#000';
+    window.open('https://pay.digicuratoragency.com/checkout/200df36e42e5afad67f468f011de564c', '_blank');
+  });
+}
 
 /* System 01 "Save My Spot" → open checkout + pink color state */
 document.querySelectorAll('.card-btn:not(.coming)').forEach(btn => {
