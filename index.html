@@ -129,6 +129,34 @@ section, header, footer, nav { position: relative; z-index: 1; }
 }
 .nav-link:hover { color: var(--accent); }
 
+.nav-freebie {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--teal) !important;
+  border: 1px solid rgba(255,222,89,0.3);
+  border-radius: 100px;
+  padding: 6px 14px;
+  background: rgba(255,222,89,0.06);
+  transition: all 0.25s ease;
+  box-shadow: 0 0 14px rgba(255,222,89,0.08);
+}
+.nav-freebie:hover {
+  color: var(--teal) !important;
+  border-color: rgba(255,222,89,0.6);
+  background: rgba(255,222,89,0.12);
+  box-shadow: 0 0 22px rgba(255,222,89,0.18);
+  transform: translateY(-1px);
+}
+.nav-freebie-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 6px rgba(255,222,89,0.7);
+  animation: blink 2.2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
 /* ================================================================
    HERO
    ================================================================ */
@@ -879,7 +907,10 @@ footer {
     <span>AISocialHub</span>
   </a>
   <div class="nav-links">
-    <a href="https://blog.digicuratoragency.com/get/" class="nav-link">Vibe Coding Free Guide</a>
+    <a href="https://blog.digicuratoragency.com/get/" class="nav-link nav-freebie">
+      <span class="nav-freebie-dot"></span>
+      🎁 Free Guide
+    </a>
   </div>
 </nav>
 
