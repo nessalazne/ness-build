@@ -748,14 +748,14 @@ footer {
      FIXED NAV
      ================================================================ -->
 <nav class="top-nav">
-  <a href="https://blog.digicuratoragency.com" class="nav-brand">
+  <span class="nav-brand">
     <svg width="16" height="16" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <path d="M24 6l18 10v16L24 42 6 32V16Z"/>
       <path d="M24 6v16l18 10" opacity="0.5"/>
       <path d="M24 22L6 32" opacity="0.5"/>
     </svg>
     <span>AISocialHub</span>
-  </a>
+  </span>
   <div class="nav-badge">
     <span class="dot"></span>
     Purchase confirmed
@@ -806,7 +806,7 @@ footer {
     </div>
     <div class="metric-item">
       <div class="metric-value accent">$0</div>
-      <div class="metric-label">Coding needed</div>
+      <div class="metric-label">Zero coding needed</div>
     </div>
   </div>
 </header>
@@ -939,9 +939,9 @@ footer {
       <div class="include-desc">15-minute video: fork the repo, fill your .env, train your avatar, clone your voice. Running in 30 minutes.</div>
     </div>
     <div class="include-card reveal reveal-d6">
-      <span class="include-icon">⚡</span>
-      <div class="include-name">Founding Member Access</div>
-      <div class="include-desc">Get all 6 live build sessions for $297 — the lowest this price will ever be. Price increases after Session 1 runs.</div>
+      <span class="include-icon">🎟️</span>
+      <div class="include-name">Founding Member Upgrade</div>
+      <div class="include-desc">Your $97 today counts as full credit. Upgrade to all 6 Vibe Coding Live Build systems for $200 more — same $297 founding member price. Available for 24 hours after purchase.</div>
     </div>
 
     <div class="include-card reveal reveal-d1">
@@ -990,74 +990,87 @@ footer {
 
 
 <!-- ================================================================
-     WHAT'S NEXT — UPSELL
+     STILL WANT ALL 6 — UPGRADE OFFER
      ================================================================ -->
-<section class="section">
-  <div class="two-col center">
-    <div>
-      <div class="kicker reveal">After Wednesday</div>
-      <h2 class="section-title reveal reveal-d1">
-        One build.<br>Five more<br><em>systems await.</em>
-      </h2>
-      <p class="body-text reveal reveal-d2" style="margin-top:1.4rem;">
-        You've locked in Session 01. Grab all 6 live build systems for <strong>$297</strong> at the founding member price — before it climbs to $397 after Wednesday's session runs.
-      </p>
-      <div style="margin-top:clamp(2rem,3vw,2.8rem);" class="reveal reveal-d3">
-        <ul class="fine-list">
-          <li><span class="fl-k">System 01 · YouTube Repurposer</span><span class="fl-v green">✓ You're in</span></li>
-          <li><span class="fl-k">System 02 · SEO Blog Publisher</span><span class="fl-v teal">Included</span></li>
-          <li><span class="fl-k">System 03 · Freebie Generator</span><span class="fl-v teal">Included</span></li>
-          <li><span class="fl-k">System 04 · AI Website Builder</span><span class="fl-v teal">Included</span></li>
-          <li><span class="fl-k">System 05 · Cinematic Ads Agent</span><span class="fl-v teal">Included</span></li>
-          <li><span class="fl-k">System 06 · Creator CRM</span><span class="fl-v teal">Included</span></li>
-          <li><span class="fl-k">Founding member price</span><span class="fl-v accent">$297 total</span></li>
-        </ul>
-      </div>
-      <div style="display:flex; gap:14px; flex-wrap:wrap; margin-top:clamp(2rem,3vw,2.8rem);" class="reveal reveal-d4">
-        <a href="https://builds.digicuratoragency.com/" class="btn-primary">
-          Explore the Build Sprint →
-        </a>
-        <a href="https://blog.digicuratoragency.com" class="btn-ghost">Back to AISocialHub</a>
+<section class="section" id="upgrade-section">
+  <div style="max-width:700px; margin:0 auto; text-align:center;">
+    <div class="kicker reveal" style="justify-content:center;">After Wednesday</div>
+    <h2 class="section-title reveal reveal-d1" style="margin-bottom:1rem;">
+      Still want all <em>6 systems?</em>
+    </h2>
+    <p class="reveal reveal-d2" style="font-family:var(--font-body);font-weight:300;font-size:clamp(0.95rem,1.2vw,1.05rem);color:var(--muted);font-style:italic;margin-bottom:clamp(2rem,3vw,2.8rem);">The $200 founding member upgrade is<br>available for 24 hours after your purchase.</p>
+
+    <div class="reveal reveal-d3" style="display:flex;justify-content:center;margin-bottom:clamp(2rem,3vw,2.8rem);">
+      <div style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal);padding:8px 18px;border:1px solid rgba(255,222,89,0.25);border-radius:100px;background:rgba(255,222,89,0.06);">
+        <span style="width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 8px var(--teal-glow);animation:blink 2s ease-in-out infinite;display:inline-block;flex-shrink:0;"></span>
+        ⚡ 24-hour upgrade window
       </div>
     </div>
 
-    <div class="reveal reveal-d2">
-      <div style="border: 1px solid var(--border); border-radius: 16px; overflow:hidden; background: var(--bg-elev);">
-        <div style="padding: clamp(1.4rem,2vw,1.8rem); border-bottom: 1px solid var(--border);">
-          <div style="font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:0.2em;color:var(--accent);margin-bottom:8px;">Founding Member Price</div>
-          <div style="font-family:var(--font-display);font-size:clamp(2.4rem,5vw,4rem);color:var(--text-paper);line-height:1;">$297</div>
-          <div style="font-family:var(--font-mono);font-size:11px;color:var(--muted);text-decoration:line-through;margin-top:4px;">$852 if bought separately</div>
-          <div style="font-family:var(--font-mono);font-size:11px;color:var(--green);text-transform:uppercase;letter-spacing:0.18em;margin-top:6px;">You save $555</div>
+    <div class="reveal reveal-d4" id="upgrade-card" style="background:rgba(216,118,87,0.06);border:1px solid var(--accent);border-radius:14px;padding:clamp(1.8rem,3vw,2.4rem);text-align:left;overflow:hidden;transition:max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;">
+
+      <div style="font-family:var(--font-mono);font-size:10px;color:var(--accent);text-transform:uppercase;letter-spacing:0.2em;margin-bottom:1rem;">VIBE CODING LIVE BUILD — 6 SYSTEMS</div>
+
+      <div style="margin-bottom:1.4rem;">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.06em;">
+          <span style="color:var(--accent);">✓ System 01 · YouTube Repurposer</span>
+          <span style="color:var(--accent);font-size:10px;">You're in</span>
         </div>
-        <div style="padding: clamp(1.4rem,2vw,1.8rem);">
-          <div style="display:flex;flex-direction:column;gap:12px;">
-            <div style="display:flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:11px;color:var(--text-dim);">
-              <span style="color:var(--green);">✓</span> System 01 · YouTube Repurposer (you're in)
-            </div>
-            <div style="display:flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:11px;color:var(--text-dim);">
-              <span style="color:var(--teal);">+</span> System 02 · SEO Blog Publisher
-            </div>
-            <div style="display:flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:11px;color:var(--text-dim);">
-              <span style="color:var(--teal);">+</span> System 03 · Freebie Generator
-            </div>
-            <div style="display:flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:11px;color:var(--text-dim);">
-              <span style="color:var(--teal);">+</span> System 04 · AI Website Builder
-            </div>
-            <div style="display:flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:11px;color:var(--text-dim);">
-              <span style="color:var(--teal);">+</span> System 05 · Cinematic Ads Agent
-            </div>
-            <div style="display:flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:11px;color:var(--text-dim);">
-              <span style="color:var(--teal);">+</span> System 06 · Creator CRM
-            </div>
-            <div style="display:flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:11px;color:var(--text-dim);">
-              <span style="color:var(--green);">✓</span> All recordings · Lifetime access
-            </div>
-            <div style="display:flex;align-items:center;gap:10px;font-family:var(--font-mono);font-size:11px;color:var(--text-dim);">
-              <span style="color:var(--green);">✓</span> All master prompts · GitHub access
-            </div>
-          </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.06em;">
+          <span style="color:var(--teal);">→ System 02 · SEO Blog Publisher</span>
+          <span style="color:var(--teal);font-size:10px;">INCLUDED</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.06em;">
+          <span style="color:var(--teal);">→ System 03 · Freebie Generator</span>
+          <span style="color:var(--teal);font-size:10px;">INCLUDED</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.06em;">
+          <span style="color:var(--teal);">→ System 04 · AI Website Builder</span>
+          <span style="color:var(--teal);font-size:10px;">INCLUDED</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.06em;">
+          <span style="color:var(--teal);">→ System 05 · Cinematic Ads Agent</span>
+          <span style="color:var(--teal);font-size:10px;">INCLUDED</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.06em;">
+          <span style="color:var(--teal);">→ System 06 · Creator CRM</span>
+          <span style="color:var(--teal);font-size:10px;">INCLUDED</span>
         </div>
       </div>
+
+      <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:1.4rem;">
+        <div style="font-family:var(--font-mono);font-size:11px;color:var(--green);">+ All 6 recordings · Lifetime access</div>
+        <div style="font-family:var(--font-mono);font-size:11px;color:var(--green);">+ All 6 GitHub forks · Fork and own</div>
+        <div style="font-family:var(--font-mono);font-size:11px;color:var(--green);">+ All 6 master prompt kits · Included</div>
+        <div style="font-family:var(--font-mono);font-size:11px;color:var(--green);">+ AI Audit Method · Bonus included</div>
+        <div style="font-family:var(--font-mono);font-size:11px;color:var(--green);">+ AISHA Engine · Bonus included</div>
+      </div>
+
+      <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:1.4rem 0;">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-bottom:1px solid var(--border);font-family:var(--font-mono);font-size:11px;">
+          <span style="color:var(--muted);">$97 paid today</span>
+          <span style="color:var(--muted);">→</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-bottom:1px solid var(--border);font-family:var(--font-mono);font-size:11px;">
+          <span style="color:var(--muted);">+ $200 upgrade</span>
+          <span style="color:var(--muted);">→</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 16px;font-family:var(--font-mono);font-size:11px;">
+          <span style="color:var(--accent);font-weight:600;">= $297 total</span>
+          <span style="color:var(--accent);font-weight:600;">Founding price</span>
+        </div>
+      </div>
+
+      <div style="font-family:var(--font-mono);font-size:11px;color:var(--green);margin-bottom:1.8rem;">$555 less than buying sessions separately</div>
+
+      <a href="https://pay.digicuratoragency.com/checkout/f316d3519934b8f072586e33602b45ca" target="_blank" rel="noopener" class="btn-primary" style="display:flex;justify-content:center;width:100%;text-align:center;box-sizing:border-box;">
+        Upgrade to All 6 — $200 →
+      </a>
+
+      <p style="font-family:var(--font-mono);font-size:10px;color:var(--muted);text-align:center;margin-top:1rem;">This price increases to $397 after<br>Session 1 runs · Wednesday 12–3pm EST</p>
+
+      <a href="#" id="no-thanks-link" style="font-family:var(--font-mono);font-size:10px;color:var(--muted);text-decoration:none;display:block;text-align:center;margin-top:0.8rem;cursor:pointer;">No thanks — I'll stick with Session 1 only</a>
+
     </div>
   </div>
 </section>
@@ -1075,10 +1088,13 @@ footer {
     </svg>
     AISocialHub · Ness Alazne
   </div>
+  <div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);letter-spacing:0.14em;text-transform:uppercase;">
+    Questions? ness@digicuratoragency.com
+  </div>
   <div class="footer-links">
-    <a href="https://blog.digicuratoragency.com">Home</a>
     <a href="https://builds.digicuratoragency.com/">Vibe Coding Build Sprint</a>
-    <a href="https://digicuratoragency.com/aisocialhub_freeplan">Free Plan</a>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms</a>
   </div>
 </footer>
 
@@ -1107,6 +1123,22 @@ document.querySelectorAll('.btn-primary, .btn-ghost, .btn-green').forEach(btn =>
     this.style.borderColor = '#deb4b4';
   });
 });
+
+const noThanksLink = document.getElementById('no-thanks-link');
+if (noThanksLink) {
+  noThanksLink.addEventListener('click', function(e) {
+    e.preventDefault();
+    const section = document.getElementById('upgrade-section');
+    section.style.transition = 'max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease';
+    section.style.maxHeight = section.scrollHeight + 'px';
+    section.offsetHeight;
+    section.style.maxHeight = '0';
+    section.style.opacity = '0';
+    section.style.overflow = 'hidden';
+    section.style.paddingTop = '0';
+    section.style.paddingBottom = '0';
+  });
+}
 </script>
 
 </body>
