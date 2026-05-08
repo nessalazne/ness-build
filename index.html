@@ -1350,9 +1350,11 @@ if (waitlistForm) {
       } else {
         const data = await res.json().catch(() => ({}));
         const isDisposable = data.error && data.error.includes('Disposable');
-        waitlistForm.querySelector('.waitlist-note').textContent = isDisposable
+        const note = waitlistForm.querySelector('.waitlist-note');
+        note.textContent = isDisposable
           ? 'Please use a real email — we need it to send you access details.'
           : 'Something went wrong. Please try again.';
+        note.style.color = isDisposable ? '#e05555' : '';
         btn.textContent = 'Try again →';
         btn.disabled = false;
       }
