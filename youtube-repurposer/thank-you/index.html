@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const token = params.get('ref');
+  const validTokens = ['groove', 'founder', 'vibe297'];
+
+  if (!validTokens.includes(token)) {
+    window.location.replace(
+      'https://builds.digicuratoragency.com/youtube-repurposer/'
+    );
+  }
+})();
+</script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>You're In — Vibe Coding Live Build · AISocialHub</title>
