@@ -322,7 +322,7 @@ section, header, footer, nav { position:relative; z-index:1; }
 .step-tag.green { background: rgba(80,227,194,0.12); color: var(--green); border: 1px solid rgba(80,227,194,0.25); }
 .step-tag.teal  { background: rgba(255,222,89,0.10); color: var(--teal);  border: 1px solid rgba(255,222,89,0.22); }
 
-/* WHAT YOU UNLOCKED */
+/* BUNDLE CARDS */
 .unlock-grid {
   display: flex;
   flex-direction: column;
@@ -373,9 +373,21 @@ section, header, footer, nav { position:relative; z-index:1; }
   white-space: nowrap;
   flex-shrink: 0;
 }
-.unlock-badge.included { background: rgba(80,227,194,0.1); color: var(--green); border: 1px solid rgba(80,227,194,0.22); }
-.unlock-badge.bonus    { background: rgba(255,222,89,0.1); color: var(--teal);  border: 1px solid rgba(255,222,89,0.22); }
-.unlock-badge.upgrade  { background: rgba(216,118,87,0.12); color: var(--accent); border: 1px solid rgba(216,118,87,0.25); }
+.unlock-badge.included { background: rgba(80,227,194,0.1);  color: var(--green);  border: 1px solid rgba(80,227,194,0.22); }
+.unlock-badge.bonus    { background: rgba(255,222,89,0.1);  color: var(--teal);   border: 1px solid rgba(255,222,89,0.22); }
+.unlock-badge.live     { background: rgba(216,118,87,0.12); color: var(--accent); border: 1px solid rgba(216,118,87,0.25); }
+.unlock-badge.muted    { background: rgba(154,143,143,0.1); color: var(--muted);  border: 1px solid rgba(154,143,143,0.2); }
+
+.unlock-section-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  padding: clamp(0.9rem,1.4vw,1.2rem) clamp(1.2rem,1.8vw,1.6rem);
+  border-bottom: 1px solid var(--border);
+  background: rgba(255,255,255,0.015);
+}
 
 /* CTA BUTTON */
 .cta-row {
@@ -488,7 +500,7 @@ footer {
 <header class="ty-hero">
   <div class="ty-kicker">Order confirmed</div>
   <h1 class="ty-title">You're In, <em>Founder.</em></h1>
-  <p class="ty-subtitle">Your $297 is locked in at the founding member price — the same price everyone else will pay for all 6 systems. Check your inbox for next steps.</p>
+  <p class="ty-subtitle">Your $297 is locked in at the founding member price. You have lifetime access to all 6 live build sessions plus 2 bonus courses — every recording, every GitHub project, every master prompt kit. Here's everything you unlocked. Check your inbox — including spam and promotions folders — for next steps.</p>
   <p class="ty-meta">Founding Member Bundle &nbsp;·&nbsp; $297 lifetime access &nbsp;·&nbsp; DigicuratorAgency.com</p>
 </header>
 
@@ -501,7 +513,7 @@ footer {
 
     <!-- CONFIRMATION BOX -->
     <div class="ty-box">
-      <p>A confirmation email is on its way to you now. If you don't see it within a few minutes, check your spam folder — then email <a href="mailto:ness@digicuratoragency.com">ness@digicuratoragency.com</a> and we'll sort it out immediately.</p>
+      <p>A confirmation email is on its way to you now. If you don't see it within a few minutes, check your spam and promotions folders — then email <a href="mailto:ness@digicuratoragency.com">ness@digicuratoragency.com</a> and we'll sort it out immediately.</p>
     </div>
 
 
@@ -515,7 +527,7 @@ footer {
           <div class="step-num"></div>
           <div class="step-body">
             <strong>Check your inbox <span class="step-tag green">Within minutes</span></strong>
-            <span>You'll get a confirmation email with your Zoom link, session date, and a pre-session setup guide. Read it before the session — it covers what tools to have open and how to get your Claude account ready.</span>
+            <span>You'll get a confirmation email with your Zoom link, session date, pre-session setup guide, and access links for the AI Audit Method and AISHA Engine bonus courses. Check spam and promotions if you don't see it within 5 minutes.</span>
           </div>
         </li>
 
@@ -548,61 +560,118 @@ footer {
     <div class="divider"></div>
 
 
-    <!-- WHAT YOU UNLOCKED -->
+    <!-- BUNDLE CARDS -->
     <div class="ty-section">
       <div class="ty-section-title">Your bundle</div>
-      <h2>What you <em>unlocked</em></h2>
+      <h2>Your 6 systems — all <em>unlocked</em></h2>
       <p>Everything included at the $297 founding member price:</p>
 
       <div class="unlock-grid">
+
+        <!-- LIVE BUILDS -->
         <div class="unlock-item">
           <div class="unlock-icon">🎥</div>
           <div class="unlock-label">
-            YouTube Repurposer — Live Build Session
-            <span>2-hour live Zoom session building the full system from scratch</span>
+            YouTube Repurposer — Live Build
+            <span>2–3 hour live Zoom session. Build the full Chrome extension from scratch — transcript extraction, avatar video, voiceover, animated captions, Airtable, Blotato. All 8 APIs wired by Claude Code.</span>
           </div>
-          <div class="unlock-badge included">Included</div>
+          <div class="unlock-badge live">System 01 · Live</div>
         </div>
+
         <div class="unlock-item">
-          <div class="unlock-icon">⏺</div>
+          <div class="unlock-icon">📝</div>
           <div class="unlock-label">
-            Full session recording
-            <span>Lifetime access — rewatch anytime, no expiry</span>
+            SEO Blog Publisher — Live Build
+            <span>Build an AI system that researches, writes, and publishes SEO-optimized blog posts automatically — keyword research, internal linking, meta tags, and scheduled publishing. Completely hands-free.</span>
           </div>
-          <div class="unlock-badge included">Included</div>
+          <div class="unlock-badge bonus">System 02 · Wed Jun 25</div>
         </div>
+
         <div class="unlock-item">
-          <div class="unlock-icon">🔗</div>
+          <div class="unlock-icon">🎁</div>
           <div class="unlock-label">
-            GitHub repo fork
-            <span>Your own copy of the full codebase, ready to deploy</span>
+            Freebie Generator — Live Build
+            <span>Build an AI system that generates lead magnet PDFs automatically — cover design, content, opt-in page, and email delivery. Any topic to a downloadable freebie in minutes.</span>
           </div>
-          <div class="unlock-badge included">Included</div>
+          <div class="unlock-badge bonus">System 03 · Wed Jul 23</div>
         </div>
+
         <div class="unlock-item">
-          <div class="unlock-icon">📋</div>
+          <div class="unlock-icon">🌐</div>
           <div class="unlock-label">
-            Master prompt kit
-            <span>Every prompt used to build the system, formatted and ready to reuse</span>
+            AI Website Builder — Live Build
+            <span>Build a fully deployed website with AI-generated copy, images, and layout — connected to your domain and live on the internet. Pure Claude Code. No Webflow. No WordPress.</span>
           </div>
-          <div class="unlock-badge included">Included</div>
+          <div class="unlock-badge bonus">System 04 · Wed Aug 27</div>
         </div>
+
         <div class="unlock-item">
           <div class="unlock-icon">🎬</div>
           <div class="unlock-label">
-            Setup walkthrough video
-            <span>Step-by-step deployment guide so you're live, not stuck</span>
+            Cinematic Ads Agent — Live Build
+            <span>Build an AI agent that writes ad scripts, generates emotional voiceovers, creates talking avatar videos, and composes cinematic short-form ads — ready for Meta, YouTube, and TikTok in minutes.</span>
+          </div>
+          <div class="unlock-badge bonus">System 05 · Wed Sep 24</div>
+        </div>
+
+        <div class="unlock-item">
+          <div class="unlock-icon">📊</div>
+          <div class="unlock-label">
+            Creator CRM — Live Build
+            <span>Build a custom CRM for creators — track brand deals, manage content pipelines, log collaboration requests, and automate follow-up emails. Built for how creators actually work.</span>
+          </div>
+          <div class="unlock-badge bonus">System 06 · Wed Oct 22</div>
+        </div>
+
+        <!-- WHAT COMES WITH EVERY SYSTEM -->
+        <div class="unlock-item">
+          <div class="unlock-icon">⏺</div>
+          <div class="unlock-label">
+            All 6 Session Recordings
+            <span>Lifetime access to every session recording. Rewatch anytime at your own pace. No expiry date. No subscription.</span>
           </div>
           <div class="unlock-badge included">Included</div>
         </div>
+
         <div class="unlock-item">
-          <div class="unlock-icon">🎟️</div>
+          <div class="unlock-icon">🔗</div>
           <div class="unlock-label">
-            Founding Member Upgrade — all 6 systems
-            <span>After the session, upgrade for $200 more. Your $297 counts as full credit toward the complete bundle.</span>
+            All 6 GitHub Repo Forks
+            <span>Your own fork of every codebase. Fill in your API keys and deploy same day. A real working system — not a template.</span>
           </div>
-          <div class="unlock-badge upgrade">$200 to upgrade</div>
+          <div class="unlock-badge included">Included</div>
         </div>
+
+        <div class="unlock-item">
+          <div class="unlock-icon">📋</div>
+          <div class="unlock-label">
+            All 6 Master Prompt Kits
+            <span>Every Claude Code prompt used to build every system — formatted, documented, and ready to reuse in your own projects.</span>
+          </div>
+          <div class="unlock-badge included">Included</div>
+        </div>
+
+        <!-- BONUS COURSES -->
+        <div class="unlock-section-label">Bonus courses — also included</div>
+
+        <div class="unlock-item">
+          <div class="unlock-icon">🎓</div>
+          <div class="unlock-label">
+            The AI Audit Method
+            <span>Turn your AI skills into a consulting business. The exact process to land your very first client — starting today. 13 lessons. Zero fluff. Real results.</span>
+          </div>
+          <div class="unlock-badge muted">Bonus · Included</div>
+        </div>
+
+        <div class="unlock-item">
+          <div class="unlock-icon">🤖</div>
+          <div class="unlock-label">
+            AISHA Engine
+            <span>Build an AI creator brand that runs without you on camera. Hyper-realistic avatar, automated content across major platforms, and an always-on monetization engine — no filming, no daily posting required.</span>
+          </div>
+          <div class="unlock-badge muted">Bonus · Included</div>
+        </div>
+
       </div>
 
       <div class="cta-row">
