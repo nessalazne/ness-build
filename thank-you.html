@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>You're In — Founding Member · AISocialHub</title>
+<meta name="description" content="Welcome to the Founding Member Bundle. Here's everything that's coming your way." />
+<meta name="robots" content="noindex, nofollow" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+
+<style>
+:root {
+  --bg:               #050505;
+  --bg-elev:          #0a0a0a;
+  --surface:          #111111;
+  --border:           #1a1a1a;
+  --border-hover:     #2a2a2a;
+  --text:             #f0e8e8;
+  --text-paper:       #fdf5f0;
+  --text-dim:         #c8bfbf;
+  --muted:            #9a8f8f;
+  --accent:           #d87657;
+  --accent-hl:        rgba(216,118,87,0.28);
+  --accent-glow:      rgba(216,118,87,0.3);
+  --teal:             #ffde59;
+  --teal-glow:        rgba(255,222,89,0.28);
+  --green:            #50e3c2;
+  --green-glow:       rgba(80,227,194,0.25);
+  --pink:             #deb4b4;
+
+  --font-display: 'Instrument Serif', serif;
+  --font-body:    'Plus Jakarta Sans', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --section-pad-x: clamp(1.5rem, 8vw, 9rem);
+  --content-max: 760px;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; overflow-x:hidden; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(80,227,194,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 90% 110%, rgba(216,118,87,0.05) 0%, transparent 55%);
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+}
+
+section, header, footer, nav { position:relative; z-index:1; }
+
+/* NAV */
+.top-nav {
+  position: fixed;
+  top:0; left:0; right:0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px clamp(1.5rem, 5vw, 4rem);
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.nav-brand svg { color: var(--accent); }
+
+.nav-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border-hover);
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.3s var(--ease);
+}
+.nav-back:hover { border-color: var(--accent); color: var(--accent); }
+
+/* HERO */
+.ty-hero {
+  padding: clamp(8rem,14vw,12rem) var(--section-pad-x) clamp(3rem,5vw,4rem);
+  max-width: calc(var(--content-max) + 2 * clamp(1.5rem,8vw,9rem));
+  margin: 0 auto;
+}
+
+.ty-kicker {
+  font-family: var(--font-mono);
+  font-size: clamp(0.65rem, 0.9vw, 0.78rem);
+  color: var(--green);
+  text-transform: uppercase;
+  letter-spacing: 0.26em;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: clamp(1rem,1.6vw,1.4rem);
+}
+.ty-kicker::before {
+  content: '';
+  display: inline-block;
+  width: 24px; height: 1px;
+  background: var(--green);
+}
+
+.ty-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.8rem, 7vw, 6rem);
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: var(--text-paper);
+  margin-bottom: clamp(1.2rem,2vw,1.8rem);
+}
+.ty-title em { font-style: italic; color: var(--green); }
+
+.ty-subtitle {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: clamp(1rem,1.4vw,1.15rem);
+  color: var(--text-dim);
+  line-height: 1.7;
+  max-width: 52ch;
+  margin-bottom: clamp(2rem,3vw,2.8rem);
+}
+
+.ty-meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* DIVIDER */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+
+/* BODY WRAPPER */
+.ty-body {
+  max-width: calc(var(--content-max) + 2 * clamp(1.5rem,8vw,9rem));
+  margin: 0 auto;
+  padding: clamp(3rem,6vw,6rem) var(--section-pad-x) clamp(5rem,8vw,8rem);
+}
+
+.ty-doc {
+  max-width: var(--content-max);
+}
+
+/* SECTION */
+.ty-section {
+  margin-bottom: clamp(2.5rem,4vw,3.5rem);
+}
+
+.ty-section-title {
+  font-family: var(--font-mono);
+  font-size: clamp(0.72rem,0.95vw,0.85rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  margin-bottom: clamp(0.8rem,1.2vw,1rem);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.ty-section-title::before {
+  content: '';
+  display: inline-block;
+  width: 16px; height: 1px;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.ty-section h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.5rem,2.6vw,2.2rem);
+  color: var(--text-paper);
+  line-height: 1.15;
+  margin-bottom: clamp(0.8rem,1.2vw,1.2rem);
+}
+.ty-section h2 em { font-style: italic; color: var(--accent); }
+
+.ty-section p {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: clamp(0.92rem,1.2vw,1.05rem);
+  color: var(--text-dim);
+  line-height: 1.75;
+  margin-bottom: 1rem;
+}
+.ty-section p:last-child { margin-bottom: 0; }
+
+.ty-section a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.ty-section strong {
+  color: var(--text-paper);
+  font-weight: 600;
+}
+
+/* HIGHLIGHT BOX */
+.ty-box {
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--green);
+  background: rgba(80,227,194,0.04);
+  border-radius: 0 10px 10px 0;
+  padding: clamp(1.2rem,1.8vw,1.6rem) clamp(1.4rem,2vw,1.8rem);
+  margin: clamp(1rem,1.6vw,1.4rem) 0;
+}
+.ty-box p {
+  margin-bottom: 0 !important;
+  font-size: clamp(0.88rem,1.1vw,1rem) !important;
+}
+
+/* NEXT STEPS */
+.steps-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: steps-counter;
+}
+
+.step-item {
+  counter-increment: steps-counter;
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 0 clamp(1rem,1.6vw,1.4rem);
+  align-items: start;
+  padding: clamp(1.2rem,1.8vw,1.6rem) 0;
+  border-bottom: 1px solid var(--border);
+}
+.step-item:last-child { border-bottom: none; }
+
+.step-num {
+  font-family: var(--font-mono);
+  font-size: clamp(0.85rem,1.1vw,1rem);
+  font-weight: 600;
+  color: var(--accent);
+  padding-top: 2px;
+}
+.step-num::before {
+  content: counter(steps-counter, decimal-leading-zero);
+}
+
+.step-body {}
+.step-body strong {
+  display: block;
+  font-family: var(--font-body);
+  font-size: clamp(0.95rem,1.2vw,1.05rem);
+  font-weight: 600;
+  color: var(--text-paper);
+  margin-bottom: 0.35rem;
+}
+.step-body span {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: clamp(0.86rem,1.1vw,0.96rem);
+  color: var(--text-dim);
+  line-height: 1.65;
+}
+.step-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+.step-tag.green { background: rgba(80,227,194,0.12); color: var(--green); border: 1px solid rgba(80,227,194,0.25); }
+.step-tag.teal  { background: rgba(255,222,89,0.10); color: var(--teal);  border: 1px solid rgba(255,222,89,0.22); }
+
+/* WHAT YOU UNLOCKED */
+.unlock-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--bg-elev);
+}
+
+.unlock-item {
+  display: grid;
+  grid-template-columns: 36px 1fr auto;
+  align-items: center;
+  gap: 0 clamp(0.8rem,1.2vw,1.2rem);
+  padding: clamp(0.9rem,1.4vw,1.2rem) clamp(1.2rem,1.8vw,1.6rem);
+  border-bottom: 1px solid var(--border);
+}
+.unlock-item:last-child { border-bottom: none; }
+
+.unlock-icon {
+  font-size: 1rem;
+  text-align: center;
+  line-height: 1;
+}
+
+.unlock-label {
+  font-family: var(--font-body);
+  font-size: clamp(0.88rem,1.1vw,0.96rem);
+  font-weight: 500;
+  color: var(--text-paper);
+}
+.unlock-label span {
+  display: block;
+  font-weight: 300;
+  font-size: clamp(0.78rem,1vw,0.86rem);
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+
+.unlock-badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.unlock-badge.included { background: rgba(80,227,194,0.1); color: var(--green); border: 1px solid rgba(80,227,194,0.22); }
+.unlock-badge.bonus    { background: rgba(255,222,89,0.1); color: var(--teal);  border: 1px solid rgba(255,222,89,0.22); }
+.unlock-badge.upgrade  { background: rgba(216,118,87,0.12); color: var(--accent); border: 1px solid rgba(216,118,87,0.25); }
+
+/* CTA BUTTON */
+.cta-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: clamp(1.8rem,2.6vw,2.4rem);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: clamp(0.88rem,1.1vw,1rem);
+  padding: 14px 28px;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.3s var(--ease);
+  letter-spacing: 0.01em;
+}
+.btn-primary:hover { filter: brightness(1.12); transform: translateY(-1px); }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border-hover);
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 14px 24px;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.3s var(--ease);
+}
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+/* FOOTER */
+footer {
+  padding: clamp(3rem,5vw,5rem) var(--section-pad-x);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--border);
+  max-width: calc(var(--content-max) + 2 * clamp(1.5rem,8vw,9rem));
+  margin: 0 auto;
+}
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.footer-brand svg { color: var(--accent); }
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+.footer-links a {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--accent); }
+
+@media (max-width:600px) {
+  footer { flex-direction:column; text-align:center; }
+  .step-item { grid-template-columns: 36px 1fr; }
+  .unlock-item { grid-template-columns: 36px 1fr; }
+  .unlock-badge { display: none; }
+  .cta-row { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="top-nav">
+  <a href="https://builds.digicuratoragency.com" class="nav-brand">
+    <svg width="16" height="16" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M24 6l18 10v16L24 42 6 32V16Z"/>
+      <path d="M24 6v16l18 10" opacity="0.5"/>
+      <path d="M24 22L6 32" opacity="0.5"/>
+    </svg>
+    <span>AISocialHub</span>
+  </a>
+  <a href="https://builds.digicuratoragency.com" class="nav-back">← Back to hub</a>
+</nav>
+
+
+<!-- HERO -->
+<header class="ty-hero">
+  <div class="ty-kicker">Order confirmed</div>
+  <h1 class="ty-title">You're In, <em>Founder.</em></h1>
+  <p class="ty-subtitle">Your $297 is locked in at the founding member price — the same price everyone else will pay for all 6 systems. Check your inbox for next steps.</p>
+  <p class="ty-meta">Founding Member Bundle &nbsp;·&nbsp; $297 lifetime access &nbsp;·&nbsp; DigicuratorAgency.com</p>
+</header>
+
+<div class="divider"></div>
+
+
+<!-- BODY -->
+<div class="ty-body">
+  <div class="ty-doc">
+
+    <!-- CONFIRMATION BOX -->
+    <div class="ty-box">
+      <p>A confirmation email is on its way to you now. If you don't see it within a few minutes, check your spam folder — then email <a href="mailto:ness@digicuratoragency.com">ness@digicuratoragency.com</a> and we'll sort it out immediately.</p>
+    </div>
+
+
+    <!-- WHAT HAPPENS NEXT -->
+    <div class="ty-section" style="margin-top: clamp(2.5rem,4vw,3.5rem);">
+      <div class="ty-section-title">Next steps</div>
+      <h2>What happens <em>next</em></h2>
+
+      <ol class="steps-list">
+        <li class="step-item">
+          <div class="step-num"></div>
+          <div class="step-body">
+            <strong>Check your inbox <span class="step-tag green">Within minutes</span></strong>
+            <span>You'll get a confirmation email with your Zoom link, session date, and a pre-session setup guide. Read it before the session — it covers what tools to have open and how to get your Claude account ready.</span>
+          </div>
+        </li>
+
+        <li class="step-item">
+          <div class="step-num"></div>
+          <div class="step-body">
+            <strong>Get your GitHub access <span class="step-tag green">Within 48 hours</span></strong>
+            <span>We'll fork the system repo to your GitHub account so you have the full codebase ready before the session even starts. Make sure your GitHub username is in your confirmation email reply — or send it to <a href="mailto:ness@digicuratoragency.com" style="color:var(--accent);">ness@digicuratoragency.com</a>.</span>
+          </div>
+        </li>
+
+        <li class="step-item">
+          <div class="step-num"></div>
+          <div class="step-body">
+            <strong>Show up and build live</strong>
+            <span>Join Zoom on session day. We build the system from scratch, live — you follow along, ask questions, and deploy your own copy before we wrap. Camera on or off, your call.</span>
+          </div>
+        </li>
+
+        <li class="step-item">
+          <div class="step-num"></div>
+          <div class="step-body">
+            <strong>Walk away with a running system <span class="step-tag teal">Lifetime</span></strong>
+            <span>The session recording, your GitHub fork, and all bonus materials are yours to keep forever. No expiry date, no subscription.</span>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <div class="divider"></div>
+
+
+    <!-- WHAT YOU UNLOCKED -->
+    <div class="ty-section">
+      <div class="ty-section-title">Your bundle</div>
+      <h2>What you <em>unlocked</em></h2>
+      <p>Everything included at the $297 founding member price:</p>
+
+      <div class="unlock-grid">
+        <div class="unlock-item">
+          <div class="unlock-icon">🎥</div>
+          <div class="unlock-label">
+            YouTube Repurposer — Live Build Session
+            <span>2-hour live Zoom session building the full system from scratch</span>
+          </div>
+          <div class="unlock-badge included">Included</div>
+        </div>
+        <div class="unlock-item">
+          <div class="unlock-icon">⏺</div>
+          <div class="unlock-label">
+            Full session recording
+            <span>Lifetime access — rewatch anytime, no expiry</span>
+          </div>
+          <div class="unlock-badge included">Included</div>
+        </div>
+        <div class="unlock-item">
+          <div class="unlock-icon">🔗</div>
+          <div class="unlock-label">
+            GitHub repo fork
+            <span>Your own copy of the full codebase, ready to deploy</span>
+          </div>
+          <div class="unlock-badge included">Included</div>
+        </div>
+        <div class="unlock-item">
+          <div class="unlock-icon">📋</div>
+          <div class="unlock-label">
+            Master prompt kit
+            <span>Every prompt used to build the system, formatted and ready to reuse</span>
+          </div>
+          <div class="unlock-badge included">Included</div>
+        </div>
+        <div class="unlock-item">
+          <div class="unlock-icon">🎬</div>
+          <div class="unlock-label">
+            Setup walkthrough video
+            <span>Step-by-step deployment guide so you're live, not stuck</span>
+          </div>
+          <div class="unlock-badge included">Included</div>
+        </div>
+        <div class="unlock-item">
+          <div class="unlock-icon">🎟️</div>
+          <div class="unlock-label">
+            Founding Member Upgrade — all 6 systems
+            <span>After the session, upgrade for $200 more. Your $297 counts as full credit toward the complete bundle.</span>
+          </div>
+          <div class="unlock-badge upgrade">$200 to upgrade</div>
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <a href="https://builds.digicuratoragency.com" class="btn-primary">← Back to the hub</a>
+        <a href="mailto:ness@digicuratoragency.com" class="btn-ghost">Questions? Email us</a>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+
+    <!-- A NOTE -->
+    <div class="ty-section">
+      <div class="ty-section-title">From Ness</div>
+      <h2>A quick <em>note</em></h2>
+      <p>Thank you for trusting this. You're in the first cohort — the people who bet on this before it was obvious. That means something.</p>
+      <p>The systems we build are designed to actually run — not just look good on a demo. If anything breaks, if you're confused, or if life gets in the way and you need to catch the recording later, just email me directly. No gatekeeping.</p>
+      <p>See you at the session.</p>
+      <p style="margin-top:1.4rem;">
+        <strong>— Ness</strong><br>
+        <a href="mailto:ness@digicuratoragency.com">ness@digicuratoragency.com</a>
+      </p>
+    </div>
+
+  </div><!-- /.ty-doc -->
+</div><!-- /.ty-body -->
+
+
+<!-- FOOTER -->
+<footer>
+  <a href="https://builds.digicuratoragency.com" class="footer-brand">
+    <svg width="14" height="14" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M24 6l18 10v16L24 42 6 32V16Z"/>
+      <path d="M24 6v16l18 10" opacity="0.5"/>
+      <path d="M24 22L6 32" opacity="0.5"/>
+    </svg>
+    AISocialHub · Ness Alazne
+  </a>
+  <div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);letter-spacing:0.14em;text-transform:uppercase;">
+    Questions? ness@digicuratoragency.com
+  </div>
+  <div class="footer-links">
+    <a href="/privacy.html">Privacy Policy</a>
+    <a href="/terms.html">Terms</a>
+  </div>
+</footer>
+
+</body>
+</html>
