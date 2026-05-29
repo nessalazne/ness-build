@@ -984,6 +984,68 @@ footer {
   text-transform: uppercase;
   margin-top: 2px;
 }
+
+/* ================================================================
+   LIGHT THEME
+   ================================================================ */
+[data-theme="light"] {
+  --bg:           #f9f6f3;
+  --bg-elev:      #f2ece7;
+  --surface:      #ffffff;
+  --border:       #e4dbd5;
+  --border-hover: #ccc3bb;
+  --text:         #1a1210;
+  --text-paper:   #1a1210;
+  --text-dim:     #4a3f38;
+  --muted:        #7a6f6a;
+  --teal:         #a07200;
+  --teal-glow:    rgba(160,114,0,0.15);
+  --pink:         #8f3535;
+  --green:        #0f7a5a;
+  --green-glow:   rgba(15,122,90,0.15);
+  --accent-hl:    rgba(216,118,87,0.12);
+  --accent-glow:  rgba(216,118,87,0.15);
+}
+[data-theme="light"] body { background: var(--bg); color: var(--text); }
+[data-theme="light"] body::before {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(216,118,87,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 10% 110%, rgba(255,200,50,0.04) 0%, transparent 55%);
+}
+[data-theme="light"] body::after {
+  background-image: radial-gradient(circle, rgba(0,0,0,0.04) 1px, transparent 1px);
+}
+[data-theme="light"] .top-nav { background: rgba(249,246,243,0.85); border-bottom-color: var(--border); }
+[data-theme="light"] .problem-card,
+[data-theme="light"] .include-card,
+[data-theme="light"] .testimonial-card { background: var(--surface); border-color: var(--border); }
+[data-theme="light"] .pricing-box { background: var(--surface); border-color: var(--border); }
+[data-theme="light"] footer { background: #ede7e2; border-top-color: var(--border); }
+
+.theme-toggle {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 200;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.2s;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.35);
+}
+.theme-toggle:hover { border-color: var(--accent); color: var(--accent); box-shadow: 0 4px 24px rgba(216,118,87,0.2); }
+.theme-toggle svg { width: 13px; height: 13px; flex-shrink: 0; }
+[data-theme="light"] .theme-toggle { box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
 </style>
 </head>
 <body>
@@ -1002,6 +1064,11 @@ footer {
   </span>
   <a href="https://pay.digicuratoragency.com/checkout/5e81adb156b4b1a5f5d772cccbc43b3f" class="nav-cta" target="_blank">Save My Spot — $97</a>
 </nav>
+
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme">
+  <svg id="themeIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+  <span id="themeLabel">Light</span>
+</button>
 
 
 <!-- ================================================================
@@ -1588,6 +1655,27 @@ document.querySelectorAll('.btn-primary, .nav-cta, .btn-ghost').forEach(btn => {
     this.style.color = '#000';
     this.style.borderColor = '#deb4b4';
   });
+});
+
+// Theme toggle
+const moonIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
+const sunIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>`;
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('aish-theme', theme);
+  const icon = document.getElementById('themeIcon');
+  const label = document.getElementById('themeLabel');
+  if (theme === 'light') {
+    icon.outerHTML = `<span id="themeIcon">${moonIcon}</span>`;
+    if (label) label.textContent = 'Dark';
+  } else {
+    icon.outerHTML = `<span id="themeIcon">${sunIcon}</span>`;
+    if (label) label.textContent = 'Light';
+  }
+}
+applyTheme(localStorage.getItem('aish-theme') || 'dark');
+document.getElementById('themeToggle').addEventListener('click', () => {
+  applyTheme(document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
 });
 </script>
 

@@ -87,6 +87,17 @@ section, header, footer, nav { position: relative; z-index: 1; }
   transition: color 0.2s; display: flex; align-items: center; gap: 6px;
 }
 .nav-back:hover { color: var(--accent); }
+.nav-right { display: flex; align-items: center; gap: 16px; }
+.nav-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--accent); color: #000;
+  font-family: var(--font-mono); font-weight: 700; font-size: 0.68rem;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 9px 18px; border-radius: 10px; text-decoration: none;
+  transition: all 0.3s var(--ease); box-shadow: 0 0 20px var(--accent-glow);
+}
+.nav-cta:hover { transform: scale(1.04); box-shadow: 0 0 36px var(--accent-glow); }
+@media (max-width: 560px) { .nav-cta { display: none; } }
 
 /* ANIMATIONS */
 @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
@@ -479,10 +490,13 @@ footer {
   --text-paper:   #1a1210;
   --text-dim:     #4a3f38;
   --muted:        #7a6f6a;
+  --teal:         #a07200;
+  --teal-glow:    rgba(160,114,0,0.15);
+  --pink:         #8f3535;
+  --green:        #0f7a5a;
+  --green-glow:   rgba(15,122,90,0.15);
   --accent-hl:    rgba(216,118,87,0.12);
   --accent-glow:  rgba(216,118,87,0.15);
-  --teal-glow:    rgba(180,140,0,0.15);
-  --green-glow:   rgba(20,140,110,0.15);
 }
 [data-theme="light"] body { background: var(--bg); color: var(--text); }
 [data-theme="light"] body::before {
@@ -534,7 +548,10 @@ footer {
     <img src="../logo.png" alt="AISocialHub" width="28" height="28" style="border-radius:4px;">
     <span>AISocialHub</span>
   </a>
-  <a href="/" class="nav-back">← All Offers</a>
+  <div class="nav-right">
+    <a href="/" class="nav-back">← All Offers</a>
+    <a href="#join" class="nav-cta">Become a Founding Member →</a>
+  </div>
 </nav>
 
 <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme">
