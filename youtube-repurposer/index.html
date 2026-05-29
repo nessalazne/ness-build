@@ -266,6 +266,13 @@ strong { color: var(--accent); font-weight: 500; }
   box-shadow: 0 0 20px var(--accent-glow);
 }
 .nav-cta:hover { transform: scale(1.04); box-shadow: 0 0 36px var(--accent-glow); }
+.nav-right { display: flex; align-items: center; gap: 16px; }
+.nav-back {
+  font-family: var(--font-mono); font-size: 10px; color: var(--muted);
+  letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none;
+  transition: color 0.2s; display: flex; align-items: center; gap: 6px;
+}
+.nav-back:hover { color: var(--accent); }
 
 /* ================================================================
    HERO
@@ -1055,14 +1062,13 @@ footer {
      ================================================================ -->
 <nav class="top-nav">
   <span class="nav-brand">
-    <svg width="16" height="16" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M24 6l18 10v16L24 42 6 32V16Z"/>
-      <path d="M24 6v16l18 10" opacity="0.5"/>
-      <path d="M24 22L6 32" opacity="0.5"/>
-    </svg>
+    <img src="../logo.png" alt="AISocialHub" width="28" height="28" style="border-radius:4px;">
     <span>AISocialHub</span>
   </span>
-  <a href="https://pay.digicuratoragency.com/checkout/5e81adb156b4b1a5f5d772cccbc43b3f" class="nav-cta" target="_blank">Save My Spot — $97</a>
+  <div class="nav-right">
+    <a href="/" class="nav-back">← All Offers</a>
+    <a href="https://pay.digicuratoragency.com/checkout/5e81adb156b4b1a5f5d772cccbc43b3f" class="nav-cta" target="_blank">Save My Spot — $97</a>
+  </div>
 </nav>
 
 <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme">
@@ -1610,11 +1616,7 @@ footer {
      ================================================================ -->
 <footer>
   <div class="footer-brand">
-    <svg width="14" height="14" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M24 6l18 10v16L24 42 6 32V16Z"/>
-      <path d="M24 6v16l18 10" opacity="0.5"/>
-      <path d="M24 22L6 32" opacity="0.5"/>
-    </svg>
+    <img src="../logo.png" alt="AISocialHub" width="20" height="20" style="border-radius:3px;">
     AISocialHub · Ness Alazne
   </div>
   <div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);letter-spacing:0.14em;text-transform:uppercase;">
