@@ -83,12 +83,16 @@ section, header, footer, nav { position:relative; z-index:1; }
   font-size:0.72rem; font-weight:500; color:var(--muted); letter-spacing:0.22em;
   text-transform:uppercase; text-decoration:none;
 }
-.nav-back {
-  font-family:var(--font-mono); font-size:10px; color:var(--muted);
-  letter-spacing:0.16em; text-transform:uppercase; text-decoration:none;
-  transition:color 0.2s; display:flex; align-items:center; gap:6px;
+.nav-cta {
+  display:inline-flex; align-items:center; gap:8px;
+  background:var(--accent); color:#000;
+  font-family:var(--font-mono); font-weight:700; font-size:0.68rem;
+  letter-spacing:0.08em; text-transform:uppercase;
+  padding:9px 18px; border-radius:10px; text-decoration:none;
+  transition:all 0.3s var(--ease); box-shadow:0 0 20px var(--accent-glow);
 }
-.nav-back:hover { color:var(--accent); }
+.nav-cta:hover { transform:scale(1.04); box-shadow:0 0 36px var(--accent-glow); }
+@media (max-width:560px) { .nav-cta { display:none; } }
 
 /* HERO */
 .hero {
@@ -434,7 +438,7 @@ footer {
     <img src="../logo.png" alt="AISocialHub" width="28" height="28" style="border-radius:4px;">
     <span>AISocialHub</span>
   </a>
-  <a href="/" class="nav-back">← All Offers</a>
+  <a href="#pricing" class="nav-cta">Book Free Discovery Call →</a>
 </nav>
 
 <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme">
