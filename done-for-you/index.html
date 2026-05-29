@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Done For You · AI Content Automation System · AISocialHub</title>
+<meta name="description" content="You don't build it. I do. Get a fully working AI content pipeline built for your brand — 13 platforms, email automation, lead capture, checkout & payments. Starting at $2,000." />
+
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+
+<style>
+:root {
+  --bg:               #050505;
+  --bg-elev:          #0a0a0a;
+  --surface:          #111111;
+  --border:           #1a1a1a;
+  --border-hover:     #2a2a2a;
+  --text:             #f0e8e8;
+  --text-paper:       #fdf5f0;
+  --text-dim:         #c8bfbf;
+  --muted:            #9a8f8f;
+  --accent:           #d87657;
+  --accent-hl:        rgba(216,118,87,0.28);
+  --accent-glow:      rgba(216,118,87,0.3);
+  --teal:             #ffde59;
+  --teal-glow:        rgba(255,222,89,0.28);
+  --green:            #50e3c2;
+  --green-glow:       rgba(80,227,194,0.25);
+  --pink:             #deb4b4;
+
+  --font-display: 'Instrument Serif', serif;
+  --font-body:    'Plus Jakarta Sans', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --pad-x: clamp(1.5rem, 8vw, 9rem);
+  --content-max: 1100px;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: var(--font-body); font-weight: 400;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+body::before {
+  content: ''; position:fixed; inset:0; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(222,180,180,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 10% 110%, rgba(216,118,87,0.04) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 60% at 90% 50%, rgba(255,222,89,0.02) 0%, transparent 55%);
+}
+body::after {
+  content: ''; position:fixed; inset:0; z-index:0; pointer-events:none;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+}
+section, header, footer, nav { position:relative; z-index:1; }
+
+@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+
+.reveal { opacity:0; transform:translateY(24px); transition:opacity 0.8s var(--ease),transform 0.8s var(--ease); }
+.reveal.in-view { opacity:1; transform:translateY(0); }
+.reveal-d1{transition-delay:0.1s;} .reveal-d2{transition-delay:0.2s;}
+.reveal-d3{transition-delay:0.3s;} .reveal-d4{transition-delay:0.4s;}
+.reveal-d5{transition-delay:0.5s;}
+
+.divider { width:100%; height:1px; background:linear-gradient(90deg,transparent,var(--border),transparent); }
+
+/* NAV */
+.top-nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:18px clamp(1.5rem,5vw,4rem);
+  background:rgba(0,0,0,0.7); backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.nav-brand {
+  display:flex; align-items:center; gap:10px; font-family:var(--font-mono);
+  font-size:0.72rem; font-weight:500; color:var(--muted); letter-spacing:0.22em;
+  text-transform:uppercase; text-decoration:none;
+}
+.nav-back {
+  font-family:var(--font-mono); font-size:10px; color:var(--muted);
+  letter-spacing:0.16em; text-transform:uppercase; text-decoration:none;
+  transition:color 0.2s; display:flex; align-items:center; gap:6px;
+}
+.nav-back:hover { color:var(--accent); }
+
+/* HERO */
+.hero {
+  min-height: 80vh; display:flex; flex-direction:column; justify-content:flex-end;
+  padding:clamp(9rem,16vw,14rem) var(--pad-x) clamp(5rem,8vw,8rem);
+  max-width:calc(var(--content-max) + 2 * var(--pad-x)); margin:0 auto;
+}
+.hero-eyebrow {
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:var(--font-mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase;
+  color:var(--pink); padding:6px 14px; border:1px solid rgba(222,180,180,0.2);
+  border-radius:100px; background:rgba(222,180,180,0.05);
+  margin-bottom:clamp(2rem,3.5vw,3rem); width:fit-content;
+}
+.hero-eyebrow .dot {
+  width:6px; height:6px; border-radius:50%; background:var(--pink);
+  animation:blink 2.2s ease-in-out infinite;
+}
+.hero-title {
+  font-family:var(--font-display); font-weight:400;
+  font-size:clamp(3rem,9vw,7.5rem); line-height:0.96; letter-spacing:-0.025em;
+  color:var(--text-paper); margin-bottom:clamp(1.8rem,3vw,2.6rem); max-width:18ch;
+}
+.hero-title em { font-style:italic; color:var(--pink); }
+.hero-sub {
+  font-family:var(--font-body); font-weight:300;
+  font-size:clamp(1.1rem,1.8vw,1.3rem); color:var(--text-dim);
+  line-height:1.65; max-width:52ch; margin-bottom:clamp(2.5rem,4vw,4rem);
+}
+.hero-meta {
+  display:flex; gap:clamp(2rem,4vw,4rem);
+  padding-top:clamp(2rem,3vw,3rem); border-top:1px solid var(--border); flex-wrap:wrap;
+}
+.meta-item .meta-value {
+  font-family:var(--font-display); font-size:clamp(1.8rem,3.5vw,2.8rem);
+  color:var(--text-paper); line-height:1;
+}
+.meta-item .meta-value.accent{color:var(--accent);}
+.meta-item .meta-value.pink{color:var(--pink);}
+.meta-item .meta-value.green{color:var(--green);}
+.meta-item .meta-label {
+  font-family:var(--font-mono); font-size:10px; text-transform:uppercase;
+  letter-spacing:0.18em; color:var(--muted); margin-top:4px;
+}
+
+/* SHARED LAYOUT */
+.section-wrap {
+  padding:clamp(5rem,10vw,10rem) var(--pad-x);
+  max-width:calc(var(--content-max) + 2 * var(--pad-x)); margin:0 auto;
+}
+.section-wrap.tight { padding-top:clamp(3rem,6vw,6rem); padding-bottom:clamp(3rem,6vw,6rem); }
+
+.kicker {
+  font-family:var(--font-mono); font-weight:500; font-size:clamp(0.65rem,0.9vw,0.8rem);
+  color:var(--accent); text-transform:uppercase; letter-spacing:0.26em;
+  display:inline-flex; align-items:center; gap:12px; margin-bottom:clamp(1rem,1.6vw,1.4rem);
+}
+.kicker::before { content:''; display:inline-block; width:24px; height:1px; background:var(--accent); }
+
+.section-title {
+  font-family:var(--font-display); font-weight:400; font-size:clamp(1.8rem,3.5vw,3rem);
+  line-height:1.08; letter-spacing:-0.015em; color:var(--text-paper);
+}
+.section-title em { font-style:italic; color:var(--accent); }
+
+.section-body {
+  font-family:var(--font-body); font-weight:300; font-size:clamp(0.95rem,1.2vw,1.05rem);
+  color:var(--text-dim); line-height:1.7; max-width:58ch; margin-top:1.2rem;
+}
+
+/* DELIVERABLES GRID */
+.deliverables-grid {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:clamp(14px,2vw,20px); margin-top:clamp(2.5rem,4vw,4rem);
+}
+@media (max-width:860px) { .deliverables-grid { grid-template-columns:repeat(2,1fr); } }
+@media (max-width:560px) { .deliverables-grid { grid-template-columns:1fr; } }
+
+.deliverable-card {
+  border:1px solid var(--border); border-radius:14px;
+  background:var(--bg-elev); padding:clamp(1.4rem,2vw,2rem);
+  transition:border-color 0.3s var(--ease);
+}
+.deliverable-card:hover { border-color:var(--border-hover); }
+.deliverable-num {
+  font-family:var(--font-mono); font-size:10px; color:var(--pink);
+  text-transform:uppercase; letter-spacing:0.2em; margin-bottom:0.6rem;
+}
+.deliverable-name {
+  font-family:var(--font-display); font-size:clamp(1.1rem,1.8vw,1.35rem);
+  color:var(--text-paper); line-height:1.1; margin-bottom:0.5rem;
+}
+.deliverable-desc {
+  font-family:var(--font-body); font-weight:300; font-size:0.88rem;
+  color:var(--text-dim); line-height:1.6;
+}
+
+/* PLATFORMS */
+.platforms-grid {
+  display:flex; flex-wrap:wrap; gap:10px; margin-top:1.4rem;
+}
+.platform-pill {
+  font-family:var(--font-mono); font-size:11px; letter-spacing:0.1em;
+  color:var(--text-dim); padding:7px 16px;
+  border:1px solid var(--border-hover); border-radius:100px; background:var(--bg-elev);
+}
+.platform-pill.highlight {
+  color:var(--pink); border-color:rgba(222,180,180,0.3); background:rgba(222,180,180,0.05);
+}
+
+/* PRICING PACKAGES */
+.pricing-packages {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:clamp(14px,2vw,20px); margin-top:clamp(2.5rem,4vw,4rem);
+  align-items:start;
+}
+@media (max-width:860px) { .pricing-packages { grid-template-columns:1fr; } }
+
+.pkg-card {
+  border:1px solid var(--border); border-radius:18px;
+  background:var(--bg-elev); padding:clamp(1.6rem,2.4vw,2.4rem);
+  display:flex; flex-direction:column;
+  transition:border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  position:relative; overflow:hidden;
+}
+.pkg-card::before {
+  content:''; position:absolute; inset:0; border-radius:18px; opacity:0;
+  transition:opacity 0.3s var(--ease);
+  background:radial-gradient(ellipse 80% 60% at 50% 0%, rgba(216,118,87,0.06) 0%, transparent 70%);
+}
+.pkg-card.featured {
+  border-color:var(--accent);
+  box-shadow:0 0 40px rgba(216,118,87,0.12), 0 0 0 1px rgba(216,118,87,0.25);
+}
+.pkg-card.featured::before { opacity:1; }
+.pkg-card:hover { border-color:var(--border-hover); }
+.pkg-card.featured:hover { border-color:var(--accent); }
+
+.pkg-tier {
+  font-family:var(--font-mono); font-size:10px; font-weight:600;
+  text-transform:uppercase; letter-spacing:0.2em;
+  color:var(--muted); margin-bottom:0.8rem;
+}
+.pkg-featured-badge {
+  display:inline-block; font-family:var(--font-mono); font-size:9px;
+  text-transform:uppercase; letter-spacing:0.2em; color:var(--accent);
+  padding:3px 10px; border:1px solid rgba(216,118,87,0.3); border-radius:100px;
+  background:rgba(216,118,87,0.08); margin-bottom:0.8rem;
+}
+.pkg-name {
+  font-family:var(--font-display); font-size:clamp(1.4rem,2.5vw,1.8rem);
+  color:var(--text-paper); line-height:1.05; margin-bottom:1.2rem;
+}
+.pkg-price {
+  font-family:var(--font-display); font-size:clamp(2rem,4vw,2.8rem);
+  color:var(--text-paper); line-height:1; margin-bottom:0.2rem;
+}
+.pkg-price-mo {
+  font-family:var(--font-mono); font-size:11px; color:var(--accent);
+  text-transform:uppercase; letter-spacing:0.14em; margin-bottom:1.6rem;
+}
+.pkg-divider {
+  height:1px; background:var(--border); margin-bottom:1.4rem;
+}
+.pkg-list {
+  list-style:none; display:flex; flex-direction:column;
+  gap:8px; flex:1; margin-bottom:1.8rem;
+}
+.pkg-list li {
+  font-family:var(--font-mono); font-size:11px; letter-spacing:0.04em;
+  color:var(--text-dim); display:flex; align-items:flex-start; gap:8px; line-height:1.4;
+}
+.pkg-list .chk { color:var(--accent); flex-shrink:0; }
+.pkg-list .dim { color:var(--muted); flex-shrink:0; }
+
+.pkg-btn {
+  display:block; width:100%; background:var(--accent); color:#000;
+  font-family:var(--font-mono); font-weight:700; font-size:11px;
+  letter-spacing:0.08em; text-transform:uppercase; padding:13px 20px;
+  border-radius:10px; text-decoration:none; text-align:center;
+  transition:all 0.3s var(--ease); box-shadow:0 0 24px var(--accent-glow);
+}
+.pkg-btn:hover { transform:scale(1.03); box-shadow:0 0 40px var(--accent-glow); }
+.pkg-btn.outline {
+  background:transparent; color:var(--text-dim);
+  border:1px solid var(--border-hover); box-shadow:none;
+}
+.pkg-btn.outline:hover { border-color:var(--accent); color:var(--accent); box-shadow:none; }
+.pkg-btn.teal {
+  background:var(--teal); color:#000;
+  box-shadow:0 0 24px var(--teal-glow);
+}
+.pkg-btn.teal:hover { box-shadow:0 0 40px var(--teal-glow); }
+
+/* NOT FOR YOU */
+.not-list {
+  list-style:none; display:flex; flex-direction:column; gap:10px;
+  margin-top:clamp(1.8rem,3vw,3rem);
+}
+.not-list li {
+  font-family:var(--font-mono); font-size:12px; letter-spacing:0.05em;
+  color:var(--text-dim); display:flex; align-items:flex-start; gap:10px;
+  border:1px solid var(--border); border-radius:10px;
+  background:var(--bg-elev); padding:0.9rem 1.1rem;
+}
+.not-list .x { color:var(--muted); flex-shrink:0; }
+
+/* CONTEXT BLOCK */
+.context-block {
+  border:1px solid var(--border); border-radius:14px;
+  background:var(--bg-elev); padding:clamp(1.8rem,3vw,2.6rem);
+  display:flex; gap:1.6rem; align-items:flex-start; flex-wrap:wrap;
+}
+.context-icon {
+  font-family:var(--font-display); font-size:2.4rem; color:var(--pink);
+  flex-shrink:0; line-height:1; margin-top:0.1rem;
+}
+.context-body {
+  font-family:var(--font-body); font-weight:300;
+  font-size:clamp(0.95rem,1.2vw,1.05rem); color:var(--text-dim); line-height:1.7; flex:1;
+}
+.context-body strong { color:var(--text-paper); font-weight:500; }
+
+/* FREE CALL CTA */
+.call-cta {
+  border:1px solid var(--teal); background:rgba(255,222,89,0.03);
+  border-radius:14px; padding:clamp(2rem,3.5vw,3rem);
+  display:flex; align-items:center; justify-content:space-between;
+  gap:2rem; flex-wrap:wrap; margin-top:clamp(2rem,3vw,3rem);
+}
+.call-cta-text {
+  font-family:var(--font-display); font-size:clamp(1.4rem,2.5vw,2rem);
+  color:var(--text-paper); line-height:1.1;
+}
+.call-cta-text em { font-style:italic; color:var(--teal); }
+.call-cta-sub {
+  font-family:var(--font-body); font-weight:300; font-size:0.9rem;
+  color:var(--text-dim); line-height:1.6; margin-top:0.5rem; max-width:44ch;
+}
+.btn-call {
+  display:inline-flex; align-items:center; gap:8px;
+  background:var(--teal); color:#000;
+  font-family:var(--font-mono); font-weight:700; font-size:11px;
+  letter-spacing:0.08em; text-transform:uppercase; padding:14px 28px;
+  border-radius:10px; text-decoration:none; white-space:nowrap;
+  transition:all 0.3s var(--ease); box-shadow:0 0 24px var(--teal-glow);
+  flex-shrink:0;
+}
+.btn-call:hover { transform:scale(1.04); box-shadow:0 0 40px var(--teal-glow); }
+
+/* FOOTER */
+footer {
+  padding:clamp(3rem,5vw,5rem) var(--pad-x);
+  display:flex; align-items:center; justify-content:space-between;
+  gap:2rem; flex-wrap:wrap; border-top:1px solid var(--border);
+  max-width:calc(var(--content-max) + 2 * var(--pad-x)); margin:0 auto;
+}
+.footer-brand {
+  display:flex; align-items:center; gap:10px; font-family:var(--font-mono);
+  font-size:0.7rem; color:var(--muted); letter-spacing:0.22em;
+  text-transform:uppercase; text-decoration:none;
+}
+.footer-links { display:flex; gap:24px; }
+.footer-links a {
+  font-family:var(--font-mono); font-size:10px; color:var(--muted);
+  letter-spacing:0.14em; text-transform:uppercase; text-decoration:none; transition:color 0.2s;
+}
+.footer-links a:hover { color:var(--accent); }
+
+@media (max-width:640px) {
+  footer { flex-direction:column; text-align:center; }
+  .hero-meta { gap:1.6rem; }
+  .call-cta { flex-direction:column; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="top-nav">
+  <a href="/" class="nav-brand">
+    <img src="../logo.png" alt="AISocialHub" width="28" height="28" style="border-radius:4px;">
+    <span>AISocialHub</span>
+  </a>
+  <a href="/" class="nav-back">← All Offers</a>
+</nav>
+
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-eyebrow reveal">
+    <span class="dot"></span>
+    Done For You · AI Content Automation System
+  </div>
+
+  <h1 class="hero-title reveal reveal-d1">
+    I Build It.<br>You <em>Run It.</em>
+  </h1>
+
+  <p class="hero-sub reveal reveal-d2">
+    You don't need to learn the tools or show up to sessions. I build your complete AI content pipeline — content automation, email sequences, lead capture, checkout, and payments — all custom to your brand, handed over fully working.
+  </p>
+
+  <div class="hero-meta reveal reveal-d3">
+    <div class="meta-item">
+      <div class="meta-value pink">From $2K</div>
+      <div class="meta-label">Setup investment</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-value accent">13</div>
+      <div class="meta-label">Platforms connected</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-value green">100%</div>
+      <div class="meta-label">Done for you</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-value">Free</div>
+      <div class="meta-label">15-min discovery call</div>
+    </div>
+  </div>
+</header>
+
+<div class="divider"></div>
+
+
+<!-- WHAT YOU GET -->
+<section class="section-wrap">
+  <div class="kicker reveal">What's Delivered</div>
+  <h2 class="section-title reveal reveal-d1">Your complete AI content<br><em>pipeline. Built. Delivered.</em></h2>
+  <p class="section-body reveal reveal-d2">
+    I build the same system I teach in GrowthOS — custom-configured to your brand. You get a fully working, deployed system. Not instructions. The thing itself.
+  </p>
+
+  <div class="deliverables-grid">
+
+    <div class="deliverable-card reveal reveal-d1">
+      <div class="deliverable-num">01 ·</div>
+      <div class="deliverable-name">Content Automation App</div>
+      <p class="deliverable-desc">Your main AI pipeline — generate and schedule posts to all 13 platforms. Short-form videos, image posts, and freebie generation, all automated and running 24/7.</p>
+    </div>
+
+    <div class="deliverable-card reveal reveal-d2">
+      <div class="deliverable-num">02 ·</div>
+      <div class="deliverable-name">SEO Blog Publisher</div>
+      <p class="deliverable-desc">AI system that researches, writes, and publishes SEO-optimized blog posts automatically — keyword research, internal linking, meta tags, and scheduled publishing.</p>
+    </div>
+
+    <div class="deliverable-card reveal reveal-d3">
+      <div class="deliverable-num">03 ·</div>
+      <div class="deliverable-name">Freebie Generator</div>
+      <p class="deliverable-desc">Automated lead magnet system — cover design, content, opt-in page, and delivery. Turn any topic into a downloadable freebie and grow your list on autopilot.</p>
+    </div>
+
+    <div class="deliverable-card reveal reveal-d1">
+      <div class="deliverable-num">04 ·</div>
+      <div class="deliverable-name">AI Website Builder</div>
+      <p class="deliverable-desc">A fully deployed website with AI-generated copy, images, and layout — connected to your domain and live. No Webflow. No WordPress. Built clean and fast.</p>
+    </div>
+
+    <div class="deliverable-card reveal reveal-d2">
+      <div class="deliverable-num">05 ·</div>
+      <div class="deliverable-name">Cinematic Ads Agent</div>
+      <p class="deliverable-desc">AI agent that writes ad scripts, generates voiceovers, creates talking avatar videos, and produces cinematic short-form ads ready for Meta, YouTube, and TikTok.</p>
+    </div>
+
+    <div class="deliverable-card reveal reveal-d3">
+      <div class="deliverable-num">06 ·</div>
+      <div class="deliverable-name">Creator CRM</div>
+      <p class="deliverable-desc">Custom CRM that tracks contacts, tags leads by source, logs deal stages, and automates follow-up. Total contacts, active leads, pipeline value, revenue — all in one view.</p>
+    </div>
+
+    <div class="deliverable-card reveal reveal-d1">
+      <div class="deliverable-num">07 ·</div>
+      <div class="deliverable-name">Lead Generation Scraper</div>
+      <p class="deliverable-desc">Scrape targeted leads from YouTube, Instagram, TikTok, Facebook Ads, and Google Maps — piped directly into your CRM and outreach system.</p>
+    </div>
+
+    <div class="deliverable-card reveal reveal-d2" style="border-color:rgba(255,222,89,0.2);background:rgba(255,222,89,0.03);">
+      <div class="deliverable-num" style="color:var(--teal);">08 · Extra</div>
+      <div class="deliverable-name">Advanced Analytics Dashboard</div>
+      <p class="deliverable-desc">Live business dashboard showing Total Contacts, Active Leads, Pipeline Value, Revenue Won, rolling 90-day revenue chart, Recent Transactions, Content Engine stats (total items, ready to post, published), Total Deals, and Deals Won — everything at a glance.</p>
+    </div>
+
+    <div class="deliverable-card reveal reveal-d3" style="border-color:rgba(222,180,180,0.25);background:rgba(222,180,180,0.03);">
+      <div class="deliverable-num" style="color:var(--pink);">09 · Extra</div>
+      <div class="deliverable-name">AISHA — AI Business Assistant</div>
+      <p class="deliverable-desc">Your always-on AI assistant that knows everything about your business. Ask about marketing, operations, customers, or growth strategy — and get answers grounded in your actual data. Click to activate. She never forgets a thing.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<div class="divider"></div>
+
+
+<!-- PLATFORMS -->
+<section class="section-wrap tight">
+  <div class="kicker reveal">Coverage</div>
+  <h2 class="section-title reveal reveal-d1">13 platforms. <em>One pipeline.</em></h2>
+  <p class="section-body reveal reveal-d2">
+    Your system posts to every major platform from day one — all managed from one place.
+  </p>
+
+  <div class="platforms-grid reveal reveal-d3">
+    <span class="platform-pill highlight">Twitter / X</span>
+    <span class="platform-pill highlight">Instagram</span>
+    <span class="platform-pill highlight">TikTok</span>
+    <span class="platform-pill highlight">YouTube</span>
+    <span class="platform-pill highlight">LinkedIn</span>
+    <span class="platform-pill">Facebook</span>
+    <span class="platform-pill">Threads</span>
+    <span class="platform-pill">Pinterest</span>
+    <span class="platform-pill">Bluesky</span>
+    <span class="platform-pill">Telegram</span>
+    <span class="platform-pill">Reddit</span>
+    <span class="platform-pill">Discord</span>
+  </div>
+</section>
+
+
+<div class="divider"></div>
+
+
+<!-- PRICING PACKAGES -->
+<section class="section-wrap" id="pricing">
+  <div class="kicker reveal">Pricing Packages</div>
+  <h2 class="section-title reveal reveal-d1">Pick the package that<br><em>fits your stage.</em></h2>
+  <p class="section-body reveal reveal-d2">
+    Every package includes a free 15-minute discovery call first — so we both know it's the right fit before you invest.
+  </p>
+
+  <div class="pricing-packages">
+
+    <!-- STARTER -->
+    <div class="pkg-card reveal reveal-d1">
+      <div class="pkg-tier">Tier 01</div>
+      <div class="pkg-name">Starter</div>
+      <div class="pkg-price">$2,000</div>
+      <div class="pkg-price-mo">setup + $97/mo</div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-list">
+        <li><span class="chk">✓</span> Custom website design</li>
+        <li><span class="chk">✓</span> CRM with contact management</li>
+        <li><span class="chk">✓</span> Calendar booking system</li>
+        <li><span class="chk">✓</span> Basic email support</li>
+        <li><span class="chk">✓</span> Image posts to Facebook &amp; Instagram with captions</li>
+      </ul>
+      <a href="#" class="pkg-btn outline">Book Free Discovery Call →</a>
+    </div>
+
+    <!-- PROFESSIONAL (FEATURED) -->
+    <div class="pkg-card featured reveal reveal-d2">
+      <div class="pkg-tier">Tier 02</div>
+      <div class="pkg-featured-badge">Most Popular</div>
+      <div class="pkg-name">Professional</div>
+      <div class="pkg-price">$3,500</div>
+      <div class="pkg-price-mo">setup + $197/mo</div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-list">
+        <li><span class="chk">✓</span> Everything in Starter</li>
+        <li><span class="chk">✓</span> Content automation pipeline</li>
+        <li><span class="chk">✓</span> Email marketing campaigns</li>
+        <li><span class="chk">✓</span> Image &amp; video posts with captions — up to 8 social media platforms</li>
+        <li><span class="chk">✓</span> Priority support</li>
+      </ul>
+      <a href="#" class="pkg-btn">Book Free Discovery Call →</a>
+    </div>
+
+    <!-- ENTERPRISE -->
+    <div class="pkg-card reveal reveal-d3">
+      <div class="pkg-tier">Tier 03</div>
+      <div class="pkg-name">Enterprise</div>
+      <div class="pkg-price">$5,000</div>
+      <div class="pkg-price-mo">setup + $297/mo</div>
+      <div class="pkg-divider"></div>
+      <ul class="pkg-list">
+        <li><span class="chk">✓</span> Everything in Professional</li>
+        <li><span class="chk">✓</span> All 7 GrowthOS systems</li>
+        <li><span class="chk">✓</span> Up to 13 social media platforms</li>
+        <li><span class="chk">✓</span> AISHA — AI assistant</li>
+        <li><span class="chk">✓</span> Advanced analytics dashboard</li>
+        <li><span class="chk">✓</span> Custom development hours</li>
+        <li><span class="chk">✓</span> Dedicated account manager</li>
+        <li><span class="chk">✓</span> Ongoing system optimisation</li>
+      </ul>
+      <a href="#" class="pkg-btn teal">Book Free Discovery Call →</a>
+    </div>
+
+  </div>
+
+  <!-- FREE CALL CTA -->
+  <div class="call-cta reveal reveal-d4">
+    <div>
+      <div class="call-cta-text">Start with a free <em>15-minute call.</em></div>
+      <p class="call-cta-sub">No pitch. No pressure. We'll figure out which package fits — or if GrowthOS is actually the better path for you.</p>
+    </div>
+    <a href="#" class="btn-call" id="book-call-btn">Book Your Free Call →</a>
+  </div>
+</section>
+
+
+<div class="divider"></div>
+
+
+<!-- WHAT THIS IS -->
+<section class="section-wrap tight">
+  <div class="kicker reveal">Context</div>
+  <h2 class="section-title reveal reveal-d1">Same system. <em>Different path.</em></h2>
+
+  <div class="context-block reveal reveal-d1" style="margin-top:clamp(2rem,3vw,3rem);">
+    <div class="context-icon">→</div>
+    <p class="context-body">
+      <strong>The Done For You system is the same stack taught in AISocialHub GrowthOS.</strong> In GrowthOS, you build it live with me over the course of a month and own every line of code. Here, I build it for you — custom-configured to your brand, your platforms, your offers — and hand it over fully working.<br><br>
+      You still own everything. All the code, all the files, all the GitHub projects. No lock-in. I just do the heavy lifting so you can skip straight to using it.
+    </p>
+  </div>
+</section>
+
+
+<div class="divider"></div>
+
+
+<!-- NOT FOR YOU -->
+<section class="section-wrap tight">
+  <div class="kicker reveal">Honest Fit Check</div>
+  <h2 class="section-title reveal reveal-d1">This is <em>not</em> right for you if…</h2>
+
+  <ul class="not-list">
+    <li class="reveal reveal-d1">
+      <span class="x">—</span>
+      You want to understand how the system works and build it yourself — that's what <a href="/growth-os" style="color:var(--accent);text-decoration:none;">GrowthOS</a> is for.
+    </li>
+    <li class="reveal reveal-d2">
+      <span class="x">—</span>
+      You're still figuring out your offers or audience — this system amplifies what you already have, it doesn't define it.
+    </li>
+    <li class="reveal reveal-d3">
+      <span class="x">—</span>
+      You need someone to manage it long-term — I build and hand it over. The monthly fee covers support, not day-to-day management.
+    </li>
+  </ul>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <a href="https://blog.digicuratoragency.com" class="footer-brand">
+    <img src="../logo.png" alt="AISocialHub" width="20" height="20" style="border-radius:3px;">
+    AISocialHub · Ness Alazne
+  </a>
+  <div class="footer-links">
+    <a href="https://blog.digicuratoragency.com">digicuratoragency.com</a>
+    <a href="https://blog.digicuratoragency.com/get/">Free Guide</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a>
+  </div>
+</footer>
+
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in-view'); observer.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

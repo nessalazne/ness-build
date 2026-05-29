@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AISocialHub GrowthOS · 7 AI Systems Built Live With You</title>
+<meta name="description" content="Ditch HighLevel and $500/mo in tools. Build your complete AI content machine live with Ness — 7 systems, 13 platforms, yours for $5/mo to run. Founding member price: $297." />
+
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+
+<style>
+:root {
+  --bg:               #050505;
+  --bg-elev:          #0a0a0a;
+  --surface:          #111111;
+  --border:           #1a1a1a;
+  --border-hover:     #2a2a2a;
+  --text:             #f0e8e8;
+  --text-paper:       #fdf5f0;
+  --text-dim:         #c8bfbf;
+  --muted:            #9a8f8f;
+  --accent:           #d87657;
+  --accent-hl:        rgba(216,118,87,0.28);
+  --accent-glow:      rgba(216,118,87,0.3);
+  --teal:             #ffde59;
+  --teal-glow:        rgba(255,222,89,0.28);
+  --green:            #50e3c2;
+  --green-glow:       rgba(80,227,194,0.25);
+  --pink:             #deb4b4;
+
+  --font-display: 'Instrument Serif', serif;
+  --font-body:    'Plus Jakarta Sans', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --pad-x: clamp(1.5rem, 8vw, 9rem);
+  --content-max: 1100px;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(216,118,87,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 10% 110%, rgba(255,222,89,0.04) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 60% at 90% 50%, rgba(222,180,180,0.03) 0%, transparent 55%);
+}
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+}
+
+section, header, footer, nav { position: relative; z-index: 1; }
+
+/* NAV */
+.top-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px clamp(1.5rem, 5vw, 4rem);
+  background: rgba(0,0,0,0.7); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-brand {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500;
+  color: var(--muted); letter-spacing: 0.22em; text-transform: uppercase; text-decoration: none;
+}
+.nav-back {
+  font-family: var(--font-mono); font-size: 10px; color: var(--muted);
+  letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none;
+  transition: color 0.2s; display: flex; align-items: center; gap: 6px;
+}
+.nav-back:hover { color: var(--accent); }
+
+/* ANIMATIONS */
+@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+
+.reveal { opacity:0; transform:translateY(24px); transition:opacity 0.8s var(--ease),transform 0.8s var(--ease); }
+.reveal.in-view { opacity:1; transform:translateY(0); }
+.reveal-d1{transition-delay:0.1s;} .reveal-d2{transition-delay:0.2s;}
+.reveal-d3{transition-delay:0.3s;} .reveal-d4{transition-delay:0.4s;}
+
+.divider { width:100%; height:1px; background:linear-gradient(90deg,transparent,var(--border),transparent); }
+
+/* HERO */
+.hero {
+  min-height: 80vh; display:flex; flex-direction:column; justify-content:flex-end;
+  padding: clamp(9rem,16vw,14rem) var(--pad-x) clamp(5rem,8vw,8rem);
+  max-width: calc(var(--content-max) + 2 * var(--pad-x)); margin: 0 auto;
+}
+.hero-eyebrow {
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:var(--font-mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase;
+  color:var(--teal); padding:6px 14px; border:1px solid rgba(255,222,89,0.2); border-radius:100px;
+  background:rgba(255,222,89,0.05); margin-bottom:clamp(2rem,3.5vw,3rem); width:fit-content;
+}
+.hero-eyebrow .dot {
+  width:6px; height:6px; border-radius:50%; background:var(--teal);
+  box-shadow:0 0 8px var(--teal-glow); animation:blink 2.2s ease-in-out infinite;
+}
+.hero-title {
+  font-family:var(--font-display); font-weight:400;
+  font-size:clamp(3rem,9vw,7.5rem); line-height:0.96; letter-spacing:-0.025em;
+  color:var(--text-paper); margin-bottom:clamp(1.8rem,3vw,2.6rem); max-width:18ch;
+}
+.hero-title em { font-style:italic; color:var(--pink); }
+
+.hero-sub {
+  font-family:var(--font-body); font-weight:300;
+  font-size:clamp(1.1rem,1.8vw,1.3rem); color:var(--text-dim);
+  line-height:1.65; max-width:52ch; margin-bottom:clamp(2.5rem,4vw,4rem);
+}
+
+.hero-meta {
+  display:flex; gap:clamp(2rem,4vw,4rem);
+  padding-top:clamp(2rem,3vw,3rem); border-top:1px solid var(--border); flex-wrap:wrap;
+}
+.meta-item .meta-value {
+  font-family:var(--font-display); font-size:clamp(1.8rem,3.5vw,2.8rem);
+  color:var(--text-paper); line-height:1;
+}
+.meta-item .meta-value.accent{color:var(--accent);} .meta-item .meta-value.teal{color:var(--teal);}
+.meta-item .meta-value.green{color:var(--green);}
+.meta-item .meta-label {
+  font-family:var(--font-mono); font-size:10px; text-transform:uppercase;
+  letter-spacing:0.18em; color:var(--muted); margin-top:4px;
+}
+
+/* KICKER / SECTION HEADER */
+.section-wrap {
+  padding: clamp(5rem,10vw,10rem) var(--pad-x);
+  max-width: calc(var(--content-max) + 2 * var(--pad-x)); margin: 0 auto;
+}
+.section-wrap.tight { padding-top: clamp(3rem,6vw,6rem); padding-bottom: clamp(3rem,6vw,6rem); }
+
+.kicker {
+  font-family:var(--font-mono); font-weight:500; font-size:clamp(0.65rem,0.9vw,0.8rem);
+  color:var(--accent); text-transform:uppercase; letter-spacing:0.26em;
+  display:inline-flex; align-items:center; gap:12px; margin-bottom:clamp(1rem,1.6vw,1.4rem);
+}
+.kicker::before { content:''; display:inline-block; width:24px; height:1px; background:var(--accent); }
+
+.section-title {
+  font-family:var(--font-display); font-weight:400; font-size:clamp(1.8rem,3.5vw,3rem);
+  line-height:1.08; letter-spacing:-0.015em; color:var(--text-paper);
+}
+.section-title em { font-style:italic; color:var(--accent); }
+
+.section-body {
+  font-family:var(--font-body); font-weight:300; font-size:clamp(0.95rem,1.2vw,1.05rem);
+  color:var(--text-dim); line-height:1.7; max-width:58ch; margin-top:1.2rem;
+}
+
+/* SAVINGS BANNER */
+.savings-banner {
+  border: 1px solid var(--teal);
+  background: rgba(255,222,89,0.04);
+  border-radius: 14px;
+  padding: clamp(1.6rem,3vw,2.4rem) clamp(1.6rem,3vw,2.6rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: clamp(3rem,5vw,5rem);
+}
+.savings-label {
+  font-family: var(--font-mono); font-size: 11px; text-transform: uppercase;
+  letter-spacing: 0.18em; color: var(--teal); margin-bottom: 0.4rem;
+}
+.savings-title {
+  font-family: var(--font-display); font-size: clamp(1.4rem,2.5vw,2rem);
+  color: var(--text-paper); line-height: 1.1;
+}
+.savings-amount {
+  font-family: var(--font-display); font-size: clamp(2.5rem,5vw,4rem);
+  color: var(--teal); line-height: 1; white-space: nowrap;
+}
+.savings-sub {
+  font-family: var(--font-mono); font-size: 11px; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.14em; margin-top: 0.3rem;
+}
+
+/* COMPARISON TABLE */
+.comparison-table {
+  width: 100%; border-collapse: collapse;
+  margin-top: clamp(2rem,3vw,3rem); margin-bottom: clamp(2rem,3vw,3rem);
+}
+.comparison-table th {
+  font-family: var(--font-mono); font-size: 10px; text-transform: uppercase;
+  letter-spacing: 0.18em; color: var(--muted); font-weight: 600;
+  padding: 10px 16px; border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+.comparison-table th:last-child, .comparison-table td:last-child { text-align: right; }
+.comparison-table td {
+  font-family: var(--font-mono); font-size: 12px; color: var(--text-dim);
+  padding: 12px 16px; border-bottom: 1px solid var(--border);
+}
+.comparison-table td.tool-name { color: var(--text); font-weight: 500; }
+.comparison-table td.old-price { color: var(--muted); text-decoration: line-through; }
+.comparison-table td.new-price { color: var(--green); font-weight: 600; }
+.comparison-table tr.total-row td {
+  border-top: 1px solid var(--border-hover); border-bottom: none;
+  padding-top: 16px; font-weight: 700;
+}
+.comparison-table tr.total-row td.tool-name { color: var(--text-paper); }
+.comparison-table tr.total-row td.old-price { color: var(--muted); font-size: 13px; }
+.comparison-table tr.total-row td.new-price { color: var(--green); font-size: 14px; }
+
+/* SYSTEMS GRID */
+.systems-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: clamp(14px,1.8vw,20px);
+}
+.system-card {
+  border: 1px solid var(--border); border-radius: 14px;
+  background: var(--bg-elev); padding: clamp(1.4rem,2vw,1.8rem);
+  display: flex; flex-direction: column; gap: 0;
+  transition: border-color 0.3s var(--ease);
+}
+.system-card:hover { border-color: var(--border-hover); }
+.system-num {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  color: var(--muted); letter-spacing: 0.2em; text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+.system-name {
+  font-family: var(--font-display); font-size: clamp(1.2rem,2vw,1.5rem);
+  color: var(--text-paper); line-height: 1.1; margin-bottom: 0.7rem;
+}
+.system-name em { font-style: italic; color: var(--pink); }
+.system-desc {
+  font-family: var(--font-body); font-weight: 300; font-size: 0.9rem;
+  color: var(--text-dim); line-height: 1.6; flex: 1; margin-bottom: 1rem;
+}
+.system-pills { display:flex; gap:5px; flex-wrap:wrap; }
+.system-pill {
+  font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.06em;
+  color: var(--muted); padding: 3px 8px; border: 1px solid var(--border);
+  border-radius: 100px;
+}
+
+/* SCHEDULE SECTION */
+.schedule-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.6rem,3vw,3rem);
+  margin-top: clamp(2rem,3.5vw,3.5rem);
+}
+@media (max-width:720px) { .schedule-grid { grid-template-columns: 1fr; } }
+
+.schedule-block {
+  border: 1px solid var(--border); border-radius: 14px;
+  background: var(--bg-elev); padding: clamp(1.4rem,2vw,2rem);
+}
+.schedule-block.accent-block {
+  border-color: var(--accent);
+  background: rgba(216,118,87,0.04);
+}
+.schedule-week {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.2em;
+  color: var(--accent); margin-bottom: 1rem;
+}
+.schedule-week.teal { color: var(--teal); }
+.schedule-heading {
+  font-family: var(--font-display); font-size: clamp(1.2rem,2vw,1.6rem);
+  color: var(--text-paper); margin-bottom: 0.6rem; line-height: 1.1;
+}
+.schedule-desc {
+  font-family: var(--font-body); font-weight: 300; font-size: 0.9rem;
+  color: var(--text-dim); line-height: 1.65;
+}
+.schedule-days {
+  display: flex; flex-direction: column; gap: 8px;
+  margin-top: 1rem;
+}
+.schedule-day {
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--font-mono); font-size: 11px; color: var(--text-dim);
+  letter-spacing: 0.05em;
+}
+.day-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent); flex-shrink: 0;
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+/* ALUMNI BLOCK */
+.alumni-block {
+  border: 1px solid var(--border); border-radius: 14px;
+  background: var(--bg-elev); padding: clamp(1.6rem,2.5vw,2.4rem);
+  display: flex; align-items: flex-start; gap: 1.6rem; flex-wrap: wrap;
+  margin-top: clamp(1.6rem,3vw,2.4rem);
+}
+.alumni-price {
+  font-family: var(--font-display); font-size: clamp(2rem,4vw,3rem);
+  color: var(--pink); line-height: 1; white-space: nowrap;
+}
+.alumni-price-label {
+  font-family: var(--font-mono); font-size: 10px; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.16em; margin-top: 3px;
+}
+.alumni-desc {
+  font-family: var(--font-body); font-weight: 300; font-size: 0.92rem;
+  color: var(--text-dim); line-height: 1.65; flex: 1;
+}
+
+/* BONUSES LIST */
+.bonus-list {
+  list-style: none; display: flex; flex-direction: column;
+  gap: 10px; margin-top: clamp(2rem,3vw,3rem);
+}
+.bonus-item {
+  display: flex; align-items: flex-start; gap: 14px;
+  border: 1px solid var(--border); border-radius: 12px;
+  background: var(--bg-elev); padding: 1rem 1.2rem;
+}
+.bonus-icon {
+  font-family: var(--font-mono); font-size: 13px;
+  color: var(--teal); flex-shrink: 0; margin-top: 2px;
+}
+.bonus-name {
+  font-family: var(--font-display); font-size: 1.1rem;
+  color: var(--text-paper); line-height: 1.1; margin-bottom: 3px;
+}
+.bonus-desc {
+  font-family: var(--font-body); font-weight: 300; font-size: 0.88rem;
+  color: var(--text-dim); line-height: 1.55;
+}
+
+/* PRICING CARD */
+.pricing-box {
+  border: 1px solid var(--accent);
+  background: rgba(216,118,87,0.04);
+  border-radius: 18px;
+  padding: clamp(2rem,4vw,3.5rem);
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: clamp(2rem,4vw,4rem);
+  align-items: start;
+}
+@media (max-width:820px) { .pricing-box { grid-template-columns: 1fr; } }
+
+.pricing-left-kicker {
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:var(--font-mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase;
+  color:var(--teal); padding:6px 14px; border:1px solid rgba(255,222,89,0.2); border-radius:100px;
+  background:rgba(255,222,89,0.05); margin-bottom:1.4rem; width:fit-content;
+}
+.pricing-left-kicker .dot {
+  width:6px; height:6px; border-radius:50%; background:var(--teal);
+  box-shadow:0 0 8px var(--teal-glow); animation:blink 2.2s ease-in-out infinite;
+}
+.pricing-left-title {
+  font-family:var(--font-display); font-weight:400; font-size:clamp(1.8rem,3.5vw,2.6rem);
+  line-height:1.08; letter-spacing:-0.015em; color:var(--text-paper); margin-bottom:0.4rem;
+}
+.pricing-left-sub {
+  font-family:var(--font-body); font-style:italic; font-size:1rem;
+  color:var(--muted); margin-bottom:1.4rem;
+}
+.pricing-left-body {
+  font-family:var(--font-body); font-weight:300; font-size:clamp(0.9rem,1.1vw,1rem);
+  color:var(--text-dim); line-height:1.7; margin-bottom:1.8rem;
+}
+.pricing-checklist {
+  list-style:none; display:flex; flex-direction:column; gap:7px; margin-bottom:1.4rem;
+}
+.pricing-checklist li {
+  font-family:var(--font-mono); font-size:11px; letter-spacing:0.05em;
+  text-transform:uppercase; color:var(--text-dim);
+  display:flex; align-items:flex-start; gap:8px;
+}
+.pricing-checklist .chk { color:var(--accent); flex-shrink:0; }
+.pricing-checklist .bon { color:var(--teal); flex-shrink:0; }
+
+.pricing-right {
+  background:var(--bg-elev); border:1px solid var(--border);
+  border-radius:14px; padding:clamp(1.8rem,3vw,2.6rem); text-align:center;
+}
+.pricing-badge {
+  display:inline-block; font-family:var(--font-mono); font-size:10px;
+  text-transform:uppercase; letter-spacing:0.2em; color:var(--accent);
+  padding:5px 14px; border:1px solid rgba(216,118,87,0.3); border-radius:100px;
+  background:rgba(216,118,87,0.08); margin-bottom:1.4rem;
+}
+.pricing-price {
+  font-family:var(--font-display); font-size:clamp(4rem,8vw,6rem);
+  color:var(--text-paper); line-height:1;
+}
+.pricing-price-label {
+  font-family:var(--font-mono); font-size:11px; color:var(--teal);
+  text-transform:uppercase; letter-spacing:0.18em; margin-top:0.4rem; margin-bottom:1.8rem;
+}
+.pricing-compare {
+  font-family:var(--font-mono); font-size:11px; color:var(--muted);
+  text-decoration:line-through; margin-bottom:0.4rem;
+}
+.pricing-savings {
+  font-family:var(--font-mono); font-size:11px; color:var(--green); margin-bottom:2rem;
+}
+.btn-primary {
+  display:block; width:100%; background:var(--accent); color:#000;
+  font-family:var(--font-mono); font-weight:700; font-size:12px;
+  letter-spacing:0.08em; text-transform:uppercase; padding:14px 24px;
+  border-radius:10px; text-decoration:none; text-align:center;
+  transition:all 0.3s var(--ease); box-shadow:0 0 24px var(--accent-glow);
+}
+.btn-primary:hover { transform:scale(1.03); box-shadow:0 0 40px var(--accent-glow); }
+
+.pricing-note {
+  font-family:var(--font-mono); font-size:10px; color:var(--muted);
+  margin-top:1rem; line-height:1.6;
+}
+.pricing-urgency {
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  font-family:var(--font-mono); font-size:11px; color:var(--teal);
+  text-transform:uppercase; letter-spacing:0.12em; margin-top:0.8rem;
+}
+.pricing-urgency .pulse {
+  width:6px; height:6px; border-radius:50%; background:var(--teal);
+  flex-shrink:0; animation:blink 2.2s ease-in-out infinite;
+}
+
+/* FOOTER */
+footer {
+  padding: clamp(3rem,5vw,5rem) var(--pad-x);
+  display:flex; align-items:center; justify-content:space-between;
+  gap:2rem; flex-wrap:wrap; border-top:1px solid var(--border);
+  max-width:calc(var(--content-max) + 2 * var(--pad-x)); margin:0 auto;
+}
+.footer-brand {
+  display:flex; align-items:center; gap:10px; font-family:var(--font-mono);
+  font-size:0.7rem; color:var(--muted); letter-spacing:0.22em;
+  text-transform:uppercase; text-decoration:none;
+}
+.footer-links { display:flex; gap:24px; }
+.footer-links a {
+  font-family:var(--font-mono); font-size:10px; color:var(--muted);
+  letter-spacing:0.14em; text-transform:uppercase; text-decoration:none; transition:color 0.2s;
+}
+.footer-links a:hover { color:var(--accent); }
+
+@media (max-width:640px) {
+  .systems-grid { grid-template-columns: 1fr; }
+  footer { flex-direction:column; text-align:center; }
+  .hero-meta { gap:1.6rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="top-nav">
+  <a href="/" class="nav-brand">
+    <img src="../logo.png" alt="AISocialHub" width="28" height="28" style="border-radius:4px;">
+    <span>AISocialHub</span>
+  </a>
+  <a href="/" class="nav-back">← All Offers</a>
+</nav>
+
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-eyebrow reveal">
+    <span class="dot"></span>
+    AISocialHub GrowthOS · Live Build Program
+  </div>
+
+  <h1 class="hero-title reveal reveal-d1">
+    7 AI Systems.<br>Built Live.<br><em>Yours for $5/mo.</em>
+  </h1>
+
+  <p class="hero-sub reveal reveal-d2">
+    Ditch HighLevel, Blotato, Make, and Zapier. Build your complete AI content machine live with Ness — then own it forever. 13 platforms. Zero monthly SaaS fees. Just $5/mo hosting on Railway.
+  </p>
+
+  <div class="hero-meta reveal reveal-d3">
+    <div class="meta-item">
+      <div class="meta-value accent">$297</div>
+      <div class="meta-label">Founding member price</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-value teal">7</div>
+      <div class="meta-label">AI systems included</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-value green">$5/mo</div>
+      <div class="meta-label">To run your system</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-value">13</div>
+      <div class="meta-label">Platforms covered</div>
+    </div>
+  </div>
+</header>
+
+<div class="divider"></div>
+
+
+<!-- WHAT YOU REPLACE -->
+<section class="section-wrap tight">
+  <div class="kicker reveal">The Math</div>
+  <h2 class="section-title reveal reveal-d1">Replace $500+/mo in tools.<br><em>Run it all for $5/mo.</em></h2>
+  <p class="section-body reveal reveal-d2">
+    Every tool in your current stack charges you monthly. GrowthOS is self-hosted — you pay once to build it, then ~$5/mo for Railway hosting. That's it.
+  </p>
+
+  <div class="savings-banner reveal reveal-d3">
+    <div>
+      <div class="savings-label">Annual savings</div>
+      <div class="savings-title">What you save every year<br>by switching to GrowthOS</div>
+    </div>
+    <div style="text-align:right;">
+      <div class="savings-amount">$6,000+</div>
+      <div class="savings-sub">per year · conservatively</div>
+    </div>
+  </div>
+
+  <table class="comparison-table reveal">
+    <thead>
+      <tr>
+        <th>Tool replaced</th>
+        <th>What it does</th>
+        <th>Their price</th>
+        <th>GrowthOS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="tool-name">GoHighLevel / HighLevel</td>
+        <td>CRM, funnels, email automation</td>
+        <td class="old-price">$297/mo</td>
+        <td class="new-price">✓ included</td>
+      </tr>
+      <tr>
+        <td class="tool-name">Blotato</td>
+        <td>Social media scheduling</td>
+        <td class="old-price">$99/mo</td>
+        <td class="new-price">✓ included</td>
+      </tr>
+      <tr>
+        <td class="tool-name">Make.com</td>
+        <td>Workflow automation</td>
+        <td class="old-price">$99/mo</td>
+        <td class="new-price">✓ included</td>
+      </tr>
+      <tr>
+        <td class="tool-name">Zapier</td>
+        <td>App connections & triggers</td>
+        <td class="old-price">$99/mo</td>
+        <td class="new-price">✓ included</td>
+      </tr>
+      <tr>
+        <td class="tool-name">Separate lead scraper tools</td>
+        <td>Lead generation across platforms</td>
+        <td class="old-price">$49–$99/mo</td>
+        <td class="new-price">✓ included</td>
+      </tr>
+      <tr class="total-row">
+        <td class="tool-name">Total</td>
+        <td></td>
+        <td class="old-price">$600+/mo</td>
+        <td class="new-price">~$5/mo</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+
+<div class="divider"></div>
+
+
+<!-- 7 SYSTEMS -->
+<section class="section-wrap">
+  <div class="kicker reveal">The Stack</div>
+  <h2 class="section-title reveal reveal-d1">7 systems. One <em>machine.</em></h2>
+  <p class="section-body reveal reveal-d2">
+    Every system is built live with you — you see every line, you own every file. No black boxes.
+  </p>
+
+  <div class="systems-grid" style="margin-top:clamp(2.5rem,4vw,4rem);">
+
+    <div class="system-card reveal reveal-d1">
+      <div class="system-num">System 01</div>
+      <div class="system-name">Content Automation<br><em>App</em></div>
+      <p class="system-desc">Your main AI pipeline — generate and schedule posts to all 13 platforms. Short-form videos, image posts, and freebie generation, all automated.</p>
+    </div>
+
+    <div class="system-card reveal reveal-d2">
+      <div class="system-num">System 02</div>
+      <div class="system-name">SEO Blog<br><em>Publisher</em></div>
+      <p class="system-desc">An AI system that researches, writes, and publishes SEO-optimized blog posts automatically — keyword research, internal linking, meta tags, and scheduled publishing.</p>
+    </div>
+
+    <div class="system-card reveal reveal-d3">
+      <div class="system-num">System 03</div>
+      <div class="system-name">Freebie<br><em>Generator</em></div>
+      <p class="system-desc">Generate lead magnet PDFs automatically — cover design, content, opt-in page, and email delivery. Turn any topic into a downloadable freebie in minutes.</p>
+    </div>
+
+    <div class="system-card reveal reveal-d1">
+      <div class="system-num">System 04</div>
+      <div class="system-name">AI Website<br><em>Builder</em></div>
+      <p class="system-desc">A fully deployed website with AI-generated copy, images, and layout — connected to your domain and live on the internet. No Webflow. No WordPress. Pure Claude Code.</p>
+    </div>
+
+    <div class="system-card reveal reveal-d2">
+      <div class="system-num">System 05</div>
+      <div class="system-name">Cinematic<br><em>Ads Agent</em></div>
+      <p class="system-desc">An AI agent that writes ad scripts, generates emotional voiceovers, creates talking avatar videos, and composes cinematic short-form ads — ready for Meta, YouTube, and TikTok.</p>
+    </div>
+
+    <div class="system-card reveal reveal-d3">
+      <div class="system-num">System 06</div>
+      <div class="system-name">Creator<br><em>CRM</em></div>
+      <p class="system-desc">A custom CRM for creators — track brand deals, manage content pipelines, log collaboration requests, and automate follow-up emails. Built for how creators actually work.</p>
+    </div>
+
+    <div class="system-card reveal reveal-d1">
+      <div class="system-num">System 07</div>
+      <div class="system-name">Lead Generation<br><em>Scraper</em></div>
+      <p class="system-desc">Scrape targeted leads from YouTube, Instagram, TikTok, Facebook Ads, and Google Maps — all piped directly into your CRM and outreach system.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<div class="divider"></div>
+
+
+<!-- HOW IT WORKS -->
+<section class="section-wrap">
+  <div class="kicker reveal">How It Works</div>
+  <h2 class="section-title reveal reveal-d1">Built with you.<br><em>Supported until it works.</em></h2>
+  <p class="section-body reveal reveal-d2">
+    This is not a course you watch. You build alongside Ness, live. Then she stays with you until your system is running.
+  </p>
+
+  <div class="schedule-grid">
+    <div class="schedule-block accent-block reveal reveal-d1">
+      <div class="schedule-week">Week 1 · Live Build Sessions</div>
+      <div class="schedule-heading">Three live Zoom sessions.<br>Three systems built.</div>
+      <p class="schedule-desc">Every first week of the month. Show up, build with Ness, walk away with working code.</p>
+      <div class="schedule-days">
+        <div class="schedule-day">
+          <span class="day-dot"></span>
+          Monday · 2 hours · Live on Zoom
+        </div>
+        <div class="schedule-day">
+          <span class="day-dot"></span>
+          Wednesday · 2 hours · Live on Zoom
+        </div>
+        <div class="schedule-day">
+          <span class="day-dot"></span>
+          Friday · 2 hours · Live on Zoom
+        </div>
+      </div>
+    </div>
+
+    <div class="schedule-block reveal reveal-d2">
+      <div class="schedule-week teal">Weeks 2–4 · Live Support</div>
+      <div class="schedule-heading">Ness stays with you until it works.</div>
+      <p class="schedule-desc">
+        For the rest of the month, Ness is available live to troubleshoot, configure, and help you get every system fully running. You're not left alone with the code.<br><br>
+        All sessions are recorded. Lifetime access — go back any time.
+      </p>
+    </div>
+  </div>
+
+  <div class="alumni-block reveal reveal-d3">
+    <div>
+      <div class="alumni-price">$98<span style="font-size:1rem;color:var(--muted);">/mo</span></div>
+      <div class="alumni-price-label">Alumni membership</div>
+    </div>
+    <p class="alumni-desc">
+      Already completed the program? Continue getting live support from Ness with the optional alumni membership. $98/mo — cancel any time. For members who've already been through GrowthOS and want Ness in their corner ongoing.
+    </p>
+  </div>
+</section>
+
+
+<div class="divider"></div>
+
+
+<!-- BONUSES -->
+<section class="section-wrap tight">
+  <div class="kicker reveal">Also Included</div>
+  <h2 class="section-title reveal reveal-d1">3 bonus <em>courses.</em></h2>
+
+  <ul class="bonus-list">
+    <li class="bonus-item reveal reveal-d1">
+      <div class="bonus-icon">★</div>
+      <div>
+        <div class="bonus-name">YouTube Repurposer (Chrome Extension)</div>
+        <p class="bonus-desc">A Chrome extension that turns any YouTube video into short-form content — script, avatar video, voiceover, captions — posted to 9 platforms automatically. Sold separately for $97.</p>
+      </div>
+    </li>
+    <li class="bonus-item reveal reveal-d2">
+      <div class="bonus-icon">★</div>
+      <div>
+        <div class="bonus-name">AISHA Engine</div>
+        <p class="bonus-desc">Build an AI creator brand that runs without you being on camera. Create a hyper-realistic avatar, automated content across major platforms, and an always-on monetization engine.</p>
+      </div>
+    </li>
+    <li class="bonus-item reveal reveal-d3">
+      <div class="bonus-icon">★</div>
+      <div>
+        <div class="bonus-name">The AI Audit Method</div>
+        <p class="bonus-desc">Turn your AI skills into a consulting business. The exact process to land your very first client — starting today. 13 lessons. Zero fluff. Real results.</p>
+      </div>
+    </li>
+  </ul>
+</section>
+
+
+<div class="divider"></div>
+
+
+<!-- PRICING -->
+<section class="section-wrap" id="join">
+  <div class="pricing-box reveal">
+    <div class="pricing-left">
+      <div class="pricing-left-kicker">
+        <span class="dot"></span>
+        ⚡ Founding Member — Limited Time
+      </div>
+      <h2 class="pricing-left-title">AISocialHub GrowthOS for $297.</h2>
+      <p class="pricing-left-sub">The lowest price this will ever be. Regular price is $997.</p>
+      <p class="pricing-left-body">
+        Get all 7 systems, built live with you, plus all 3 bonus courses — at the founding member price. Every recording, every GitHub project, every prompt kit. Yours forever.<br><br>
+        This price goes to $997 after the founding window closes.
+      </p>
+      <ul class="pricing-checklist">
+        <li><span class="chk">✓</span> System 01 · Content Automation App</li>
+        <li><span class="chk">✓</span> System 02 · SEO Blog Publisher</li>
+        <li><span class="chk">✓</span> System 03 · Freebie Generator</li>
+        <li><span class="chk">✓</span> System 04 · AI Website Builder</li>
+        <li><span class="chk">✓</span> System 05 · Cinematic Ads Agent</li>
+        <li><span class="chk">✓</span> System 06 · Creator CRM</li>
+        <li><span class="chk">✓</span> System 07 · Lead Generation Scraper</li>
+        <li><span class="bon">★</span> Bonus · YouTube Repurposer (Chrome Extension)</li>
+        <li><span class="bon">★</span> Bonus · AISHA Engine</li>
+        <li><span class="bon">★</span> Bonus · AI Audit Method</li>
+        <li><span class="chk">✓</span> All recordings · Lifetime access</li>
+        <li><span class="chk">✓</span> Live build sessions + month-long support</li>
+        <li><span class="chk">✓</span> All GitHub projects · Fork and own</li>
+      </ul>
+    </div>
+    <div class="pricing-right">
+      <div class="pricing-badge">Founding Member Price</div>
+      <div class="pricing-price">$297</div>
+      <div class="pricing-price-label">One-time · No subscription</div>
+      <div class="pricing-compare">$997 regular price</div>
+      <div class="pricing-savings">You save $700</div>
+      <a id="cta-btn" href="https://pay.digicuratoragency.com/checkout/200df36e42e5afad67f468f011de564c" class="btn-primary" target="_blank" rel="noopener">Become a Founding Member →</a>
+      <div class="pricing-note">Price increases to $997 after the founding window closes.</div>
+      <div class="pricing-urgency">
+        <span class="pulse"></span>
+        Founding spots — limited
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <a href="https://blog.digicuratoragency.com" class="footer-brand">
+    <img src="../logo.png" alt="AISocialHub" width="20" height="20" style="border-radius:3px;">
+    AISocialHub · Ness Alazne
+  </a>
+  <div class="footer-links">
+    <a href="https://blog.digicuratoragency.com">digicuratoragency.com</a>
+    <a href="https://blog.digicuratoragency.com/get/">Free Guide</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a>
+  </div>
+</footer>
+
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in-view'); observer.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+document.getElementById('cta-btn').addEventListener('click', function(e) {
+  e.preventDefault();
+  this.style.background = '#deb4b4';
+  this.style.boxShadow = 'none';
+  window.open('https://pay.digicuratoragency.com/checkout/200df36e42e5afad67f468f011de564c', '_blank');
+});
+</script>
+
+</body>
+</html>

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Vibe Coding Live Builds · AISocialHub</title>
-<meta name="description" content="Deployable systems. Built live. Yours to keep. Each session is a real system built with Claude Code — from scratch, live on Zoom." />
+<title>AISocialHub · AI Content Automation Systems</title>
+<meta name="description" content="Your AI-powered content machine. 3 ways to get started — from $97 one-time to a done-for-you system built for your brand." />
 
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
@@ -274,7 +274,7 @@ section, header, footer, nav { position: relative; z-index: 1; }
 }
 
 /* ================================================================
-   BUILDS GRID SECTION
+   SHARED SECTION
    ================================================================ */
 .builds-section {
   padding: clamp(5rem,10vw,10rem) var(--pad-x);
@@ -320,24 +320,29 @@ section, header, footer, nav { position: relative; z-index: 1; }
 }
 .section-title em { font-style: italic; color: var(--accent); }
 
-.builds-count {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--muted);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  white-space: nowrap;
+/* ================================================================
+   PRICING GRID
+   ================================================================ */
+.pricing-section {
+  padding: clamp(5rem,10vw,10rem) var(--pad-x);
+  max-width: calc(var(--content-max) + 2 * var(--pad-x));
+  margin: 0 auto;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(16px, 2vw, 24px);
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .pricing-grid { grid-template-columns: 1fr; }
 }
 
 /* ================================================================
-   BUILD CARD
+   BUILD CARD (shared — used for pricing + bonus)
    ================================================================ */
-.builds-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: clamp(16px, 2vw, 24px);
-}
-
 .build-card {
   border: 1px solid var(--border);
   border-radius: 18px;
@@ -370,6 +375,16 @@ section, header, footer, nav { position: relative; z-index: 1; }
 }
 .build-card:hover::before { opacity: 1; }
 
+.build-card.featured {
+  border-color: var(--accent);
+  box-shadow: 0 0 40px rgba(216,118,87,0.12), 0 0 0 1px rgba(216,118,87,0.25);
+}
+.build-card.featured::before { opacity: 1; }
+.build-card.featured:hover {
+  border-color: var(--accent);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 0 50px rgba(216,118,87,0.2), 0 0 0 1px var(--accent);
+}
+
 /* Card — top row */
 .card-top {
   display: flex;
@@ -387,7 +402,7 @@ section, header, footer, nav { position: relative; z-index: 1; }
   text-transform: uppercase;
 }
 
-/* Status badges */
+/* Badges */
 .status-badge {
   display: inline-flex;
   align-items: center;
@@ -400,41 +415,27 @@ section, header, footer, nav { position: relative; z-index: 1; }
   padding: 5px 12px;
   border-radius: 100px;
 }
-
 .status-badge .bdot {
   width: 5px; height: 5px;
   border-radius: 50%;
   flex-shrink: 0;
 }
-
-.status-badge.live {
+.status-badge.featured-tag {
   color: var(--accent);
   background: rgba(216,118,87,0.12);
   border: 1px solid rgba(216,118,87,0.2);
 }
-.status-badge.live .bdot {
+.status-badge.featured-tag .bdot {
   background: var(--accent);
   box-shadow: 0 0 6px var(--accent-glow);
   animation: blink 1.8s ease-in-out infinite;
 }
-
-.status-badge.coming-soon {
-  color: var(--teal);
-  background: rgba(255,222,89,0.08);
-  border: 1px solid rgba(255,222,89,0.18);
-}
-.status-badge.coming-soon .bdot {
-  background: var(--teal);
-}
-
-.status-badge.recording {
+.status-badge.included {
   color: var(--green);
   background: rgba(80,227,194,0.08);
   border: 1px solid rgba(80,227,194,0.18);
 }
-.status-badge.recording .bdot {
-  background: var(--green);
-}
+.status-badge.included .bdot { background: var(--green); }
 
 /* Card — title */
 .card-title {
@@ -455,9 +456,31 @@ section, header, footer, nav { position: relative; z-index: 1; }
   font-size: clamp(0.88rem, 1.1vw, 1rem);
   color: var(--text-dim);
   line-height: 1.65;
-  flex: 1;
-  margin-bottom: clamp(1.6rem, 2.2vw, 2rem);
+  margin-bottom: clamp(1.4rem, 2vw, 1.8rem);
 }
+
+/* Card — includes list */
+.offer-includes {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: clamp(1.6rem, 2.2vw, 2rem);
+  flex: 1;
+}
+.offer-includes li {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1.4;
+}
+.offer-includes .check  { color: var(--accent); flex-shrink: 0; }
+.offer-includes .bonus  { color: var(--teal);   flex-shrink: 0; }
+.offer-includes .star   { color: var(--green);  flex-shrink: 0; }
 
 /* Card — tech pills */
 .card-pills {
@@ -506,6 +529,19 @@ section, header, footer, nav { position: relative; z-index: 1; }
   letter-spacing: 0.14em;
   margin-top: 2px;
 }
+.card-price-compare {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted);
+  text-decoration: line-through;
+  margin-top: 1px;
+}
+.card-price-savings {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--green);
+  margin-top: 1px;
+}
 
 .card-btn {
   display: inline-flex;
@@ -527,317 +563,32 @@ section, header, footer, nav { position: relative; z-index: 1; }
 }
 .card-btn:hover { transform: scale(1.05); box-shadow: 0 0 40px var(--accent-glow); }
 
-.card-btn.coming {
-  background: transparent;
-  color: var(--teal);
-  border: 1px solid rgba(255,222,89,0.25);
-  box-shadow: none;
-}
-.card-btn.coming:hover { background: rgba(255,222,89,0.06); border-color: var(--teal); }
-
-/* Placeholder card */
-.build-card.placeholder {
-  border-style: dashed;
-  border-color: var(--border);
-  background: transparent;
-  align-items: center;
-  justify-content: center;
-  min-height: 300px;
-  cursor: default;
-}
-.build-card.placeholder:hover {
-  transform: none;
-  box-shadow: none;
-  border-color: var(--border-hover);
-}
-.placeholder-inner {
-  text-align: center;
-}
-.placeholder-icon {
-  font-size: 28px;
-  margin-bottom: 14px;
-  opacity: 0.4;
-}
-.placeholder-text {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--muted);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-/* ================================================================
-   FOUNDING MEMBER BANNER
-   ================================================================ */
-.founding-section {
-  padding: 0 var(--pad-x);
-  max-width: calc(var(--content-max) + 2 * var(--pad-x));
-  margin: clamp(2rem, 4vw, 4rem) auto;
-}
-
-.founding-banner {
-  border: 1px solid var(--accent);
-  background: rgba(216,118,87,0.06);
-  border-radius: 16px;
-  padding: clamp(2rem, 4vw, 3.5rem);
-  display: grid;
-  grid-template-columns: 1fr 360px;
-  gap: clamp(2rem, 4vw, 4rem);
-  align-items: start;
-}
-
-@media (max-width: 860px) {
-  .founding-banner { grid-template-columns: 1fr; }
-}
-
-.founding-kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--teal);
-  padding: 6px 14px;
-  border: 1px solid rgba(255,222,89,0.2);
-  border-radius: 100px;
-  background: rgba(255,222,89,0.05);
-  margin-bottom: 1.4rem;
-  width: fit-content;
-}
-.founding-kicker .dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--teal);
-  box-shadow: 0 0 8px var(--teal-glow);
-  animation: blink 2.2s ease-in-out infinite;
-}
-
-.founding-title {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(2rem, 4vw, 3rem);
-  line-height: 1.08;
-  letter-spacing: -0.015em;
-  color: var(--text-paper);
-  margin-bottom: 0.4rem;
-}
-
-.founding-subtitle {
-  font-family: var(--font-body);
-  font-style: italic;
-  font-size: 1rem;
-  color: var(--muted);
-  margin-bottom: 1.4rem;
-}
-
-.founding-body {
-  font-family: var(--font-body);
-  font-weight: 300;
-  font-size: clamp(0.9rem, 1.1vw, 1rem);
-  color: var(--text-dim);
-  line-height: 1.7;
-  margin-bottom: 1.8rem;
-}
-
-.founding-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 1.4rem;
-}
-.founding-list li {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--text-dim);
-}
-.founding-list .check { color: var(--accent); margin-right: 8px; }
-
-.founding-extras {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.founding-extras span {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--teal);
-  letter-spacing: 0.06em;
-}
-
-/* Founding pricing card */
-.founding-pricing {
-  background: var(--bg-elev);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: clamp(1.8rem, 3vw, 2.6rem);
-  text-align: center;
-}
-
-.founding-badge {
-  display: inline-block;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: var(--accent);
-  padding: 5px 14px;
-  border: 1px solid rgba(216,118,87,0.3);
-  border-radius: 100px;
-  background: rgba(216,118,87,0.08);
-  margin-bottom: 1.4rem;
-}
-
-.founding-price {
-  font-family: var(--font-display);
-  font-size: clamp(4rem, 8vw, 6rem);
-  color: var(--text-paper);
-  line-height: 1;
-}
-
-.founding-price-label {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--teal);
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  margin-top: 0.4rem;
-  margin-bottom: 1.8rem;
-}
-
-.founding-compare {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--muted);
-  text-decoration: line-through;
-  margin-bottom: 0.4rem;
-}
-
-.founding-savings {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--green);
-  margin-bottom: 2rem;
-}
-
-.btn-founding {
-  display: block;
-  width: 100%;
-  background: var(--accent);
-  color: #000;
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 14px 24px;
-  border-radius: 10px;
-  text-decoration: none;
-  text-align: center;
-  transition: all 0.3s var(--ease);
-  box-shadow: 0 0 24px var(--accent-glow);
-}
-.btn-founding:hover { transform: scale(1.03); box-shadow: 0 0 40px var(--accent-glow); }
-
-.founding-note {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--muted);
-  margin-top: 1rem;
-  line-height: 1.6;
-}
-
-.founding-urgency {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--teal);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  margin-top: 0.8rem;
-}
-.founding-urgency .pulse {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--teal);
-  flex-shrink: 0;
-  animation: blink 2.2s ease-in-out infinite;
-}
-
-/* ================================================================
-   WAITLIST SECTION
-   ================================================================ */
-.waitlist-section {
-  padding: clamp(4rem,8vw,8rem) var(--pad-x);
-  max-width: calc(var(--content-max) + 2 * var(--pad-x));
-  margin: 0 auto;
-}
-
-.waitlist-inner { max-width: 600px; }
-
-.waitlist-form {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  margin-top: clamp(1.8rem, 3vw, 2.6rem);
-}
-
-.waitlist-input,
-.waitlist-select {
-  width: 100%;
-  background: var(--bg-elev);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 14px 18px;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--text);
-  letter-spacing: 0.06em;
-  outline: none;
-  transition: border-color 0.2s;
-  -webkit-appearance: none;
-  appearance: none;
-}
-.waitlist-input::placeholder { color: var(--muted); }
-.waitlist-input:focus,
-.waitlist-select:focus { border-color: var(--accent); }
-.waitlist-select { cursor: pointer; }
-.waitlist-select option { background: #0a0a0a; color: var(--text); }
-
-.btn-waitlist {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+.card-btn.teal-btn {
   background: var(--teal);
   color: #000;
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 14px 28px;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s var(--ease);
-  width: fit-content;
   box-shadow: 0 0 24px var(--teal-glow);
 }
-.btn-waitlist:hover { transform: scale(1.04); }
+.card-btn.teal-btn:hover { box-shadow: 0 0 40px var(--teal-glow); }
 
-.waitlist-note {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--muted);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+.card-btn.outline-btn {
+  background: transparent;
+  color: var(--text-dim);
+  border: 1px solid var(--border-hover);
+  box-shadow: none;
+}
+.card-btn.outline-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: none;
+}
+
+/* ================================================================
+   BUILDS GRID (bonus courses)
+   ================================================================ */
+.builds-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: clamp(16px, 2vw, 24px);
 }
 
 /* ================================================================
@@ -888,10 +639,10 @@ footer {
    ================================================================ */
 @media (max-width:640px) {
   .builds-grid { grid-template-columns: 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; }
   .section-header { flex-direction: column; gap: 1rem; }
   footer { flex-direction: column; text-align: center; }
   .hero-meta { gap: 1.6rem; }
-  .founding-banner { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -916,33 +667,32 @@ footer {
 <header class="hero">
   <div class="hero-eyebrow reveal">
     <span class="dot"></span>
-    Live · Build With Claude Code
+    AI Content Automation · AISocialHub
   </div>
 
   <h1 class="hero-title reveal reveal-d1">
-    Vibe Coding<br>Live <em>Builds.</em>
+    Your AI Content<br><em>Machine.</em>
   </h1>
 
   <p class="hero-sub reveal reveal-d2">
-    Deployable systems. Built live. Yours to keep.<br>
-    Each session is a real working system built with Claude Code — from scratch, on Zoom, in 2–3 hours.
+    Build, own, and run your complete AI content system. Three ways to get started — from a Chrome extension that posts to 9 platforms, to a full 7-system stack built live with you, to a done-for-you pipeline delivered to your door.
   </p>
 
   <div class="hero-meta reveal reveal-d3">
     <div class="meta-item">
-      <div class="meta-value teal">2–3h</div>
-      <div class="meta-label">Per session</div>
-    </div>
-    <div class="meta-item">
       <div class="meta-value accent">From $97</div>
-      <div class="meta-label">Per session</div>
+      <div class="meta-label">3 offer tiers</div>
     </div>
     <div class="meta-item">
-      <div class="meta-value">20</div>
-      <div class="meta-label">Spots max</div>
+      <div class="meta-value teal">13</div>
+      <div class="meta-label">Platforms covered</div>
     </div>
     <div class="meta-item">
-      <div class="meta-value green">Zero</div>
+      <div class="meta-value green">$5/mo</div>
+      <div class="meta-label">To run your system</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-value">Zero</div>
       <div class="meta-label">Coding needed</div>
     </div>
   </div>
@@ -951,304 +701,135 @@ footer {
 <div class="divider"></div>
 
 
-<!-- BUILDS GRID -->
-<section class="builds-section">
+<!-- PRICING -->
+<section class="pricing-section">
   <div class="section-header">
     <div>
-      <div class="kicker reveal">All Sessions</div>
+      <div class="kicker reveal">Choose Your Path</div>
       <h2 class="section-title reveal reveal-d1">
-        Pick your <em>build.</em>
+        Pick your <em>offer.</em>
       </h2>
     </div>
-    <div class="builds-count reveal">6 sessions · 1 live · 5 coming soon</div>
   </div>
 
-  <div class="builds-grid">
+  <div class="pricing-grid">
 
-    <!-- ── SYSTEM 01 · YouTube Repurposer ── -->
-    <a href="/youtube-repurposer" class="build-card reveal reveal-d1">
+    <!-- ── CARD 1 · YouTube Repurposer ── -->
+    <div class="build-card reveal reveal-d1">
       <div class="card-top">
-        <span class="system-number">System 01</span>
-        <span class="status-badge live">
+        <span class="system-number">Tier 01</span>
+        <span class="status-badge included">
           <span class="bdot"></span>
-          Live
+          Entry
         </span>
       </div>
 
       <div class="card-title">YouTube<br><em>Repurposer</em></div>
 
       <p class="card-desc">
-        Build a Chrome extension that turns any YouTube video into short-form content — script, avatar video, voiceover, captions — posted to 9 platforms automatically.
+        A Chrome extension that turns any YouTube video into short-form content — scripted, voiced, captioned, and posted to 9 platforms automatically. One build. Yours to keep.
       </p>
 
-      <div class="card-pills">
-        <span class="card-pill">Claude Code</span>
-        <span class="card-pill">HeyGen</span>
-        <span class="card-pill">ElevenLabs V3</span>
-        <span class="card-pill">Remotion</span>
-        <span class="card-pill">Blotato</span>
-        <span class="card-pill">Airtable</span>
-      </div>
+      <ul class="offer-includes">
+        <li><span class="check">✓</span> Chrome extension — runs in your browser</li>
+        <li><span class="check">✓</span> HeyGen + ElevenLabs V3 voiceover</li>
+        <li><span class="check">✓</span> Remotion video engine</li>
+        <li><span class="check">✓</span> Blotato cross-posting (9 platforms)</li>
+        <li><span class="check">✓</span> Full build recording · Lifetime access</li>
+        <li><span class="check">✓</span> GitHub project · Fork and own</li>
+      </ul>
 
       <div class="card-divider"></div>
 
       <div class="card-cta-row">
         <div>
           <div class="card-price">$97</div>
-          <div class="card-price-label">One-time · 20 spots</div>
+          <div class="card-price-label">One-time · No subscription</div>
         </div>
-        <span class="card-btn">Save My Spot →</span>
-      </div>
-    </a>
-
-    <!-- ── SYSTEM 02 · SEO Blog Publisher ── -->
-    <div class="build-card reveal reveal-d2" style="opacity:0.75; cursor:default;">
-      <div class="card-top">
-        <span class="system-number">System 02</span>
-        <span class="status-badge coming-soon">
-          <span class="bdot"></span>
-          Coming Soon
-        </span>
-      </div>
-
-      <div class="card-title">SEO Blog<br><em>Publisher</em></div>
-
-      <p class="card-desc">
-        Build an AI system that researches, writes, and publishes SEO-optimized blog posts automatically — keyword research, internal linking, meta tags, and scheduled publishing. All hands-free.
-      </p>
-
-      <div class="card-pills">
-        <span class="card-pill">Claude Code</span>
-        <span class="card-pill">Airtable</span>
-        <span class="card-pill">WordPress API</span>
-        <span class="card-pill">Make.com</span>
-        <span class="card-pill">Google Search Console</span>
-      </div>
-
-      <div class="card-divider"></div>
-
-      <div class="card-cta-row">
-        <div>
-          <div class="card-price">$117</div>
-          <div class="card-price-label">One-time · 20 spots</div>
-        </div>
-        <a href="#waitlist" class="card-btn coming">Join Waitlist →</a>
+        <a href="/youtube-repurposer" class="card-btn outline-btn">See Details →</a>
       </div>
     </div>
 
-    <!-- ── SYSTEM 03 · Freebie Generator ── -->
-    <div class="build-card reveal reveal-d3" style="opacity:0.75; cursor:default;">
+    <!-- ── CARD 2 · AISocialHub GrowthOS (FEATURED) ── -->
+    <div class="build-card featured reveal reveal-d2">
       <div class="card-top">
-        <span class="system-number">System 03</span>
-        <span class="status-badge coming-soon">
+        <span class="system-number">Tier 02</span>
+        <span class="status-badge featured-tag">
           <span class="bdot"></span>
-          Coming Soon
+          Most Popular
         </span>
       </div>
 
-      <div class="card-title">Freebie<br><em>Generator</em></div>
+      <div class="card-title">AISocialHub<br><em>GrowthOS</em></div>
 
       <p class="card-desc">
-        Build an AI system that generates lead magnet PDFs automatically — cover design, content, opt-in page, and email delivery. Turn any topic into a downloadable freebie in minutes.
+        7 AI systems built live with you. Ditch HighLevel, Blotato, Make, and Zapier. Run your entire content machine for $5/mo hosting — yours to own forever.
       </p>
 
-      <div class="card-pills">
-        <span class="card-pill">Claude Code</span>
-        <span class="card-pill">ElevenLabs</span>
-        <span class="card-pill">Airtable</span>
-        <span class="card-pill">Remotion</span>
-        <span class="card-pill">Make.com</span>
-      </div>
-
-      <div class="card-divider"></div>
-
-      <div class="card-cta-row">
-        <div>
-          <div class="card-price">$127</div>
-          <div class="card-price-label">One-time · 20 spots</div>
-        </div>
-        <a href="#waitlist" class="card-btn coming">Join Waitlist →</a>
-      </div>
-    </div>
-
-    <!-- ── SYSTEM 04 · AI Website Builder ── -->
-    <div class="build-card reveal reveal-d4" style="opacity:0.75; cursor:default;">
-      <div class="card-top">
-        <span class="system-number">System 04</span>
-        <span class="status-badge coming-soon">
-          <span class="bdot"></span>
-          Coming Soon
-        </span>
-      </div>
-
-      <div class="card-title">AI Website<br><em>Builder</em></div>
-
-      <p class="card-desc">
-        Build a fully deployed website with AI-generated copy, images, and layout — connected to your domain and live on the internet. No Webflow. No WordPress. Pure Claude Code.
-      </p>
-
-      <div class="card-pills">
-        <span class="card-pill">Claude Code</span>
-        <span class="card-pill">Antigravity</span>
-        <span class="card-pill">GitHub Pages</span>
-        <span class="card-pill">Cloudflare</span>
-        <span class="card-pill">Airtable</span>
-      </div>
-
-      <div class="card-divider"></div>
-
-      <div class="card-cta-row">
-        <div>
-          <div class="card-price">$147</div>
-          <div class="card-price-label">One-time · 20 spots</div>
-        </div>
-        <a href="#waitlist" class="card-btn coming">Join Waitlist →</a>
-      </div>
-    </div>
-
-    <!-- ── SYSTEM 05 · Cinematic Ads Agent ── -->
-    <div class="build-card reveal reveal-d5" style="opacity:0.75; cursor:default;">
-      <div class="card-top">
-        <span class="system-number">System 05</span>
-        <span class="status-badge coming-soon">
-          <span class="bdot"></span>
-          Coming Soon
-        </span>
-      </div>
-
-      <div class="card-title">Cinematic<br><em>Ads Agent</em></div>
-
-      <p class="card-desc">
-        Build an AI agent that writes ad scripts, generates emotional voiceovers, creates talking avatar videos, and composes cinematic short-form ads — ready for Meta, YouTube, and TikTok in minutes.
-      </p>
-
-      <div class="card-pills">
-        <span class="card-pill">Claude Code</span>
-        <span class="card-pill">HeyGen</span>
-        <span class="card-pill">ElevenLabs V3</span>
-        <span class="card-pill">Remotion</span>
-        <span class="card-pill">Airtable</span>
-      </div>
-
-      <div class="card-divider"></div>
-
-      <div class="card-cta-row">
-        <div>
-          <div class="card-price">$167</div>
-          <div class="card-price-label">One-time · 20 spots</div>
-        </div>
-        <a href="#waitlist" class="card-btn coming">Join Waitlist →</a>
-      </div>
-    </div>
-
-    <!-- ── SYSTEM 06 · Creator CRM ── -->
-    <div class="build-card reveal reveal-d1" style="opacity:0.75; cursor:default;">
-      <div class="card-top">
-        <span class="system-number">System 06</span>
-        <span class="status-badge coming-soon">
-          <span class="bdot"></span>
-          Coming Soon
-        </span>
-      </div>
-
-      <div class="card-title">Creator<br><em>CRM</em></div>
-
-      <p class="card-desc">
-        Build a custom CRM for creators — track brand deals, manage content pipelines, log collaboration requests, and automate follow-up emails. Everything in one system built for how creators actually work.
-      </p>
-
-      <div class="card-pills">
-        <span class="card-pill">Claude Code</span>
-        <span class="card-pill">Airtable</span>
-        <span class="card-pill">Make.com</span>
-        <span class="card-pill">Claude API</span>
-        <span class="card-pill">Blotato</span>
-      </div>
-
-      <div class="card-divider"></div>
-
-      <div class="card-cta-row">
-        <div>
-          <div class="card-price">$197</div>
-          <div class="card-price-label">One-time · 20 spots</div>
-        </div>
-        <a href="#waitlist" class="card-btn coming">Join Waitlist →</a>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- FOUNDING MEMBER BANNER -->
-<section class="founding-section reveal" id="founding-member">
-  <div class="founding-banner">
-    <div class="founding-left">
-      <div class="founding-kicker">
-        <span class="dot"></span>
-        ⚡ Founding Member — Limited Time
-      </div>
-      <h2 class="founding-title">Get all 6 systems for $297.</h2>
-      <p class="founding-subtitle">The lowest price this will ever be.</p>
-      <p class="founding-body">
-        Buy all 6 Live Build Sessions today at the founding member price — before Session 1 even runs. Every session, every recording, every GitHub project, every master prompt kit. Yours forever.<br><br>
-        After Session 1 runs this goes to $397.<br>
-        After Session 3 it goes to $497.<br>
-        After all 6 complete — $597.
-      </p>
-      <ul class="founding-list">
-        <li><span class="check">✓</span> System 01 · YouTube Repurposer</li>
-        <li><span class="check">✓</span> System 02 · SEO Blog Publisher</li>
-        <li><span class="check">✓</span> System 03 · Freebie Generator</li>
-        <li><span class="check">✓</span> System 04 · AI Website Builder</li>
-        <li><span class="check">✓</span> System 05 · Cinematic Ads Agent</li>
-        <li><span class="check">✓</span> System 06 · Creator CRM</li>
+      <ul class="offer-includes">
+        <li><span class="check">✓</span> Content Automation App (13 platforms)</li>
+        <li><span class="check">✓</span> SEO Blog Publisher</li>
+        <li><span class="check">✓</span> Freebie Generator</li>
+        <li><span class="check">✓</span> AI Website Builder</li>
+        <li><span class="check">✓</span> Cinematic Ads Agent</li>
+        <li><span class="check">✓</span> Creator CRM</li>
+        <li><span class="check">✓</span> Lead Generation Scraper</li>
+        <li><span class="bonus">★</span> Bonus: YouTube Repurposer (Chrome Ext)</li>
+        <li><span class="bonus">★</span> Bonus: AISHA Engine</li>
+        <li><span class="bonus">★</span> Bonus: AI Audit Method</li>
+        <li><span class="star">◎</span> All recordings · Lifetime access</li>
+        <li><span class="star">◎</span> Live sessions + month-long support</li>
       </ul>
-      <div class="founding-extras">
-        <span>+ All recordings · Lifetime access</span>
-        <span>+ All GitHub projects · Fork and own</span>
-        <span>+ All master prompt kits · Included</span>
+
+      <div class="card-divider"></div>
+
+      <div class="card-cta-row">
+        <div>
+          <div class="card-price">$297</div>
+          <div class="card-price-compare">$997 regular price</div>
+          <div class="card-price-savings">Save $700 · Founding Member</div>
+        </div>
+        <a href="/growth-os" class="card-btn">See Everything →</a>
       </div>
     </div>
-    <div class="founding-pricing">
-      <div class="founding-badge">Founding Member Price</div>
-      <div class="founding-price">$297</div>
-      <div class="founding-price-label">One-time · No subscription</div>
-      <div class="founding-compare">$852 if bought separately</div>
-      <div class="founding-savings">You save $555</div>
-      <a href="https://pay.digicuratoragency.com/checkout/200df36e42e5afad67f468f011de564c" class="btn-founding" target="_blank" rel="noopener">Become a Founding Member →</a>
-      <div class="founding-note">Price increases to $397 after Session 1 runs<br>on Wednesday · 12–3pm EST</div>
-      <div class="founding-urgency">
-        <span class="pulse"></span>
-        20 founding member spots only
+
+    <!-- ── CARD 3 · Done For You ── -->
+    <div class="build-card reveal reveal-d3">
+      <div class="card-top">
+        <span class="system-number">Tier 03</span>
+        <span class="status-badge included" style="color:var(--pink);border-color:rgba(222,180,180,0.3);background:rgba(222,180,180,0.06);">
+          <span class="bdot" style="background:var(--pink);"></span>
+          Done For You
+        </span>
+      </div>
+
+      <div class="card-title">Content Automation<br><em>System</em></div>
+
+      <p class="card-desc">
+        You don't build it. I do. I build your complete AI content pipeline — custom, fully configured to your brand, and handed over ready to run.
+      </p>
+
+      <ul class="offer-includes">
+        <li><span class="check">✓</span> All 7 GrowthOS systems — built for you</li>
+        <li><span class="check">✓</span> AISHA — AI business assistant</li>
+        <li><span class="check">✓</span> Advanced analytics dashboard</li>
+        <li><span class="check">✓</span> Up to 13 platforms configured</li>
+        <li><span class="check">✓</span> Custom-built to your brand</li>
+        <li><span class="check">✓</span> Delivered fully working</li>
+        <li><span class="star">◎</span> Free 15-min discovery call first</li>
+      </ul>
+
+      <div class="card-divider"></div>
+
+      <div class="card-cta-row">
+        <div>
+          <div class="card-price">From $2,000</div>
+          <div class="card-price-label">3 packages · setup + monthly</div>
+        </div>
+        <a href="/done-for-you" class="card-btn teal-btn">Book Free Call →</a>
       </div>
     </div>
-  </div>
-</section>
 
-
-<!-- WAITLIST -->
-<section class="waitlist-section" id="waitlist">
-  <div class="waitlist-inner">
-    <div class="kicker reveal">Join the Waitlist</div>
-    <h2 class="section-title reveal reveal-d1">Get early access to<br><em>every session.</em></h2>
-    <p class="hero-sub reveal reveal-d2" style="margin-top:1rem; margin-bottom:0;">
-      Join the waitlist. Waitlist members get 48hr early access and founding member pricing.
-    </p>
-    <form id="waitlist-form" class="waitlist-form reveal reveal-d3">
-      <input id="waitlist-email" type="email" class="waitlist-input" placeholder="Your email address" required />
-      <select id="waitlist-session" class="waitlist-select">
-        <option value="">Which session interests you most?</option>
-        <option value="all">All of them</option>
-        <option value="02">System 02 · SEO Blog</option>
-        <option value="03">System 03 · Freebie Generator</option>
-        <option value="04">System 04 · Website Builder</option>
-        <option value="05">System 05 · Cinematic Ads</option>
-        <option value="06">System 06 · Creator CRM</option>
-      </select>
-      <button id="waitlist-btn" type="submit" class="btn-waitlist">Join Waitlist →</button>
-      <p class="waitlist-note">No spam. Just early access and session announcements.</p>
-    </form>
   </div>
 </section>
 
@@ -1260,26 +841,26 @@ footer {
 <section class="builds-section" style="padding-top:clamp(4rem,7vw,7rem); padding-bottom:clamp(4rem,7vw,7rem);">
   <div class="section-header">
     <div>
-      <div class="kicker reveal">Also Included</div>
+      <div class="kicker reveal">Included With GrowthOS</div>
       <h2 class="section-title reveal reveal-d1">
-        Bonus <em>courses.</em>
+        3 bonus <em>courses.</em>
       </h2>
     </div>
   </div>
 
   <div class="builds-grid">
 
-    <div class="build-card reveal reveal-d1" style="cursor:default; pointer-events:auto;">
+    <div class="build-card reveal reveal-d1" style="cursor:default;">
       <div class="card-top">
-        <span class="system-number">Bonus Course 01</span>
-        <span class="status-badge live">
+        <span class="system-number">Bonus 01</span>
+        <span class="status-badge included">
           <span class="bdot"></span>
           Included
         </span>
       </div>
       <div class="card-title" style="font-size:clamp(1.6rem,3.5vw,2.6rem);">The AI Audit<br><em>Method</em></div>
       <p class="card-desc">
-        Turn your AI skills into a consulting business. The exact process to land your very first client — starting today. 13 lessons. Zero fluff. Real results. Let's get started.
+        Turn your AI skills into a consulting business. The exact process to land your very first client — starting today. 13 lessons. Zero fluff. Real results.
       </p>
       <div class="card-pills">
         <span class="card-pill">13 Lessons</span>
@@ -1288,22 +869,42 @@ footer {
       </div>
     </div>
 
-    <div class="build-card reveal reveal-d2" style="cursor:default; pointer-events:auto;">
+    <div class="build-card reveal reveal-d2" style="cursor:default;">
       <div class="card-top">
-        <span class="system-number">Bonus Course 02</span>
-        <span class="status-badge live" style="color:var(--teal);border-color:rgba(255,222,89,0.3);background:rgba(255,222,89,0.06);">
+        <span class="system-number">Bonus 02</span>
+        <span class="status-badge included" style="color:var(--teal);border-color:rgba(255,222,89,0.3);background:rgba(255,222,89,0.06);">
           <span class="bdot" style="background:var(--teal);box-shadow:0 0 8px var(--teal-glow);"></span>
           Included
         </span>
       </div>
       <div class="card-title" style="font-size:clamp(1.6rem,3.5vw,2.6rem);">AISHA<br><em>Engine</em></div>
       <p class="card-desc">
-        Build an AI creator brand that runs without you being on camera. Create a hyper-realistic avatar, automated content across major platforms, and an always-on monetization engine — no filming, no daily posting.
+        Build an AI creator brand that runs without you being on camera. Create a hyper-realistic avatar, automated content across major platforms, and an always-on monetization engine.
       </p>
       <div class="card-pills">
         <span class="card-pill">AI Avatar</span>
         <span class="card-pill">Auto Content</span>
         <span class="card-pill">Monetization</span>
+      </div>
+    </div>
+
+    <div class="build-card reveal reveal-d3" style="cursor:default;">
+      <div class="card-top">
+        <span class="system-number">Bonus 03</span>
+        <span class="status-badge included" style="color:var(--pink);border-color:rgba(222,180,180,0.3);background:rgba(222,180,180,0.06);">
+          <span class="bdot" style="background:var(--pink);"></span>
+          Included
+        </span>
+      </div>
+      <div class="card-title" style="font-size:clamp(1.6rem,3.5vw,2.6rem);">YouTube<br><em>Repurposer</em></div>
+      <p class="card-desc">
+        Build a Chrome extension that turns any YouTube video into short-form content — script, avatar video, voiceover, captions — posted to 9 platforms automatically.
+      </p>
+      <div class="card-pills">
+        <span class="card-pill">Chrome Extension</span>
+        <span class="card-pill">HeyGen</span>
+        <span class="card-pill">ElevenLabs V3</span>
+        <span class="card-pill">Blotato</span>
       </div>
     </div>
 
@@ -1337,69 +938,6 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-/* Founding Member CTA → open checkout + pink color state */
-const foundingBtn = document.querySelector('.btn-founding');
-if (foundingBtn) {
-  foundingBtn.addEventListener('click', function(e) {
-    e.preventDefault();
-    this.style.background = '#deb4b4';
-    this.style.boxShadow = 'none';
-    this.style.color = '#000';
-    window.open('https://pay.digicuratoragency.com/checkout/200df36e42e5afad67f468f011de564c', '_blank');
-  });
-}
-
-/* Waitlist form → POST to Vercel API → Airtable */
-const waitlistForm = document.getElementById('waitlist-form');
-if (waitlistForm) {
-  waitlistForm.addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const btn = document.getElementById('waitlist-btn');
-    const email = document.getElementById('waitlist-email').value.trim();
-    const session = document.getElementById('waitlist-session').value;
-    btn.disabled = true;
-    btn.textContent = 'Joining…';
-    try {
-      const res = await fetch('https://ness-freebies.vercel.app/api/waitlist', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, session }),
-      });
-      if (res.ok) {
-        btn.textContent = "You're on the list ✓";
-        btn.style.background = 'var(--green)';
-        btn.style.color = '#000';
-        waitlistForm.querySelector('.waitlist-note').textContent = "We'll be in touch with early access details.";
-      } else {
-        const data = await res.json().catch(() => ({}));
-        const isDisposable = data.error && data.error.includes('Disposable');
-        const note = waitlistForm.querySelector('.waitlist-note');
-        note.textContent = isDisposable
-          ? 'Please use a real email — we need it to send you access details.'
-          : 'Something went wrong. Please try again.';
-        note.style.color = isDisposable ? '#e05555' : '';
-        btn.textContent = 'Try again →';
-        btn.disabled = false;
-      }
-    } catch {
-      btn.textContent = 'Try again →';
-      btn.disabled = false;
-    }
-  });
-}
-
-/* System 01 "Save My Spot" → open checkout + pink color state */
-document.querySelectorAll('.card-btn:not(.coming)').forEach(btn => {
-  btn.addEventListener('click', function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-    this.style.background = '#deb4b4';
-    this.style.boxShadow = 'none';
-    this.style.color = '#000';
-    window.open('https://pay.digicuratoragency.com/checkout/a6123cdaa89fa3e1ff1e1abb2ab53e7c', '_blank');
-  });
-});
 </script>
 
 </body>
