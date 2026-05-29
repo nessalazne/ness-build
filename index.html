@@ -356,6 +356,7 @@ section, header, footer, nav { position: relative; z-index: 1; }
   color: inherit;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .build-card::before {
@@ -469,14 +470,15 @@ section, header, footer, nav { position: relative; z-index: 1; }
   flex: 1;
 }
 .offer-includes li {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.04em;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0;
   color: var(--text-dim);
   display: flex;
   align-items: flex-start;
   gap: 8px;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 .offer-includes .check  { color: var(--accent); flex-shrink: 0; }
 .offer-includes .bonus  { color: var(--teal);   flex-shrink: 0; }
@@ -656,12 +658,15 @@ footer {
   --border-hover: #ccc3bb;
   --text:         #1a1210;
   --text-paper:   #1a1210;
-  --text-dim:     #4a3f38;
-  --muted:        #7a6f6a;
+  --text-dim:     #3a3030;
+  --muted:        #6a5f5a;
+  --teal:         #a07200;
+  --teal-glow:    rgba(160,114,0,0.15);
+  --pink:         #8f3535;
+  --green:        #0f7a5a;
+  --green-glow:   rgba(15,122,90,0.15);
   --accent-hl:    rgba(216,118,87,0.12);
-  --accent-glow:  rgba(216,118,87,0.15);
-  --teal-glow:    rgba(180,140,0,0.15);
-  --green-glow:   rgba(20,140,110,0.15);
+  --accent-glow:  rgba(216,118,87,0.2);
 }
 
 [data-theme="light"] body { background: var(--bg); color: var(--text); }
@@ -680,6 +685,7 @@ footer {
   border-bottom-color: var(--border);
 }
 
+[data-theme="light"] .build-card,
 [data-theme="light"] .pricing-card,
 [data-theme="light"] .bonus-card,
 [data-theme="light"] .system-card {
@@ -687,15 +693,38 @@ footer {
   border-color: var(--border);
 }
 
+[data-theme="light"] .build-card:hover,
 [data-theme="light"] .pricing-card:hover,
 [data-theme="light"] .bonus-card:hover {
   border-color: var(--border-hover);
 }
 
+[data-theme="light"] .card-divider { background: var(--border); }
+
+[data-theme="light"] .status-badge.included {
+  color: var(--green);
+  background: rgba(15,122,90,0.08);
+  border-color: rgba(15,122,90,0.2);
+}
+[data-theme="light"] .status-badge.included .bdot { background: var(--green); box-shadow: none; }
+
+[data-theme="light"] .nav-freebie {
+  color: var(--teal) !important;
+  border-color: rgba(160,114,0,0.35);
+  background: rgba(160,114,0,0.07);
+}
+[data-theme="light"] .nav-freebie-dot { background: var(--teal); box-shadow: none; }
+
 [data-theme="light"] footer {
   background: #ede7e2;
   border-top-color: var(--border);
 }
+
+[data-theme="light"] .outline-btn {
+  color: var(--text);
+  border-color: var(--border-hover);
+}
+[data-theme="light"] .outline-btn:hover { border-color: var(--accent); color: var(--accent); }
 
 /* ----------------------------------------------------------------
    Theme Toggle — Floating FAB
@@ -804,7 +833,7 @@ footer {
   <div class="pricing-grid">
 
     <!-- ── CARD 1 · YouTube Repurposer ── -->
-    <div class="build-card reveal reveal-d1">
+    <div class="build-card reveal reveal-d1" data-href="/youtube-repurposer/">
       <div class="card-top">
         <span class="system-number">Tier 01</span>
         <span class="status-badge included">
@@ -835,12 +864,12 @@ footer {
           <div class="card-price">$97</div>
           <div class="card-price-label">One-time · No subscription</div>
         </div>
-        <a href="https://pay.digicuratoragency.com/checkout/5e81adb156b4b1a5f5d772cccbc43b3f" class="card-btn outline-btn" target="_blank">Get It — $97 →</a>
+        <a href="/youtube-repurposer/" class="card-btn outline-btn">Get It — $97 →</a>
       </div>
     </div>
 
     <!-- ── CARD 2 · AISocialHub GrowthOS (FEATURED) ── -->
-    <div class="build-card featured reveal reveal-d2">
+    <div class="build-card featured reveal reveal-d2" data-href="/growth-os/">
       <div class="card-top">
         <span class="system-number">Tier 02</span>
         <span class="status-badge featured-tag">
@@ -878,12 +907,12 @@ footer {
           <div class="card-price-compare">$997 regular price</div>
           <div class="card-price-savings">Save $700 · Founding Member</div>
         </div>
-        <a href="/growth-os" class="card-btn">See Everything →</a>
+        <a href="/growth-os/" class="card-btn">See Everything →</a>
       </div>
     </div>
 
     <!-- ── CARD 3 · Done For You ── -->
-    <div class="build-card reveal reveal-d3">
+    <div class="build-card reveal reveal-d3" data-href="/done-for-you/">
       <div class="card-top">
         <span class="system-number">Tier 03</span>
         <span class="status-badge included" style="color:var(--pink);border-color:rgba(222,180,180,0.3);background:rgba(222,180,180,0.06);">
@@ -1055,6 +1084,13 @@ applyTheme(savedTheme);
 document.getElementById('themeToggle').addEventListener('click', () => {
   const current = document.documentElement.getAttribute('data-theme');
   applyTheme(current === 'light' ? 'dark' : 'light');
+});
+
+// Clickable cards
+document.querySelectorAll('.build-card[data-href]').forEach(card => {
+  card.addEventListener('click', e => {
+    if (!e.target.closest('a')) window.location.href = card.dataset.href;
+  });
 });
 </script>
 
