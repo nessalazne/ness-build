@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+(function() {
+  const params = new URLSearchParams(window.location.search);
+  const token = params.get('ref');
+  const validTokens = ['groove', 'founder', 'vibe297'];
+
+  if (!validTokens.includes(token)) {
+    window.location.replace(
+      'https://builds.digicuratoragency.com/youtube-repurposer/'
+    );
+  }
+})();
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>You're In — Vibe Coding Live Build · AISocialHub</title>
+<meta name="description" content="You're confirmed for the Vibe Coding Live Build. Check your email for pre-work, API key setup, and your Zoom link." />
+<meta name="robots" content="noindex, nofollow" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+
+<style>
+/* ================================================================
+   DESIGN TOKENS — AISocialHub Black
+   ================================================================ */
+:root {
+  --bg:               #050505;
+  --bg-elev:          #0a0a0a;
+  --surface:          #111111;
+  --border:           #1a1a1a;
+  --border-hover:     #2a2a2a;
+  --text:             #f0e8e8;
+  --text-paper:       #fdf5f0;
+  --text-dim:         #c8bfbf;
+  --muted:            #9a8f8f;
+  --accent:           #d87657;
+  --accent-hl:        rgba(216,118,87,0.28);
+  --accent-hl-strong: rgba(216,118,87,0.55);
+  --accent-glow:      rgba(216,118,87,0.3);
+  --teal:             #ffde59;
+  --teal-glow:        rgba(255,222,89,0.28);
+  --green:            #50e3c2;
+  --pink:             #deb4b4;
+
+  --font-display: 'Instrument Serif', serif;
+  --font-body:    'Plus Jakarta Sans', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --section-pad-x: clamp(1.5rem, 8vw, 9rem);
+  --section-pad-y: clamp(5rem, 10vw, 10rem);
+  --content-max:   1100px;
+}
+
+/* ================================================================
+   RESET + BASE
+   ================================================================ */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(80,227,194,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 10% 110%, rgba(255,222,89,0.04) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 60% at 90% 50%, rgba(216,118,87,0.04) 0%, transparent 55%);
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+}
+
+section, header, footer, nav {
+  position: relative;
+  z-index: 1;
+}
+
+/* ================================================================
+   TYPOGRAPHY
+   ================================================================ */
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(3rem, 8vw, 7.5rem);
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: var(--text-paper);
+}
+.display em { font-style: italic; color: var(--pink); }
+.display .teal { font-style: italic; color: var(--teal); text-shadow: 0 0 40px var(--teal-glow); }
+.display .accent-word { color: var(--accent); }
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 4.5vw, 4rem);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  color: var(--text-paper);
+}
+.section-title em { font-style: italic; color: var(--accent); }
+.section-title .teal { font-style: italic; color: var(--teal); }
+
+.kicker {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: clamp(0.65rem, 0.9vw, 0.8rem);
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.26em;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: clamp(1.2rem, 2vw, 1.8rem);
+}
+.kicker::before {
+  content: '';
+  display: inline-block;
+  width: 24px; height: 1px;
+  background: var(--accent);
+}
+.kicker.teal { color: var(--teal); }
+.kicker.teal::before { background: var(--teal); }
+.kicker.green { color: var(--green); }
+.kicker.green::before { background: var(--green); }
+
+.body-text {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  color: var(--text-dim);
+  line-height: 1.7;
+  max-width: 52ch;
+}
+.body-text.wide { max-width: 68ch; }
+
+strong { color: var(--accent); font-weight: 500; }
+
+/* ================================================================
+   LAYOUT UTILITIES
+   ================================================================ */
+.container {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--section-pad-x);
+}
+
+.section {
+  padding: var(--section-pad-y) var(--section-pad-x);
+  max-width: calc(var(--content-max) + 2 * clamp(1.5rem, 8vw, 9rem));
+  margin: 0 auto;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(3rem, 6vw, 8rem);
+  align-items: start;
+}
+.two-col.center { align-items: center; }
+
+@media (max-width: 860px) {
+  .two-col { grid-template-columns: 1fr; gap: 3rem; }
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: 0;
+}
+
+/* ================================================================
+   SCROLL REVEAL
+   ================================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+.reveal.in-view { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 0.1s; }
+.reveal-d2 { transition-delay: 0.2s; }
+.reveal-d3 { transition-delay: 0.3s; }
+.reveal-d4 { transition-delay: 0.4s; }
+.reveal-d5 { transition-delay: 0.5s; }
+.reveal-d6 { transition-delay: 0.6s; }
+
+/* ================================================================
+   FIXED NAV
+   ================================================================ */
+.top-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px clamp(1.5rem, 5vw, 4rem);
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.nav-brand svg { color: var(--accent); }
+
+.nav-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--green);
+  padding: 8px 18px;
+  border: 1px solid rgba(80,227,194,0.2);
+  border-radius: 10px;
+  background: rgba(80,227,194,0.05);
+}
+.nav-badge .dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px rgba(80,227,194,0.5);
+  animation: blink 2.2s ease-in-out infinite;
+}
+@keyframes blink {
+  0%,100% { opacity:1; }
+  50%      { opacity:0.3; }
+}
+
+/* ================================================================
+   HERO — CONFIRMATION
+   ================================================================ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: clamp(7rem,14vw,12rem) var(--section-pad-x) clamp(5rem,8vw,8rem);
+  max-width: calc(var(--content-max) + 2 * clamp(1.5rem,8vw,9rem));
+  margin: 0 auto;
+}
+
+.checkmark-ring {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: rgba(80,227,194,0.08);
+  border: 1px solid rgba(80,227,194,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto clamp(2rem, 3vw, 2.6rem);
+  animation: popIn 0.6s var(--ease) both;
+}
+@keyframes popIn {
+  from { transform: scale(0.6); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+.checkmark-ring svg {
+  color: var(--green);
+  width: 36px; height: 36px;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--green);
+  padding: 6px 14px;
+  border: 1px solid rgba(80,227,194,0.2);
+  border-radius: 100px;
+  background: rgba(80,227,194,0.05);
+  margin-bottom: clamp(2rem,3.5vw,3rem);
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(3.5rem, 10vw, 9rem);
+  line-height: 0.96;
+  letter-spacing: -0.025em;
+  color: var(--text-paper);
+  margin-bottom: clamp(1.5rem, 2.5vw, 2.2rem);
+  max-width: 14ch;
+}
+.hero-title em  { font-style: italic; color: var(--pink); }
+.hero-title .tl { font-style: italic; color: var(--teal); text-shadow: 0 0 50px var(--teal-glow); }
+
+.hero-sub {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  color: var(--text-dim);
+  line-height: 1.6;
+  max-width: 50ch;
+  margin: 0 auto clamp(2.5rem, 4vw, 3.5rem);
+}
+
+.session-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--teal);
+  padding: 10px 22px;
+  border: 1px solid rgba(255,222,89,0.2);
+  border-radius: 100px;
+  background: rgba(255,222,89,0.04);
+  margin-bottom: clamp(3rem, 5vw, 5rem);
+}
+.session-pill .sdot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 8px var(--teal-glow);
+  animation: blink 2s ease-in-out infinite;
+}
+
+.hero-metrics {
+  display: flex;
+  gap: clamp(2rem, 5vw, 5rem);
+  padding-top: clamp(2rem, 3.5vw, 3rem);
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.metric-item { }
+.metric-value {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  color: var(--text-paper);
+  line-height: 1;
+}
+.metric-value.teal  { color: var(--teal); }
+.metric-value.accent { color: var(--accent); }
+.metric-value.green { color: var(--green); }
+.metric-label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* ================================================================
+   BUTTONS
+   ================================================================ */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--accent);
+  color: #000;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: clamp(0.8rem, 1.1vw, 1rem);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: clamp(1rem,1.4vw,1.2rem) clamp(2rem,2.8vw,2.6rem);
+  border-radius: 10px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+  box-shadow: 0 0 40px var(--accent-glow);
+}
+.btn-primary:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 0 64px var(--accent-glow); }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border-hover);
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: clamp(0.72rem, 0.9vw, 0.82rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: clamp(0.9rem,1.2vw,1rem) clamp(1.6rem,2.2vw,2rem);
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.3s var(--ease);
+}
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+.btn-green {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  color: var(--green);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: clamp(0.8rem, 1vw, 0.9rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: clamp(0.9rem,1.2vw,1rem) clamp(1.6rem,2.2vw,2rem);
+  border-radius: 10px;
+  text-decoration: none;
+  border: 1px solid rgba(80,227,194,0.3);
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+}
+.btn-green:hover { background: rgba(80,227,194,0.06); border-color: var(--green); transform: translateY(-2px); }
+
+.btn-primary.clicked, .btn-ghost.clicked, .btn-green.clicked {
+  background: #deb4b4 !important;
+  box-shadow: none !important;
+  color: #000 !important;
+  border-color: #deb4b4 !important;
+}
+
+/* ================================================================
+   NEXT STEPS
+   ================================================================ */
+.steps-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 600px;
+}
+
+.step-item {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.step-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.step-node {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  flex-shrink: 0;
+  background: rgba(216,118,87,0.06);
+}
+.step-node.teal  { border-color: var(--teal);  color: var(--teal);  background: rgba(255,222,89,0.05); }
+.step-node.green { border-color: var(--green); color: var(--green); background: rgba(80,227,194,0.05); }
+
+.step-line {
+  width: 1px;
+  flex: 1;
+  min-height: 36px;
+  background: linear-gradient(to bottom, var(--border-hover), transparent);
+  margin: 5px 0;
+}
+
+.step-body {
+  padding-bottom: clamp(1.8rem, 2.6vw, 2.4rem);
+  padding-top: 8px;
+}
+
+.step-title {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+  color: var(--text-paper);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  padding: 2px 8px;
+  border-radius: 100px;
+  background: rgba(216,118,87,0.12);
+  color: var(--accent);
+}
+.tag.teal  { background: rgba(255,222,89,0.1);  color: var(--teal); }
+.tag.green { background: rgba(80,227,194,0.1); color: var(--green); }
+
+.step-desc {
+  font-family: var(--font-body);
+  font-size: clamp(0.84rem, 1vw, 0.96rem);
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+/* ================================================================
+   FINE LIST
+   ================================================================ */
+.fine-list {
+  list-style: none;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.fine-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: clamp(0.9rem,1.3vw,1.1rem) clamp(1.2rem,1.8vw,1.6rem);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.fine-list li:last-child { border-bottom: none; }
+.fine-list .fl-k { color: var(--muted); }
+.fine-list .fl-v { color: var(--accent); font-weight: 600; }
+.fine-list .fl-v.teal  { color: var(--teal); }
+.fine-list .fl-v.green { color: var(--green); }
+
+/* ================================================================
+   INCLUDES GRID
+   ================================================================ */
+.includes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(12px, 1.6vw, 18px);
+  margin-top: clamp(2.5rem, 4vw, 4rem);
+}
+
+.include-card {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: clamp(1.4rem, 2vw, 1.8rem);
+  background: var(--bg-elev);
+  transition: border-color 0.3s var(--ease);
+}
+.include-card:hover { border-color: var(--border-hover); }
+
+.include-icon {
+  font-size: 22px;
+  margin-bottom: clamp(0.9rem, 1.2vw, 1rem);
+  display: block;
+}
+.include-name {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-paper);
+  margin-bottom: 8px;
+}
+.include-desc {
+  font-family: var(--font-body);
+  font-size: clamp(0.82rem, 1vw, 0.92rem);
+  color: var(--text-dim);
+  line-height: 1.55;
+}
+
+@media (max-width:780px) {
+  .includes-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width:520px) {
+  .includes-grid { grid-template-columns: 1fr; }
+}
+
+/* ================================================================
+   TOOLKIT CHIPS
+   ================================================================ */
+.stack-pills {
+  display: flex;
+  gap: clamp(0.5rem, 0.9vw, 0.8rem);
+  flex-wrap: wrap;
+}
+.pill {
+  padding: 7px 16px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  font-family: var(--font-mono);
+  font-size: clamp(0.7rem,0.85vw,0.8rem);
+  color: var(--text-dim);
+  background: var(--bg-elev);
+  letter-spacing: 0.04em;
+  transition: all 0.3s var(--ease);
+}
+.pill:hover { color: var(--text-paper); border-color: var(--accent); transform: translateY(-2px); }
+
+/* ================================================================
+   EMAIL HIGHLIGHT BOX
+   ================================================================ */
+.email-box {
+  background: rgba(80,227,194,0.04);
+  border: 1px solid rgba(80,227,194,0.15);
+  border-radius: 14px;
+  padding: clamp(1.6rem, 2.5vw, 2.4rem);
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.email-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: rgba(80,227,194,0.08);
+  border: 1px solid rgba(80,227,194,0.2);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  color: var(--green);
+}
+
+.email-box-title {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--green);
+  margin-bottom: 6px;
+}
+
+.email-box-body {
+  font-family: var(--font-body);
+  font-size: clamp(0.88rem, 1.1vw, 1rem);
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+/* ================================================================
+   SECTION — BG ELEVATED
+   ================================================================ */
+.section-elevated {
+  background: var(--bg-elev);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+/* ================================================================
+   FOOTER
+   ================================================================ */
+footer {
+  padding: clamp(3rem,5vw,5rem) var(--section-pad-x);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--border);
+  max-width: calc(var(--content-max) + 2 * clamp(1.5rem,8vw,9rem));
+  margin: 0 auto;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.footer-brand svg { color: var(--accent); }
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+.footer-links a {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--accent); }
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+@media (max-width:600px) {
+  .hero-metrics { gap: 1.6rem; }
+  .two-col { grid-template-columns: 1fr; }
+  footer { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ================================================================
+     FIXED NAV
+     ================================================================ -->
+<nav class="top-nav">
+  <span class="nav-brand">
+    <svg width="16" height="16" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M24 6l18 10v16L24 42 6 32V16Z"/>
+      <path d="M24 6v16l18 10" opacity="0.5"/>
+      <path d="M24 22L6 32" opacity="0.5"/>
+    </svg>
+    <span>AISocialHub</span>
+  </span>
+  <div class="nav-badge">
+    <span class="dot"></span>
+    Purchase confirmed
+  </div>
+</nav>
+
+
+<!-- ================================================================
+     HERO
+     ================================================================ -->
+<header class="hero">
+
+  <div class="checkmark-ring reveal">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12"/>
+    </svg>
+  </div>
+
+  <div class="hero-eyebrow reveal">
+    You're officially in
+  </div>
+
+  <h1 class="hero-title reveal reveal-d1">
+    See you<br><em>Wednesday.</em>
+  </h1>
+
+  <p class="hero-sub reveal reveal-d2">
+    Your spot for the <strong>Vibe Coding Live Build</strong> is confirmed. Check your inbox — the pre-work, API key guide, and Zoom link are on their way.
+  </p>
+
+  <div class="session-pill reveal reveal-d3">
+    <span class="sdot"></span>
+    Wednesdays · 12–3pm EST · 20 spots
+  </div>
+
+  <div class="hero-metrics reveal reveal-d4">
+    <div class="metric-item">
+      <div class="metric-value teal">2–3h</div>
+      <div class="metric-label">Live build</div>
+    </div>
+    <div class="metric-item">
+      <div class="metric-value green">32</div>
+      <div class="metric-label">Files generated</div>
+    </div>
+    <div class="metric-item">
+      <div class="metric-value">9</div>
+      <div class="metric-label">Platforms</div>
+    </div>
+    <div class="metric-item">
+      <div class="metric-value accent">$0</div>
+      <div class="metric-label">Zero coding needed</div>
+    </div>
+  </div>
+</header>
+
+<div class="divider"></div>
+
+
+<!-- ================================================================
+     EMAIL CONFIRMATION NOTE
+     ================================================================ -->
+<section class="section section-elevated">
+  <div style="max-width:720px; margin:0 auto;">
+    <div class="email-box reveal">
+      <div class="email-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <path d="M2 8l10 6 10-6"/>
+        </svg>
+      </div>
+      <div>
+        <div class="email-box-title">Check your inbox</div>
+        <p class="email-box-body">
+          A confirmation email is on its way to <strong>your email address</strong> with your pre-work checklist, API key setup guide, and the Zoom link. If you don't see it within 5 minutes, check your spam and promotions folders — or email <strong style="color:var(--accent);">ness@digicuratoragency.com</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+
+<!-- ================================================================
+     NEXT STEPS
+     ================================================================ -->
+<section class="section">
+  <div class="two-col center">
+    <div>
+      <div class="kicker reveal">Before Wednesday</div>
+      <h2 class="section-title reveal reveal-d1">
+        3 things to do<br>before you <em>show up.</em>
+      </h2>
+      <p class="body-text reveal reveal-d2" style="margin-top:1.4rem;">
+        The session is for building — not setup. Get these done ahead of time so you can follow along from minute one.
+      </p>
+      <div style="margin-top:clamp(2rem,3vw,2.8rem);" class="reveal reveal-d3">
+        <ul class="fine-list">
+          <li><span class="fl-k">Claude Code</span><span class="fl-v teal">Opus plan required</span></li>
+          <li><span class="fl-k">HeyGen Avatar</span><span class="fl-v">Train in advance (24h)</span></li>
+          <li><span class="fl-k">ElevenLabs</span><span class="fl-v">Clone your voice</span></li>
+          <li><span class="fl-k">Airtable base</span><span class="fl-v teal">Linked in pre-work</span></li>
+          <li><span class="fl-k">Blotato account</span><span class="fl-v">Connect platforms</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="steps-col">
+      <div class="step-item reveal reveal-d1">
+        <div class="step-left">
+          <div class="step-node">1</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-body">
+          <div class="step-title">Complete the pre-work <span class="tag green">sent via email</span></div>
+          <div class="step-desc">Set up your API keys for Claude, HeyGen, ElevenLabs, Airtable, and Blotato. The step-by-step guide is in your confirmation email. Takes about 30 minutes.</div>
+        </div>
+      </div>
+
+      <div class="step-item reveal reveal-d2">
+        <div class="step-left">
+          <div class="step-node teal">2</div>
+          <div class="step-line"></div>
+        </div>
+        <div class="step-body">
+          <div class="step-title">Train your HeyGen avatar <span class="tag teal">24h lead time</span></div>
+          <div class="step-desc">Record your 2-minute avatar training video in HeyGen — submit it at least 24 hours before the session so it's ready to render during the live build.</div>
+        </div>
+      </div>
+
+      <div class="step-item reveal reveal-d3">
+        <div class="step-left">
+          <div class="step-node green">3</div>
+        </div>
+        <div class="step-body">
+          <div class="step-title">Show up Wednesday 12pm EST <span class="tag green">live on Zoom</span></div>
+          <div class="step-desc">Join the Zoom link in your email with Claude Code open and your <code style="font-family:var(--font-mono);font-size:0.82em;color:var(--accent);">.env</code> file ready. You watch, Claude Code builds, you own the system by 3pm.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+
+<!-- ================================================================
+     WHAT'S INCLUDED REMINDER
+     ================================================================ -->
+<section class="section">
+  <div style="max-width:560px; margin-bottom:clamp(1rem,1.5vw,1.4rem);">
+    <div class="kicker teal reveal">Your $97 includes</div>
+    <h2 class="section-title reveal reveal-d1">
+      Everything you need<br>to <em>own this system.</em>
+    </h2>
+  </div>
+  <div class="includes-grid">
+    <div class="include-card reveal reveal-d1">
+      <span class="include-icon">🎬</span>
+      <div class="include-name">Live Build Session</div>
+      <div class="include-desc">2–3 hours live with Ness. Watch Claude Code build the entire system in real time. Ask questions as it runs.</div>
+    </div>
+    <div class="include-card reveal reveal-d2">
+      <span class="include-icon">📁</span>
+      <div class="include-name">GitHub Project Access</div>
+      <div class="include-desc">Fork Ness's actual working project. Fill your API keys. Deployed the same day. A real system — not a template.</div>
+    </div>
+    <div class="include-card reveal reveal-d3">
+      <span class="include-icon">📄</span>
+      <div class="include-name">Master Prompt Kit</div>
+      <div class="include-desc">The full Claude Code prompt with brand voice placeholders, API key guide, Airtable setup, and troubleshooting doc.</div>
+    </div>
+    <div class="include-card reveal reveal-d4">
+      <span class="include-icon">🎥</span>
+      <div class="include-name">Recording — Lifetime</div>
+      <div class="include-desc">Full HD recording of the live session. Rewatch anytime. Follow at your own pace if you can't make it live.</div>
+    </div>
+    <div class="include-card reveal reveal-d5">
+      <span class="include-icon">🎙️</span>
+      <div class="include-name">Setup Walkthrough Video</div>
+      <div class="include-desc">15-minute video: fork the repo, fill your .env, train your avatar, clone your voice. Running in 30 minutes.</div>
+    </div>
+    <div class="include-card reveal reveal-d6">
+      <span class="include-icon">🎟️</span>
+      <div class="include-name">Founding Member Upgrade</div>
+      <div class="include-desc">Your $97 today counts as full credit. Upgrade to all 6 Vibe Coding Live Build systems for $200 more — same $297 founding member price. Available for 24 hours after purchase.</div>
+    </div>
+
+    <div class="include-card reveal reveal-d1">
+      <span class="include-icon">🎓</span>
+      <div class="include-name">The AI Audit Method</div>
+      <div class="include-desc">Turn your AI skills into a consulting business. 13 lessons — the exact process to land your very first client. Zero fluff. Real results.</div>
+    </div>
+
+    <div class="include-card reveal reveal-d2">
+      <span class="include-icon">🤖</span>
+      <div class="include-name">AISHA Engine</div>
+      <div class="include-desc">Build an AI creator brand that runs without you on camera. Hyper-realistic avatar, automated content across major platforms, always-on monetization — no daily posting required.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+
+<!-- ================================================================
+     TOOLS YOU WILL USE
+     ================================================================ -->
+<section class="section section-elevated">
+  <div style="max-width:680px; margin:0 auto; text-align:center;">
+    <div class="kicker reveal" style="justify-content:center;">The toolkit</div>
+    <h2 class="section-title reveal reveal-d1" style="margin-bottom:clamp(1.2rem,2vw,1.8rem);">
+      Tools you'll have<br>running by <span class="teal">Wednesday.</span>
+    </h2>
+    <p class="body-text reveal reveal-d2" style="margin: 0 auto clamp(2rem,3vw,2.8rem);">
+      No experience with any of these required. Each one is set up via copy-paste during pre-work. Claude Code wires them all together during the live session.
+    </p>
+    <div class="stack-pills reveal reveal-d3" style="justify-content:center;">
+      <span class="pill">Claude Code</span>
+      <span class="pill">HeyGen Avatar IV</span>
+      <span class="pill">ElevenLabs V3</span>
+      <span class="pill">Remotion</span>
+      <span class="pill">Airtable</span>
+      <span class="pill">Blotato</span>
+      <span class="pill">Chrome Extension</span>
+      <span class="pill">Node.js Backend</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+
+<!-- ================================================================
+     STILL WANT ALL 6 — UPGRADE OFFER
+     ================================================================ -->
+<section class="section" id="upgrade-section">
+  <div style="max-width:700px; margin:0 auto; text-align:center;">
+    <div class="kicker reveal" style="justify-content:center;">After Wednesday</div>
+    <h2 class="section-title reveal reveal-d1" style="margin-bottom:1rem;">
+      Still want all <em>6 systems?</em>
+    </h2>
+    <p class="reveal reveal-d2" style="font-family:var(--font-body);font-weight:300;font-size:clamp(0.95rem,1.2vw,1.05rem);color:var(--muted);font-style:italic;margin-bottom:clamp(2rem,3vw,2.8rem);">The $200 founding member upgrade is<br>available for 24 hours after your purchase.</p>
+
+    <div class="reveal reveal-d3" style="display:flex;justify-content:center;margin-bottom:clamp(2rem,3vw,2.8rem);">
+      <div style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal);padding:8px 18px;border:1px solid rgba(255,222,89,0.25);border-radius:100px;background:rgba(255,222,89,0.06);">
+        <span style="width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 8px var(--teal-glow);animation:blink 2s ease-in-out infinite;display:inline-block;flex-shrink:0;"></span>
+        ⚡ 24-hour upgrade window
+      </div>
+    </div>
+
+    <div class="reveal reveal-d4" id="upgrade-card" style="background:rgba(216,118,87,0.06);border:1px solid var(--accent);border-radius:14px;padding:clamp(1.8rem,3vw,2.4rem);text-align:left;overflow:hidden;transition:max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;">
+
+      <div style="font-family:var(--font-mono);font-size:10px;color:var(--accent);text-transform:uppercase;letter-spacing:0.2em;margin-bottom:1rem;">VIBE CODING LIVE BUILD — 6 SYSTEMS</div>
+
+      <div style="margin-bottom:1.4rem;">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.06em;">
+          <span style="color:var(--accent);">✓ System 01 · YouTube Repurposer</span>
+          <span style="color:var(--accent);font-size:10px;">You're in</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.06em;">
+          <span style="color:var(--teal);">→ System 02 · SEO Blog Publisher</span>
+          <span style="color:var(--teal);font-size:10px;">INCLUDED</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.06em;">
+          <span style="color:var(--teal);">→ System 03 · Freebie Generator</span>
+          <span style="color:var(--teal);font-size:10px;">INCLUDED</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.06em;">
+          <span style="color:var(--teal);">→ System 04 · AI Website Builder</span>
+          <span style="color:var(--teal);font-size:10px;">INCLUDED</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.06em;">
+          <span style="color:var(--teal);">→ System 05 · Cinematic Ads Agent</span>
+          <span style="color:var(--teal);font-size:10px;">INCLUDED</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.06em;">
+          <span style="color:var(--teal);">→ System 06 · Creator CRM</span>
+          <span style="color:var(--teal);font-size:10px;">INCLUDED</span>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:1.4rem;">
+        <div style="font-family:var(--font-mono);font-size:11px;color:var(--green);">+ All 6 recordings · Lifetime access</div>
+        <div style="font-family:var(--font-mono);font-size:11px;color:var(--green);">+ All 6 GitHub forks · Fork and own</div>
+        <div style="font-family:var(--font-mono);font-size:11px;color:var(--green);">+ All 6 master prompt kits · Included</div>
+        <div style="font-family:var(--font-mono);font-size:11px;color:var(--green);">+ AI Audit Method · Bonus included</div>
+        <div style="font-family:var(--font-mono);font-size:11px;color:var(--green);">+ AISHA Engine · Bonus included</div>
+      </div>
+
+      <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:1.4rem 0;">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-bottom:1px solid var(--border);font-family:var(--font-mono);font-size:11px;">
+          <span style="color:var(--muted);">$97 paid today</span>
+          <span style="color:var(--muted);">→</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-bottom:1px solid var(--border);font-family:var(--font-mono);font-size:11px;">
+          <span style="color:var(--muted);">+ $200 upgrade</span>
+          <span style="color:var(--muted);">→</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 16px;font-family:var(--font-mono);font-size:11px;">
+          <span style="color:var(--accent);font-weight:600;">= $297 total</span>
+          <span style="color:var(--accent);font-weight:600;">Founding price</span>
+        </div>
+      </div>
+
+      <div style="font-family:var(--font-mono);font-size:11px;color:var(--green);margin-bottom:1.8rem;">$555 less than buying sessions separately</div>
+
+      <a href="https://pay.digicuratoragency.com/checkout/f316d3519934b8f072586e33602b45ca" target="_blank" rel="noopener" class="btn-primary" style="display:flex;justify-content:center;width:100%;text-align:center;box-sizing:border-box;">
+        Upgrade to All 6 — $200 →
+      </a>
+
+      <p style="font-family:var(--font-mono);font-size:10px;color:var(--muted);text-align:center;margin-top:1rem;">This price increases to $397 after<br>Session 1 runs · Wednesday 12–3pm EST</p>
+
+      <a href="#" id="no-thanks-link" style="font-family:var(--font-mono);font-size:10px;color:var(--muted);text-decoration:none;display:block;text-align:center;margin-top:0.8rem;cursor:pointer;">No thanks — I'll stick with Session 1 only</a>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     FOOTER
+     ================================================================ -->
+<footer>
+  <div class="footer-brand">
+    <svg width="14" height="14" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M24 6l18 10v16L24 42 6 32V16Z"/>
+      <path d="M24 6v16l18 10" opacity="0.5"/>
+      <path d="M24 22L6 32" opacity="0.5"/>
+    </svg>
+    AISocialHub · Ness Alazne
+  </div>
+  <div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);letter-spacing:0.14em;text-transform:uppercase;">
+    Questions? ness@digicuratoragency.com
+  </div>
+  <div class="footer-links">
+    <a href="https://builds.digicuratoragency.com/">Vibe Coding Build Sprint</a>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms</a>
+  </div>
+</footer>
+
+
+<!-- ================================================================
+     SCROLL REVEAL OBSERVER + BUTTON CLICK
+     ================================================================ -->
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in-view');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+document.querySelectorAll('.btn-primary, .btn-ghost, .btn-green').forEach(btn => {
+  btn.addEventListener('click', function () {
+    this.classList.add('clicked');
+    this.style.background = '#deb4b4';
+    this.style.boxShadow = 'none';
+    this.style.color = '#000';
+    this.style.borderColor = '#deb4b4';
+  });
+});
+
+const noThanksLink = document.getElementById('no-thanks-link');
+if (noThanksLink) {
+  noThanksLink.addEventListener('click', function(e) {
+    e.preventDefault();
+    const section = document.getElementById('upgrade-section');
+    section.style.transition = 'max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease';
+    section.style.maxHeight = section.scrollHeight + 'px';
+    section.offsetHeight;
+    section.style.maxHeight = '0';
+    section.style.opacity = '0';
+    section.style.overflow = 'hidden';
+    section.style.paddingTop = '0';
+    section.style.paddingBottom = '0';
+  });
+}
+</script>
+
+</body>
+</html>
