@@ -262,6 +262,12 @@ section, header, footer, nav { position: relative; z-index: 1; }
   font-family: var(--font-body); font-weight: 300; font-size: 0.9rem;
   color: var(--text-dim); line-height: 1.6; flex: 1; margin-bottom: 1rem;
 }
+.system-img {
+  width: 100%; display: block;
+  aspect-ratio: 3 / 2; object-fit: cover;
+  border-radius: 10px; border: 1px solid var(--border);
+  margin-top: auto;
+}
 .system-pills { display:flex; gap:5px; flex-wrap:wrap; }
 .system-pill {
   font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.06em;
@@ -689,42 +695,49 @@ footer {
       <div class="system-num">System 01</div>
       <div class="system-name">Content Automation<br><em>App</em></div>
       <p class="system-desc">Your main AI pipeline — generate and schedule posts to all 13 platforms. Short-form videos, image posts, and freebie generation, all automated.</p>
+      <img class="system-img" src="images/System01_Content%20Creation.jpg" alt="Content Automation App" loading="lazy">
     </div>
 
     <div class="system-card reveal reveal-d2">
       <div class="system-num">System 02</div>
       <div class="system-name">SEO Blog<br><em>Publisher</em></div>
       <p class="system-desc">Researches, writes, and publishes SEO-optimized blog posts automatically — keyword research, internal linking, meta tags, and scheduled publishing.</p>
+      <img class="system-img" src="images/System02_SEOBlog.jpg" alt="SEO Blog Publisher" loading="lazy">
     </div>
 
     <div class="system-card reveal reveal-d3">
       <div class="system-num">System 03</div>
       <div class="system-name">Freebie<br><em>Generator</em></div>
       <p class="system-desc">Generate lead magnet PDFs automatically — cover design, content, opt-in page, and email delivery. Turn any topic into a downloadable freebie in minutes.</p>
+      <img class="system-img" src="images/System03_FreebieGenerator.jpg" alt="Freebie Generator" loading="lazy">
     </div>
 
     <div class="system-card reveal reveal-d1">
       <div class="system-num">System 04</div>
       <div class="system-name">AI Website<br><em>Builder</em></div>
       <p class="system-desc">A fully deployed website with AI-generated copy, images, and layout — connected to your domain and live on the internet. No Webflow. No WordPress. Pure Claude Code.</p>
+      <img class="system-img" src="images/System04_AIWebsite.jpg" alt="AI Website Builder" loading="lazy">
     </div>
 
     <div class="system-card reveal reveal-d2">
       <div class="system-num">System 05</div>
       <div class="system-name">Cinematic<br><em>Ads Agent</em></div>
       <p class="system-desc">Writes ad scripts, generates emotional voiceovers, creates talking avatar videos, and composes cinematic short-form ads — ready for Meta, YouTube, and TikTok.</p>
+      <img class="system-img" src="images/System05_CinenaticAd.jpg" alt="Cinematic Ads Agent" loading="lazy">
     </div>
 
     <div class="system-card reveal reveal-d3">
       <div class="system-num">System 06</div>
       <div class="system-name">Creator<br><em>CRM</em></div>
       <p class="system-desc">A custom CRM for creators — track brand deals, manage content pipelines, log collaboration requests, and automate follow-up emails. Built for how creators actually work.</p>
+      <img class="system-img" src="images/System06_CreatorCRM.jpg" alt="Creator CRM" loading="lazy">
     </div>
 
     <div class="system-card reveal reveal-d1">
       <div class="system-num">System 07</div>
       <div class="system-name">Lead Generation<br><em>Scraper</em></div>
       <p class="system-desc">Scrape targeted leads from YouTube, Instagram, TikTok, Facebook Ads, and Google Maps — all piped directly into your CRM and outreach system.</p>
+      <img class="system-img" src="images/System07_LeadGenScraper.jpg" alt="Lead Generation Scraper" loading="lazy">
     </div>
 
   </div>
