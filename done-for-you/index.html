@@ -175,6 +175,7 @@ section, header, footer, nav { position:relative; z-index:1; }
   border:1px solid var(--border); border-radius:14px;
   background:var(--bg-elev); padding:clamp(1.4rem,2vw,2rem);
   transition:border-color 0.3s var(--ease);
+  display:flex; flex-direction:column;
 }
 .deliverable-card:hover { border-color:var(--border-hover); }
 .deliverable-num {
@@ -187,7 +188,11 @@ section, header, footer, nav { position:relative; z-index:1; }
 }
 .deliverable-desc {
   font-family:var(--font-body); font-weight:300; font-size:0.88rem;
-  color:var(--text-dim); line-height:1.6;
+  color:var(--text-dim); line-height:1.6; flex:1; margin-bottom:1rem;
+}
+.deliverable-img {
+  width:100%; display:block; aspect-ratio:3/2; object-fit:cover;
+  border-radius:10px; border:1px solid var(--border); margin-top:auto;
 }
 
 /* PLATFORMS */
@@ -499,60 +504,70 @@ footer {
       <div class="deliverable-num">01 ·</div>
       <div class="deliverable-name">Content Automation App</div>
       <p class="deliverable-desc">Your main AI pipeline — generate and schedule posts to all 13 platforms. Short-form videos, image posts, and freebie generation, all automated and running 24/7.</p>
+      <img class="deliverable-img" src="images/System01_Content%20Creation.jpg" alt="Content Automation App" loading="lazy">
     </div>
 
     <div class="deliverable-card reveal reveal-d2">
       <div class="deliverable-num">02 ·</div>
       <div class="deliverable-name">SEO Blog Publisher</div>
       <p class="deliverable-desc">Researches, writes, and publishes SEO-optimized blog posts automatically — keyword research, internal linking, meta tags, and scheduled publishing.</p>
+      <img class="deliverable-img" src="images/System02_SEOBlog.jpg" alt="SEO Blog Publisher" loading="lazy">
     </div>
 
     <div class="deliverable-card reveal reveal-d3">
       <div class="deliverable-num">03 ·</div>
       <div class="deliverable-name">Freebie Generator</div>
       <p class="deliverable-desc">Automated lead magnet system — cover design, content, opt-in page, and delivery. Turn any topic into a downloadable freebie and grow your list on autopilot.</p>
+      <img class="deliverable-img" src="images/System03_FreebieGenerator.jpg" alt="Freebie Generator" loading="lazy">
     </div>
 
     <div class="deliverable-card reveal reveal-d1">
       <div class="deliverable-num">04 ·</div>
       <div class="deliverable-name">AI Website Builder</div>
       <p class="deliverable-desc">A fully deployed website with AI-generated copy, images, and layout — connected to your domain and live. No Webflow. No WordPress. Built clean and fast.</p>
+      <img class="deliverable-img" src="images/System04_AIWebsite.jpg" alt="AI Website Builder" loading="lazy">
     </div>
 
     <div class="deliverable-card reveal reveal-d2">
       <div class="deliverable-num">05 ·</div>
       <div class="deliverable-name">Cinematic Ads Agent</div>
       <p class="deliverable-desc">Writes ad scripts, generates voiceovers, creates talking avatar videos, and produces cinematic short-form ads ready for Meta, YouTube, and TikTok.</p>
+      <img class="deliverable-img" src="images/System05_CinenaticAd.jpg" alt="Cinematic Ads Agent" loading="lazy">
     </div>
 
     <div class="deliverable-card reveal reveal-d3">
       <div class="deliverable-num">06 ·</div>
       <div class="deliverable-name">Creator CRM</div>
       <p class="deliverable-desc">Custom CRM that tracks contacts, tags leads by source, logs deal stages, and automates follow-up. Total contacts, active leads, pipeline value, revenue — all in one view.</p>
+      <img class="deliverable-img" src="images/System06_CreatorCRM.jpg" alt="Creator CRM" loading="lazy">
     </div>
 
     <div class="deliverable-card reveal reveal-d1">
       <div class="deliverable-num">07 ·</div>
       <div class="deliverable-name">Lead Generation Scraper</div>
       <p class="deliverable-desc">Scrape targeted leads from YouTube, Instagram, TikTok, Facebook Ads, and Google Maps — piped directly into your CRM and outreach system.</p>
+      <img class="deliverable-img" src="images/System07_LeadGenScraper.jpg" alt="Lead Generation Scraper" loading="lazy">
     </div>
 
     <div class="deliverable-card reveal reveal-d2" style="border-color:rgba(255,222,89,0.2);background:rgba(255,222,89,0.03);">
       <div class="deliverable-num" style="color:var(--teal);">08 · Extra</div>
       <div class="deliverable-name">Advanced Analytics Dashboard</div>
       <p class="deliverable-desc">Live business dashboard showing Total Contacts, Active Leads, Pipeline Value, Revenue Won, rolling 90-day revenue chart, Recent Transactions, Content Engine stats (total items, ready to post, published), Total Deals, and Deals Won — everything at a glance.</p>
+      <img class="deliverable-img" src="images/08Extra_AdvanceAnalytics.jpg" alt="Advanced Analytics Dashboard" loading="lazy">
     </div>
 
     <div class="deliverable-card reveal reveal-d3" style="border-color:rgba(222,180,180,0.25);background:rgba(222,180,180,0.03);">
       <div class="deliverable-num" style="color:var(--pink);">09 · Extra</div>
       <div class="deliverable-name">AISHA — AI Business Assistant</div>
       <p class="deliverable-desc">Your always-on AI assistant that knows everything about your business. Ask about marketing, operations, customers, or growth strategy — and get answers grounded in your actual data. Click to activate. She never forgets a thing.</p>
+      <img class="deliverable-img" src="images/09Extra_AishaBizAsst.jpg" alt="AISHA — AI Business Assistant" loading="lazy">
     </div>
 
     <div class="deliverable-card reveal reveal-d1" style="border-color:rgba(80,227,194,0.2);background:rgba(80,227,194,0.03);">
       <div class="deliverable-num" style="color:var(--green);">10 · Extra</div>
       <div class="deliverable-name">Substack Newsletter &amp; Notes</div>
       <p class="deliverable-desc">Automated Substack publishing — long-form newsletter posts and short Substack Notes generated and published on schedule. Your writing, on autopilot, growing your subscriber list without lifting a finger.</p>
+      <img class="deliverable-img" src="images/10Extra_Substack.jpg" alt="Substack Newsletter & Notes" loading="lazy">
     </div>
 
   </div>
