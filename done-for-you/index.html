@@ -225,6 +225,7 @@ section, header, footer, nav { position:relative; z-index:1; }
 }
 .pkg-card::before {
   content:''; position:absolute; inset:0; border-radius:18px; opacity:0;
+  pointer-events:none;
   transition:opacity 0.3s var(--ease);
   background:radial-gradient(ellipse 80% 60% at 50% 0%, rgba(216,118,87,0.06) 0%, transparent 70%);
 }
@@ -278,6 +279,7 @@ section, header, footer, nav { position:relative; z-index:1; }
   font-family:var(--font-mono); font-weight:700; font-size:11px;
   letter-spacing:0.08em; text-transform:uppercase; padding:13px 20px;
   border-radius:10px; text-decoration:none; text-align:center;
+  position:relative; z-index:1;
   transition:all 0.3s var(--ease); box-shadow:0 0 24px var(--accent-glow);
 }
 .pkg-btn:hover { transform:scale(1.03); box-shadow:0 0 40px var(--accent-glow); }
