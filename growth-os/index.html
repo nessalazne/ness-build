@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>AISocialHub GrowthOS · 15 AI Systems Built Step-by-Step With You</title>
-<meta name="description" content="Ditch HighLevel and $500/mo in tools. Build your complete AI content machine live with Ness — 15 systems, 13 platforms, yours for $5/mo to run. Founding member price: $297." />
+<title>AISocialHub GrowthOS · 10 Production-Ready AI Systems</title>
+<meta name="description" content="Ditch HighLevel and $500/mo in tools. Build your complete AI content machine live with Ness — 10 AI systems, 13 platforms, yours for $5/mo to run. Founding member price: $297." />
 
 <link rel="icon" type="image/x-icon" href="../favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
@@ -337,6 +337,14 @@ section, header, footer, nav { position: relative; z-index: 1; }
   font-family: var(--font-body); font-weight: 300; font-size: 0.9rem;
   color: var(--text-dim); line-height: 1.65;
 }
+.schedule-steps {
+  list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 16px;
+  margin-top: 1rem; margin-bottom: 0.5rem;
+}
+.schedule-steps li {
+  font-family: var(--font-mono); font-size: 11px; color: var(--text-dim);
+  letter-spacing: 0.05em; text-transform: uppercase;
+}
 .schedule-days {
   display: flex; flex-direction: column; gap: 8px;
   margin-top: 1rem;
@@ -370,6 +378,70 @@ section, header, footer, nav { position: relative; z-index: 1; }
 .alumni-desc {
   font-family: var(--font-body); font-weight: 300; font-size: 0.92rem;
   color: var(--text-dim); line-height: 1.65; flex: 1;
+}
+
+/* SYSTEM REQUIREMENTS */
+.sysreq-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: clamp(1.2rem,2vw,1.8rem); margin-top: clamp(2rem,3vw,3rem);
+}
+.sysreq-block {
+  background: var(--bg-elev); border: 1px solid var(--border);
+  border-radius: 12px; padding: clamp(1.2rem,2vw,1.6rem);
+  display: flex; flex-direction: column; gap: 8px;
+}
+.sysreq-label {
+  font-family: var(--font-mono); font-size: 10px; color: var(--accent);
+  text-transform: uppercase; letter-spacing: 0.18em; margin-bottom: 4px;
+}
+.sysreq-item {
+  font-family: var(--font-mono); font-size: 11px; color: var(--text-dim);
+  letter-spacing: 0.04em; display: flex; align-items: flex-start; gap: 7px;
+}
+.sysreq-item .chk { color: var(--accent); flex-shrink: 0; }
+.sysreq-sub {
+  color: var(--muted); font-size: 10px;
+}
+.sysreq-note {
+  font-family: var(--font-mono); font-size: 10px; color: var(--muted);
+  letter-spacing: 0.04em; margin-top: 4px; font-style: italic;
+}
+.sysreq-footer {
+  font-family: var(--font-body); font-weight: 300; font-size: 0.92rem;
+  color: var(--text-dim); line-height: 1.65;
+  margin-top: clamp(1.6rem,2.5vw,2.4rem); max-width: 600px;
+}
+
+/* FAQ ACCORDION */
+.faq-list {
+  display: flex; flex-direction: column; gap: 0;
+  margin-top: clamp(2rem,3vw,3rem); max-width: 780px;
+}
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+.faq-item:first-child { border-top: 1px solid var(--border); }
+.faq-q {
+  font-family: var(--font-body); font-size: clamp(0.9rem,1.5vw,1rem);
+  font-weight: 500; color: var(--text-paper);
+  padding: 1.1rem 2rem 1.1rem 0; cursor: pointer;
+  list-style: none; display: flex; justify-content: space-between; align-items: center;
+  user-select: none;
+}
+.faq-q::-webkit-details-marker { display: none; }
+.faq-q::after {
+  content: '+'; font-family: var(--font-mono); font-size: 1.2rem;
+  color: var(--accent); flex-shrink: 0; transition: transform 0.2s ease;
+}
+details[open] .faq-q::after { content: '−'; }
+.faq-link {
+  color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(216,118,87,0.4);
+}
+.faq-link:hover { border-bottom-color: var(--accent); }
+.faq-a {
+  font-family: var(--font-body); font-weight: 300; font-size: 0.9rem;
+  color: var(--text-dim); line-height: 1.7;
+  padding: 0 2rem 1.2rem 0; margin: 0;
 }
 
 /* BONUSES LIST */
@@ -430,6 +502,31 @@ section, header, footer, nav { position: relative; z-index: 1; }
   font-family:var(--font-body); font-weight:300; font-size:clamp(0.9rem,1.1vw,1rem);
   color:var(--text-dim); line-height:1.7; margin-bottom:1.8rem;
 }
+.platform-bullets {
+  list-style:none; display:flex; flex-direction:column; gap:8px;
+  margin-top:1.4rem; padding:0;
+}
+.platform-bullets li {
+  font-family:var(--font-mono); font-size:11px; letter-spacing:0.05em;
+  text-transform:uppercase; color:var(--text-dim);
+  display:flex; align-items:flex-start; gap:8px;
+}
+.platform-bullets .chk { color:var(--accent); flex-shrink:0; }
+.pricing-tier-name {
+  font-family:var(--font-display); font-size:clamp(1.3rem,2.5vw,1.7rem);
+  color:var(--text-paper); letter-spacing:0.02em; margin-bottom:0.3rem;
+}
+.pricing-tier-bullets {
+  list-style:none; display:flex; flex-direction:column; gap:6px;
+  margin-bottom:1.4rem; padding:0; text-align:left;
+}
+.pricing-tier-bullets li {
+  font-family:var(--font-mono); font-size:10px; letter-spacing:0.05em;
+  text-transform:uppercase; color:var(--text-dim);
+  display:flex; align-items:flex-start; gap:7px;
+}
+.pricing-tier-bullets .chk { color:var(--accent); flex-shrink:0; }
+
 .pricing-checklist {
   list-style:none; display:flex; flex-direction:column; gap:7px; margin-bottom:1.4rem;
 }
@@ -603,10 +700,10 @@ footer {
 
   <h1 class="hero-title reveal reveal-d1">Growth OS</h1>
 
-  <p class="hero-tagline reveal reveal-d1">The AI Business Operating System You Build and Own</p>
+  <p class="hero-tagline reveal reveal-d1">The AI Business Operating System You Own</p>
 
   <p class="hero-sub reveal reveal-d2">
-    Build and own your AI-powered business platform. Create content, publish SEO blogs, generate leads, build websites, manage customers, and automate your business—all from one login. No monthly software lock-in. Runs for as little as $5/month hosting.
+    One web application. Fifteen integrated AI systems.<br><br>Start with 10 production-ready AI systems and receive 5 additional AI systems as they're developed. Everything runs inside one platform—sharing the same data, the same AI context, and the same login. Customize every feature with Claude Code, own the complete source code, and host it for as little as $5/month.
   </p>
 
   <p class="hero-note reveal reveal-d2">🏗️ Own the platform. Customize it. Scale your business without expensive monthly SaaS subscriptions.</p>
@@ -617,8 +714,12 @@ footer {
       <div class="meta-label">Founding member price</div>
     </div>
     <div class="meta-item">
-      <div class="meta-value teal">15</div>
-      <div class="meta-label">AI systems · one platform</div>
+      <div class="meta-value teal">10</div>
+      <div class="meta-label">AI Systems Today</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-value teal">5</div>
+      <div class="meta-label">Included Future Systems</div>
     </div>
     <div class="meta-item">
       <div class="meta-value green">$5/mo</div>
@@ -630,7 +731,7 @@ footer {
     </div>
     <div class="meta-item">
       <div class="meta-value">Zero</div>
-      <div class="meta-label">Coding needed</div>
+      <div class="meta-label">Coding to Start</div>
     </div>
   </div>
   <p style="font-family:var(--font-mono);font-size:10px;color:var(--muted);letter-spacing:0.09em;margin-top:1.2rem;line-height:1.6;">
@@ -644,9 +745,9 @@ footer {
 <!-- WHAT YOU REPLACE -->
 <section class="section-wrap tight">
   <div class="kicker reveal">The Math</div>
-  <h2 class="section-title reveal reveal-d1">Replace $500+/mo in tools.<br><em>Run it for as little as $5/month.</em></h2>
+  <h2 class="section-title reveal reveal-d1">Replace $1,000+/mo in tools.<br><em>Run it for as little as $5/month.</em></h2>
   <p class="section-body reveal reveal-d2">
-    Every tool in your current stack charges you monthly. GrowthOS is self-hosted — you pay once to build it, then ~$5/mo for Railway hosting. API costs (image gen, video, AI) vary by usage, but those are the same APIs you'd pay on HighLevel or any other platform. What you eliminate is the platform tax.
+    Every tool in your current stack charges you monthly. GrowthOS is self-hosted — you pay once, then ~$5/mo for Railway hosting. API costs (image gen, video, AI) vary by usage, but those are the same APIs you'd pay on any other platform. What you eliminate is the platform tax.
   </p>
 
   <div class="savings-banner reveal reveal-d3">
@@ -655,7 +756,7 @@ footer {
       <div class="savings-title">What you save every year<br>by switching to GrowthOS</div>
     </div>
     <div style="text-align:right;">
-      <div class="savings-amount">$6,000+</div>
+      <div class="savings-amount">$13,000+</div>
       <div class="savings-sub">per year · conservatively</div>
     </div>
   </div>
@@ -663,47 +764,107 @@ footer {
   <table class="comparison-table reveal">
     <thead>
       <tr>
-        <th>Tool replaced</th>
-        <th>What it does</th>
-        <th>Their price</th>
+        <th>Feature</th>
+        <th>Replaces</th>
+        <th>Other Tools</th>
         <th>GrowthOS</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td class="tool-name">GoHighLevel / HighLevel</td>
-        <td>CRM, funnels, email automation</td>
-        <td class="old-price">$297/mo</td>
+        <td class="tool-name">Brand Strategy &amp; Voice</td>
+        <td>Jasper Brand Voice · BrandType · IdeaProof · BrightMyBrand</td>
+        <td class="old-price">$62/mo</td>
         <td class="new-price">✓ included</td>
       </tr>
       <tr>
-        <td class="tool-name">Blotato</td>
-        <td>Social media scheduling</td>
+        <td class="tool-name">Niche &amp; Trend Intelligence</td>
+        <td>TubeBuddy · SparkToro</td>
+        <td class="old-price">$79/mo</td>
+        <td class="new-price">✓ included</td>
+      </tr>
+      <tr>
+        <td class="tool-name">Short-Form Video Pipeline</td>
+        <td>Opus Clip · Descript · Pictory</td>
         <td class="old-price">$99/mo</td>
         <td class="new-price">✓ included</td>
       </tr>
       <tr>
-        <td class="tool-name">Make.com</td>
-        <td>Workflow automation</td>
+        <td class="tool-name">Video Intelligence Analyzer</td>
+        <td>VidIQ · Munch</td>
+        <td class="old-price">$49/mo</td>
+        <td class="new-price">✓ included</td>
+      </tr>
+      <tr>
+        <td class="tool-name">Content Automation (13 platforms)</td>
+        <td>Buffer · Hootsuite · Later</td>
         <td class="old-price">$99/mo</td>
         <td class="new-price">✓ included</td>
       </tr>
       <tr>
-        <td class="tool-name">Zapier</td>
-        <td>App connections & triggers</td>
+        <td class="tool-name">Email Marketing</td>
+        <td>ConvertKit · Mailchimp</td>
+        <td class="old-price">$79/mo</td>
+        <td class="new-price">✓ included</td>
+      </tr>
+      <tr>
+        <td class="tool-name">Digital Products &amp; Store</td>
+        <td>Gumroad · ThriveCart</td>
+        <td class="old-price">$97/mo</td>
+        <td class="new-price">✓ included</td>
+      </tr>
+      <tr>
+        <td class="tool-name">AI Business Assistant</td>
+        <td>ChatGPT Plus · Copy.ai</td>
+        <td class="old-price">$40/mo</td>
+        <td class="new-price">✓ included</td>
+      </tr>
+      <tr>
+        <td class="tool-name">Client CRM &amp; Bookings</td>
+        <td>HubSpot CRM · Calendly</td>
         <td class="old-price">$99/mo</td>
         <td class="new-price">✓ included</td>
       </tr>
       <tr>
-        <td class="tool-name">Separate lead scraper tools</td>
-        <td>Lead generation across platforms</td>
-        <td class="old-price">$49–$99/mo</td>
+        <td class="tool-name">Analytics Dashboard</td>
+        <td>Databox · Klipfolio</td>
+        <td class="old-price">$47/mo</td>
+        <td class="new-price">✓ included</td>
+      </tr>
+      <tr>
+        <td class="tool-name">SEO Blog Publisher <span style="font-size:0.7em;color:var(--muted);font-weight:400;">· coming</span></td>
+        <td>Surfer SEO · Frase</td>
+        <td class="old-price">$99/mo</td>
+        <td class="new-price">✓ included</td>
+      </tr>
+      <tr>
+        <td class="tool-name">Lead Magnet Builder <span style="font-size:0.7em;color:var(--muted);font-weight:400;">· coming</span></td>
+        <td>Designrr · Canva Pro</td>
+        <td class="old-price">$49/mo</td>
+        <td class="new-price">✓ included</td>
+      </tr>
+      <tr>
+        <td class="tool-name">AI Website Builder <span style="font-size:0.7em;color:var(--muted);font-weight:400;">· coming</span></td>
+        <td>Webflow · Squarespace</td>
+        <td class="old-price">$39/mo</td>
+        <td class="new-price">✓ included</td>
+      </tr>
+      <tr>
+        <td class="tool-name">Cinematic Ads Agent <span style="font-size:0.7em;color:var(--muted);font-weight:400;">· coming</span></td>
+        <td>AdCreative.ai · Creatify</td>
+        <td class="old-price">$99/mo</td>
+        <td class="new-price">✓ included</td>
+      </tr>
+      <tr>
+        <td class="tool-name">Lead Generation Scraper <span style="font-size:0.7em;color:var(--muted);font-weight:400;">· coming</span></td>
+        <td>Apollo.io · PhantomBuster</td>
+        <td class="old-price">$99/mo</td>
         <td class="new-price">✓ included</td>
       </tr>
       <tr class="total-row">
         <td class="tool-name">Total</td>
         <td></td>
-        <td class="old-price">$600+/mo</td>
+        <td class="old-price">$1,133+/mo</td>
         <td class="new-price">~$5/mo</td>
       </tr>
     </tbody>
@@ -717,10 +878,15 @@ footer {
 <!-- 9 SYSTEMS -->
 <section class="section-wrap">
   <div class="kicker reveal">The Platform</div>
-  <h2 class="section-title reveal reveal-d1">One AI Business Operating System. <em>Multiple AI Applications.</em></h2>
+  <h2 class="section-title reveal reveal-d1">Your Business Changes. <em>Your Software Should Too.</em></h2>
   <p class="section-body reveal reveal-d2">
-    Every application is built step by step with you. You own the complete source code, every file, and every workflow—no black boxes, no monthly software lock-in.
+    Most software forces you to adapt your business to its limitations. GrowthOS works differently. You own the complete source code, every file, and every workflow—giving you the freedom to customize, extend, and evolve the platform as your business grows. No black boxes. No monthly SaaS lock-in.
   </p>
+  <ul class="platform-bullets reveal reveal-d3">
+    <li><span class="chk">✓</span> Customize every AI system</li>
+    <li><span class="chk">✓</span> Build new features with Claude Code</li>
+    <li><span class="chk">✓</span> Own the complete source code forever</li>
+  </ul>
 
   <div class="systems-grid" style="margin-top:clamp(2.5rem,4vw,4rem);">
 
@@ -844,16 +1010,22 @@ footer {
 <!-- HOW IT WORKS -->
 <section class="section-wrap">
   <div class="kicker reveal">How It Works</div>
-  <h2 class="section-title reveal reveal-d1">Built with you.<br><em>Supported until it works.</em></h2>
+  <h2 class="section-title reveal reveal-d1">You're Not Left Alone <em>With the Code.</em></h2>
   <p class="section-body reveal reveal-d2">
-    This is not a course you watch. You build alongside Ness, live. Then she stays with you until your system is running.
+    Receive a complete GrowthOS platform, then work alongside Ness to install it, customize it, and launch it for your business. Week 1 gets your platform running. Weeks 2–4 help you make it your own.
   </p>
 
   <div class="schedule-grid">
     <div class="schedule-block accent-block reveal reveal-d1">
-      <div class="schedule-week">Week 1 · Live Build Sessions</div>
-      <div class="schedule-heading">Three live Zoom sessions.<br>Three AI systems built.</div>
-      <p class="schedule-desc">Every first week of the month. Show up, build with Ness, walk away with working code.</p>
+      <div class="schedule-week">Week 1 · Platform Setup</div>
+      <div class="schedule-heading">Three live Zoom sessions.</div>
+      <p class="schedule-desc">Start with a complete GrowthOS platform. Ness guides you through installation, configuration, API setup, deployment, and your first customizations so you leave Week 1 with a working GrowthOS platform—not just source code.</p>
+      <ul class="schedule-steps">
+        <li>⚙ Install</li>
+        <li>🔑 Activate License</li>
+        <li>🔌 Connect APIs</li>
+        <li>🚀 Deploy GrowthOS</li>
+      </ul>
       <div class="schedule-days">
         <div class="schedule-day">
           <span class="day-dot"></span>
@@ -871,22 +1043,29 @@ footer {
     </div>
 
     <div class="schedule-block reveal reveal-d2">
-      <div class="schedule-week teal">Weeks 2–4 · Live Support</div>
-      <div class="schedule-heading">Ness stays with you until it works.</div>
+      <div class="schedule-week teal">Weeks 2–4 · Live Customization &amp; Support</div>
+      <div class="schedule-heading">Ness stays with you until it's working for your business.</div>
       <p class="schedule-desc">
-        For the rest of the month, Ness is available live to troubleshoot, configure, and help you get every system fully running. You're not left alone with the code.<br><br>
-        All sessions are recorded. Lifetime access — go back any time.
+        Customize GrowthOS for your business, connect additional APIs, adapt workflows, troubleshoot issues, and get live guidance whenever you need it.<br><br>
+        Every session is recorded with lifetime access, so you can revisit the training whenever you need.
       </p>
+      <ul class="schedule-steps">
+        <li>🎨 Customize</li>
+        <li>🛠 Troubleshoot</li>
+        <li>🔗 Integrate</li>
+        <li>💬 Live Support</li>
+      </ul>
     </div>
   </div>
 
   <div class="alumni-block reveal reveal-d3">
     <div>
       <div class="alumni-price">$98<span style="font-size:1rem;color:var(--muted);">/mo</span></div>
-      <div class="alumni-price-label">Alumni membership</div>
+      <div class="alumni-price-label">GrowthOS Builders Club</div>
     </div>
     <p class="alumni-desc">
-      Already completed the program? Continue getting live support from Ness with the optional alumni membership. $98/mo — cancel any time. For members who've already been through GrowthOS and want Ness in their corner ongoing.
+      Your first month gets GrowthOS installed and customized. If you'd like ongoing live support, implementation guidance, and a place to continue building alongside Ness and the community, Builders Club is available as an optional monthly membership.<br><br>
+      Cancel anytime.
     </p>
   </div>
 </section>
@@ -937,11 +1116,10 @@ footer {
         <span class="dot"></span>
         ⚡ Founding Member — Limited Time
       </div>
-      <h2 class="pricing-left-title">Your AI Business Operating System for $297.</h2>
-      <p class="pricing-left-sub">The lowest price this will ever be. Regular price is $997.</p>
+      <h2 class="pricing-left-title">Own Your AI Business Operating System for $297.</h2>
+      <p class="pricing-left-sub">Founding Members lock in the lowest price GrowthOS will ever be offered.</p>
       <p class="pricing-left-body">
-        Build your complete AI Business Operating System step by step with you — all 15 applications plus 3 bonus courses — then own it forever. The source code, every file, every workflow is yours. Every recording, all the source code, every prompt kit. No black boxes, no monthly SaaS lock-in.<br><br>
-        This price goes to $997 after the founding window closes.
+        Start with a complete AI Business Operating System featuring <strong>10 production-ready AI systems</strong>, then customize it for your own business with Claude Code. As a Founding Member, you'll also receive future AI systems as they're added to GrowthOS. You own the complete source code, every file, every workflow, every recording, and every prompt—no black boxes, no monthly SaaS lock-in.
       </p>
       <ul class="pricing-checklist">
         <li><span class="chk">✓</span> Brand Clarity</li>
@@ -954,23 +1132,30 @@ footer {
         <li><span class="chk">✓</span> AI Business Assistant</li>
         <li><span class="chk">✓</span> Client CRM</li>
         <li><span class="chk">✓</span> Analytics Dashboard</li>
-        <li><span class="chk">✓</span> + more AI systems added in every live build</li>
+        <li><span class="chk">✓</span> Future GrowthOS Platform Updates Included</li>
         <li><span class="bon">★</span> Bonus · YouTube Repurposer (Chrome Extension)</li>
         <li><span class="bon">★</span> Bonus · AISHA Engine</li>
         <li><span class="bon">★</span> Bonus · AI Audit Method</li>
         <li><span class="chk">✓</span> All recordings · Lifetime access</li>
         <li><span class="chk">✓</span> Live build sessions + month-long support</li>
-        <li><span class="chk">✓</span> Full source code + license key · Yours to own</li>
+        <li><span class="chk">✓</span> Full source code + personal license · Yours to own</li>
       </ul>
     </div>
     <div class="pricing-right">
       <div class="pricing-badge">Founding Member Price</div>
+      <div class="pricing-tier-name">GrowthOS Standard</div>
+      <ul class="pricing-tier-bullets">
+        <li><span class="chk">✔</span> Full Source Code</li>
+        <li><span class="chk">✔</span> Personal License</li>
+        <li><span class="chk">✔</span> Customize Every AI System</li>
+        <li><span class="chk">✔</span> Lifetime Updates</li>
+      </ul>
       <div class="pricing-price">$297</div>
       <div class="pricing-price-label">One-time · No subscription</div>
       <div class="pricing-compare">$997 regular price</div>
       <div class="pricing-savings">You save $700</div>
       <a id="cta-btn" href="https://pay.digicuratoragency.com/checkout/200df36e42e5afad67f468f011de564c" class="btn-primary" target="_blank" rel="noopener">Become a Founding Member →</a>
-      <div class="pricing-note">Price increases to $997 after the founding window closes.</div>
+      <div class="pricing-note">Founding pricing ends after this launch. Future pricing will increase as GrowthOS continues to expand.</div>
       <div class="pricing-urgency">
         <span class="pulse"></span>
         Founding spots — limited
@@ -979,6 +1164,114 @@ footer {
   </div>
 </section>
 
+
+<div class="divider"></div>
+
+<!-- SYSTEM REQUIREMENTS -->
+<section class="section-wrap" id="requirements">
+  <div class="kicker reveal">System Requirements</div>
+  <h2 class="section-title reveal reveal-d1">What You'll Need <em>to Get Started.</em></h2>
+
+  <div class="sysreq-grid reveal reveal-d2">
+
+    <div class="sysreq-block">
+      <div class="sysreq-label">Operating System</div>
+      <div class="sysreq-item"><span class="chk">✓</span> macOS (officially supported)</div>
+      <div class="sysreq-note">Windows support is planned but has not yet been officially tested.</div>
+    </div>
+
+    <div class="sysreq-block">
+      <div class="sysreq-label">Recommended Computer</div>
+      <div class="sysreq-item"><span class="chk">✓</span> Apple Silicon Mac (M1/M2/M3/M4 recommended)</div>
+      <div class="sysreq-item"><span class="chk">✓</span> 16GB RAM recommended (8GB minimum)</div>
+    </div>
+
+    <div class="sysreq-block">
+      <div class="sysreq-label">Accounts You'll Need</div>
+      <div class="sysreq-item"><span class="chk">✓</span> Claude Pro or Max</div>
+      <div class="sysreq-item"><span class="chk">✓</span> Railway account <span class="sysreq-sub">(hosting ~$5/month)</span></div>
+      <div class="sysreq-item"><span class="chk">✓</span> GitHub account</div>
+      <div class="sysreq-item"><span class="chk">✓</span> API keys for AI services you choose to use <span class="sysreq-sub">(OpenRouter, ElevenLabs, Gemini, HeyGen, Resend, etc.)</span></div>
+    </div>
+
+  </div>
+
+  <p class="sysreq-footer reveal reveal-d3">
+    <strong>No coding experience required.</strong> GrowthOS is delivered as a complete platform. Ness guides you through installation, deployment, and customization during the live implementation sessions.
+  </p>
+</section>
+
+<div class="divider"></div>
+
+<!-- FAQ -->
+<section class="section-wrap" id="faq">
+  <div class="kicker reveal">FAQ</div>
+  <h2 class="section-title reveal reveal-d1">Frequently Asked <em>Questions.</em></h2>
+
+  <div class="faq-list reveal reveal-d2">
+
+    <details class="faq-item">
+      <summary class="faq-q">Do I need to know how to code?</summary>
+      <p class="faq-a">No. GrowthOS is delivered as a complete platform. During Week 1, Ness guides you through installation and deployment. Weeks 2–4 focus on customization, troubleshooting, and implementation. As your confidence grows, Claude Code makes customizing the platform much easier than building everything from scratch.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">Do I need a Mac?</summary>
+      <p class="faq-a">Yes. GrowthOS is currently developed and officially supported on macOS. All live implementation sessions are demonstrated on macOS. Windows support is planned but has not yet been officially tested.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">What do I receive immediately after I purchase?</summary>
+      <p class="faq-a">You'll receive access to GrowthOS, your license key, the complete source code, setup instructions, bonus courses, and recordings. During the next live implementation week, Ness will help you get everything installed, configured, and running.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">What exactly do I own?</summary>
+      <p class="faq-a">You receive the complete GrowthOS source code, every file, every workflow, your license, and lifetime access to the training and recordings included with your purchase.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">Can I customize the platform?</summary>
+      <p class="faq-a">Yes. That's one of the biggest advantages of GrowthOS. You can modify the interface, prompts, workflows, integrations, and AI systems to fit your own business using Claude Code.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">Are the future AI systems included?</summary>
+      <p class="faq-a">Yes. As a Founding Member, you'll receive the additional AI systems in the GrowthOS roadmap as they're completed at no additional cost.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">Is the Builders Club required?</summary>
+      <p class="faq-a">No. Builders Club is completely optional. Your Founding Member purchase already includes the platform, roadmap updates, recordings, and implementation program. Builders Club is simply for ongoing live support and continued development sessions after your first month.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">What does it cost to run GrowthOS?</summary>
+      <p class="faq-a">Hosting starts around $5/month on Railway. AI services such as OpenRouter, ElevenLabs, Gemini, or HeyGen are billed separately based on your own usage—just like they would be if you used those services independently.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">Can I use GrowthOS for client work?</summary>
+      <p class="faq-a">The Founding Member (GrowthOS Standard) license is intended for your own business. Agency and White Label licenses are planned for customers who want broader commercial deployment rights.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">How many computers can I install GrowthOS on?</summary>
+      <p class="faq-a">The GrowthOS Standard license includes one licensed development computer and one production deployment. You can create multiple GrowthOS projects on your licensed development computer, but the license does not permit installing the software on multiple computers or sharing the source code with others.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">Can you build and configure GrowthOS for me?</summary>
+      <p class="faq-a">Yes. If you'd rather skip the implementation, you can choose our optional Done-For-You Setup service. We'll install GrowthOS, configure your environment, connect your APIs, deploy your platform, and have everything ready for you to use. You'll still receive the complete source code, your license, and full ownership of your GrowthOS platform. <a href="https://builds.digicuratoragency.com/done-for-you/" class="faq-link" target="_blank" rel="noopener">Done-For-You Setup is available separately →</a></p>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">What is your refund policy?</summary>
+      <p class="faq-a">If you're unsure whether GrowthOS is right for you, please email us at <a href="mailto:ness@digicuratoragency.com" class="faq-link">ness@digicuratoragency.com</a> before purchasing. We're happy to answer your questions so you can buy with confidence. Because GrowthOS includes immediately accessible digital software, source code, and downloadable assets, purchases are non-refundable.</p>
+    </details>
+
+  </div>
+</section>
 
 <!-- FOOTER -->
 <footer>
