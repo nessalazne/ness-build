@@ -206,6 +206,12 @@
     #aish-chat-send:disabled { background: #2a2a2a; cursor: not-allowed; transform: none; }
     #aish-chat-send svg { width: 16px; height: 16px; fill: #000; }
     #aish-chat-send:disabled svg { fill: #9a8f8f; }
+    .aish-link {
+      color: #60a5fa;
+      text-decoration: underline;
+      font-weight: 600;
+    }
+    .aish-link:hover { color: #93c5fd; }
 
     @media (max-width: 440px) {
       #aish-chat-panel { width: calc(100vw - 24px); right: 12px; bottom: 148px; }
@@ -267,7 +273,16 @@
     function addMessage(role, text) {
       const el = document.createElement('div');
       el.className = role === 'user' ? 'aish-msg aish-msg-user' : 'aish-msg aish-msg-bot';
-      el.textContent = text;
+      if (role === 'assistant') {
+        el.innerHTML = text
+          .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+          .replace(
+            /https:\/\/blog\.digicuratoragency\.com\/get\//g,
+            '<a href="https://blog.digicuratoragency.com/get/" target="_blank" rel="noopener" class="aish-link">🎁 Free Guides</a>'
+          );
+      } else {
+        el.textContent = text;
+      }
       messagesEl.appendChild(el);
       scrollBottom();
       return el;
