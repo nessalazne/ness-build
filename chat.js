@@ -16,19 +16,19 @@
       width: 56px;
       height: 56px;
       border-radius: 50%;
-      background: #d87657;
+      background: #DEB4B4;
       border: none;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 24px rgba(216,118,87,0.45);
+      box-shadow: 0 4px 24px rgba(222,180,180,0.45);
       transition: transform 0.2s cubic-bezier(0.16,1,0.3,1), box-shadow 0.2s;
       flex-shrink: 0;
     }
     #aish-chat-bubble:hover {
       transform: scale(1.08);
-      box-shadow: 0 6px 32px rgba(216,118,87,0.6);
+      box-shadow: 0 6px 32px rgba(222,180,180,0.6);
     }
     #aish-chat-bubble svg { width: 24px; height: 24px; fill: #000; flex-shrink: 0; }
 
@@ -129,7 +129,7 @@
     }
     .aish-msg-user {
       align-self: flex-end;
-      background: #d87657;
+      background: #DEB4B4;
       color: #000;
       border-radius: 12px 12px 2px 12px;
       font-weight: 500;
@@ -188,12 +188,12 @@
       max-height: 90px;
     }
     #aish-chat-input::placeholder { color: #9a8f8f; }
-    #aish-chat-input:focus { border-color: #d87657; }
+    #aish-chat-input:focus { border-color: #DEB4B4; }
     #aish-chat-send {
       width: 36px;
       height: 36px;
       border-radius: 10px;
-      background: #d87657;
+      background: #DEB4B4;
       border: none;
       cursor: pointer;
       display: flex;
@@ -202,7 +202,7 @@
       flex-shrink: 0;
       transition: background 0.2s, transform 0.15s;
     }
-    #aish-chat-send:hover { background: #c4664a; transform: scale(1.05); }
+    #aish-chat-send:hover { background: #c49a9a; transform: scale(1.05); }
     #aish-chat-send:disabled { background: #2a2a2a; cursor: not-allowed; transform: none; }
     #aish-chat-send svg { width: 16px; height: 16px; fill: #000; }
     #aish-chat-send:disabled svg { fill: #9a8f8f; }
@@ -288,7 +288,7 @@
       inputEl.placeholder = 'Message limit reached.';
       const el = document.createElement('div');
       el.className = 'aish-msg aish-msg-bot';
-      el.textContent = 'You\'ve reached the message limit for this session. For more help, email nessalazne@gmail.com directly.';
+      el.textContent = 'You\'ve reached the message limit for this session. For more help, email ness@digicuratoragency.com directly.';
       messagesEl.appendChild(el);
       scrollBottom();
     }
@@ -324,7 +324,7 @@
         if (userMessageCount >= MAX_MESSAGES) lockInput();
       } catch {
         typing.remove();
-        addMessage('assistant', 'Something went wrong — please try again or email nessalazne@gmail.com.');
+        addMessage('assistant', 'Something went wrong — please try again or email ness@digicuratoragency.com.');
       }
     }
 
