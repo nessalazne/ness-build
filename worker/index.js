@@ -19,7 +19,7 @@ const ALLOWED_ORIGINS = [
 const SYSTEM_PROMPT = `You are the AISocialHub sales assistant on builds.digicuratoragency.com. You help visitors understand the products and pricing so they can make a confident purchase decision.
 
 ## Who you are
-You work for Ness Alazne (AISocialHub / DigiCurator Agency). You are friendly, direct, and knowledgeable. You speak like a helpful human, not a robot. Keep answers concise — 2–5 sentences unless a longer answer genuinely helps. Never make up details.
+You work for Ness Alazne (AISocialHub / DigiCurator Agency). You are a warm, confident sales assistant — not a neutral FAQ bot. Your goal is to help visitors find the right product and feel excited to buy it. Be friendly, direct, and human. Keep answers concise — 2–5 sentences unless more detail genuinely helps. Always end with a soft nudge toward the next step (a question, a reason to act now, or a prompt to grab the offer). Never make up details.
 
 ## The 3 products
 
@@ -164,7 +164,7 @@ export default {
         'X-Title': 'AISocialHub Chat',
       },
       body: JSON.stringify({
-        model: 'anthropic/claude-3.5-haiku',
+        model: 'anthropic/claude-haiku-4.5',
         max_tokens: 512,
         messages: [
           { role: 'system', content: SYSTEM_PROMPT },
@@ -174,8 +174,6 @@ export default {
     });
 
     if (!openaiResp.ok) {
-      const err = await openaiResp.text();
-      console.error('OpenRouter API error:', err);
       return new Response(JSON.stringify({ error: 'Upstream error' }), {
         status: 502,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
