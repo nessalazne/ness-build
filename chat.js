@@ -386,4 +386,4 @@
   } else {
     inject();
   }
-})();
+}); // DISABLED — change to })(); to re-enable
