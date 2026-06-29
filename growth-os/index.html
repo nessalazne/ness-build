@@ -163,6 +163,17 @@ section, header, footer, nav { position: relative; z-index: 1; }
   letter-spacing:0.18em; color:var(--muted); margin-top:4px;
 }
 
+.video-section {
+  max-width: 900px;
+  margin: 3rem auto 0;
+  padding: 0 var(--pad-x);
+}
+.video-wrap {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 60px rgba(0,0,0,0.5);
+}
+
 /* KICKER / SECTION HEADER */
 .section-wrap {
   padding: clamp(5rem,10vw,10rem) var(--pad-x);
@@ -771,6 +782,19 @@ footer {
   </p>
 
   <p class="hero-note reveal reveal-d2">🏗️ Own the platform. Customize it. Scale your business without expensive monthly SaaS subscriptions.</p>
+
+  <!-- VIDEO EMBED -->
+  <div class="video-wrap reveal" style="margin:clamp(2rem,4vw,3rem) 0;">
+    <div style="padding:56.25% 0 0 0;position:relative;">
+      <iframe
+        src="https://fast.wistia.net/embed/iframe/3znudqd27tebeho?videoFoam=true"
+        frameborder="0"
+        allowfullscreen
+        allow="autoplay; fullscreen"
+        style="position:absolute;top:0;left:0;width:100%;height:100%;">
+      </iframe>
+    </div>
+  </div>
 
   <div class="hero-meta reveal reveal-d3">
     <div class="meta-item">
