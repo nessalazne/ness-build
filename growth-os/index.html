@@ -163,15 +163,22 @@ section, header, footer, nav { position: relative; z-index: 1; }
   letter-spacing:0.18em; color:var(--muted); margin-top:4px;
 }
 
-.video-section {
-  max-width: 640px;
-  margin: 3rem auto 0;
-  padding: 0 var(--pad-x);
+.video-frame {
+  max-width: 600px;
+  margin: clamp(2rem,4vw,3rem) auto;
+  padding: 10px;
+  border-radius: 18px;
+  background: rgba(10,10,10,0.9);
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow:
+    0 0 0 1px rgba(216,118,87,0.22),
+    0 14px 50px rgba(0,0,0,0.75),
+    inset 0 1px 0 rgba(255,255,255,0.13),
+    inset 0 -1px 0 rgba(0,0,0,0.50);
 }
 .video-wrap {
-  border-radius: 12px;
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 0 60px rgba(0,0,0,0.5);
 }
 
 /* KICKER / SECTION HEADER */
@@ -784,10 +791,12 @@ footer {
   <p class="hero-note reveal reveal-d2">🏗️ Own the platform. Customize it. Scale your business without expensive monthly SaaS subscriptions.</p>
 
   <!-- VIDEO EMBED -->
-  <div class="video-wrap" style="margin:clamp(2rem,4vw,3rem) 0;">
-    <div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;">
-      <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
-        <div class="wistia_embed wistia_async_6v20cjxaqc videoFoam=true" style="height:100%;position:relative;width:100%;">&nbsp;</div>
+  <div class="video-frame">
+    <div class="video-wrap">
+      <div class="wistia_responsive_padding" style="padding:56.25% 0 0 0;position:relative;">
+        <div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;">
+          <div class="wistia_embed wistia_async_6v20cjxaqc videoFoam=true" style="height:100%;position:relative;width:100%;">&nbsp;</div>
+        </div>
       </div>
     </div>
   </div>
