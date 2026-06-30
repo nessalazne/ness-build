@@ -164,8 +164,10 @@ section, header, footer, nav { position: relative; z-index: 1; }
 }
 
 .video-frame {
+  width: 100%;
   max-width: 600px;
   margin: clamp(2rem,4vw,3rem) auto;
+  flex-shrink: 0;
   padding: 10px;
   border-radius: 18px;
   background: rgba(10,10,10,0.9);
@@ -794,10 +796,10 @@ footer {
   <div class="video-frame">
     <div class="video-wrap">
       <div style="padding:56.25% 0 0 0;position:relative;">
-        <iframe src="https://www.youtube.com/embed/myTwc2dNo70?rel=0&modestbranding=1"
-          title="GrowthOS" frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
+        <iframe src="https://fast.wistia.net/embed/iframe/6v20cjxaqc?seo=true&videoFoam=false"
+          title="GrowthOS_SF_Video_Top" allow="autoplay; fullscreen"
+          allowtransparency="true" frameborder="0" scrolling="no"
+          class="wistia_embed" name="wistia_embed" msallowfullscreen
           style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
       </div>
     </div>
