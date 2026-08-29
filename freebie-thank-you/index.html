@@ -412,6 +412,20 @@ section, header, footer, nav { position:relative; z-index:1; }
   color: var(--text-dim);
 }
 .upsell-list .check { color: var(--accent); margin-right: 8px; }
+.upsell-list .check.star { color: var(--teal); }
+.upsell-tier {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--text-paper);
+  margin: 0.6rem 0 0.7rem;
+}
+.upsell-tier-bullets {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 6px; align-items: flex-start;
+  margin: 0 auto 1rem; width: fit-content;
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim);
+}
+.upsell-tier-bullets .check { color: var(--accent); margin-right: 8px; }
 
 .upsell-extras {
   display: flex;
@@ -764,11 +778,11 @@ footer {
     <div class="divider"></div>
 
 
-    <!-- UPSELL: VIBE CODING LIVE BUILDS -->
+    <!-- UPSELL: GROWTHOS FOUNDING MEMBER (mirrors /growth-os/#join) -->
     <div class="upsell-section reveal">
       <div class="kicker" style="color:var(--teal);">Ready to go further?</div>
-      <h2 class="section-title" style="margin-bottom:0.5rem;">Build real AI systems.<br><em>Live. With me.</em></h2>
-      <p class="section-body" style="margin-bottom: clamp(2rem,3vw,2.6rem);">The guide gives you the idea. The Live Build gives you the working system — built in front of you, on Zoom, using Claude Code. No prior coding experience needed.</p>
+      <h2 class="section-title" style="margin-bottom:0.5rem;">Own your AI Business<br><em>Operating System.</em></h2>
+      <p class="section-body" style="margin-bottom: clamp(2rem,3vw,2.6rem);">The guide gives you the idea. GrowthOS gives you the working system: 15 production-ready AI systems you own, customize with Claude Code, and run without monthly SaaS lock-in.</p>
 
       <div class="upsell-banner">
 
@@ -777,55 +791,72 @@ footer {
             <span class="dot"></span>
             ⚡ Founding Member — Limited Time
           </div>
-          <h3 class="upsell-title">Get all 6 systems<br>for <em>$297.</em></h3>
-          <p class="upsell-subtitle">The lowest price this will ever be.</p>
+          <h3 class="upsell-title">Own Your AI Business Operating System for <em>$297.</em></h3>
+          <p class="upsell-subtitle">Founding Members lock in the lowest price GrowthOS will ever be offered.</p>
           <p class="upsell-body">
-            Six live Zoom sessions. Six real deployable AI systems — built from scratch with Claude Code. You watch, ask questions, and deploy your own copy before we wrap. Every session comes with the recording, source code, and master prompt kit. Yours forever.
+            Start with a complete AI Business Operating System featuring <strong>15 production-ready AI systems</strong>, then customize it for your own business with Claude Code. As a Founding Member, you'll also receive future AI systems as they're added to GrowthOS. You get the complete source code, every file, every workflow, every recording, and every prompt. No black boxes, no monthly SaaS lock-in.
           </p>
           <ul class="upsell-list">
-            <li><span class="check">✓</span> System 01 · YouTube Repurposer</li>
-            <li><span class="check">✓</span> System 02 · SEO Blog Publisher</li>
-            <li><span class="check">✓</span> System 03 · AI Lead Magnet Builder</li>
-            <li><span class="check">✓</span> System 04 · AI Website Builder</li>
-            <li><span class="check">✓</span> System 05 · Cinematic Ads Agent</li>
-            <li><span class="check">✓</span> System 06 · Client CRM</li>
+            <li><span class="check">✓</span> Brand Clarity</li>
+            <li><span class="check">✓</span> Niche Pulse</li>
+            <li><span class="check">✓</span> Short-Form Video Production Studio</li>
+            <li><span class="check">✓</span> Video Remake Studio</li>
+            <li><span class="check">✓</span> Content Automation App (10 platforms)</li>
+            <li><span class="check">✓</span> Email Marketing</li>
+            <li><span class="check">✓</span> Digital Products &amp; Store</li>
+            <li><span class="check">✓</span> AI Business Assistant</li>
+            <li><span class="check">✓</span> Client CRM</li>
+            <li><span class="check">✓</span> Analytics Dashboard</li>
+            <li><span class="check">✓</span> Creative Studio</li>
+            <li><span class="check">✓</span> Merch Studio</li>
+            <li><span class="check">✓</span> Marketing Studio</li>
+            <li><span class="check">✓</span> GEO Audit</li>
+            <li><span class="check">✓</span> Lead Generation Engine</li>
+            <li><span class="check">✓</span> Future GrowthOS Platform Updates Included</li>
+            <li><span class="check star">★</span> Bonus · YouTube Repurposer (Chrome Extension)</li>
+            <li><span class="check star">★</span> Bonus · AISHA Engine</li>
+            <li><span class="check star">★</span> Bonus · AI Audit Method</li>
+            <li><span class="check">✓</span> All recordings · Lifetime access</li>
+            <li><span class="check">✓</span> Live build sessions + month-long support</li>
+            <li><span class="check">✓</span> Full source code + personal license</li>
           </ul>
-          <div class="upsell-extras">
-            <span>+ All recordings · Lifetime access</span>
-            <span>+ Full source code · Yours to own</span>
-            <span>+ All master prompt kits · Included</span>
-            <span>+ 2 bonus courses · AI Audit Method + AISHA Engine</span>
-          </div>
         </div>
 
         <div class="upsell-pricing">
           <div class="upsell-badge">Founding Member Price</div>
+          <div class="upsell-tier">GrowthOS Standard</div>
+          <ul class="upsell-tier-bullets">
+            <li><span class="check">✔</span> Full Source Code</li>
+            <li><span class="check">✔</span> Personal License</li>
+            <li><span class="check">✔</span> Customize Every AI System</li>
+            <li><span class="check">✔</span> Lifetime Updates</li>
+          </ul>
           <div class="upsell-price">$297</div>
           <div class="upsell-price-label">One-time · No subscription</div>
-          <div class="upsell-compare">$852 if bought separately</div>
-          <div class="upsell-savings">You save $555</div>
-          <a href="https://pay.digicuratoragency.com/checkout/200df36e42e5afad67f468f011de564c" class="btn-upsell" target="_blank" rel="noopener">Become a Founding Member →</a>
-          <div class="upsell-note">Price increases after Session 1 runs.<br>Zero coding needed. Just show up.</div>
+          <div class="upsell-compare">$997 regular price</div>
+          <div class="upsell-savings">You save $700</div>
+          <a href="https://hub.digicuratoragency.com/join" class="btn-upsell" target="_blank" rel="noopener">Become a Founding Member →</a>
+          <div class="upsell-note">Founding pricing ends after this launch.<br>Future pricing will increase as GrowthOS continues to expand.</div>
           <div class="upsell-urgency">
             <span class="pulse"></span>
-            20 founding member spots only
+            Founding pricing — this launch only
           </div>
         </div>
 
       </div><!-- /.upsell-banner -->
 
 
-      <!-- SINGLE SESSION FALLBACK -->
+      <!-- CONTENT ENGINE FALLBACK -->
       <div class="session-card reveal reveal-d1">
         <div class="session-card-left">
-          <div class="session-card-eyebrow">Or start with one session</div>
-          <div class="session-card-title">YouTube<br><em>Repurposer</em></div>
-          <p class="session-card-desc">Build a Chrome extension that turns any YouTube video into short-form content — script, avatar video, voiceover, captions — posted to 9 platforms automatically.</p>
+          <div class="session-card-eyebrow">Or start with the Content Engine</div>
+          <div class="session-card-title">Content<br><em>Engine</em></div>
+          <p class="session-card-desc">A Chrome extension that turns any YouTube video, Reel, TikTok, or article into a short in your voice, posted to 11 accounts across 9 platforms, with DM automation and a blog post plus freebie for every piece.</p>
         </div>
         <div class="session-card-right">
           <div class="session-price">$97</div>
-          <div class="session-price-label">One-time · 20 spots</div>
-          <a href="https://pay.digicuratoragency.com/checkout/5e81adb156b4b1a5f5d772cccbc43b3f" class="btn-session" target="_blank" rel="noopener">Save My Spot →</a>
+          <div class="session-price-label">One-time · No subscription</div>
+          <a href="https://pay.digicuratoragency.com/checkout/5e81adb156b4b1a5f5d772cccbc43b3f" class="btn-session" target="_blank" rel="noopener">Get the Engine →</a>
         </div>
       </div>
 
