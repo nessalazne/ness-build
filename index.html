@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>AISocialHub · AI Content Automation Systems</title>
-<meta name="description" content="Your AI-powered content machine. 3 ways to get started — from $97 for the YouTube Repurposer, to GrowthOS — your full AI operating system built step-by-step with you, to a done-for-you system delivered to your door." />
+<meta name="description" content="Your AI-powered content machine. 3 ways to get started — from $97 for the AI Social Hub Content Engine, to GrowthOS — your full AI operating system built step-by-step with you, to a done-for-you system delivered to your door." />
 
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
@@ -220,6 +220,135 @@ section, header, footer, nav { position: relative; z-index: 1; }
   line-height: 1.65;
   max-width: 50ch;
   margin-bottom: clamp(2.5rem, 4vw, 4rem);
+}
+
+/* Hero two-column layout with the free book */
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: end;
+}
+.hero-copy { min-width: 0; }
+
+.hero-visual {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: end;
+}
+.hero-visual::before {
+  content: '';
+  position: absolute;
+  inset: 8% -10% 20% -10%;
+  background:
+    radial-gradient(ellipse at 50% 45%, rgba(216,118,87,0.22), transparent 62%),
+    radial-gradient(ellipse at 50% 70%, rgba(255,222,89,0.10), transparent 60%);
+  filter: blur(24px);
+  pointer-events: none;
+}
+.hero-book {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  height: auto;
+  display: block;
+  -webkit-mask-image: linear-gradient(to bottom, #000 82%, transparent 100%);
+          mask-image: linear-gradient(to bottom, #000 82%, transparent 100%);
+  filter: drop-shadow(0 30px 50px rgba(0,0,0,0.6));
+}
+.hero-book-caption {
+  position: relative;
+  margin-top: -1.6rem;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: center;
+  max-width: 440px;
+  line-height: 1.7;
+}
+.hero-book-caption strong { color: var(--text-dim); font-weight: 500; }
+
+.freebie-form {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  margin-top: 1.4rem;
+  padding: 1.1rem;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: border-color 0.25s;
+}
+.freebie-form:focus-within { border-color: var(--border-hover); }
+.freebie-form-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--text-paper);
+  line-height: 1.15;
+  margin-bottom: 0.25rem;
+}
+.freebie-form-title em { font-style: italic; color: var(--pink); }
+.freebie-form-sub {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-bottom: 0.9rem;
+}
+.freebie-row { display: flex; gap: 8px; }
+.freebie-row input[type="email"] {
+  flex: 1;
+  min-width: 0;
+  background: var(--bg);
+  border: 1px solid var(--border-hover);
+  border-radius: 100px;
+  padding: 12px 16px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.freebie-row input[type="email"]::placeholder { color: var(--muted); }
+.freebie-row input[type="email"]:focus { border-color: var(--accent); }
+.freebie-btn {
+  background: var(--accent);
+  color: #050505;
+  border: none;
+  border-radius: 100px;
+  padding: 12px 18px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+}
+.freebie-btn:hover { transform: scale(1.03); box-shadow: 0 0 28px var(--accent-glow); }
+.freebie-btn:disabled { opacity: 0.6; cursor: wait; transform: none; box-shadow: none; }
+.freebie-msg {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  margin-top: 0.7rem;
+  min-height: 1em;
+  color: var(--muted);
+}
+.freebie-msg.error { color: var(--accent); }
+.freebie-msg.ok { color: var(--teal); }
+.freebie-hp { position: absolute; left: -9999px; opacity: 0; height: 0; width: 0; }
+
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-visual { align-items: flex-start; }
+  .hero-book { max-width: 320px; }
+  .hero-book-caption, .freebie-form { text-align: left; }
 }
 
 .hero-meta {
@@ -713,6 +842,9 @@ footer {
   border-color: rgba(160,114,0,0.35);
   background: rgba(160,114,0,0.07);
 }
+[data-theme="light"] .hero-book { filter: drop-shadow(0 24px 40px rgba(0,0,0,0.25)); }
+[data-theme="light"] .hero-visual::before { opacity: 0.55; }
+[data-theme="light"] .freebie-btn { color: #fff; }
 [data-theme="light"] .nav-freebie-dot { background: var(--teal); box-shadow: none; }
 
 [data-theme="light"] footer {
@@ -768,7 +900,7 @@ footer {
     <span>AISocialHub</span>
   </a>
   <div class="nav-links">
-    <a href="https://blog.digicuratoragency.com/get/" class="nav-link nav-freebie">
+    <a href="#freebie" class="nav-link nav-freebie">
       <span class="nav-freebie-dot"></span>
       🎁 Free Guide
     </a>
@@ -783,6 +915,8 @@ footer {
 
 <!-- HERO -->
 <header class="hero">
+<div class="hero-grid">
+<div class="hero-copy">
   <div class="hero-eyebrow reveal">
     <span class="dot"></span>
     AI Content Automation · AISocialHub
@@ -794,7 +928,7 @@ footer {
 
   <p class="hero-sub reveal reveal-d2">
     Build, own, and scale your AI-powered business.<br><br>
-    Choose your path: start with a Chrome extension that transforms long-form content into posts for 9 platforms, get Growth OS—The AI Business Operating System You Own—or let us build and deploy the entire system for you.
+    Choose your path: start with the Content Engine, a Chrome extension that turns any link into a full content and lead-generation campaign across 9 platforms, get Growth OS—The AI Business Operating System You Own—or let us build and deploy the entire system for you.
   </p>
 
   <div class="hero-meta reveal reveal-d3">
@@ -815,6 +949,25 @@ footer {
       <div class="meta-label">Coding to Start</div>
     </div>
   </div>
+</div><!-- /hero-copy -->
+
+<aside class="hero-visual reveal reveal-d2" id="freebie">
+  <img class="hero-book" src="freebie-book.webp" width="1000" height="1500"
+       alt="Ness Alazne holding the book 47 Blocks to Ship a Real App with AI" loading="eager" fetchpriority="high">
+  <div class="hero-book-caption"><strong>Ness Alazne</strong> · Engineering lead · 15+ yrs building software</div>
+
+  <form class="freebie-form" id="freebieForm" novalidate>
+    <div class="freebie-form-title">Get the free book, <em>47 Blocks.</em></div>
+    <div class="freebie-form-sub">The 47 things nobody warns you about until your app breaks. Sent straight to your inbox as a PDF.</div>
+    <div class="freebie-row">
+      <input type="email" name="email" id="freebieEmail" placeholder="you@email.com" autocomplete="email" required>
+      <button type="submit" class="freebie-btn" id="freebieBtn">Send it to me</button>
+    </div>
+    <input class="freebie-hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div class="freebie-msg" id="freebieMsg" aria-live="polite"></div>
+  </form>
+</aside>
+</div><!-- /hero-grid -->
 </header>
 
 <div class="divider"></div>
@@ -833,8 +986,8 @@ footer {
 
   <div class="pricing-grid">
 
-    <!-- ── CARD 1 · YouTube Repurposer ── -->
-    <div class="build-card reveal reveal-d1" data-href="/youtube-repurposer/">
+    <!-- ── CARD 1 · AI Social Hub Content Engine ── -->
+    <div class="build-card reveal reveal-d1" data-href="/content-engine/">
       <div class="card-top">
         <span class="system-number">Tier 01</span>
         <span class="status-badge included">
@@ -843,18 +996,19 @@ footer {
         </span>
       </div>
 
-      <div class="card-title">YouTube<br><em>Repurposer</em></div>
+      <div class="card-title">AI Social Hub<br><em>Content Engine</em></div>
 
       <p class="card-desc">
-        A Chrome extension that turns any YouTube video into short-form content — scripted, voiced, captioned, and posted to 9 platforms automatically. One build. Yours to keep.
+        One tab. Every format. Every platform. Paste a YouTube video, Reel, TikTok, or article and the Chrome extension writes it in your voice, clones your audio, builds your talking head, draws the B-roll in code, publishes to 11 accounts across 9 platforms, arms your DM automation, and ships a blog post plus a lead-magnet PDF.
       </p>
 
       <ul class="offer-includes">
-        <li><span class="check">✓</span> Chrome extension — runs in your browser</li>
-        <li><span class="check">✓</span> HeyGen + ElevenLabs V3 voiceover</li>
-        <li><span class="check">✓</span> Remotion video engine</li>
-        <li><span class="check">✓</span> Blotato cross-posting (9 platforms)</li>
-        <li><span class="check">✓</span> Full build recording · Lifetime access</li>
+        <li><span class="check">✓</span> 4 sources: YouTube, Instagram, TikTok, articles</li>
+        <li><span class="check">✓</span> ElevenLabs V3 voice + HeyGen talking head</li>
+        <li><span class="check">✓</span> 11 code-drawn B-roll styles (Remotion)</li>
+        <li><span class="check">✓</span> 11 accounts across 9 platforms via Blotato</li>
+        <li><span class="check">✓</span> IG + FB comment-to-DM automation per video</li>
+        <li><span class="check">✓</span> Blog post + freebie PDF per video</li>
         <li><span class="check">✓</span> Full source code + license key · Yours to own</li>
       </ul>
 
@@ -865,7 +1019,7 @@ footer {
           <div class="card-price">$97</div>
           <div class="card-price-label">One-time · No subscription</div>
         </div>
-        <a href="/youtube-repurposer/" class="card-btn outline-btn">Get It — $97 →</a>
+        <a href="/content-engine/" class="card-btn outline-btn">Get It — $97 →</a>
       </div>
     </div>
 
@@ -901,7 +1055,7 @@ footer {
         <li><span class="check">✓</span> Creative, Merch &amp; Marketing Studios</li>
         <li><span class="check">✓</span> GEO Audit + Lead Generation Engine</li>
         <li><span class="check">✓</span> Future GrowthOS Platform Updates Included</li>
-        <li><span class="bonus">★</span> Bonus: YouTube Repurposer — full product · $97 value</li>
+        <li><span class="bonus">★</span> Bonus: AI Social Hub Content Engine — full product · $97 value</li>
         <li><span class="bonus">★</span> Bonus: AISHA Engine</li>
         <li><span class="bonus">★</span> Bonus: AI Audit Method</li>
         <li><span class="star">◎</span> Complete source code included</li>
@@ -1024,9 +1178,9 @@ footer {
           Included
         </span>
       </div>
-      <div class="card-title" style="font-size:clamp(1.6rem,3.5vw,2.6rem);">YouTube<br><em>Repurposer</em></div>
+      <div class="card-title" style="font-size:clamp(1.6rem,3.5vw,2.6rem);">AI Social Hub<br><em>Content Engine</em></div>
       <p class="card-desc">
-        Build a Chrome extension that turns any YouTube video into short-form content — script, avatar video, voiceover, captions — posted to 9 platforms automatically.
+        A Chrome extension that turns any YouTube video, Reel, TikTok, or article into a short in your voice, posted to 11 accounts across 9 platforms, with DM automation and a blog post plus freebie for every piece.
       </p>
       <div class="card-pills">
         <span class="card-pill">Chrome Extension</span>
@@ -1048,7 +1202,7 @@ footer {
   </a>
   <div class="footer-links">
     <a href="https://blog.digicuratoragency.com">digicuratoragency.com</a>
-    <a href="https://blog.digicuratoragency.com/get/">Free Guide</a>
+    <a href="#freebie">Free Guide</a>
     <a href="/privacy.html">Privacy</a>
     <a href="/terms.html">Terms</a>
   </div>
@@ -1105,5 +1259,37 @@ document.querySelectorAll('.build-card[data-href]').forEach(card => {
 </script>
 
 <script src="/chat.js"></script>
+<script>
+(function () {
+  // Hub route (AI-Social-Hub-Community app/routers/welcome.py) — emails the PDF via Resend + magic link into the community.
+  var FREEBIE_WORKER_URL = 'https://hub.digicuratoragency.com/api/freebie/book';
+  var form = document.getElementById('freebieForm');
+  if (!form) return;
+  var input = document.getElementById('freebieEmail');
+  var btn = document.getElementById('freebieBtn');
+  var msg = document.getElementById('freebieMsg');
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var email = input.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      msg.className = 'freebie-msg error'; msg.textContent = 'Please enter a valid email address.'; input.focus(); return;
+    }
+    btn.disabled = true; msg.className = 'freebie-msg'; msg.textContent = 'Sending your book...';
+    try {
+      var r = await fetch(FREEBIE_WORKER_URL, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, website: form.website.value, source: 'hero' })
+      });
+      var data = await r.json().catch(function () { return {}; });
+      if (!r.ok || !data.ok) throw new Error(data.error || 'Could not send right now.');
+      msg.className = 'freebie-msg ok'; msg.textContent = 'Sent. Check your inbox.';
+      window.location.href = '/freebie-thank-you/';
+    } catch (err) {
+      msg.className = 'freebie-msg error'; msg.textContent = err.message || 'Something went wrong. Please try again.';
+      btn.disabled = false;
+    }
+  });
+})();
+</script>
 </body>
 </html>
