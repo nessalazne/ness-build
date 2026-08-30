@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI Social Hub Content Engine · Any Link to 9 Platforms · AISocialHub</title>
+<meta name="description" content="Turn anything you're viewing into a complete content and lead-generation campaign. Your voice, your face, 11 accounts, 9 platforms. Chrome extension, source code included, $97 one-time." />
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+
+<style>
+/* ================================================================
+   DESIGN TOKENS — AISocialHub Black
+   ================================================================ */
+:root {
+  --bg:               #050505;
+  --bg-elev:          #0a0a0a;
+  --surface:          #111111;
+  --border:           #1a1a1a;
+  --border-hover:     #2a2a2a;
+  --text:             #f0e8e8;
+  --text-paper:       #fdf5f0;
+  --text-dim:         #c8bfbf;
+  --muted:            #9a8f8f;
+  --accent:           #d87657;
+  --accent-hl:        rgba(216,118,87,0.28);
+  --accent-hl-strong: rgba(216,118,87,0.55);
+  --accent-glow:      rgba(216,118,87,0.3);
+  --teal:             #ffde59;
+  --teal-glow:        rgba(255,222,89,0.28);
+  --green:            #50e3c2;
+  --pink:             #deb4b4;
+
+  --font-display: 'Instrument Serif', serif;
+  --font-body:    'Plus Jakarta Sans', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --section-pad-x: clamp(1.5rem, 8vw, 9rem);
+  --section-pad-y: clamp(5rem, 10vw, 10rem);
+  --content-max:   1100px;
+}
+
+/* ================================================================
+   RESET + BASE
+   ================================================================ */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Ambient radial glow — static, no animation */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(216,118,87,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 10% 110%, rgba(255,222,89,0.04) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 60% at 90% 50%, rgba(222,180,180,0.03) 0%, transparent 55%);
+}
+
+/* Subtle dot grid texture */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+}
+
+section, header, footer, nav {
+  position: relative;
+  z-index: 1;
+}
+
+/* ================================================================
+   TYPOGRAPHY
+   ================================================================ */
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(3rem, 8vw, 7.5rem);
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: var(--text-paper);
+}
+.display em { font-style: italic; color: var(--pink); }
+.display .teal { font-style: italic; color: var(--teal); text-shadow: 0 0 40px var(--teal-glow); }
+.display .accent-word { color: var(--accent); }
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2rem, 4.5vw, 4rem);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  color: var(--text-paper);
+}
+.section-title em { font-style: italic; color: var(--accent); }
+.section-title .teal { font-style: italic; color: var(--teal); }
+
+.kicker {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: clamp(0.65rem, 0.9vw, 0.8rem);
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.26em;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: clamp(1.2rem, 2vw, 1.8rem);
+}
+.kicker::before {
+  content: '';
+  display: inline-block;
+  width: 24px; height: 1px;
+  background: var(--accent);
+}
+.kicker.teal { color: var(--teal); }
+.kicker.teal::before { background: var(--teal); }
+
+.body-text {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  color: var(--text-dim);
+  line-height: 1.7;
+  max-width: 52ch;
+}
+
+.body-text.wide { max-width: 68ch; }
+
+strong { color: var(--accent); font-weight: 500; }
+
+/* Animated underline highlight */
+.hl {
+  background: linear-gradient(90deg, var(--accent-hl), var(--accent-hl-strong));
+  background-size: 100% 65%;
+  background-repeat: no-repeat;
+  background-position: 0 88%;
+  padding: 0 6px;
+}
+
+/* ================================================================
+   LAYOUT UTILITIES
+   ================================================================ */
+.container {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--section-pad-x);
+}
+
+.section {
+  padding: var(--section-pad-y) var(--section-pad-x);
+  max-width: calc(var(--content-max) + 2 * clamp(1.5rem, 8vw, 9rem));
+  margin: 0 auto;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(3rem, 6vw, 8rem);
+  align-items: start;
+}
+
+.two-col.center { align-items: center; }
+
+@media (max-width: 860px) {
+  .two-col { grid-template-columns: 1fr; gap: 3rem; }
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: 0;
+}
+
+/* ================================================================
+   SCROLL REVEAL
+   ================================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+.reveal.in-view { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 0.1s; }
+.reveal-d2 { transition-delay: 0.2s; }
+.reveal-d3 { transition-delay: 0.3s; }
+.reveal-d4 { transition-delay: 0.4s; }
+.reveal-d5 { transition-delay: 0.5s; }
+.reveal-d6 { transition-delay: 0.6s; }
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+.reveal-left.in-view { opacity: 1; transform: translateX(0); }
+
+/* ================================================================
+   FIXED NAV
+   ================================================================ */
+.top-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px clamp(1.5rem, 5vw, 4rem);
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.nav-brand svg { color: var(--accent); }
+
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: #000;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 10px 22px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.3s var(--ease);
+  box-shadow: 0 0 20px var(--accent-glow);
+}
+.nav-cta:hover { transform: scale(1.04); box-shadow: 0 0 36px var(--accent-glow); }
+.nav-right { display: flex; align-items: center; gap: 16px; }
+.nav-back {
+  font-family: var(--font-mono); font-size: 10px; color: var(--muted);
+  letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none;
+  transition: color 0.2s; display: flex; align-items: center; gap: 6px;
+}
+.nav-back:hover { color: var(--accent); }
+
+/* ================================================================
+   HERO
+   ================================================================ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(7rem,14vw,12rem) var(--section-pad-x) clamp(5rem,8vw,8rem);
+  max-width: calc(var(--content-max) + 2 * clamp(1.5rem,8vw,9rem));
+  margin: 0 auto;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--teal);
+  padding: 6px 14px;
+  border: 1px solid rgba(255,222,89,0.2);
+  border-radius: 100px;
+  background: rgba(255,222,89,0.05);
+  margin-bottom: clamp(2rem,3.5vw,3rem);
+}
+.hero-eyebrow .dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 8px var(--teal-glow);
+  animation: blink 2.2s ease-in-out infinite;
+}
+@keyframes blink {
+  0%,100% { opacity:1; }
+  50%      { opacity:0.3; }
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(3.5rem, 10vw, 9rem);
+  line-height: 0.96;
+  letter-spacing: -0.025em;
+  color: var(--text-paper);
+  margin-bottom: clamp(2rem, 3.5vw, 3rem);
+  max-width: 14ch;
+}
+.hero-title em  { font-style: italic; color: var(--pink); }
+.hero-title .tl { font-style: italic; color: var(--teal); text-shadow: 0 0 50px var(--teal-glow); }
+
+.hero-sub {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  color: var(--text-dim);
+  line-height: 1.6;
+  max-width: 48ch;
+  margin-bottom: clamp(2.5rem, 4vw, 3.5rem);
+}
+
+.hero-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: clamp(3rem, 5vw, 5rem);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--accent);
+  color: #000;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: clamp(0.8rem, 1.1vw, 1rem);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: clamp(1rem,1.4vw,1.2rem) clamp(2rem,2.8vw,2.6rem);
+  border-radius: 10px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+  box-shadow: 0 0 40px var(--accent-glow);
+}
+.btn-primary:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 0 64px var(--accent-glow); }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border-hover);
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: clamp(0.72rem, 0.9vw, 0.82rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: clamp(0.9rem,1.2vw,1rem) clamp(1.6rem,2.2vw,2rem);
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.3s var(--ease);
+}
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+.price-inline {
+  background: rgba(0,0,0,0.25);
+  padding: 3px 12px;
+  border-radius: 100px;
+  font-size: 0.88em;
+}
+
+/* Stack pills */
+.stack-pills {
+  display: flex;
+  gap: clamp(0.5rem, 0.9vw, 0.8rem);
+  flex-wrap: wrap;
+}
+.pill {
+  padding: 7px 16px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  font-family: var(--font-mono);
+  font-size: clamp(0.7rem,0.85vw,0.8rem);
+  color: var(--text-dim);
+  background: var(--bg-elev);
+  letter-spacing: 0.04em;
+  transition: all 0.3s var(--ease);
+}
+.pill:hover { color: var(--text-paper); border-color: var(--accent); transform: translateY(-2px); }
+
+/* Hero metrics row */
+.hero-metrics {
+  display: flex;
+  gap: clamp(2rem, 5vw, 5rem);
+  padding-top: clamp(2rem, 3.5vw, 3rem);
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.metric-item { }
+.metric-value {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  color: var(--text-paper);
+  line-height: 1;
+}
+.metric-value.teal { color: var(--teal); }
+.metric-value.accent { color: var(--accent); }
+.metric-label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* ================================================================
+   VIDEO SECTION
+   ================================================================ */
+.video-section {
+  padding: clamp(4rem,8vw,8rem) var(--section-pad-x);
+  max-width: calc(var(--content-max) + 2 * clamp(1.5rem,8vw,9rem));
+  margin: 0 auto;
+}
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 0 80px rgba(216,118,87,0.08), 0 0 0 1px var(--border);
+}
+
+.video-wrapper::before {
+  content: '';
+  display: block;
+  padding-top: 56.25%;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.video-label {
+  text-align: center;
+  margin-bottom: clamp(1.5rem, 2.5vw, 2.2rem);
+}
+
+/* ================================================================
+   PROBLEM SECTION
+   ================================================================ */
+.problem-section {
+  background: var(--bg-elev);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-top: clamp(2.5rem, 4vw, 4rem);
+}
+
+.problem-card {
+  background: var(--bg-elev);
+  padding: clamp(1.8rem, 2.8vw, 2.6rem);
+}
+
+.problem-card .p-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.problem-card .p-value {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  color: var(--text-paper);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.problem-card .p-value.accent { color: var(--accent); }
+.problem-card .p-value.teal   { color: var(--teal); }
+.problem-card .p-value.green  { color: var(--green); }
+.problem-card .p-desc {
+  font-family: var(--font-body);
+  font-size: clamp(0.85rem, 1.1vw, 1rem);
+  color: var(--text-dim);
+  line-height: 1.55;
+}
+
+@media (max-width:780px) {
+  .problem-grid { grid-template-columns: 1fr; }
+}
+
+/* ================================================================
+   PIPELINE SECTION
+   ================================================================ */
+.pipeline-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 640px;
+}
+
+.pipe-item {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.pipe-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pipe-node {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  flex-shrink: 0;
+  background: rgba(216,118,87,0.06);
+}
+.pipe-node.teal  { border-color: var(--teal);  color: var(--teal);  background: rgba(255,222,89,0.05); }
+.pipe-node.green { border-color: var(--green); color: var(--green); background: rgba(80,227,194,0.05); }
+
+.pipe-line {
+  width: 1px;
+  flex: 1;
+  min-height: 32px;
+  background: linear-gradient(to bottom, var(--border-hover), transparent);
+  margin: 4px 0;
+}
+
+.pipe-body {
+  padding-bottom: clamp(1.4rem,2vw,1.8rem);
+  padding-top: 6px;
+}
+
+.pipe-title {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: clamp(0.9rem,1.2vw,1.05rem);
+  color: var(--text-paper);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  padding: 2px 8px;
+  border-radius: 100px;
+  background: rgba(216,118,87,0.12);
+  color: var(--accent);
+}
+.tag.teal  { background: rgba(255,222,89,0.1);  color: var(--teal); }
+.tag.green { background: rgba(80,227,194,0.1); color: var(--green); }
+
+.pipe-desc {
+  font-family: var(--font-body);
+  font-size: clamp(0.82rem,1vw,0.95rem);
+  color: var(--text-dim);
+  line-height: 1.55;
+}
+
+/* ================================================================
+   INCLUDES SECTION
+   ================================================================ */
+.includes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(12px, 1.6vw, 18px);
+  margin-top: clamp(2.5rem, 4vw, 4rem);
+}
+
+.include-card {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: clamp(1.4rem, 2vw, 1.8rem);
+  background: var(--bg-elev);
+  transition: border-color 0.3s var(--ease);
+}
+.include-card:hover { border-color: var(--border-hover); }
+
+.include-icon {
+  font-size: 22px;
+  margin-bottom: clamp(0.9rem, 1.2vw, 1rem);
+  display: block;
+}
+.include-name {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-paper);
+  margin-bottom: 8px;
+}
+.include-desc {
+  font-family: var(--font-body);
+  font-size: clamp(0.82rem, 1vw, 0.92rem);
+  color: var(--text-dim);
+  line-height: 1.55;
+}
+
+@media (max-width:780px) {
+  .includes-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width:520px) {
+  .includes-grid { grid-template-columns: 1fr; }
+}
+
+/* ================================================================
+   SESSION BREAKDOWN
+   ================================================================ */
+.session-table {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-top: clamp(2rem, 3vw, 3rem);
+}
+
+.session-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+}
+.session-row:last-child { border-bottom: none; }
+.session-row:hover { background: var(--bg-elev); }
+
+.session-time {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 1.4vw, 1.2rem);
+  border-right: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: rgba(216,118,87,0.04);
+}
+.session-time.teal { color: var(--teal); background: rgba(255,222,89,0.04); }
+
+.session-body {
+  padding: clamp(1rem, 1.4vw, 1.2rem) clamp(1.2rem, 1.8vw, 1.6rem);
+}
+.session-title {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: clamp(0.88rem,1.1vw,1rem);
+  color: var(--text-paper);
+  margin-bottom: 3px;
+}
+.session-desc {
+  font-family: var(--font-body);
+  font-size: clamp(0.78rem,0.95vw,0.88rem);
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+/* ================================================================
+   FINE LIST (comparison rows)
+   ================================================================ */
+.fine-list {
+  list-style: none;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.fine-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: clamp(0.9rem,1.3vw,1.1rem) clamp(1.2rem,1.8vw,1.6rem);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.fine-list li:last-child { border-bottom: none; }
+.fine-list .fl-k { color: var(--muted); }
+.fine-list .fl-v { color: var(--accent); font-weight: 600; }
+.fine-list .fl-v.teal  { color: var(--teal); }
+.fine-list .fl-v.green { color: var(--green); }
+
+/* ================================================================
+   PRICING SECTION
+   ================================================================ */
+.pricing-section {
+  background: var(--bg-elev);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.pricing-box {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.pricing-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--teal);
+  padding: 6px 16px;
+  border: 1px solid rgba(255,222,89,0.2);
+  border-radius: 100px;
+  background: rgba(255,222,89,0.05);
+  margin-bottom: clamp(1.8rem, 3vw, 2.6rem);
+}
+.pricing-badge .bdot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 8px var(--teal-glow);
+  animation: blink 2s ease-in-out infinite;
+}
+
+.price-display {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 16px;
+  margin: clamp(1.6rem,2.8vw,2.4rem) 0;
+}
+.price-number {
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 12vw, 9rem);
+  color: var(--text-paper);
+  line-height: 1;
+}
+.price-was {
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 1.6vw, 1.3rem);
+  color: var(--muted);
+  text-decoration: line-through;
+}
+.price-once {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--teal);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: clamp(2rem,3vw,2.8rem);
+}
+
+/* ================================================================
+   FOOTER
+   ================================================================ */
+footer {
+  padding: clamp(3rem,5vw,5rem) var(--section-pad-x);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--border);
+  max-width: calc(var(--content-max) + 2 * clamp(1.5rem,8vw,9rem));
+  margin: 0 auto;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.footer-brand svg { color: var(--accent); }
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+.footer-links a {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--accent); }
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+@media (max-width:600px) {
+  .hero-metrics { gap: 1.6rem; }
+  .problem-grid { grid-template-columns: 1fr; }
+  .two-col { grid-template-columns: 1fr; }
+  footer { flex-direction: column; text-align: center; }
+}
+
+/* ================================================================
+   BUTTON CLICK STATE
+   ================================================================ */
+.btn-primary.clicked,
+.nav-cta.clicked,
+.btn-ghost.clicked,
+.card-btn.clicked {
+  background: #deb4b4 !important;
+  box-shadow: none !important;
+  color: #000 !important;
+  border-color: #deb4b4 !important;
+}
+
+/* ================================================================
+   PLATFORM STRIP
+   ================================================================ */
+.platforms-section {
+  padding: clamp(2rem,3.5vw,3rem) 0;
+  overflow: hidden;
+  background: var(--bg-elev);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  z-index: 1;
+}
+
+.platforms-intro {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: clamp(1.2rem, 2vw, 1.8rem);
+}
+
+.platforms-track {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+.platforms-list {
+  display: flex;
+  align-items: center;
+  gap: clamp(2.5rem, 5vw, 5rem);
+  width: max-content;
+  animation: platformScroll 22s linear infinite;
+}
+
+.platform-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+}
+
+.platform-logo {
+  width: 36px;
+  height: 36px;
+  color: var(--text-paper);
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+.platform-item:hover .platform-logo { opacity: 1; }
+
+.platform-name {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+@keyframes platformScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ================================================================
+   TESTIMONIALS
+   ================================================================ */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: clamp(12px, 1.6vw, 18px);
+}
+
+.testimonial-card {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: clamp(1.4rem, 2vw, 1.8rem);
+  background: var(--bg-elev);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: border-color 0.3s var(--ease);
+}
+.testimonial-card:hover { border-color: var(--border-hover); }
+
+.testimonial-stars {
+  color: var(--teal);
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+.testimonial-quote {
+  font-family: var(--font-body);
+  font-size: clamp(0.86rem, 1vw, 0.96rem);
+  color: var(--text-dim);
+  line-height: 1.65;
+  flex: 1;
+  font-style: italic;
+}
+
+.testimonial-author {
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+
+.testimonial-name {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-paper);
+}
+
+.testimonial-role {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* ================================================================
+   LIGHT THEME
+   ================================================================ */
+[data-theme="light"] {
+  --bg:           #f9f6f3;
+  --bg-elev:      #f2ece7;
+  --surface:      #ffffff;
+  --border:       #e4dbd5;
+  --border-hover: #ccc3bb;
+  --text:         #1a1210;
+  --text-paper:   #1a1210;
+  --text-dim:     #4a3f38;
+  --muted:        #7a6f6a;
+  --teal:         #a07200;
+  --teal-glow:    rgba(160,114,0,0.15);
+  --pink:         #8f3535;
+  --green:        #0f7a5a;
+  --green-glow:   rgba(15,122,90,0.15);
+  --accent-hl:    rgba(216,118,87,0.12);
+  --accent-glow:  rgba(216,118,87,0.15);
+}
+[data-theme="light"] body { background: var(--bg); color: var(--text); }
+[data-theme="light"] body::before {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(216,118,87,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 10% 110%, rgba(255,200,50,0.04) 0%, transparent 55%);
+}
+[data-theme="light"] body::after {
+  background-image: radial-gradient(circle, rgba(0,0,0,0.04) 1px, transparent 1px);
+}
+[data-theme="light"] .top-nav { background: rgba(249,246,243,0.85); border-bottom-color: var(--border); }
+[data-theme="light"] .problem-card,
+[data-theme="light"] .include-card,
+[data-theme="light"] .testimonial-card { background: var(--surface); border-color: var(--border); }
+[data-theme="light"] .pricing-box { background: var(--surface); border-color: var(--border); }
+[data-theme="light"] footer { background: #ede7e2; border-top-color: var(--border); }
+
+.theme-toggle {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 200;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.2s;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.35);
+}
+.theme-toggle:hover { border-color: var(--accent); color: var(--accent); box-shadow: 0 4px 24px rgba(216,118,87,0.2); }
+.theme-toggle svg { width: 13px; height: 13px; flex-shrink: 0; }
+[data-theme="light"] .theme-toggle { box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
+
+/* ===== CONTENT ENGINE ADDITIONS ===== */
+.source-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:clamp(12px,1.6vw,18px); margin-top:clamp(2.5rem,4vw,4rem); }
+@media (max-width:1100px){ .source-grid{ grid-template-columns:repeat(3,1fr); } }
+@media (max-width:900px){ .source-grid{ grid-template-columns:1fr 1fr; } }
+@media (max-width:520px){ .source-grid{ grid-template-columns:1fr; } }
+.gate { display:grid; grid-template-columns:40px 1fr; gap:20px; align-items:start; }
+.gate-node { width:36px; height:36px; border-radius:8px; border:1px dashed var(--pink); display:flex; align-items:center; justify-content:center; font-size:14px; background:rgba(222,180,180,0.06); }
+.gate-body { padding:6px 0 clamp(1.4rem,2vw,1.8rem); }
+.gate-title { font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.16em; text-transform:uppercase; color:var(--pink); margin-bottom:4px; }
+.wardrobe-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(10px,1.4vw,16px); margin-top:clamp(2.5rem,4vw,4rem); }
+@media (max-width:960px){ .wardrobe-grid{ grid-template-columns:repeat(3,1fr);} }
+@media (max-width:700px){ .wardrobe-grid{ grid-template-columns:1fr 1fr;} }
+@media (max-width:460px){ .wardrobe-grid{ grid-template-columns:1fr;} }
+.wardrobe-card { border:1px solid var(--border); border-radius:14px; padding:clamp(1.1rem,1.6vw,1.4rem); background:var(--bg-elev); transition:border-color .3s var(--ease), transform .3s var(--ease); }
+.wardrobe-card:hover { border-color:var(--accent); transform:translateY(-3px); }
+.wardrobe-num { font-family:var(--font-mono); font-size:10px; color:var(--muted); letter-spacing:0.16em; margin-bottom:10px; }
+.wardrobe-name { font-family:var(--font-body); font-weight:600; font-size:clamp(0.88rem,1.05vw,0.98rem); color:var(--text-paper); margin-bottom:6px; }
+.wardrobe-desc { font-family:var(--font-body); font-size:clamp(0.78rem,0.92vw,0.86rem); color:var(--text-dim); line-height:1.5; }
+.lead-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:clamp(12px,1.6vw,18px); margin-top:clamp(2.5rem,4vw,4rem); }
+@media (max-width:860px){ .lead-grid{ grid-template-columns:1fr; } }
+.lead-card { border:1px solid var(--border); border-radius:16px; padding:clamp(1.6rem,2.4vw,2.2rem); background:var(--bg-elev); position:relative; overflow:hidden; }
+.lead-card::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255,222,89,0.06), transparent 70%); pointer-events:none; }
+.lead-step { font-family:var(--font-mono); font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--teal); margin-bottom:12px; }
+.lead-title { font-family:var(--font-display); font-size:clamp(1.5rem,2.4vw,2rem); color:var(--text-paper); line-height:1.1; margin-bottom:10px; }
+.lead-desc { font-family:var(--font-body); font-size:clamp(0.85rem,1vw,0.95rem); color:var(--text-dim); line-height:1.6; }
+.dm-bubble { margin-top:16px; background:var(--surface); border:1px solid var(--border); border-radius:14px 14px 14px 4px; padding:12px 14px; font-family:var(--font-body); font-size:0.82rem; color:var(--text-paper); line-height:1.5; }
+.dm-bubble small { display:block; font-family:var(--font-mono); font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
+.faq { max-width:760px; margin:clamp(2.5rem,4vw,4rem) auto 0; border:1px solid var(--border); border-radius:14px; overflow:hidden; }
+.faq details { border-bottom:1px solid var(--border); }
+.faq details:last-child { border-bottom:none; }
+.faq summary { cursor:pointer; list-style:none; padding:clamp(1rem,1.4vw,1.2rem) clamp(1.2rem,1.8vw,1.6rem); font-family:var(--font-body); font-weight:600; font-size:clamp(0.9rem,1.1vw,1rem); color:var(--text-paper); display:flex; justify-content:space-between; gap:1rem; }
+.faq summary::-webkit-details-marker { display:none; }
+.faq summary::after { content:'+'; color:var(--accent); font-family:var(--font-mono); }
+.faq details[open] summary::after { content:'−'; }
+.faq .faq-a { padding:0 clamp(1.2rem,1.8vw,1.6rem) clamp(1.2rem,1.6vw,1.4rem); font-family:var(--font-body); font-size:clamp(0.84rem,1vw,0.94rem); color:var(--text-dim); line-height:1.65; max-width:64ch; }
+[data-theme="light"] .wardrobe-card, [data-theme="light"] .lead-card, [data-theme="light"] .dm-bubble { background:var(--surface); }
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <a href="https://builds.digicuratoragency.com/" class="nav-brand">
+    <img src="../logo.png" alt="AISocialHub" width="28" height="28" style="border-radius:4px;">
+    <span>AISocialHub</span>
+  </a>
+  <div class="nav-right">
+    <a href="https://builds.digicuratoragency.com/" class="nav-back">← All tiers</a>
+    <a href="https://pay.digicuratoragency.com/checkout/5e81adb156b4b1a5f5d772cccbc43b3f" class="nav-cta" target="_blank" rel="noopener">Get the Engine · $97</a>
+  </div>
+</nav>
+
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme">
+  <svg id="themeIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+  <span id="themeLabel">Light</span>
+</button>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-eyebrow reveal">
+    <span class="dot"></span>
+    Tier 01 · Chrome Extension · Source Code Included
+  </div>
+
+  <h1 class="hero-title reveal reveal-d1">
+    One tab.<br><em>Every format.</em><br><span class="tl">Every platform.</span>
+  </h1>
+
+  <p class="hero-sub reveal reveal-d2">
+    The content repurposing tool that doesn't stop at repurposing. Paste a YouTube video, Instagram Reel, TikTok, or article, or type an idea. The Content Engine writes it in your voice, clones your audio, builds your talking head or goes faceless, draws the B-roll in code, publishes to 11 accounts across 9 platforms, and arms your IG and FB DM automation.
+  </p>
+
+  <div class="hero-cta-row reveal reveal-d3">
+    <a href="https://pay.digicuratoragency.com/checkout/5e81adb156b4b1a5f5d772cccbc43b3f" class="btn-primary" target="_blank" rel="noopener">
+      Get the Engine <span class="price-inline">$97 once</span>
+    </a>
+    <a href="#pipeline" class="btn-ghost">See what it does ↓</a>
+  </div>
+
+  <div class="stack-pills reveal reveal-d4">
+    <span class="pill">Claude via OpenRouter</span>
+    <span class="pill">ElevenLabs V3</span>
+    <span class="pill">HeyGen Avatar V</span>
+    <span class="pill">Remotion</span>
+    <span class="pill">Blotato or Zernio</span>
+    <span class="pill">Airtable</span>
+    <span class="pill">Claude Code</span>
+  </div>
+
+  <div class="hero-metrics reveal reveal-d5">
+    <div class="metric-item"><div class="metric-value teal">5</div><div class="metric-label">Source types</div></div>
+    <div class="metric-item"><div class="metric-value">11</div><div class="metric-label">Accounts posted</div></div>
+    <div class="metric-item"><div class="metric-value accent">9</div><div class="metric-label">Platforms</div></div>
+    <div class="metric-item"><div class="metric-value">2+1</div><div class="metric-label">B-roll styles + Faceless</div></div>
+    <div class="metric-item"><div class="metric-value teal">2</div><div class="metric-label">Approval gates</div></div>
+  </div>
+</header>
+
+<section class="platforms-section" aria-label="Supported platforms">
+  <p class="platforms-intro">Publishes to 11 accounts across 9 platforms</p>
+  <div class="platforms-track">
+    <div class="platforms-list" id="platformsList">
+      <div class="platform-item">
+        <svg class="platform-logo" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.99.04-2.85.18-.76 1.22-5.17 1.22-5.17s-.31-.62-.31-1.55c0-1.45.84-2.54 1.89-2.54.89 0 1.32.67 1.32 1.47 0 .9-.57 2.24-.87 3.48-.25 1.04.52 1.88 1.54 1.88 1.85 0 3.09-2.37 3.09-5.17 0-2.14-1.45-3.63-3.51-3.63-2.38 0-3.78 1.79-3.78 3.63 0 .72.28 1.49.62 1.91.07.08.08.15.06.24-.06.27-.21.87-.24 1-.03.16-.1.19-.23.12-1.04-.48-1.68-2-1.68-3.21 0-2.6 1.89-5 5.45-5 2.86 0 5.08 2.04 5.08 4.77 0 2.85-1.79 5.14-4.28 5.14-.84 0-1.62-.44-1.89-.95l-.51 1.92c-.18.72-.68 1.61-1.02 2.16.77.24 1.58.37 2.42.37 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+        <span class="platform-name">Pinterest</span>
+      </div>
+      <div class="platform-item">
+        <svg class="platform-logo" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+        <span class="platform-name">Instagram</span>
+      </div>
+      <div class="platform-item">
+        <svg class="platform-logo" viewBox="0 0 24 24"><path fill="currentColor" d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.5 12.01v-.017c0-3.58.85-6.435 2.495-8.485C5.848 1.196 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.513 5.467l-2.44.666c-.494-1.808-1.312-3.19-2.442-4.112-1.22-.984-2.894-1.492-4.983-1.51-2.625.007-4.684.791-6.12 2.33-1.322 1.42-1.984 3.614-1.984 6.52v.017c0 2.904.662 5.097 1.984 6.52 1.436 1.539 3.495 2.323 6.12 2.33h.014c2.352-.016 3.977-.572 5.05-1.702 1.145-1.207 1.716-3.062 1.716-5.63-.001-.162-.006-.322-.017-.479h-6.02V9.85h8.504c.108.553.163 1.16.163 1.808.006 3.473-.77 6.04-2.302 7.647-1.564 1.643-3.783 2.479-6.588 2.695H12.186z"/></svg>
+        <span class="platform-name">Threads</span>
+      </div>
+      <div class="platform-item">
+        <svg class="platform-logo" viewBox="0 0 24 24"><path fill="currentColor" d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+        <span class="platform-name">YouTube</span>
+      </div>
+      <div class="platform-item">
+        <svg class="platform-logo" viewBox="0 0 24 24"><path fill="currentColor" d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.33 6.33 0 0 0-6.34 6.34 6.33 6.33 0 0 0 6.34 6.34 6.33 6.33 0 0 0 6.33-6.34V8.63a8.07 8.07 0 0 0 4.72 1.5V6.67a4.83 4.83 0 0 1-.95.02z"/></svg>
+        <span class="platform-name">TikTok</span>
+      </div>
+      <div class="platform-item">
+        <svg class="platform-logo" viewBox="0 0 24 24"><path fill="currentColor" d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.815 2.736 3.713 3.66 6.383 3.364.136-.02.275-.039.415-.056-.138.022-.276.04-.415.056-3.912.58-7.387 2.005-2.83 7.078 5.013 5.19 6.87-1.113 7.823-4.308.953 3.195 2.05 9.271 7.733 4.308 4.267-4.308 1.172-6.498-2.74-7.078a8.741 8.741 0 0 1-.415-.056c.14.017.279.036.415.056 2.67.297 5.568-.628 6.383-3.364.246-.828.624-5.79.624-6.478 0-.69-.139-1.861-.902-2.204-.659-.299-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8z"/></svg>
+        <span class="platform-name">Bluesky</span>
+      </div>
+      <div class="platform-item">
+        <svg class="platform-logo" viewBox="0 0 24 24"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.762l7.74-8.851L2.25 2.25h6.865l4.258 5.625L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+        <span class="platform-name">X (Twitter)</span>
+      </div>
+      <div class="platform-item">
+        <svg class="platform-logo" viewBox="0 0 24 24"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        <span class="platform-name">LinkedIn</span>
+      </div>
+      <div class="platform-item">
+        <svg class="platform-logo" viewBox="0 0 24 24"><path fill="currentColor" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        <span class="platform-name">Facebook</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROBLEM -->
+<section class="section problem-section">
+  <div class="kicker reveal">The Real Problem</div>
+  <div class="two-col center">
+    <div>
+      <h2 class="section-title reveal reveal-d1">
+        You already made<br>the content.<br>Then it <em>died.</em>
+      </h2>
+      <p class="body-text reveal reveal-d2" style="margin-top:1.4rem;">
+        You watched a video that said exactly what your audience needs to hear. You had a better take. And it stayed in your head, because turning one idea into a script, a voiceover, a video, nine captions, and a follow-up takes a full afternoon you do not have.
+      </p>
+      <p class="body-text reveal reveal-d3" style="margin-top:1rem;">
+        So you post to two platforms, skip the other seven, and nobody who comments ever hears from you again. That is the gap the Content Engine closes.
+      </p>
+    </div>
+    <div class="problem-grid" style="margin-top:0;">
+      <div class="problem-card reveal reveal-d1">
+        <div class="p-label">Doing it by hand</div>
+        <div class="p-value accent">3h+</div>
+        <div class="p-desc">Script, record, edit, caption nine times, post nine times, reply to comments. Per piece.</div>
+      </div>
+      <div class="problem-card reveal reveal-d2">
+        <div class="p-label">With the Engine</div>
+        <div class="p-value teal">1 click</div>
+        <div class="p-desc">Then two quick approvals: the script, then the video with its captions. The rest runs in the background.</div>
+      </div>
+      <div class="problem-card reveal reveal-d3">
+        <div class="p-label">Leads captured per post</div>
+        <div class="p-value green">Auto</div>
+        <div class="p-desc">Every video ships with a comment keyword and the DM that answers it, armed automatically.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SOURCES -->
+<section class="section">
+  <div style="max-width:620px;">
+    <div class="kicker reveal">Any Link In</div>
+    <h2 class="section-title reveal reveal-d1">Whatever tab you have open<br>is the <em>starting point.</em></h2>
+    <p class="body-text reveal reveal-d2" style="margin-top:1.4rem;">The extension detects the page you are on. No copying transcripts, no downloading files. If the source has no transcript, it transcribes the audio itself. For Reels and TikToks it keeps the hook that already proved it works and rewrites the rest as you. No page open? Type the idea and it starts from that.</p>
+  </div>
+  <div class="source-grid">
+    <div class="include-card reveal reveal-d1"><span class="include-icon">▶</span><div class="include-name">YouTube</div><div class="include-desc">Long videos, Shorts, youtu.be links. Transcript pulled directly.</div></div>
+    <div class="include-card reveal reveal-d2"><span class="include-icon">📸</span><div class="include-name">Instagram Reel</div><div class="include-desc">Reels and posts. Audio transcribed if no captions exist. Remix mode keeps the proven hook.</div></div>
+    <div class="include-card reveal reveal-d3"><span class="include-icon">🎵</span><div class="include-name">TikTok</div><div class="include-desc">Any TikTok URL, including short links. Same remix treatment.</div></div>
+    <div class="include-card reveal reveal-d4"><span class="include-icon">📰</span><div class="include-name">Any article</div><div class="include-desc">Blog posts, docs, newsletters. Reads the page text straight from the tab.</div></div>
+    <div class="include-card reveal reveal-d5"><span class="include-icon">💡</span><div class="include-name">An idea</div><div class="include-desc">Type a sentence or two into the popup. No source page needed. The script is written from your brief.</div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PIPELINE -->
+<section class="section" id="pipeline">
+  <div class="kicker reveal">What Happens After One Click</div>
+  <div class="two-col">
+    <div>
+      <h2 class="section-title reveal reveal-d1">
+        Eight steps.<br>You approve <span class="teal">two.</span>
+      </h2>
+      <p class="body-text reveal reveal-d2" style="margin-top:1.4rem;">
+        Nothing that costs money runs before you have read the script. The pipeline lives in the extension's background worker, so you can close the popup, keep browsing, and come back when the badge says it is ready. If a step fails, you resume from that step. It never re-posts something it already posted.
+      </p>
+      <div style="margin-top:clamp(2rem,3vw,2.8rem);" class="reveal reveal-d3">
+        <ul class="fine-list">
+          <li><span class="fl-k">Script length</span><span class="fl-v">45 to 55 sec</span></li>
+          <li><span class="fl-k">Caption sets</span><span class="fl-v">10 platforms</span></li>
+          <li><span class="fl-k">Output</span><span class="fl-v teal">1080×1920 · 30fps</span></li>
+          <li><span class="fl-k">Paid steps before approval</span><span class="fl-v green">Zero</span></li>
+          <li><span class="fl-k">Double posts</span><span class="fl-v green">Blocked</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pipeline-row">
+      <div class="pipe-item reveal reveal-d1"><div class="pipe-left"><div class="pipe-node">1</div><div class="pipe-line"></div></div><div class="pipe-body"><div class="pipe-title">Read the source</div><div class="pipe-desc">Transcript, scraped caption, page text, or its own audio transcription as a fallback</div></div></div>
+      <div class="pipe-item reveal reveal-d1"><div class="pipe-left"><div class="pipe-node">2</div><div class="pipe-line"></div></div><div class="pipe-body"><div class="pipe-title">Write the script in your voice <span class="tag">brand.config</span></div><div class="pipe-desc">Hook, value, one-word CTA keyword. Your brand voice and audience live in one config file you edit once</div></div></div>
+      <div class="gate reveal reveal-d2"><div class="pipe-left"><div class="gate-node">✋</div><div class="pipe-line"></div></div><div class="gate-body"><div class="gate-title">Gate 1 · You read and edit the script</div><div class="pipe-desc">Inline editor with live word count. Your edits flow into the voice, the captions, and the on-screen text</div></div></div>
+      <div class="pipe-item reveal reveal-d2"><div class="pipe-left"><div class="pipe-node">3</div><div class="pipe-line"></div></div><div class="pipe-body"><div class="pipe-title">Ten caption sets + Airtable row</div><div class="pipe-desc">TikTok, Instagram, YouTube, Facebook, LinkedIn, X, Threads, Pinterest, Bluesky, Substack Note. Character limits enforced per platform</div></div></div>
+      <div class="pipe-item reveal reveal-d3"><div class="pipe-left"><div class="pipe-node teal">4</div><div class="pipe-line"></div></div><div class="pipe-body"><div class="pipe-title">Your cloned voice <span class="tag teal">ElevenLabs V3</span></div><div class="pipe-desc">Locked anti-drift settings so it sounds like you on take 40, not just take 1</div></div></div>
+      <div class="pipe-item reveal reveal-d3"><div class="pipe-left"><div class="pipe-node">5</div><div class="pipe-line"></div></div><div class="pipe-body"><div class="pipe-title">Your talking head <span class="tag">HeyGen Avatar V</span></div><div class="pipe-desc">Lip-synced to your cloned voice, not a stock TTS. Upload your own take in Manual mode, or pick Faceless and skip the head entirely</div></div></div>
+      <div class="pipe-item reveal reveal-d4"><div class="pipe-left"><div class="pipe-node">6</div><div class="pipe-line"></div></div><div class="pipe-body"><div class="pipe-title">B-roll drawn in code <span class="tag">Remotion</span></div><div class="pipe-desc">Basic infographics or Split Card + Web. Word-highlighted captions in your brand colors. Title baked into frame 0 so the thumbnail is never black. Faceless mode builds the whole visual instead</div></div></div>
+      <div class="gate reveal reveal-d4"><div class="pipe-left"><div class="gate-node">✋</div><div class="pipe-line"></div></div><div class="gate-body"><div class="gate-title">Gate 2 · You watch the video, tweak captions</div><div class="pipe-desc">One editable caption box per platform. What you approve is what posts</div></div></div>
+      <div class="pipe-item reveal reveal-d5"><div class="pipe-left"><div class="pipe-node green">7</div><div class="pipe-line"></div></div><div class="pipe-body"><div class="pipe-title">Publish to 11 accounts <span class="tag green">Blotato or Zernio</span></div><div class="pipe-desc">Post now, drop into the next free slot per platform, or save only. Two Instagram and two Threads accounts supported</div></div></div>
+      <div class="pipe-item reveal reveal-d6"><div class="pipe-left"><div class="pipe-node green">8</div></div><div class="pipe-body"><div class="pipe-title">Arm the DM automation</div><div class="pipe-desc">Comment keyword → freebie DM on Instagram and your Facebook page, created automatically per video on whichever scheduler posted it</div></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- LEAD GEN -->
+<section class="section problem-section">
+  <div style="max-width:640px;">
+    <div class="kicker teal reveal">Where Repurposing Tools Stop</div>
+    <h2 class="section-title reveal reveal-d1">A view is not a lead.<br>So every video comes with <span class="teal">a way in.</span></h2>
+    <p class="body-text reveal reveal-d2" style="margin-top:1.4rem;">Most tools hand you a video and wish you luck. This one writes the CTA keyword into the script and sets up the DM that answers it, on the same run that posts the video. You get the whole loop from one link.</p>
+  </div>
+  <div class="lead-grid">
+    <div class="lead-card reveal reveal-d1">
+      <div class="lead-step">01 · In the script</div>
+      <div class="lead-title">A keyword, not a "link in bio"</div>
+      <div class="lead-desc">Every script ends on a one-word comment CTA unique to that video. Unique keywords mean the automation can safely apply across your whole account.</div>
+    </div>
+    <div class="lead-card reveal reveal-d2">
+      <div class="lead-step">02 · In the DMs</div>
+      <div class="lead-title">The reply that runs while you sleep</div>
+      <div class="lead-desc">Instagram (both accounts) and your Facebook page. The DM half lives in Blotato's cloud, 24/7. A local poller also posts a public "sent it to your DMs" reply so the comment thread keeps working for you.</div>
+      <div class="dm-bubble"><small>Auto DM</small>Hey, thanks for commenting REPURPOSE! Here's your freebie: hub.digicuratoragency.com/freebie</div>
+    </div>
+    <div class="lead-card reveal reveal-d3">
+      <div class="lead-step">03 · Your scheduler</div>
+      <div class="lead-title">Blotato or Zernio, your pick</div>
+      <div class="lead-desc">Choose the scheduler per run from the popup. Both post to your accounts and both create the keyword DM automation, so the loop works whichever one you pay for. Add the key for either and the option lights up.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WARDROBE -->
+<section class="section">
+  <div style="max-width:620px;">
+    <div class="kicker reveal">2 B-roll Styles + Faceless Mode</div>
+    <h2 class="section-title reveal reveal-d1">Same script.<br>Two looks, or <em>no face at all.</em></h2>
+    <p class="body-text reveal reveal-d2" style="margin-top:1.4rem;">No stock footage. Both B-roll styles are drawn in code from a scene plan Claude writes for that script, so the visuals match what you are saying. Split Card + Web records real websites scrolling in a headless browser and times each site's appearance to the exact word you say it. Faceless mode drops the talking head and builds the entire video from the script, in one of three production tracks and 14 niche styles.</p>
+  </div>
+  <div class="wardrobe-grid">
+    <div class="wardrobe-card reveal reveal-d1"><div class="wardrobe-num">01 · B-roll</div><div class="wardrobe-name">Basic</div><div class="wardrobe-desc">Animated infographics over the talking head. Fastest render.</div></div>
+    <div class="wardrobe-card reveal reveal-d1"><div class="wardrobe-num">02 · B-roll</div><div class="wardrobe-name">Split Card + Web</div><div class="wardrobe-desc">Clean UI cards and full-screen tours of up to five sites. Cream or dark glass theme. Drop in your own clip.</div></div>
+    <div class="wardrobe-card reveal reveal-d2"><div class="wardrobe-num">03 · Faceless</div><div class="wardrobe-name">TSX Animation</div><div class="wardrobe-desc">Code-drawn motion graphics. Your cloned voice is the only cost.</div></div>
+    <div class="wardrobe-card reveal reveal-d2"><div class="wardrobe-num">04 · Faceless</div><div class="wardrobe-name">AI Video</div><div class="wardrobe-desc">Generated clips from Kie.ai Seedance, with a spend cap you set per build.</div></div>
+    <div class="wardrobe-card reveal reveal-d3"><div class="wardrobe-num">05 · Faceless</div><div class="wardrobe-name">Vox Collage</div><div class="wardrobe-desc">Paper-collage documentary look. Cutouts, textures, and a music bed if you want one.</div></div>
+    <div class="wardrobe-card reveal reveal-d3" style="border-style:dashed;"><div class="wardrobe-num">+</div><div class="wardrobe-name">Yours</div><div class="wardrobe-desc">It is Remotion and you own the source. Add a style with Claude Code.</div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- OWNERSHIP / HONESTY -->
+<section class="section problem-section">
+  <div class="two-col center">
+    <div>
+      <div class="kicker reveal">Runs On Your Machine</div>
+      <h2 class="section-title reveal reveal-d1">Your keys.<br>Your accounts.<br>Your <em>code.</em></h2>
+      <p class="body-text reveal reveal-d2" style="margin-top:1.4rem;">Nothing routes through my servers. The backend runs locally in Node, the extension talks to it on localhost, and every API is billed to your own account at cost. There is no per-video fee and no monthly plan from me.</p>
+      <p class="body-text reveal reveal-d3" style="margin-top:1rem;">Three keys are required to start: OpenRouter (for Claude), ElevenLabs, and Airtable. HeyGen, Blotato or Zernio, Apify, Kie.ai, and Gemini unlock the rest as you connect them. A missing key skips that one step instead of breaking the run.</p>
+    </div>
+    <div class="reveal reveal-d2">
+      <ul class="fine-list">
+        <li><span class="fl-k">Software fee</span><span class="fl-v">$97 once</span></li>
+        <li><span class="fl-k">Monthly to me</span><span class="fl-v green">$0</span></li>
+        <li><span class="fl-k">Required keys to start</span><span class="fl-v teal">3</span></li>
+        <li><span class="fl-k">Faceless mode, TSX track</span><span class="fl-v green">Voice cost only</span></li>
+        <li><span class="fl-k">Avatar cost, automatic mode</span><span class="fl-v">~$1 / min</span></li>
+        <li><span class="fl-k">Avatar cost, manual mode</span><span class="fl-v teal">Studio credits</span></li>
+        <li><span class="fl-k">Brand voice config</span><span class="fl-v">1 file</span></li>
+        <li><span class="fl-k">Source code</span><span class="fl-v green">Yours</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- INCLUDED -->
+<section class="section">
+  <div style="max-width:560px; margin-bottom:clamp(1rem,1.5vw,1.4rem);">
+    <div class="kicker reveal">Everything Included</div>
+    <h2 class="section-title reveal reveal-d1">Your $97 gets<br>all of <em>this.</em></h2>
+  </div>
+  <div class="includes-grid">
+    <div class="include-card reveal reveal-d1"><span class="include-icon">📁</span><div class="include-name">Full Source Code</div><div class="include-desc">The Chrome extension, the Node backend, and every Remotion composition, as a ZIP. Not a template. The same project I run daily.</div></div>
+    <div class="include-card reveal reveal-d2"><span class="include-icon">🔑</span><div class="include-name">License Key</div><div class="include-desc">Activates the extension on your install. Personal use, yours to keep.</div></div>
+    <div class="include-card reveal reveal-d3"><span class="include-icon">📘</span><div class="include-name">9-Section Setup Guide</div><div class="include-desc">Clone, one-command install, every API key explained, Airtable base, load the extension, license, first video, brand customization, troubleshooting table.</div></div>
+    <div class="include-card reveal reveal-d4"><span class="include-icon">🎨</span><div class="include-name">brand.config.js</div><div class="include-desc">Your voice, your audience, your caption colors. Edit one file and every script and video changes with it.</div></div>
+    <div class="include-card reveal reveal-d5"><span class="include-icon">🗂️</span><div class="include-name">Airtable Base Spec</div><div class="include-desc">Every video, script, caption set, and posted URL logged in one table you can build on.</div></div>
+    <div class="include-card reveal reveal-d6"><span class="include-icon">🎟️</span><div class="include-name">GrowthOS Credit</div><div class="include-desc">Your $97 counts as full credit toward GrowthOS. Upgrade for $200 more, the same $297 founding member price.</div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PRICING -->
+<section class="section pricing-section" id="pricing">
+  <div class="pricing-box">
+    <div class="pricing-badge reveal"><span class="bdot"></span>Instant delivery · Source code included</div>
+    <div class="kicker reveal" style="justify-content:center;">AI Social Hub Content Engine</div>
+    <h2 class="section-title reveal reveal-d1" style="font-size:clamp(2.4rem,6vw,5rem); letter-spacing:-0.02em; margin-bottom:0;">
+      Any link to<br><em>9 platforms.</em>
+    </h2>
+    <div class="price-display reveal reveal-d2">
+      <div><div class="price-number">$97</div><div class="price-once">One-time · No subscription</div></div>
+    </div>
+    <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;" class="reveal reveal-d3">
+      <a href="https://pay.digicuratoragency.com/checkout/5e81adb156b4b1a5f5d772cccbc43b3f" class="btn-primary" target="_blank" rel="noopener">Get the Engine · $97 →</a>
+    </div>
+    <div style="margin-top:clamp(2.5rem,4vw,3.5rem);" class="reveal reveal-d4">
+      <p style="font-family:var(--font-body);font-size:clamp(0.82rem,1vw,0.92rem);color:var(--text-dim);line-height:1.65;max-width:48ch;margin:0 auto clamp(1rem,1.4vw,1.2rem);text-align:center;">Want the Engine plus the other 14 systems? <a href="https://builds.digicuratoragency.com/growth-os/" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">GrowthOS includes it</a>, and your $97 counts in full if you upgrade later.</p>
+      <ul class="fine-list" style="text-align:left;">
+        <li><span class="fl-k">Sources</span><span class="fl-v">YouTube · IG · TikTok · Articles · Ideas</span></li>
+        <li><span class="fl-k">Accounts</span><span class="fl-v teal">11 across 9 platforms</span></li>
+        <li><span class="fl-k">Scheduler</span><span class="fl-v">Blotato or Zernio</span></li>
+        <li><span class="fl-k">B-roll styles</span><span class="fl-v">2 + Faceless mode</span></li>
+        <li><span class="fl-k">DM automation</span><span class="fl-v teal">Instagram + Facebook</span></li>
+        <li><span class="fl-k">Source code + license</span><span class="fl-v green">Yours</span></li>
+        <li><span class="fl-k">Coding required</span><span class="fl-v green">Zero to run</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FAQ -->
+<section class="section">
+  <div style="text-align:center;">
+    <div class="kicker reveal" style="justify-content:center;">Before You Buy</div>
+    <h2 class="section-title reveal reveal-d1">Straight <em>answers.</em></h2>
+  </div>
+  <div class="faq reveal reveal-d2">
+    <details><summary>Do I have to be on camera?</summary><div class="faq-a">No. Automatic mode builds a HeyGen avatar of you lip-synced to your cloned voice. Manual mode lets you film the take yourself, or render it in HeyGen Studio on plan credits, and upload the MP4 back into the run.</div></details>
+    <details><summary>Do I need to code?</summary><div class="faq-a">Not to run it. You fill in API keys, edit one brand config file, and load the extension. Changing how it works is where Claude Code comes in, and because you own the source, you can.</div></details>
+    <details><summary>What does a video actually cost me?</summary><div class="faq-a">Your own API usage. Claude via OpenRouter and ElevenLabs are cents per video. HeyGen automatic mode is about $1 per minute of avatar, roughly nine times more than Manual mode on Studio credits. Blotato or Zernio and Airtable are your own plans. Faceless mode on the TSX track adds nothing beyond the voice. I charge nothing per video.</div></details>
+    <details><summary>Will it post the same video twice if something fails?</summary><div class="faq-a">No. Every successful post is written to a ledger the moment it lands. Resuming a failed run reports "already posted" for those targets and only fills the gaps.</div></details>
+    <details><summary>What is Faceless mode?</summary><div class="faq-a">Pick Faceless instead of an avatar and the Engine skips the voice-to-head steps and builds the full video from your approved script. Three tracks: TSX Animation (code-drawn, your voice is the only cost), AI Video (Kie.ai Seedance clips, with a spend cap that defaults to $2 per build), and Vox Collage (paper-collage documentary look). Fourteen niche styles or Auto. It needs the Claude Code CLI installed, since a Claude agent does the building.</div></details>
+    <details><summary>Blotato or Zernio?</summary><div class="faq-a">Either. Add the key for the one you use and pick it per run in the popup. Both post to your accounts and both create the comment-to-DM automation. Zernio comes with a free tier for a couple of accounts if you want to start without a paid scheduler.</div></details>
+    <details><summary>Which platforms?</summary><div class="faq-a">TikTok, Instagram (two accounts), YouTube Shorts, Facebook, LinkedIn, X, Threads (two accounts), Pinterest, and Bluesky. A Substack Note caption is written and saved to Airtable for you to post by hand.</div></details>
+    <details><summary>Mac or Windows?</summary><div class="faq-a">Built and run daily on a Mac. The core pipeline is Node and Chrome. The Split Card + Web style needs a Python with Playwright installed, and Faceless mode needs the Claude Code CLI. The one-command setup script installs both.</div></details>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">
+    <img src="../logo.png" alt="AISocialHub" width="20" height="20" style="border-radius:3px;">
+    AISocialHub · Ness Alazne
+  </div>
+  <div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);letter-spacing:0.14em;text-transform:uppercase;">Questions? ness@digicuratoragency.com</div>
+  <div class="footer-links"><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms</a></div>
+</footer>
+
+<!-- SCROLL REVEAL OBSERVER
+     ================================================================ -->
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in-view');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal, .reveal-left').forEach(el => observer.observe(el));
+
+/* Duplicate platform logos for seamless infinite scroll */
+const pList = document.getElementById('platformsList');
+if (pList) pList.innerHTML += pList.innerHTML;
+
+/* Button click → #deb4b4 color */
+document.querySelectorAll('.btn-primary, .nav-cta, .btn-ghost').forEach(btn => {
+  btn.addEventListener('click', function () {
+    this.classList.add('clicked');
+    this.style.background = '#deb4b4';
+    this.style.boxShadow = 'none';
+    this.style.color = '#000';
+    this.style.borderColor = '#deb4b4';
+  });
+});
+
+// Theme toggle
+const moonIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
+const sunIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>`;
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('aish-theme', theme);
+  const icon = document.getElementById('themeIcon');
+  const label = document.getElementById('themeLabel');
+  if (theme === 'light') {
+    icon.outerHTML = `<span id="themeIcon">${moonIcon}</span>`;
+    if (label) label.textContent = 'Dark';
+  } else {
+    icon.outerHTML = `<span id="themeIcon">${sunIcon}</span>`;
+    if (label) label.textContent = 'Light';
+  }
+}
+applyTheme(localStorage.getItem('aish-theme') || 'dark');
+document.getElementById('themeToggle').addEventListener('click', () => {
+  applyTheme(document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+});
+</script>
+
+<script src="../chat.js"></script>
+</body>
+</html>
