@@ -9,7 +9,8 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid 
 .store-header__image img { object-fit: cover; object-position: 50% 24%; }
 
 /* Rounded content frames, using the existing website green. */
-.description .ProseMirror > img {
+.description .ProseMirror > img,
+.aica-cover img {
   display: block;
   box-sizing: border-box;
   width: 100%;
@@ -19,8 +20,20 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid 
   border-radius: 24px;
 }
 .description .ProseMirror > img + img { margin-top: 20px; }
+
+/* The cover sits in .page-header__image, the same slot Stan's own page puts it
+   in: first child of .page-header, above the product title and inside the
+   content column. Taking the theme's slot rather than inventing a wrapper is
+   what keeps it aligned with the panels at every width — the two-column desktop
+   layout, the 700px column above 1024px and the full-bleed narrow one all come
+   from the theme, unchanged. Stan drives it as a background-image behind a
+   spacer GIF; a real <img> is simpler and the theme already sizes
+   .page-header__image img to 100% width. Only the frame is ours: the theme's
+   own 15px minima radius is overridden below so it matches the panels. */
+.aica-cover { margin-bottom: 20px; }
 @media (max-width: 600px) {
-  .description .ProseMirror > img { border-width: 4px; border-radius: 18px; }
+  .description .ProseMirror > img,
+  .aica-cover img { border-width: 4px; border-radius: 18px; }
   .description .ProseMirror > img + img { margin-top: 16px; }
 }
 
