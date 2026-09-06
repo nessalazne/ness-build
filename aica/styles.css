@@ -117,9 +117,16 @@ body { padding-top: 64px; }
 .aica-topbar__short { display: none; }
 
 .aica-topbar__cta {
-  /* Same corner radius, weight and letter-spacing as #store-page-submit-button's
-     PURCHASE label (10px / 600 / 0.18px) — a smaller pill next to it read as a
-     different button. Only the size is scaled down for the compact bar. */
+  /* Same shape AND same text style as #store-page-submit-button's PURCHASE
+     label: 10px radius, 600 weight, 0.18px letter-spacing, Inter. The theme
+     defines --default-font-secondary only as a custom property scoped to
+     .store-theme.minima — this bar sits outside that tree (build.py inserts
+     it as body's first child, a sibling of .store-theme, not a descendant),
+     so the variable never resolves there and it fell back to the page's
+     serif default. Naming "Inter" directly sidesteps the scoping rather than
+     fighting it; the theme already loads Inter at weight 600 via @font-face,
+     so this is the exact same rendered font as PURCHASE, not a lookalike.
+     Only the size is scaled down for the bar. */
   flex: none;
   display: inline-flex;
   align-items: center;
@@ -129,6 +136,7 @@ body { padding-top: 64px; }
   border-radius: 10px;
   background: #4F8A84;
   color: #fff;
+  font-family: "Inter", sans-serif;
   font-weight: 600;
   font-size: 15px;
   letter-spacing: 0.18px;
