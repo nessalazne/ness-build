@@ -7,3 +7,19 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid 
 
 /* Keep the supplied portrait centered on the face inside the circular profile. */
 .store-header__image img { object-fit: cover; object-position: 50% 24%; }
+
+/* Rounded content frames, using the existing website green. */
+.description .ProseMirror > img {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border: 5px solid #4F8A84;
+  border-radius: 24px;
+}
+.description .ProseMirror > img + img { margin-top: 20px; }
+@media (max-width: 600px) {
+  .description .ProseMirror > img { border-width: 4px; border-radius: 18px; }
+  .description .ProseMirror > img + img { margin-top: 16px; }
+}
