@@ -23,3 +23,132 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid 
   .description .ProseMirror > img { border-width: 4px; border-radius: 18px; }
   .description .ProseMirror > img + img { margin-top: 16px; }
 }
+
+/* --- Checkout ---------------------------------------------------------------
+   PURCHASE is a <button> now rather than a link out to Stan; the theme already
+   styles .confirm-button and its :disabled state, so this only adds the parts
+   the original page had no markup for: the note under the card form, the error
+   line under the button, and the PayPal divider. */
+#store-page-submit-button { cursor: pointer; font: inherit; }
+#store-page-submit-button:disabled { cursor: default; }
+
+#aica-payment-element { min-height: 40px; }
+
+.aica-note {
+  margin: 10px 2px 0;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--stan-store-theme-secondary-text-color, #00000088);
+}
+
+.aica-error {
+  display: none;
+  margin: 10px 2px 0;
+  font-size: 14px;
+  line-height: 1.45;
+  color: #b3261e;
+}
+.aica-error.visible { display: block; }
+
+.aica-or {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 4px 0 14px;
+  font-size: 13px;
+  color: var(--stan-store-theme-secondary-text-color, #00000088);
+}
+.aica-or::before, .aica-or::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(0, 0, 0, .12);
+}
+
+#aica-paypal { min-height: 48px; }
+
+/* --- Sticky offer bar --------------------------------------------------------
+   The sales panels are long, so the offer stays reachable from anywhere on the
+   page. Same green as PURCHASE, and it jumps to the checkout heading rather
+   than sending anyone off the page. On a narrow screen the product name drops
+   to "AICA 2.0" so the button never gets squeezed. */
+html { scroll-behavior: smooth; }
+body { padding-top: 64px; }
+
+.aica-topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  box-sizing: border-box;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 clamp(14px, 4vw, 28px);
+  background: rgba(241, 237, 233, .92);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(0, 0, 0, .08);
+}
+
+.aica-topbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.aica-topbar__brand img {
+  flex: none;
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 24%;
+  border: 2px solid #4F8A84;
+}
+.aica-topbar__brand span {
+  font-weight: 600;
+  font-size: 15px;
+  color: #000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.aica-topbar__short { display: none; }
+
+.aica-topbar__cta {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 24px;
+  border-radius: 70px;
+  background: #4F8A84;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.aica-topbar__cta:hover { filter: brightness(.94); }
+.aica-topbar__cta:active { transform: translateY(1px); }
+
+/* The bar would otherwise sit over the heading the CTA jumps to. */
+#checkout { scroll-margin-top: 84px; }
+
+@media (max-width: 560px) {
+  body { padding-top: 58px; }
+  .aica-topbar { height: 58px; padding: 0 12px; gap: 10px; }
+  .aica-topbar__brand img { width: 30px; height: 30px; }
+  .aica-topbar__brand span { font-size: 14px; }
+  .aica-topbar__full { display: none; }
+  .aica-topbar__short { display: inline; }
+  .aica-topbar__cta { min-height: 40px; padding: 0 18px; font-size: 14px; }
+  #checkout { scroll-margin-top: 74px; }
+}
+
+@media (max-width: 360px) {
+  .aica-topbar__brand span { display: none; }
+}

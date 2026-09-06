@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="noindex" name="robots"/>
+<title>You're in — AI Creator Academy® 2.0</title>
+<link href="../assets/ness-profile-green.png" rel="icon"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --green: #4F8A84;
+    --cream: #F1EDE9;
+    --ink: #111111;
+    --muted: #00000088;
+    --line: rgba(0, 0, 0, .10);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 620px; margin: 0 auto; padding: 40px 20px 72px; }
+
+  .brand { text-align: center; margin-bottom: 28px; }
+  .brand img {
+    width: 76px; height: 76px; border-radius: 50%;
+    object-fit: cover; object-position: 50% 24%;
+    border: 3px solid var(--green);
+  }
+  .brand p { margin: 10px 0 0; font-size: 14px; color: var(--muted); }
+
+  .card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 28px 26px;
+    margin-bottom: 18px;
+    box-shadow: 0 2px 14px rgba(0, 0, 0, .05);
+  }
+  .card h2 {
+    margin: 0 0 6px;
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: -.01em;
+  }
+  .card p { margin: 0 0 12px; font-size: 15px; }
+  .card p:last-child { margin-bottom: 0; }
+
+  .hero { text-align: center; }
+  .tick {
+    width: 56px; height: 56px; margin: 0 auto 16px;
+    border-radius: 50%; background: var(--green);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .tick svg { width: 28px; height: 28px; }
+  .hero h1 {
+    margin: 0 0 8px;
+    font-size: 28px; font-weight: 700; letter-spacing: -.02em;
+  }
+  .hero .sub { color: var(--muted); font-size: 15px; margin: 0; }
+
+  .receipt {
+    margin-top: 18px; padding-top: 16px;
+    border-top: 1px solid var(--line);
+    font-size: 14px; color: var(--muted);
+  }
+  .receipt strong { color: var(--ink); font-weight: 600; }
+  .receipt.problem { color: #b3261e; }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 8px;
+  }
+  .eyebrow.wait { color: #9a6b2f; }
+
+  ul.items { margin: 0; padding: 0; list-style: none; }
+  ul.items li {
+    padding: 13px 0;
+    border-top: 1px solid var(--line);
+    font-size: 15px;
+  }
+  ul.items li:first-child { border-top: none; padding-top: 4px; }
+  ul.items li b { display: block; font-weight: 600; }
+  ul.items li span { color: var(--muted); font-size: 14px; }
+  ul.items a { color: var(--green); font-weight: 600; }
+
+  .cta {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 14px 28px;
+    border-radius: 70px;
+    background: var(--green);
+    color: #fff;
+    font-weight: 600;
+    font-size: 16px;
+    text-decoration: none;
+  }
+  .cta:hover { filter: brightness(.94); }
+
+  footer {
+    text-align: center; margin-top: 26px;
+    font-size: 13px; color: var(--muted);
+  }
+  footer a { color: var(--green); }
+  @media (max-width: 480px) {
+    .wrap { padding: 28px 16px 56px; }
+    .card { padding: 24px 20px; }
+    .hero h1 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brand">
+    <img alt="Ness Alazne" src="../assets/ness-profile-green.png"/>
+    <p>AI Creator Academy® 2.0</p>
+  </div>
+
+  <div class="card hero">
+    <div class="tick" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+    </div>
+    <h1 id="headline">Payment received</h1>
+    <p class="sub" id="subhead">Your receipt is on its way to your inbox.</p>
+    <div class="receipt" id="receipt" hidden></div>
+  </div>
+
+  <!-- BONUSES — edit this list as you add them. Each item is one <li>. -->
+  <div class="card">
+    <span class="eyebrow">Open now</span>
+    <h2>Your bonuses</h2>
+    <p>These are yours straight away. No waiting.</p>
+    <ul class="items" id="bonuses">
+      <li>
+        <b>Bonus one</b>
+        <span>Swap this line for the bonus name and a sentence about it, then link it below.</span>
+      </li>
+      <li>
+        <b>Bonus two</b>
+        <span>Same again. Add or remove list items as your bonus stack changes.</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <span class="eyebrow wait">Within 12 to 24 hours</span>
+    <h2>Your Skool community access</h2>
+    <p>The AICA Skool community is where the lessons, the calls and the rest of the members live. Your invite goes out by hand, so give it 12 to 24 hours to land.</p>
+    <p>It comes to the email address on your order, so watch that inbox and check the promotions and spam folders if you do not see it.</p>
+    <p id="order-email"></p>
+  </div>
+
+  <div class="card">
+    <h2>Something not right?</h2>
+    <p>If 24 hours pass with no invite, or anything on your order looks wrong, email me and I will sort it out.</p>
+    <p><a class="cta" href="mailto:ness@digicuratoragency.com?subject=AICA%20access">Email ness@digicuratoragency.com</a></p>
+  </div>
+
+  <footer>
+    <a href="../">Back to the course page</a> · <a href="../../privacy.html">Privacy</a> · <a href="../../terms.html">Terms</a>
+  </footer>
+
+</div>
+
+<script>
+/* Confirms the payment with the app rather than trusting the URL. Stripe sends
+ * the buyer back here with ?payment_intent=...; PayPal orders are captured and
+ * recorded server side before the redirect, so ?paypal=... only needs echoing.
+ * A confirmation that cannot be read is never reported as a failure: the money
+ * has moved, and telling a paying customer otherwise would be the worse error. */
+(function () {
+  var API_BASE = (window.AICA_API_BASE || 'https://app.digicuratoragency.com/aica')
+    .replace(/\/+$/, '');
+  var params = new URLSearchParams(window.location.search);
+  var intent = params.get('payment_intent');
+  var paypal = params.get('paypal');
+  var redirectStatus = params.get('redirect_status');
+
+  var headline = document.getElementById('headline');
+  var subhead = document.getElementById('subhead');
+  var receipt = document.getElementById('receipt');
+  var orderEmail = document.getElementById('order-email');
+
+  function money(cents, currency) {
+    return (currency || 'USD').toUpperCase() + ' ' + (cents / 100).toFixed(2);
+  }
+
+  function show(sale) {
+    if (sale.buyer_name) {
+      headline.textContent = "You're in, " + sale.buyer_name.split(' ')[0] + '.';
+    } else {
+      headline.textContent = "You're in.";
+    }
+    subhead.textContent = 'AI Creator Academy 2.0 is yours.';
+    var lines = ['<strong>' + money(sale.amount_cents, sale.currency) + '</strong> paid'];
+    if (sale.plan === 'payment_plan') {
+      lines.push('Payment plan: one more instalment in a month, then nothing further.');
+    }
+    if (sale.reference) lines.push('Order ' + sale.reference);
+    receipt.innerHTML = lines.join('<br/>');
+    receipt.hidden = false;
+    if (sale.buyer_email) {
+      orderEmail.innerHTML = 'Your invite is going to <strong>' + sale.buyer_email + '</strong>.';
+    }
+  }
+
+  if (redirectStatus === 'failed') {
+    headline.textContent = 'That payment did not go through';
+    subhead.textContent = 'Nothing was charged. You can try again on the course page.';
+    return;
+  }
+
+  if (paypal) {
+    headline.textContent = "You're in.";
+    subhead.textContent = 'AI Creator Academy 2.0 is yours.';
+    receipt.innerHTML = 'Order ' + paypal + '<br/>Paid with PayPal';
+    receipt.hidden = false;
+    return;
+  }
+
+  if (!intent) return;
+
+  fetch(API_BASE + '/confirm', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ payment_intent: intent })
+  })
+    .then(function (r) { return r.json(); })
+    .then(function (sale) {
+      if (sale && sale.paid) return show(sale);
+      if (sale && sale.status === 'processing') {
+        subhead.textContent = 'Your bank is still settling this one. It usually clears within a few minutes.';
+        return;
+      }
+      headline.textContent = 'That payment did not go through';
+      subhead.textContent = 'Nothing was charged. You can try again on the course page.';
+    })
+    .catch(function () { /* leave the default wording in place */ });
+})();
+</script>
+</body>
+</html>
