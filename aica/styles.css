@@ -107,6 +107,13 @@ body { padding-top: 64px; }
   border: 2px solid #4F8A84;
 }
 .aica-topbar__brand span {
+  /* Same root cause as the CTA button: this element sits outside
+     .store-theme.minima's subtree, so the theme's --default-font-secondary
+     never resolves here and it silently fell back to the page's serif
+     heading font. Named directly, matching the rest of the page's body/
+     button text (Inter) rather than its serif titles. Covers both the full
+     name and the "AICA 2.0" mobile variant — one selector, one rule. */
+  font-family: "Inter", sans-serif;
   font-weight: 600;
   font-size: 15px;
   color: #000;
