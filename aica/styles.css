@@ -1,0 +1,9 @@
+/* Small accessibility and link adaptations to the original Stan theme. */
+#store-page-submit-button { display: flex; align-items: center; justify-content: center; text-decoration: none; }
+#store-page-submit-button:hover { filter: brightness(.94); }
+a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid #4f8a84; outline-offset: 4px; }
+.store-locale-picker__trigger { cursor: default; }
+.description img { height: auto; }
+
+/* Keep the supplied portrait centered on the face inside the circular profile. */
+.store-header__image img { object-fit: cover; object-position: 50% 24%; }
