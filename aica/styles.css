@@ -117,17 +117,21 @@ body { padding-top: 64px; }
 .aica-topbar__short { display: none; }
 
 .aica-topbar__cta {
+  /* Same corner radius, weight and letter-spacing as #store-page-submit-button's
+     PURCHASE label (10px / 600 / 0.18px) — a smaller pill next to it read as a
+     different button. Only the size is scaled down for the compact bar. */
   flex: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-height: 44px;
-  padding: 0 24px;
-  border-radius: 70px;
+  padding: 0 22px;
+  border-radius: 10px;
   background: #4F8A84;
   color: #fff;
   font-weight: 600;
   font-size: 15px;
+  letter-spacing: 0.18px;
   line-height: 1;
   text-decoration: none;
   white-space: nowrap;
@@ -152,3 +156,24 @@ body { padding-top: 64px; }
 @media (max-width: 360px) {
   .aica-topbar__brand span { display: none; }
 }
+
+/* Footer Privacy Policy link, restyled from the theme's plain blue text into
+   a soft gray pill chip. The theme has a scoped ".store-theme.minima[data-v-…]
+   .privacy-policy { padding-bottom: 76px }" rule at specificity (0,4,0) — well
+   above this one — that wins on that single property even though this rule
+   sets the whole shorthand, because the cascade resolves per longhand, not
+   per rule. !important on that one side is what makes the pill an actual
+   pill instead of a tall oval. */
+a.privacy-policy {
+  display: inline-block;
+  padding: 10px 22px;
+  padding-bottom: 10px !important;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, .06);
+  color: #2b2b2b !important;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  transition: background .15s;
+}
+a.privacy-policy:hover { background: rgba(0, 0, 0, .1); }
