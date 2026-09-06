@@ -88,7 +88,31 @@
   ul.items li:first-child { border-top: none; padding-top: 4px; }
   ul.items li b { display: block; font-weight: 600; }
   ul.items li span { color: var(--muted); font-size: 14px; }
+  ul.items li .bonus-number {
+    display: block;
+    margin-bottom: 2px;
+    color: var(--green);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
   ul.items a { color: var(--green); font-weight: 600; }
+  .bonus-link {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 14px;
+  }
+  .bonus-value {
+    margin-top: 14px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: rgba(79, 138, 132, .10);
+    color: var(--ink);
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+  }
 
   .cta {
     display: inline-block;
@@ -132,21 +156,33 @@
     <div class="receipt" id="receipt" hidden></div>
   </div>
 
-  <!-- BONUSES — edit this list as you add them. Each item is one <li>. -->
   <div class="card">
     <span class="eyebrow">Open now</span>
     <h2>Your bonuses</h2>
-    <p>These are yours straight away. No waiting.</p>
+    <p>Your first three bonuses are ready to open. Login details for the Marketing Creative App will arrive by email.</p>
     <ul class="items" id="bonuses">
       <li>
-        <b>Bonus one</b>
-        <span>Swap this line for the bonus name and a sentence about it, then link it below.</span>
+        <span class="bonus-number">Bonus 1</span>
+        <b>UGC Prompt Engineer: Photo Enhancer Agent</b>
+        <a class="bonus-link" href="https://chatgpt.com/g/g-6955fec17608819199f17e0c76f44dbb-ugc-prompt-engineer-photo-enhancer" target="_blank" rel="noopener noreferrer">Open bonus</a>
       </li>
       <li>
-        <b>Bonus two</b>
-        <span>Same again. Add or remove list items as your bonus stack changes.</span>
+        <span class="bonus-number">Bonus 2</span>
+        <b>AISHA Engine™: AI Avatar &amp; Content System Agent</b>
+        <a class="bonus-link" href="https://chatgpt.com/g/g-693b74d76f3c8191bd896742ea59e464-aisha-enginetm-ai-avatar-content-system" target="_blank" rel="noopener noreferrer">Open bonus</a>
+      </li>
+      <li>
+        <span class="bonus-number">Bonus 3</span>
+        <b>Seedance 2.5 Director</b>
+        <a class="bonus-link" href="https://chatgpt.com/g/g-6a7c04f235e88191a331c705fc226253-aimuse-seedance-2-5-directortm" target="_blank" rel="noopener noreferrer">Open bonus</a>
+      </li>
+      <li>
+        <span class="bonus-number">Bonus 4</span>
+        <b>Marketing Creative App</b>
+        <span>Your login information will be sent to the email address used for this order.</span>
       </li>
     </ul>
+    <div class="bonus-value">Total bonus value: $145</div>
   </div>
 
   <div class="card">
