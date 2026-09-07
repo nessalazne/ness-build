@@ -57,6 +57,10 @@ a:focus-visible { outline: 3px solid var(--ink); outline-offset: 5px; }
 h1 { font-size: clamp(1.75rem, 3.5vw, 2.5rem); line-height: 1.2; letter-spacing: -.035em; margin: 0; font-weight: 700; }
 h1 span { display: block; }
 .course-description { font-size: clamp(1.125rem, 2.3vw, 1.5rem); line-height: 1.5; margin: 18px 0 30px; }
+.course-purchase { width: 100%; margin-top: auto; }
+.course-price { margin: 0 0 12px; font-size: 1rem; }
+.course-price strong { font-size: 1.5rem; }
+.course-bonus-note { margin: 10px 0 0; font-size: .875rem; text-align: center; }
 .access-button {
   width: 100%;
   margin-top: auto;
@@ -76,16 +80,19 @@ h1 span { display: block; }
 }
 .access-button:hover { background: #2c5954; }
 .access-button span { font-size: 1.4rem; font-weight: 400; }
-.bonuses { margin-top: 42px; padding: 0 4px; }
+.bonuses { margin-top: 48px; padding: 32px 4px 0; border-top: 1px solid #d9dfda; }
 .bonuses-heading { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 20px; }
 .eyebrow { margin: 0 0 7px; font-size: .875rem; color: var(--green); font-weight: 600; }
 h2 { margin: 0; font-size: 1.75rem; line-height: 1.2; letter-spacing: -.03em; }
-.value { flex-shrink: 0; margin: 0; color: var(--green); text-align: right; font-size: 1.75rem; font-weight: 600; line-height: 1.2; }
-.value span { display: block; margin-top: 4px; font-size: .875rem; font-weight: 400; color: var(--muted); }
+.bundle-description { max-width: 620px; margin: 14px 0 0; font-size: 1rem; color: var(--muted); }
+.bundle-value { margin: 20px 0 0; padding: 20px; background: #eaf1ee; border-radius: 12px; text-align: center; font-size: 1rem; color: var(--green); }
+.bundle-value span { display: block; margin-top: 5px; font-size: .875rem; color: var(--muted); }
 .bonus-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
 .bonus-list li { display: flex; align-items: flex-start; gap: 16px; padding: 22px; background: #fff; border: 1px solid #e5e7e2; border-radius: 16px; }
 .bonus-number { display: flex; align-items: center; justify-content: center; flex: 0 0 40px; height: 40px; background: #eaf1ee; color: var(--green); border-radius: 50%; font-size: .875rem; font-weight: 600; }
 .bonus-label { margin: 0 0 5px; color: var(--green); font-size: .875rem; }
+.item-description { margin: 5px 0 0; font-size: 1rem; color: var(--muted); }
+.bonus-list li:last-child { grid-column: 1 / -1; }
 h3 { margin: 0; font-size: 1rem; line-height: 1.5; font-weight: 600; }
 footer { padding: 28px 12px 0; text-align: center; color: var(--muted); font-size: .8125rem; }
 footer p { margin: 0 auto 12px; max-width: 520px; }
@@ -101,11 +108,9 @@ footer a { display: inline-flex; align-items: center; min-height: 44px; color: v
   h1 span { display: inline; }
   .course-description { font-size: 1.125rem; margin: 14px 0 24px; }
   .access-button { padding: 17px 12px; font-size: 1.125rem; gap: 10px; }
-  .bonuses { margin-top: 32px; padding: 0; }
+  .bonuses { margin-top: 32px; padding: 28px 0 0; }
   .bonuses-heading { align-items: flex-start; gap: 16px; flex-direction: column; }
   h2 { font-size: 1.5rem; }
-  .value { display: flex; align-items: baseline; gap: 8px; text-align: left; font-size: 1.5rem; }
-  .value span { margin: 0; }
   .bonus-list { grid-template-columns: minmax(0, 1fr); gap: 10px; }
   .bonus-list li { padding: 18px; gap: 14px; }
 }
