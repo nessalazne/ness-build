@@ -92,7 +92,6 @@ h2 { margin: 0; font-size: 1.75rem; line-height: 1.2; letter-spacing: -.03em; }
 .bonus-number { display: flex; align-items: center; justify-content: center; flex: 0 0 40px; height: 40px; background: #eaf1ee; color: var(--green); border-radius: 50%; font-size: .875rem; font-weight: 600; }
 .bonus-label { margin: 0 0 5px; color: var(--green); font-size: .875rem; }
 .item-description { margin: 5px 0 0; font-size: 1rem; color: var(--muted); }
-.bonus-list li:last-child { grid-column: 1 / -1; }
 h3 { margin: 0; font-size: 1rem; line-height: 1.5; font-weight: 600; }
 footer { padding: 28px 12px 0; text-align: center; color: var(--muted); font-size: .8125rem; }
 footer p { margin: 0 auto 12px; max-width: 520px; }
