@@ -1,0 +1,59 @@
+Create a new animated explainer using the clay content studio treatment demonstrated by the working HTML below. This is a code-driven animation: build the pictures in Canvas 2D, synthesize the sound with Web Audio, and keep the whole timeline seekable.
+
+MY SUBJECT
+[Insert my topic, script, or message here. If I have not supplied one, ask for the topic before writing a new story.]
+
+REFERENCE STORY
+The included example is an original 20-second sequence called "One idea. Four formats." A butter-yellow idea tile enters a miniature lavender studio, which reshapes the idea into a coral short-video tile, mint carousel, blue envelope, and lavender article. A continuous camera move follows the process. The final pullback brings the original idea and all four outputs into a clear visual relationship. This demonstrates content repurposing; it makes no claims about publishing speed, reach, or business results.
+
+Use that sequence to understand the medium and the level of finish. Build a new story around my subject. Keep a prop only when it explains the new subject. The studio, the four formats, and the exact words are example content, not mandatory ingredients.
+
+PLAN THE STORY
+Write a compact beat plan before coding. Include the exact words on screen, what changes visually, the connecting action, and the important sound at each beat. Unless I request a review pause, continue through implementation and testing. For a short subject, aim for 15-25 seconds. Give the viewer one clear idea to follow, a visible transformation or cause-and-effect relationship, and a readable final result. Distinguish any assumptions from facts I supplied.
+
+MATERIAL AND LIGHT
+The objects should feel like thick, softly rounded clay. Use the supplied material primitives to preserve these layers:
+- A multi-step extrusion with a darker middle band and a pale bounce-light edge.
+- A broad gradient across each face, moving from pale top-left light to a richer bottom-right tone.
+- Soft inward shadows that describe rounded edges and form depth.
+- A narrow white rim and a broad, restrained specular patch. The clay remains mostly matte.
+- Blurred contact shadows beneath objects. A floating object casts a wider, lighter shadow; its shadow tightens when it lands.
+- A continuous pastel studio backdrop with a soft floor transition, gentle atmospheric depth, and very light deterministic grain.
+
+Use lavender (#c9b7f4), butter (#ffe49a), mint (#b7dfcd), coral (#f9b6a6), and pale blue (#b5d5eb), with warm ivory faces and dark plum lettering (#55406d). Let color help the viewer track an object through the scene. Keep the source idea visually recognizable when it changes position, scale, or context.
+
+TYPE AND FRAMING
+Use Fredoka 600 and 700, and wait for the fonts before baking graphics or rendering the first frame. Work at 1280 by 720 with a 16:9 aspect ratio. Keep the main action inside a 70-pixel safe margin. Use 48-68 px headlines and 28-34 px story labels. Any small markings are decorative and must not carry essential meaning. Keep each phrase short and show it long enough to read. Avoid filling the frame with UI panels or explanatory paragraphs.
+
+MOTION AND CONTINUITY
+Animate a change that explains the subject. Objects should enter with weight, compress slightly at contact, and settle after a small elastic overshoot. Use a damped spring for pop-ins and a smooth cubic curve for camera moves. Vary the phase of residual bobbing so objects do not move in unison.
+
+Carry relevant objects into the next beat instead of rebuilding the whole screen on each beat. Use a camera pan, a traveling object, a growing tube, or a change in arrangement to show the connection. A new scene is appropriate when the meaning changes enough to need one. Use a short final hold, with only small residual motion, so the result can be understood.
+
+The included sample has this timing:
+0.0-2.3: the idea tile arrives and the hook reads "One idea."
+2.3-4.7: the camera follows the same tile into a miniature studio.
+4.7-7.2: the studio compresses and its indicators come on.
+7.2-13.6: four different format objects emerge in a stagger.
+13.6-16.5: the camera pulls back and connective tubes relate the outputs to the original idea.
+16.5-20.0: the complete arrangement holds under "Shape the format. Keep the idea."
+
+Build timings for my new subject. Do not keep the example's timing simply because it is already coded.
+
+SOUND DESIGN
+Use the included Web Audio kit and write a new scoreSound(k) for the new events. Soft clay contact should combine a low, short pitched bend with a filtered noise puff. A small rebound may follow at lower volume. Use quiet glides during significant moves, a restrained processing motif where it has meaning, and a short resolving chord at the result.
+
+Sync effects to the actual contact and reveal times. Keep the music bed below the effects. Leave space between important events. Do not add narration unless I ask for it. Start browser playback muted; let the viewer turn sound on. Stop scheduled audio on pause, seek, restart, and mute. Render the same score offline when exporting the MP4.
+
+IMPLEMENTATION
+Deliver a working HTML player and editable code, not a prose-only description. The file should contain a 1280 by 720 canvas, play/pause, restart, a time slider, elapsed time, sound toggle, and loop toggle. Set the actual duration in one DURATION constant.
+
+Expose window.seek(t), window.DURATION, window.scoreSound, and a window.renderReady promise. Waiting for renderReady and then calling seek(t) must draw the exact requested frame without relying on playback history. Geometry must be a pure function of time. Seed any randomness; do not use Math.random or wall-clock time inside drawing functions. Cache static textured objects after the fonts load. Use transforms for their movement so detailed material rendering does not have to be rebuilt every frame.
+
+Keep the supplied helper and sound code together with the new scene so the result is reproducible. The code below is complete except for its Google Fonts request. For an offline deliverable, embed the font files or include them locally and update the font-face URLs. Preserve the key material passes when optimizing. Do not replace detailed clay assets with flat rectangles or generic circles.
+
+EXPORT AND CHECK
+For an MP4 export, wait for renderReady, call seek(i / 30) for each frame, and encode the canvas frames at 30 fps. Render the score through SOUND.renderOffline(scoreSound, DURATION, 48000, {voiceover: false, master: 0.85}) and mux it into the video. Do not record a browser screen in real time. Inspect the opening, each major transformation, and the final frame. Check that important labels stay readable, objects do not clip, and sound remains below clipping. Report the actual duration and resolution. If rendering is unavailable, state that clearly and deliver the working player and source.
+
+WORKING REFERENCE HTML
+The following is the complete code for the original clay content studio example. Adapt its scene to my subject while retaining the rendering quality and player behavior.
