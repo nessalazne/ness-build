@@ -6,8 +6,10 @@
   const params = new URLSearchParams(window.location.search);
   const token = params.get('ref');
   const validTokens = ['groove', 'founder', 'vibe297'];
+  // The hub checkout (hub.digicuratoragency.com/api/ce) sends buyers here with ?plan=.
+  const validPlans = ['engine', 'engine_live'];
 
-  if (!validTokens.includes(token)) {
+  if (!validTokens.includes(token) && !validPlans.includes(params.get('plan'))) {
     window.location.replace(
       'https://builds.digicuratoragency.com/content-engine/'
     );
@@ -17,7 +19,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>You're In · AI Social Hub Content Engine · AISocialHub</title>
-<meta name="description" content="Your Content Engine order is confirmed. Check your email for the source code ZIP, license key, and setup guide." />
+<meta name="description" content="Your Content Engine order is confirmed. Check your email for your hub sign-in link and license key." />
 <meta name="robots" content="noindex, nofollow" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
@@ -576,6 +578,9 @@ strong { color: var(--accent); font-weight: 500; }
 /* ================================================================
    INCLUDES GRID
    ================================================================ */
+.live-only { display: none; }
+body.is-live .live-only { display: block; }
+
 .includes-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -779,11 +784,11 @@ footer {
   </div>
 
   <h1 class="hero-title reveal reveal-d1">
-    Your Engine<br>is <em>on its way.</em>
+    Your Engine<br>is <em>ready.</em>
   </h1>
 
   <p class="hero-sub reveal reveal-d2">
-    Your <strong>AI Social Hub Content Engine</strong> order is confirmed. Check your inbox: the source code ZIP, your license key, and the setup guide are on their way.
+    Your <strong>AI Social Hub Content Engine</strong> order is confirmed. Two emails are on their way: your sign-in link for the hub, and your license key. The source code is a download in the hub classroom.
   </p>
 
   <div class="hero-metrics reveal reveal-d4">
@@ -812,7 +817,7 @@ footer {
       <div>
         <div class="email-box-title">Check your inbox</div>
         <p class="email-box-body">
-          A confirmation email is on its way to <strong>your email address</strong> with your source code ZIP download, your license key, and the setup guide. If you don't see it within 5 minutes, check your spam and promotions folders, or email <strong style="color:var(--accent);">ness@digicuratoragency.com</strong>
+          You get two emails within a few minutes. One has your <strong>Enter the Hub</strong> sign-in link. The other has your <strong>license key</strong>, which is also on your Content Engine page in the hub. If you don't see them after 5 minutes, check your spam and promotions folders, sign in at <strong style="color:var(--accent);">hub.digicuratoragency.com/login</strong> to get a fresh link, or email <strong style="color:var(--accent);">ness@digicuratoragency.com</strong>
         </p>
       </div>
     </div>
@@ -854,8 +859,8 @@ footer {
           <div class="step-line"></div>
         </div>
         <div class="step-body">
-          <div class="step-title">Unzip and install <span class="tag green">10 minutes</span></div>
-          <div class="step-desc">Unzip the source, run npm install in the backend, load the extension in Chrome, and paste your license key. Section 1 to 7 of the setup guide.</div>
+          <div class="step-title">Download, unzip and install <span class="tag green">10 minutes</span></div>
+          <div class="step-desc">Sign in to the hub, open your Content Engine page and download the source code. Unzip it, follow the setup guide from Section 2, load the extension in Chrome, and paste your license key.</div>
         </div>
       </div>
 
@@ -891,7 +896,7 @@ footer {
      ================================================================ -->
 <section class="section">
   <div style="max-width:560px; margin-bottom:clamp(1rem,1.5vw,1.4rem);">
-    <div class="kicker teal reveal">Your $97 includes</div>
+    <div class="kicker teal reveal">Your order includes</div>
     <h2 class="section-title reveal reveal-d1">
       Everything you need<br>to <em>own this system.</em>
     </h2>
@@ -905,7 +910,7 @@ footer {
     <div class="include-card reveal reveal-d2">
       <span class="include-icon">📁</span>
       <div class="include-name">Source Code + License Key</div>
-      <div class="include-desc">Ness's actual working project as a ZIP. Fill your API keys, activate your license key, and run the same day. A real system, not a template.</div>
+      <div class="include-desc">Ness's actual working project as a ZIP in the hub classroom. Fill your API keys, activate your license key, and run the same day. A real system, not a template.</div>
     </div>
     <div class="include-card reveal reveal-d3">
       <span class="include-icon">📘</span>
@@ -923,26 +928,44 @@ footer {
       <div class="include-desc">Your voice, your audience, your caption colors in one file. Edit it once and every script and video follows.</div>
     </div>
     <div class="include-card reveal reveal-d6">
-      <span class="include-icon">🎟️</span>
-      <div class="include-name">Founding Member Upgrade</div>
-      <div class="include-desc">Your $97 today counts as full credit. Upgrade to GrowthOS, every AI system, for $200 more. Same $297 founding member price. Available for 24 hours after purchase.</div>
-    </div>
-
-    <div class="include-card reveal reveal-d1">
-      <span class="include-icon">🎓</span>
-      <div class="include-name">The AI Audit Method</div>
-      <div class="include-desc">Turn your AI skills into a consulting business. 13 lessons — the exact process to land your very first client. Zero fluff. Real results.</div>
-    </div>
-
-    <div class="include-card reveal reveal-d2">
-      <span class="include-icon">🤖</span>
-      <div class="include-name">AISHA Engine</div>
-      <div class="include-desc">Build an AI creator brand that runs without you on camera. Hyper-realistic avatar, automated content across major platforms, always-on monetization — no daily posting required.</div>
+      <span class="include-icon">🔄</span>
+      <div class="include-name">Free updates for life</div>
+      <div class="include-desc">Every update to the Engine is free, for as long as you own it.</div>
     </div>
   </div>
 </section>
 
 <div class="divider"></div>
+
+
+<!-- ================================================================
+     LIVE SETUP (only for ?plan=engine_live)
+     ================================================================ -->
+<section class="section live-only" id="live-setup">
+  <div style="max-width:620px; margin-bottom:clamp(1rem,1.5vw,1.4rem);">
+    <div class="kicker teal reveal">Your Live Setup upgrade</div>
+    <h2 class="section-title reveal reveal-d1">
+      Your 3 live sessions<br>and <em>the bonuses.</em>
+    </h2>
+    <p class="body-text reveal reveal-d2" style="margin-top:1.4rem;">
+      Live Setup is limited to 20 people. Your three sessions run in the week of 2 November, and I will email you the times. The full bonus list is on the checkout page you just used.
+    </p>
+  </div>
+  <div class="includes-grid">
+    <div class="include-card reveal reveal-d1">
+      <span class="include-icon">🎓</span>
+      <div class="include-name">The AI Audit Method</div>
+      <div class="include-desc">Turn your AI skills into a consulting business. 13 lessons that walk through the exact process to land your first client. It is already on your Content Engine page in the hub.</div>
+    </div>
+    <div class="include-card reveal reveal-d2">
+      <span class="include-icon">🤖</span>
+      <div class="include-name">AISHA Engine</div>
+      <div class="include-desc">Build an AI creator brand that runs without you on camera, with a realistic avatar and automated content across the major platforms. It is already on your Content Engine page in the hub.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider live-only"></div>
 
 
 <!-- ================================================================
@@ -971,109 +994,6 @@ footer {
 </section>
 
 <div class="divider"></div>
-
-
-<!-- ================================================================
-     STILL WANT ALL 6 — UPGRADE OFFER
-     ================================================================ -->
-<section class="section" id="upgrade-section">
-  <div style="max-width:700px; margin:0 auto; text-align:center;">
-    <div class="kicker reveal" style="justify-content:center;">Next Step Up</div>
-    <h2 class="section-title reveal reveal-d1" style="margin-bottom:1rem;">
-      Still want the full <em>GrowthOS?</em>
-    </h2>
-    <p class="reveal reveal-d2" style="font-family:var(--font-body);font-weight:300;font-size:clamp(0.95rem,1.2vw,1.05rem);color:var(--muted);font-style:italic;margin-bottom:clamp(2rem,3vw,2.8rem);">The $200 founding member upgrade is<br>available for 24 hours after your purchase.</p>
-
-    <div class="reveal reveal-d3" style="display:flex;justify-content:center;margin-bottom:clamp(2rem,3vw,2.8rem);">
-      <div style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal);padding:8px 18px;border:1px solid rgba(255,222,89,0.25);border-radius:100px;background:rgba(255,222,89,0.06);">
-        <span style="width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 8px var(--teal-glow);animation:blink 2s ease-in-out infinite;display:inline-block;flex-shrink:0;"></span>
-        ⚡ 24-hour upgrade window
-      </div>
-    </div>
-
-    <div class="reveal reveal-d4" id="upgrade-card" style="background:rgba(216,118,87,0.06);border:1px solid var(--accent);border-radius:14px;padding:clamp(1.8rem,3vw,2.4rem);text-align:left;overflow:hidden;transition:max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;">
-
-      <div style="font-family:var(--font-mono);font-size:10px;color:var(--accent);text-transform:uppercase;letter-spacing:0.2em;margin-bottom:1rem;">AISOCIALHUB GROWTHOS — ALL AI SYSTEMS</div>
-
-      <div style="margin-bottom:1.4rem;">
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.06em;">
-          <span style="color:var(--accent);">✓ AI Social Hub Content Engine</span>
-          <span style="color:var(--accent);font-size:10px;">You're in</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.06em;">
-          <span style="color:var(--teal);">→ Brand Clarity</span>
-          <span style="color:var(--teal);font-size:10px;">INCLUDED</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.06em;">
-          <span style="color:var(--teal);">→ Niche Pulse</span>
-          <span style="color:var(--teal);font-size:10px;">INCLUDED</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.06em;">
-          <span style="color:var(--teal);">→ Content Automation (10 platforms)</span>
-          <span style="color:var(--teal);font-size:10px;">INCLUDED</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.06em;">
-          <span style="color:var(--teal);">→ SEO Blog Publisher</span>
-          <span style="color:var(--teal);font-size:10px;">INCLUDED</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.06em;">
-          <span style="color:var(--teal);">→ AI Lead Magnet Builder</span>
-          <span style="color:var(--teal);font-size:10px;">INCLUDED</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.06em;">
-          <span style="color:var(--teal);">→ AI Website Builder</span>
-          <span style="color:var(--teal);font-size:10px;">INCLUDED</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.06em;">
-          <span style="color:var(--teal);">→ Cinematic Ads Agent</span>
-          <span style="color:var(--teal);font-size:10px;">INCLUDED</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.06em;">
-          <span style="color:var(--teal);">→ Client CRM</span>
-          <span style="color:var(--teal);font-size:10px;">INCLUDED</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:0.06em;">
-          <span style="color:var(--teal);">→ Lead Generation Scraper</span>
-          <span style="color:var(--teal);font-size:10px;">INCLUDED</span>
-        </div>
-      </div>
-
-      <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:1.4rem;">
-        <div style="font-family:var(--font-mono);font-size:11px;color:var(--green);">+ 15 systems · Lifetime updates</div>
-        <div style="font-family:var(--font-mono);font-size:11px;color:var(--green);">+ Full source code · Yours to own</div>
-        <div style="font-family:var(--font-mono);font-size:11px;color:var(--green);">+ 30-Day Builder Support + Community</div>
-        <div style="font-family:var(--font-mono);font-size:11px;color:var(--green);">+ AI Audit Method · Bonus included</div>
-        <div style="font-family:var(--font-mono);font-size:11px;color:var(--green);">+ AISHA Engine · Bonus included</div>
-      </div>
-
-      <div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;margin:1.4rem 0;">
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-bottom:1px solid var(--border);font-family:var(--font-mono);font-size:11px;">
-          <span style="color:var(--muted);">$97 paid today</span>
-          <span style="color:var(--muted);">→</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-bottom:1px solid var(--border);font-family:var(--font-mono);font-size:11px;">
-          <span style="color:var(--muted);">+ $200 upgrade</span>
-          <span style="color:var(--muted);">→</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 16px;font-family:var(--font-mono);font-size:11px;">
-          <span style="color:var(--accent);font-weight:600;">= $297 total</span>
-          <span style="color:var(--accent);font-weight:600;">Founding price</span>
-        </div>
-      </div>
-
-      <div style="font-family:var(--font-mono);font-size:11px;color:var(--green);margin-bottom:1.8rem;">$700 less than regular price</div>
-
-      <a href="https://pay.digicuratoragency.com/checkout/f316d3519934b8f072586e33602b45ca" target="_blank" rel="noopener" class="btn-primary" style="display:flex;justify-content:center;width:100%;text-align:center;box-sizing:border-box;">
-        Upgrade to GrowthOS — $200 →
-      </a>
-
-      <p style="font-family:var(--font-mono);font-size:10px;color:var(--muted);text-align:center;margin-top:1rem;">Founding member price. The upgrade credit<br>is valid for 24 hours after purchase.</p>
-
-      <a href="#" id="no-thanks-link" style="font-family:var(--font-mono);font-size:10px;color:var(--muted);text-decoration:none;display:block;text-align:center;margin-top:0.8rem;cursor:pointer;">No thanks — I'll stick with Session 1 only</a>
-
-    </div>
-  </div>
-</section>
 
 
 <!-- ================================================================
@@ -1112,6 +1032,10 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.12 });
 
+if (new URLSearchParams(window.location.search).get('plan') === 'engine_live') {
+  document.body.classList.add('is-live');
+}
+
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 document.querySelectorAll('.btn-primary, .btn-ghost, .btn-green').forEach(btn => {
@@ -1123,22 +1047,6 @@ document.querySelectorAll('.btn-primary, .btn-ghost, .btn-green').forEach(btn =>
     this.style.borderColor = '#deb4b4';
   });
 });
-
-const noThanksLink = document.getElementById('no-thanks-link');
-if (noThanksLink) {
-  noThanksLink.addEventListener('click', function(e) {
-    e.preventDefault();
-    const section = document.getElementById('upgrade-section');
-    section.style.transition = 'max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease';
-    section.style.maxHeight = section.scrollHeight + 'px';
-    section.offsetHeight;
-    section.style.maxHeight = '0';
-    section.style.opacity = '0';
-    section.style.overflow = 'hidden';
-    section.style.paddingTop = '0';
-    section.style.paddingBottom = '0';
-  });
-}
 </script>
 
 </body>
