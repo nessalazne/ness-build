@@ -1315,7 +1315,7 @@ footer {
 </head>
 <body class="has-sale">
 
-<a class="sale-bar sale-only" href="#order" data-sale-end="2026-10-26T03:59:59Z" aria-label="The $97 price ends Sunday 11:59 PM ET">
+<a class="sale-bar sale-only" href="#order" data-sale-end="2026-11-02T04:59:59Z" aria-label="The $97 price ends Sunday 1 November, 11:59 PM ET">
   <span class="bdot"></span>
   <span class="sb-label">$97 price ends in</span>
   <span class="sb-clock"><b data-u="H">00</b>:<b data-u="m">00</b>:<b data-u="s">00</b></span>
@@ -1340,9 +1340,9 @@ footer {
 
   <!-- HERO -->
   <header class="co-hero">
-    <div class="pricing-badge"><span class="bdot"></span><span class="sale-only">Intro price · $147 from Monday</span><span class="regular-only">One payment · Instant access</span></div>
+    <div class="pricing-badge"><span class="bdot"></span><span class="sale-only">Intro price · $147 from 2 November</span><span class="regular-only">One payment · Instant access</span></div>
     <h1 class="co-title"><span class="sale-only">Lock in <em>$97</em><br>before it's $147.</span><span class="regular-only">Get the<br><em>Content Engine.</em></span></h1>
-    <div class="sale-timer sale-only" data-sale-end="2026-10-26T03:59:59Z">
+    <div class="sale-timer sale-only" data-sale-end="2026-11-02T04:59:59Z">
       <div class="sale-head"><span class="bdot"></span>The price goes to <strong>$147</strong> in</div>
       <div class="sale-clock" role="timer" aria-label="Time left at the intro price">
         <span><b data-u="d">00</b><small>days</small></span>
@@ -1350,7 +1350,7 @@ footer {
         <span><b data-u="m">00</b><small>min</small></span>
         <span><b data-u="s">00</b><small>sec</small></span>
       </div>
-      <div class="sale-sub">$97 until Sunday 11:59 PM ET</div>
+      <div class="sale-sub">$97 until Sunday 1 November, 11:59 PM ET</div>
     </div>
   </header>
 
@@ -1493,7 +1493,7 @@ footer {
       <div class="co-or"><span>or pay with</span></div>
       <div id="ce-paypal"></div>
     </div>
-    <p class="co-fine co-center sale-only">$97 until Sunday 11:59 PM ET, then $147.</p>
+    <p class="co-fine co-center sale-only">$97 until Sunday 1 November, 11:59 PM ET, then $147.</p>
     <p class="co-fine co-center"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Payments are processed by Stripe. I never see your card number.</p>
   </form>
 
@@ -1529,8 +1529,8 @@ footer {
 
 <script>window.CE_CHECKOUT_API = 'https://hub.digicuratoragency.com/api/ce';</script>
 <script>
-/* Prices: the intro sale until Sunday 11:59 PM ET, the regular price after. */
-const SALE_END = Date.parse('2026-10-26T03:59:59Z');
+/* Prices: the intro sale until Sunday 1 November 11:59 PM ET (same moment as LIVE_END), the regular price after. */
+const SALE_END = Date.parse('2026-11-02T04:59:59Z');
 const LIVE_END = Date.parse('2026-11-02T04:59:59Z');
 const PRICES = { sale: { engine: 97, engineWas: 147, live: 197 }, regular: { engine: 147, live: 197 } };
 /* Payment backend, same contract as the AICA checkout (aica/app.js):
