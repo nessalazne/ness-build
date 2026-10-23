@@ -1,0 +1,73 @@
+Create an original code-driven animation in the papercraft studio style demonstrated by the working source below. The scene must look like printed cardstock photographed on a real cutting mat, with folding panels and physical construction details.
+
+MY CONTENT
+[Insert my topic, script, or message here. If the subject is missing, ask for it before inventing the story.]
+
+OPTIONAL VOICEOVER
+[If I supply voiceover timing, align the beats to it. If I supply only a topic, create a self-contained silent story with paper sound effects. Do not block a sample on missing narration.]
+
+THE REFERENCE EXAMPLE
+The included original sample is exactly 15 seconds. A flat printed net becomes a miniature studio storefront. Its walls hinge upward, a gabled roof folds and seats itself, a striped awning and two paper trees arrive, and an OPEN tent sign completes the build. The camera travels from an overhead view toward a three-quarter view of the finished object. The story is about developing an idea into a tangible result. It makes no business, revenue, or performance claims.
+
+Use the code to understand the medium and production detail. The storefront is an example, not a required subject. Draw new models that explain my content. Do not carry the studio, trees, labels, or timings into a different topic unless they still make sense.
+
+STORY AND TIMING
+Plan the sequence in a concise beat table before coding. Each beat should state its start/end time, on-screen words, physical action, relationship to the preceding beat, and key sound. Unless I ask for a review pause, continue through implementation and verification.
+
+For a sample, target about 15 seconds. For a timed voiceover, use the supplied spoken timing and hold the final result for about one second after the last line. Keep timing in a BEATS table or similarly named shared constants. Picture and sound should refer to the same events.
+
+The working example follows these beats:
+0.0-2.0: the flat printed template lies on the cutting mat; "Start with a flat plan."
+2.0-5.3: walls, seams, and glue tabs fold into the main body; "Fold the walls."
+5.4-8.2: two roof panels hinge into a gable and settle onto the walls; "Give it a roof."
+8.35-11.2: the awning, trees, and OPEN sign arrive; "Make it yours."
+11.35-15.0: the complete miniature holds with small stop-motion movement; "Bring the idea to life."
+
+MATERIAL RULES
+Construct each model from flat polygon faces with local coordinates, a surface normal, printed artwork, and a connection to its parent face. This is a small three-dimensional paper renderer running in Canvas 2D. Do not replace the models with flat icon cards or rounded clay shapes.
+
+Preserve these visible details:
+- Printed crease lines along real fold hinges.
+- Small trapezoid glue tabs that rotate with the panels.
+- Thin off-white card edges and narrow seam gaps.
+- Slightly different colors on printed faces and unprinted backs.
+- Fine fibers and grain attached to each face, so they travel with the paper.
+- Warm directional shading calculated from each face normal, with a cool ambient fill.
+- Soft cast shadows projected onto the mat, plus tighter contact shadows at the base.
+- A green self-healing cutting mat with a perspective grid, worn cut marks, tiny offcuts, and a few craft tools at the edges.
+
+Use cream stock (#f5edd9), forest ink (#243b35), muted teal (#347c70), terracotta (#d97142), warm yellow (#e5b652), and pale blue (#6b9ca8). Assign color by function so the viewer can track the same part as it folds or moves. Keep the finish matte and fibrous, without glossy plastic or clay highlights.
+
+CAMERA AND MOTION
+Use a smooth camera move to reveal the construction. Pose the models at 12 updates per second to create a restrained stop-motion feel, while exporting at 30 frames per second. Seed the tiny repositioning jitter and keep it small enough that printed details remain readable.
+
+Panels rotate around their actual hinges. Their apparent width, shading, and shadows must change as they fold. A roof should meet its walls rather than float above them. An object that lands should decelerate, contact the surface, and settle. Do not add springy clay-like stretching to rigid card panels.
+
+Keep continuity when the next beat builds on the same object. Use a new scene only when the subject requires it. Preserve enough empty space for the fold to be understood. Let the finished model hold for two or three seconds in a short sample.
+
+TYPE AND FRAMING
+Work at 1280 by 720, 16:9 landscape. Use Space Grotesk 700 for clear headline labels, Space Mono 700 for small printed construction markings, and Fredoka where rounded display lettering fits. Load every font before drawing cached textures or exporting frames.
+
+Use screen-space headline labels around 44-50 px so the camera cannot make the key message unreadable. Important object labels should remain at least about 28 px on screen. Small part numbers and grid marks may be decorative. Keep them out of the story's critical information. Avoid long paragraphs and subtitles unless requested.
+
+SOUND
+Write a new scoreSound(k) with the included Web Audio kit. Use filtered paper rustles during folds, short dry taps when cardstock meets the mat, and a restrained closing chime when the object is complete. Snap placement effects to the same 12 fps pose times as the image. Keep the sound sparse enough to hear individual actions.
+
+This sample has no voiceover. If narration is supplied for a new piece, use the kit's voiceover mode and keep effects below speech. No voiceover needs to be invented for a silent sample. Avoid generic cinematic whooshes or loud impact effects that contradict the small physical scale.
+
+PLAYER AND REUSABILITY
+Deliver a complete HTML file with a canvas, play/pause, restart, scrub slider, elapsed time, sound toggle, and loop control. Start muted and let the viewer enable sound. Expose window.seek(t), window.DURATION, window.scoreSound, and a window.renderReady promise.
+
+Every picture must be a deterministic function of time. Use seeded randomness for grain and stop-motion jitter. Reset face/group identifiers before reconstructing the geometry for each frame so texture placement cannot drift when seeking. Cache the mat and paper texture. Avoid wall-clock time or Math.random inside the drawing functions.
+
+Preserve the fixed audio playback approach in this source: prepare the score once, then play it from an AudioBuffer offset when enabling sound, resuming, or seeking. Do not reschedule already-running music or ambience using negative AudioParam times. Handle both synchronous and asynchronous audio failures, and let the user retry.
+
+The complete reference below loads its fonts through Google Fonts to keep the prompt manageable. For an offline HTML deliverable, embed the fonts or bundle local font files. Include all helper, material, sound, scene, and player code so another run can reproduce the result.
+
+VERIFY AND EXPORT
+Wait for renderReady, call seek(i / 30) for each frame, and encode the canvas frames at 30 fps. Render the matching score using SOUND.renderOffline(scoreSound, DURATION, 48000, {voiceover: false, master: 0.85}), then mux stereo audio into the MP4. Use voiceover:true if narration is part of the new piece.
+
+Inspect the flat template, a partially folded state, roof contact, the detail placements, and the completed object. Verify that model parts meet, printed faces are not reversed, important text is readable, and the frame contains no unintended clipping. Seek to the same timestamp before and after another frame and confirm identical pixels. Test sound enabled after playback has already started, resume after pause, seeking near the end, and looping. Report the actual runtime and output resolution.
+
+COMPLETE WORKING SOURCE
+Adapt the scene below around my content while keeping its papercraft material and playback quality.
