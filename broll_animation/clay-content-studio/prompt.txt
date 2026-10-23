@@ -439,12 +439,41 @@ The following is the complete code for the original clay content studio example.
     return { play, bed, music, tone, noise, withMinor, hz, vo: VO, sounds: Object.keys(S) };
   };
 
-  // Live playback for a player: SOUND.live(scoreFn, fromT, { voiceover, master }) starts the score from explainer time
-  // fromT right now and returns stop(). Call stop() on pause or seek, and SOUND.live again on play.
-  SOUND.live = function (fn, fromT, opts) {
-    const ctx = new (window.AudioContext || window.webkitAudioContext)();
-    fn(SOUND.kit(ctx, Object.assign({}, opts, { start: fromT || 0, delay: 0.03 })));
-    return () => { try { ctx.close(); } catch (e) {} };
+  // Render the deterministic score once, then seek within its buffer. Rescheduling a
+  // long ambience/music event from the middle could send negative automation times
+  // to Web Audio. Buffer offsets preserve the exact mix without past-time events.
+  const preparedScores = new WeakMap();
+  let liveContext = null;
+  SOUND.prepare = function (fn, duration, opts = {}) {
+    let entries = preparedScores.get(fn);
+    if (!entries) { entries = new Map(); preparedScores.set(fn, entries); }
+    const key = JSON.stringify([duration, !!opts.voiceover, opts.master ?? 0.9]);
+    if (!entries.has(key)) {
+      const promise = SOUND.renderOffline(fn, duration, 48000, opts).then(result => {
+        const buffer = new AudioBuffer({ numberOfChannels: 2, length: result.frames, sampleRate: result.sr });
+        const left = buffer.getChannelData(0), right = buffer.getChannelData(1);
+        for (let i = 0; i < result.frames; i++) { left[i] = result.inter[i * 2]; right[i] = result.inter[i * 2 + 1]; }
+        return buffer;
+      }).catch(error => { entries.delete(key); throw error; });
+      entries.set(key, promise);
+    }
+    return entries.get(key);
+  };
+  SOUND.live = function (fn, fromT = 0, opts = {}) {
+    const Audio = window.AudioContext || window.webkitAudioContext;
+    if (!Audio) throw new Error('This browser does not expose Web Audio.');
+    if (!liveContext || liveContext.state === 'closed') liveContext = new Audio();
+    const ctx = liveContext, resume = ctx.resume(), requestedAt = performance.now();
+    let stopped = false, source = null;
+    const stop = () => { stopped = true; if (source) { try { source.stop(); } catch (_) {} source.disconnect(); source = null; } };
+    stop.ready = Promise.all([resume, SOUND.prepare(fn, opts.duration || window.DURATION, opts)]).then(([, buffer]) => {
+      if (stopped) return;
+      if (ctx.state !== 'running') throw new Error('Audio playback needs a click to resume.');
+      const offset = Math.max(0, fromT + (performance.now() - requestedAt) / 1000);
+      if (offset >= buffer.duration) return;
+      source = ctx.createBufferSource(); source.buffer = buffer; source.connect(ctx.destination); source.start(ctx.currentTime, offset);
+    });
+    return stop;
   };
 
   // Render a style's explainerSound into an OfflineAudioContext; returns interleaved float stereo.
@@ -776,8 +805,15 @@ window.DURATION=DURATION;window.scoreSound=scoreSound;
 const $=id=>document.getElementById(id), canvas=$('film'),ctx=canvas.getContext('2d');
 let currentT=0,playing=false,muted=true,loop=true,lastTime=0,stopSound=null,ready=false;
 const duration=CLAY_STUDIO.duration;
-function silence(){if(stopSound){stopSound();stopSound=null;}}
-function startSound(){silence();if(!muted&&playing)try{stopSound=SOUND.live(scoreSound,currentT,{voiceover:false,master:.85});}catch(error){muted=true;$('sound').textContent='Sound off';$('status').textContent='Sound is unavailable in this browser.';}}
+const playbackStatus=`${duration} seconds · Canvas + synthesized audio · No generated video`;
+let audioRequest=0;
+function silence(){audioRequest++;if(stopSound){stopSound();stopSound=null;}}
+function startSound(){
+ silence();if(muted||!playing)return;
+ const request=audioRequest;
+ const failed=error=>{if(request!==audioRequest)return;silence();muted=true;$('sound').textContent='Sound off';$('sound').setAttribute('aria-pressed','false');$('status').textContent='Audio could not start. Click Sound off to retry, or play the downloaded MP4.';console.error('Audio playback:',error);};
+ try{stopSound=SOUND.live(scoreSound,currentT,{voiceover:false,master:.85,duration});stopSound.ready.then(()=>{if(request===audioRequest)$('status').textContent=playbackStatus;}).catch(failed);}catch(error){failed(error);}
+}
 function paint(t){
  currentT=Math.max(0,Math.min(duration,Number(t)||0));
  ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,canvas.width,canvas.height);
@@ -788,7 +824,8 @@ function setPlaying(value){playing=value&&ready;lastTime=0;$('play').textContent
 window.seek=t=>{setPlaying(false);paint(t);};
 window.renderReady=document.fonts.ready.then(async()=>{
  await Promise.all(['600 66px Fredoka','700 35px Fredoka'].map(font=>document.fonts.load(font)));
- CLAY_STUDIO.assets();ready=true;paint(0);$('status').textContent='20 seconds · Canvas + synthesized audio · No generated video';
+ CLAY_STUDIO.assets();ready=true;paint(0);$('status').textContent=playbackStatus;
+ if(!new URLSearchParams(location.search).has('render'))SOUND.prepare(scoreSound,duration,{voiceover:false,master:.85}).catch(error=>console.warn('Audio preparation will retry on playback:',error));
  $('play').disabled=false;
  if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&!new URLSearchParams(location.search).has('render'))setPlaying(true);
 });

@@ -3,8 +3,15 @@
 const $=id=>document.getElementById(id), canvas=$('film'),ctx=canvas.getContext('2d');
 let currentT=0,playing=false,muted=true,loop=true,lastTime=0,stopSound=null,ready=false;
 const duration=CLAY_STUDIO.duration;
-function silence(){if(stopSound){stopSound();stopSound=null;}}
-function startSound(){silence();if(!muted&&playing)try{stopSound=SOUND.live(scoreSound,currentT,{voiceover:false,master:.85});}catch(error){muted=true;$('sound').textContent='Sound off';$('status').textContent='Sound is unavailable in this browser.';}}
+const playbackStatus=`${duration} seconds · Canvas + synthesized audio · No generated video`;
+let audioRequest=0;
+function silence(){audioRequest++;if(stopSound){stopSound();stopSound=null;}}
+function startSound(){
+ silence();if(muted||!playing)return;
+ const request=audioRequest;
+ const failed=error=>{if(request!==audioRequest)return;silence();muted=true;$('sound').textContent='Sound off';$('sound').setAttribute('aria-pressed','false');$('status').textContent='Audio could not start. Click Sound off to retry, or play the downloaded MP4.';console.error('Audio playback:',error);};
+ try{stopSound=SOUND.live(scoreSound,currentT,{voiceover:false,master:.85,duration});stopSound.ready.then(()=>{if(request===audioRequest)$('status').textContent=playbackStatus;}).catch(failed);}catch(error){failed(error);}
+}
 function paint(t){
  currentT=Math.max(0,Math.min(duration,Number(t)||0));
  ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,canvas.width,canvas.height);
@@ -15,7 +22,8 @@ function setPlaying(value){playing=value&&ready;lastTime=0;$('play').textContent
 window.seek=t=>{setPlaying(false);paint(t);};
 window.renderReady=document.fonts.ready.then(async()=>{
  await Promise.all(['600 66px Fredoka','700 35px Fredoka'].map(font=>document.fonts.load(font)));
- CLAY_STUDIO.assets();ready=true;paint(0);$('status').textContent='20 seconds · Canvas + synthesized audio · No generated video';
+ CLAY_STUDIO.assets();ready=true;paint(0);$('status').textContent=playbackStatus;
+ if(!new URLSearchParams(location.search).has('render'))SOUND.prepare(scoreSound,duration,{voiceover:false,master:.85}).catch(error=>console.warn('Audio preparation will retry on playback:',error));
  $('play').disabled=false;
  if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&!new URLSearchParams(location.search).has('render'))setPlaying(true);
 });

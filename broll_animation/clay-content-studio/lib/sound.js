@@ -252,12 +252,41 @@
     return { play, bed, music, tone, noise, withMinor, hz, vo: VO, sounds: Object.keys(S) };
   };
 
-  // Live playback for a player: SOUND.live(scoreFn, fromT, { voiceover, master }) starts the score from explainer time
-  // fromT right now and returns stop(). Call stop() on pause or seek, and SOUND.live again on play.
-  SOUND.live = function (fn, fromT, opts) {
-    const ctx = new (window.AudioContext || window.webkitAudioContext)();
-    fn(SOUND.kit(ctx, Object.assign({}, opts, { start: fromT || 0, delay: 0.03 })));
-    return () => { try { ctx.close(); } catch (e) {} };
+  // Render the deterministic score once, then seek within its buffer. Rescheduling a
+  // long ambience/music event from the middle could send negative automation times
+  // to Web Audio. Buffer offsets preserve the exact mix without past-time events.
+  const preparedScores = new WeakMap();
+  let liveContext = null;
+  SOUND.prepare = function (fn, duration, opts = {}) {
+    let entries = preparedScores.get(fn);
+    if (!entries) { entries = new Map(); preparedScores.set(fn, entries); }
+    const key = JSON.stringify([duration, !!opts.voiceover, opts.master ?? 0.9]);
+    if (!entries.has(key)) {
+      const promise = SOUND.renderOffline(fn, duration, 48000, opts).then(result => {
+        const buffer = new AudioBuffer({ numberOfChannels: 2, length: result.frames, sampleRate: result.sr });
+        const left = buffer.getChannelData(0), right = buffer.getChannelData(1);
+        for (let i = 0; i < result.frames; i++) { left[i] = result.inter[i * 2]; right[i] = result.inter[i * 2 + 1]; }
+        return buffer;
+      }).catch(error => { entries.delete(key); throw error; });
+      entries.set(key, promise);
+    }
+    return entries.get(key);
+  };
+  SOUND.live = function (fn, fromT = 0, opts = {}) {
+    const Audio = window.AudioContext || window.webkitAudioContext;
+    if (!Audio) throw new Error('This browser does not expose Web Audio.');
+    if (!liveContext || liveContext.state === 'closed') liveContext = new Audio();
+    const ctx = liveContext, resume = ctx.resume(), requestedAt = performance.now();
+    let stopped = false, source = null;
+    const stop = () => { stopped = true; if (source) { try { source.stop(); } catch (_) {} source.disconnect(); source = null; } };
+    stop.ready = Promise.all([resume, SOUND.prepare(fn, opts.duration || window.DURATION, opts)]).then(([, buffer]) => {
+      if (stopped) return;
+      if (ctx.state !== 'running') throw new Error('Audio playback needs a click to resume.');
+      const offset = Math.max(0, fromT + (performance.now() - requestedAt) / 1000);
+      if (offset >= buffer.duration) return;
+      source = ctx.createBufferSource(); source.buffer = buffer; source.connect(ctx.destination); source.start(ctx.currentTime, offset);
+    });
+    return stop;
   };
 
   // Render a style's explainerSound into an OfflineAudioContext; returns interleaved float stereo.
