@@ -1,0 +1,44 @@
+ISOTYPE PICTOGRAMS / COMPLETE PRODUCTION PROMPT
+
+Create an original 15-second animated explanation using the ISOTYPE pictogram style and the complete working example below.
+
+MY SUBJECT
+[Insert a topic and the quantities to compare. Identify whether the numbers are real sourced data or an illustrative example.]
+
+REFERENCE STORY
+"Count with pictures" compares two illustrative workshop groups. Group A contains 40 people and Group B contains 60. One person pictogram equals 10 people, so the rows contain four and six symbols. The final two symbols are highlighted, showing that two additional symbols represent 20 additional people. These are invented teaching quantities, explicitly labeled ILLUSTRATIVE DATA on the page. Do not present them as survey findings.
+
+VISUAL LANGUAGE
+Use the supplied Arntz-style standing-person silhouette, warm cream paper, charcoal lettering, muted blue for Group A, brick red for Group B, and ochre for the comparison highlight. Use a strict grid with aligned rows, generous margins, and a key placed before the data. The same silhouette, size, and unit must apply to both rows.
+
+Keep the reference's lithographic finish: warm paper mottling, low-frequency ink-density variation, fine pinholes, faint roller streaks, and grain. Render symbols and text onto an ink layer, remove the cached wear mask from that layer, print it onto the paper, then apply paper mottling and the final grain pass. Do not replace the printed finish with shiny gradients, drop shadows, or glowing effects.
+
+Use Space Grotesk 700, bundled for offline playback. At 1280x720, use a 52 px headline, 27-30 px explanatory text and row labels, and 76 px totals. Keep essential information clear when the video is viewed at a smaller size. Maintain equal-sized pictograms throughout; represent larger quantities with additional symbols.
+
+TIMELINE
+0.0-1.2 seconds: Set the headline "COUNT WITH PICTURES" and subtitle "Illustrative workshop attendance."
+1.2-2.0 seconds: Show the key, one person symbol = 10 people, and the ILLUSTRATIVE DATA label.
+3.0-4.3 seconds: Stamp four blue figures into Group A. Update the running total by ten per landed figure, finishing at 40.
+6.0-8.2 seconds: Stamp six red figures into Group B. Finish the total at 60.
+9.0-10.3 seconds: Highlight the extra two figures, draw an ochre arrow, and reveal +20 people.
+10.5-11.4 seconds: Add "2 more symbols = 20 more people."
+12.0-15.0 seconds: Hold the full comparison with "Repeat the symbol to show the quantity."
+
+MOTION
+Use stepped rubber-stamp timing at 12 poses per second, exported at 30 fps. Each symbol appears in one slightly enlarged, lighter impression before settling to its final size. Quantize the sound onset to the same pose boundary. Symbols persist after landing, and totals must always match the visible count. Use short eased reveals for typography and rules. Do not enlarge one category's icons to imply a larger value.
+
+If new data requires a partial pictogram, explain the fractional unit and clip the symbol accurately rather than changing its scale. If the numbers are sourced, include the source and period. If they are hypothetical, label them clearly as illustrative. Never invent an apparent real-world statistic.
+
+SOUND
+Use short dry stamp impacts, a little paper movement, quiet room ambience, and a soft closing tone. Give each pictogram landing its own synchronized impact. Keep the final hold mostly quiet. This example has no voiceover. Reduce effects under narration if narration is provided for a new animation.
+
+IMPLEMENTATION
+Every frame must depend only on time and seeded randomness. Cache static paper and wear textures. Preserve the reference material functions and use original scene layout, story, labels, and sound timing. Expose window.renderReady, window.seek(t), window.DURATION, and window.scoreSound. Wait for fonts before drawing.
+
+Deliver a 15-second 1280x720 MP4 at 30 fps with 48 kHz stereo sound, a self-contained offline HTML player, and this prompt with the complete code. Provide play/pause, restart, scrubbing, sound on/off, and loop controls. Start muted and retain the repaired audio implementation so sound works when enabled after playback starts or after seeking.
+
+VERIFY
+Check that each row has the correct number of symbols and that its total agrees with the key. Inspect the opening key, both completed rows, the difference highlight, and the final hold. Verify deterministic seeking, audio at several offsets, and exact exported duration.
+
+WORKING SOURCE
+Pictograms and lithographic material functions are adapted from the supplied ISOTYPE Pictograms_Prompt.docx. The illustrative workshop comparison, layout, timing, player integration, and sound score are original. The offline HTML embeds its font; this prompt uses a font import to keep the reusable source smaller.
