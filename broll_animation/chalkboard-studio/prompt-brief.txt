@@ -1,0 +1,44 @@
+CHALKBOARD LESSON / COMPLETE PRODUCTION PROMPT
+
+Create an original animated lesson about my subject in the Chalkboard Lesson style. Use the full working HTML below as the visual and technical reference.
+
+MY SUBJECT
+[Insert a topic, script, or short lesson.]
+
+REFERENCE STORY
+The included 15-second sample is "Make the answer visible." A teacher writes "What is 2 + 3?" Two yellow chalk counters and three pink counters appear under the numbers. A bracket groups the counters, an arrow leads to a circled 5, and the finished board shows "2 + 3 = 5." The final note says "Now you can see why." This is an original lesson using the supplied document's chalk rendering techniques.
+
+MATERIAL AND SET
+Use a green slate board with a subtle grain, uneven illumination, and cloudy eraser smears. Faint erased writing should remain subordinate to the new lesson. Frame the board with worn oak and a dusty tray containing chalk sticks and a felt eraser.
+
+Retain the reference's material functions. Build chalk lines from several parallel strokes with varying pressure. Add small seeded deviations to their paths, then break the pigment using the slate's surface texture. Chalk should catch on the board's high points and skip over the low points. Keep the soft dust halo around the strokes, small falling particles, and the chalk stick at the current writing tip. Do not substitute clean vector lines for the chalk texture.
+
+Use warm white chalk for the lesson, yellow for the first quantity and result, pink for the second quantity and emphasis circle, and pale blue for annotations. Preserve contrast against the slate. Let each accent explain a relationship.
+
+LETTERING
+Use Kalam 700 for large handwritten headings and numbers, and Patrick Hand 400 for labels and annotations. Load the bundled fonts before drawing. At 1280x720, keep the title around 58 px, labels around 34-46 px, the operands around 92 px, and the answer around 135 px. Reveal characters as writing progresses. Give characters small seeded changes in rotation, baseline, and opacity so the words feel chalked by hand. Essential text must remain legible.
+
+TIMING
+0.0-1.9 seconds: Write "Make the answer visible." and draw a yellow underline.
+2.0-4.35 seconds: Write the question and the large operands 2 + 3.
+4.5-7.4 seconds: Draw two yellow counters and three pink counters, one at a time.
+7.5-9.2 seconds: Draw a bracket beneath all five counters and write "Count them together."
+9.2-11.4 seconds: Draw an arrow to the result, write 5, and circle it in pink.
+11.4-13.1 seconds: Write "2 + 3 = 5" and "Now you can see why."
+13.1-15.0 seconds: Hold the completed lesson so the viewer can read the relationships.
+
+For a new subject, design a new diagram and wording around what the viewer needs to understand. Preserve the visual medium rather than copying the arithmetic example. Keep the lesson focused enough to understand in 15 seconds. Do not invent statistics, scientific claims, or learning outcomes.
+
+MOTION AND CONTINUITY
+Build the lesson on the same board. Earlier writing remains visible so the viewer can follow the logic. Draw arrows only after their source information exists. Keep the chalk stick attached to the active stroke or word, with a small dust puff at contact. Use deliberate writing intervals and a clear final hold. Every frame must depend only on the requested timestamp and seeded randomness, including texture and dust. Static texture caching is allowed.
+
+SOUND
+Use quiet room ambience and chalk scratches aligned to the writing intervals. Counter completions receive small dry taps. A soft two-note resolution marks the finished lesson. Leave the final hold mostly quiet. This sample has no voiceover. If narration is supplied for a new lesson, reduce effects beneath speech.
+
+PLAYER AND EXPORT
+Deliver a self-contained HTML player, a 15-second 1280x720 MP4 at 30 fps with stereo sound, and this prompt followed by the complete source. Bundle fonts in the offline HTML. Include play/pause, restart, scrubbing, elapsed time, sound toggle, and looping. Start muted. Preserve the repaired sound implementation so enabling sound after playback begins and resuming after seeking work correctly.
+
+Expose window.renderReady, window.seek(t), window.DURATION, and window.scoreSound. Wait for fonts, seek to i/30 for every exported frame, render the sound score offline at 48 kHz, and mux it into the MP4. Check representative frames, determinism after seeking, sound at different offsets, and exact runtime. Keep chalk textures and all text inside the board's frame and above the tray.
+
+WORKING SOURCE
+The complete implementation follows. Rendering helpers are adapted from the user-supplied ChalkboardLesson_Prompt.docx. The lesson, staging, timing, and sound score are original. The offline download embeds fonts; this prompt uses a font import for a shorter reusable source.
