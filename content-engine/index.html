@@ -1091,9 +1091,128 @@ footer {
 .faq details[open] summary::after { content:'−'; }
 .faq .faq-a { padding:0 clamp(1.2rem,1.8vw,1.6rem) clamp(1.2rem,1.6vw,1.4rem); font-family:var(--font-body); font-size:clamp(0.84rem,1vw,0.94rem); color:var(--text-dim); line-height:1.65; max-width:64ch; }
 [data-theme="light"] .wardrobe-card, [data-theme="light"] .lead-card, [data-theme="light"] .dm-bubble { background:var(--surface); }
+
+/* REAL OUTPUT samples + PROOF */
+.sample-group { margin-top:clamp(2.5rem,4vw,3.5rem); }
+.sample-group-head { display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 16px; margin-bottom:clamp(1rem,1.6vw,1.4rem); }
+.sample-group-title { font-family:var(--font-display); font-size:clamp(1.5rem,2.4vw,2rem); color:var(--text-paper); line-height:1.1; }
+.sample-group-note { font-family:var(--font-mono); font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); }
+.sample-row { display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(12px,1.8vw,22px); max-width:880px; }
+.sample { margin:0; }
+.sample-frame { position:relative; aspect-ratio:9/16; border-radius:22px; overflow:hidden; border:1px solid var(--border-hover); background:#000; box-shadow:0 24px 60px rgba(0,0,0,0.35); }
+.sample-frame video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+.sample-play { position:absolute; inset:0; width:100%; display:flex; align-items:flex-end; justify-content:center; padding-bottom:16px; background:linear-gradient(to top, rgba(0,0,0,0.55), transparent 40%); border:0; cursor:pointer; color:#fff; font-family:var(--font-mono); font-size:10px; letter-spacing:0.16em; text-transform:uppercase; }
+.sample-play span { background:rgba(0,0,0,0.6); border:1px solid rgba(255,255,255,0.25); border-radius:999px; padding:7px 13px; transition:background .3s var(--ease), border-color .3s var(--ease); }
+.sample-play:hover span, .sample-play:focus-visible span { background:var(--accent); border-color:var(--accent); }
+.sample figcaption { margin-top:12px; }
+.sample-kind { display:block; font-family:var(--font-mono); font-size:10px; color:var(--muted); letter-spacing:0.16em; text-transform:uppercase; margin-bottom:4px; }
+.sample-name { font-family:var(--font-body); font-weight:600; font-size:clamp(0.88rem,1.05vw,0.98rem); color:var(--text-paper); }
+.sample-silent { display:block; margin-top:4px; font-family:var(--font-body); font-size:0.78rem; color:var(--text-dim); }
+@media (max-width:700px){
+  .sample-row { display:flex; overflow-x:auto; scroll-snap-type:x mandatory; gap:12px; padding-bottom:8px; -webkit-overflow-scrolling:touch; }
+  .sample { flex:0 0 62%; scroll-snap-align:start; }
+}
+.proof-video { position:relative; aspect-ratio:16/9; border-radius:16px; overflow:hidden; border:1px solid var(--border-hover); background:#000; }
+.proof-video video { width:100%; height:100%; display:block; }
+.sample-tag { position:absolute; top:12px; left:12px; right:12px; width:max-content; max-width:calc(100% - 24px); z-index:2; pointer-events:none; background:var(--teal); color:#1a1210; border-radius:999px; padding:6px 11px; font-family:var(--font-mono); font-size:9.5px; letter-spacing:0.12em; text-transform:uppercase; font-weight:600; }
+.sp-kicker .bdot, .sale-head .bdot { width:8px; height:8px; border-radius:50%; background:currentColor; animation:salePulse 1.2s ease-in-out infinite; flex:none; }
+.sale-over .sale-only { display:none !important; }
+@keyframes salePulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.35; transform:scale(0.7); } }
+@media (prefers-reduced-motion: reduce){ .sp-kicker .bdot, .sale-head .bdot { animation:none; } .sp-card { animation:none; } }
+.sale-bar { position:fixed; top:0; left:0; right:0; z-index:101; height:var(--sale-bar-h); display:flex; align-items:center; justify-content:center; gap:12px; padding:0 16px; background:#0a0a0a; border-bottom:1px solid #222; text-decoration:none; white-space:nowrap; }
+.sale-bar .bdot { width:9px; height:9px; border-radius:50%; background:var(--accent); box-shadow:0 0 10px var(--accent); animation:salePulse 1.2s ease-in-out infinite; flex:none; }
+.sb-label { font-family:var(--font-body); font-weight:800; font-size:clamp(0.78rem,1.3vw,0.95rem); letter-spacing:0.04em; text-transform:uppercase; color:var(--accent); }
+.sb-clock { font-family:var(--font-mono); font-weight:700; font-size:clamp(0.9rem,1.5vw,1.1rem); letter-spacing:0.06em; color:#f5f0eb; font-variant-numeric:tabular-nums; }
+.sb-clock b { font-weight:700; }
+.has-sale { --sale-bar-h:36px; }
+.has-sale .top-nav { top:var(--sale-bar-h); }
+@media (prefers-reduced-motion: reduce){ .sale-bar .bdot { animation:none; } }
+.sale-pop { position:fixed; inset:0; z-index:200; display:flex; align-items:center; justify-content:center; padding:16px; }
+.sale-pop[hidden] { display:none; }
+.sp-backdrop { position:absolute; inset:0; background:rgba(0,0,0,0.62); backdrop-filter:blur(6px); }
+.sp-card { position:relative; width:100%; max-width:440px; display:flex; flex-direction:column; align-items:center; gap:14px; text-align:center; padding:clamp(1.8rem,4vw,2.4rem) clamp(1.2rem,4vw,2rem) clamp(1.4rem,3vw,1.8rem); background:var(--bg-elev); border:1px solid var(--accent); border-radius:22px; box-shadow:0 0 80px var(--accent-glow), 0 30px 80px rgba(0,0,0,0.5); animation:spIn .45s var(--ease) both; }
+@keyframes spIn { from { opacity:0; transform:translateY(18px) scale(0.96); } to { opacity:1; transform:none; } }
+.sp-card:focus { outline:none; }
+.sp-close { position:absolute; top:10px; right:12px; width:34px; height:34px; border:0; background:none; color:var(--muted); font-size:24px; line-height:1; cursor:pointer; border-radius:50%; }
+.sp-close:hover, .sp-close:focus-visible { color:var(--text-paper); background:var(--border); }
+.sp-kicker { display:inline-flex; align-items:center; gap:8px; font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent); }
+.sp-kicker .bdot { color:var(--accent); }
+.sp-title { font-family:var(--font-display); font-weight:400; font-size:clamp(1.7rem,5vw,2.2rem); line-height:1.1; color:var(--text-paper); margin:0; }
+.sp-title em { color:var(--accent); }
+.sp-price { display:flex; align-items:baseline; gap:10px; font-family:var(--font-mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); }
+.sp-price s { font-size:1.1rem; }
+.sp-price b { font-family:var(--font-display); font-weight:400; font-size:2.6rem; letter-spacing:0; color:var(--text-paper); line-height:1; }
+.sp-cta { width:100%; justify-content:center; text-align:center; }
+.sp-later { border:0; background:none; color:var(--muted); font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.16em; text-transform:uppercase; cursor:pointer; text-decoration:underline; text-underline-offset:3px; padding:4px; }
+.sp-later:hover { color:var(--text-paper); }
+.sp-note { margin:0; font-family:var(--font-body); font-size:0.8rem; color:var(--text-dim); line-height:1.5; }
+[data-theme="light"] .sp-card { background:var(--surface); }
+[data-theme="light"] .sp-backdrop { background:rgba(26,18,16,0.45); }
+.sale-timer { display:flex; flex-direction:column; align-items:center; gap:14px; margin:clamp(1.6rem,2.6vw,2.2rem) auto 0; padding:clamp(1.2rem,2vw,1.6rem) clamp(1.2rem,2.4vw,2rem); max-width:540px; border:1px solid var(--accent); border-radius:18px; background:var(--accent-hl); box-shadow:0 0 50px var(--accent-glow); text-align:center; }
+.pricing-box .sale-timer { margin:clamp(1.4rem,2.4vw,2rem) auto clamp(1.6rem,2.6vw,2.2rem); }
+.sale-head { display:inline-flex; align-items:center; gap:10px; font-family:var(--font-display); font-size:clamp(1.4rem,2.6vw,1.9rem); line-height:1.1; color:var(--text-paper); }
+.sale-head strong { color:var(--accent); font-weight:400; font-style:italic; }
+.sale-head .bdot { color:var(--accent); }
+.sale-sub { font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; color:var(--text-dim); }
+.sale-clock { display:flex; gap:clamp(8px,1.4vw,14px); }
+.sale-clock span { min-width:68px; padding:10px 6px 8px; border-radius:12px; background:var(--bg); border:1px solid var(--accent); display:flex; flex-direction:column; align-items:center; }
+.sale-clock b { font-family:var(--font-display); font-weight:400; font-size:clamp(2rem,3.6vw,2.8rem); line-height:1; color:var(--accent); font-variant-numeric:tabular-nums; }
+.sale-clock small { margin-top:5px; font-family:var(--font-mono); font-size:9px; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); }
+@media (max-width:420px){ .sale-clock span { min-width:58px; } }
+.price-ladder { max-width:540px; margin:0 auto; border:1px solid var(--border-hover); border-radius:14px; overflow:hidden; text-align:left; }
+.pl-row { display:grid; grid-template-columns:auto 1fr auto; grid-template-areas:"k v here" "when when when"; column-gap:12px; row-gap:2px; align-items:center; padding:12px 16px; border-bottom:1px solid var(--border); font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); }
+.pl-row:last-child { border-bottom:none; }
+.pl-k { grid-area:k; color:var(--text-paper); }
+.pl-v { grid-area:v; font-family:var(--font-display); font-size:1.5rem; letter-spacing:0; text-transform:none; color:var(--text-paper); }
+.pl-when { grid-area:when; }
+.pl-here { grid-area:here; background:var(--accent); color:#120b09; border-radius:999px; padding:4px 10px; font-weight:700; }
+.pl-here.pl-blank { background:none; padding:0; }
+.pl-row.is-now { background:var(--accent-hl); }
+.pl-row.is-now .pl-v { color:var(--accent); }
+.pl-row:not(.is-now) .pl-v { color:var(--muted); }
+.cta-note { margin:14px auto 0; text-align:center; font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; color:var(--text-dim); }
+[data-theme="light"] .sale-clock span { background:var(--surface); }
+.was-inline { opacity:0.6; margin-right:4px; }
+[data-theme="light"] .sale-clock span { background:var(--surface); }
+.demo-video { max-width:960px; margin-top:clamp(2.5rem,4vw,3.5rem); box-shadow:0 24px 60px rgba(0,0,0,0.35); }
+.proof-stats { grid-template-columns:repeat(4,1fr); }
+@media (max-width:1000px){ .proof-stats { grid-template-columns:1fr 1fr; } }
+@media (max-width:520px){ .proof-stats { grid-template-columns:1fr; } }
+.proof-shots { display:grid; grid-template-columns:1fr 1fr; align-items:start; gap:clamp(12px,1.6vw,18px); margin-top:clamp(1.2rem,2vw,1.8rem); }
+@media (max-width:700px){ .proof-shots { grid-template-columns:1fr; } }
+.proof-shot { margin:0; border:1px solid var(--border); border-radius:14px; overflow:hidden; background:#fff; }
+.proof-shot img { width:100%; height:auto; display:block; }
+.proof-shot figcaption { background:var(--bg-elev); border-top:1px solid var(--border); padding:10px 14px; font-family:var(--font-mono); font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); }
+[data-theme="light"] .sample-frame, [data-theme="light"] .proof-video { box-shadow:0 18px 44px rgba(26,18,16,0.14); }
+[data-theme="light"] .proof-shot figcaption { background:var(--surface); }
 </style>
 </head>
-<body>
+<body class="has-sale">
+
+<a class="sale-bar sale-only" href="#pricing" data-sale-end="2026-10-26T03:59:59Z" aria-label="The $97 price ends Sunday 11:59 PM ET. See pricing">
+  <span class="bdot"></span>
+  <span class="sb-label">$97 price ends in</span>
+  <span class="sb-clock"><b data-u="H">00</b>:<b data-u="m">00</b>:<b data-u="s">00</b></span>
+</a>
+
+<div class="sale-pop sale-only" data-sale-end="2026-10-26T03:59:59Z" role="dialog" aria-modal="true" aria-labelledby="salePopTitle" hidden>
+  <div class="sp-backdrop" data-close></div>
+  <div class="sp-card" tabindex="-1">
+    <button class="sp-close" type="button" data-close aria-label="Close">×</button>
+    <div class="sp-kicker"><span class="bdot"></span>Intro price</div>
+    <h3 class="sp-title" id="salePopTitle">The price goes to <em>$147</em> in</h3>
+    <div class="sale-clock" role="timer" aria-label="Time left at the intro price">
+      <span><b data-u="d">00</b><small>days</small></span>
+      <span><b data-u="h">00</b><small>hrs</small></span>
+      <span><b data-u="m">00</b><small>min</small></span>
+      <span><b data-u="s">00</b><small>sec</small></span>
+    </div>
+    <div class="sp-price"><s>$147</s><b>$97</b><span>one time</span></div>
+    <a href="https://pay.digicuratoragency.com/checkout/5e81adb156b4b1a5f5d772cccbc43b3f" class="btn-primary sp-cta" target="_blank" rel="noopener">Get the Engine · $97 →</a>
+    <button class="sp-later" type="button" data-close>Maybe later</button>
+    <p class="sp-note">$97 until Sunday 11:59 PM ET. No fake timer: on Monday it is $147.</p>
+  </div>
+</div>
 
 <nav class="top-nav">
   <a href="https://builds.digicuratoragency.com/" class="nav-brand">
@@ -1128,9 +1247,20 @@ footer {
 
   <div class="hero-cta-row reveal reveal-d3">
     <a href="https://pay.digicuratoragency.com/checkout/5e81adb156b4b1a5f5d772cccbc43b3f" class="btn-primary" target="_blank" rel="noopener">
-      Get the Engine <span class="price-inline">$97 once</span>
+      Get the Engine <span class="price-inline"><s class="was-inline">$147</s> $97 once</span>
     </a>
-    <a href="#pipeline" class="btn-ghost">See what it does ↓</a>
+    <a href="#demo" class="btn-ghost">See what it does ↓</a>
+  </div>
+
+  <div class="sale-timer sale-only reveal reveal-d3" data-sale-end="2026-10-26T03:59:59Z">
+    <div class="sale-head"><span class="bdot"></span>The price goes to <strong>$147</strong> in</div>
+    <div class="sale-clock" role="timer" aria-label="Time left at the intro price">
+      <span><b data-u="d">00</b><small>days</small></span>
+      <span><b data-u="h">00</b><small>hrs</small></span>
+      <span><b data-u="m">00</b><small>min</small></span>
+      <span><b data-u="s">00</b><small>sec</small></span>
+    </div>
+    <div class="sale-sub">$97 until Sunday 11:59 PM ET. Instant access.</div>
   </div>
 
   <div class="stack-pills reveal reveal-d4">
@@ -1198,6 +1328,22 @@ footer {
 
 <div class="divider"></div>
 
+<!-- DEMO -->
+<section class="section" id="demo">
+  <div style="max-width:620px;">
+    <div class="kicker reveal">Watch It Work</div>
+    <h2 class="section-title reveal reveal-d1">One link in.<br>Watch the <em>whole run.</em></h2>
+    <p class="body-text reveal reveal-d2" style="margin-top:1.4rem;">About three minutes, start to finish. It goes from a post open in your browser tab to a finished short, one step at a time.</p>
+  </div>
+  <div class="proof-video demo-video reveal reveal-d2">
+    <video controls playsinline preload="none" poster="media/demo.jpg" aria-label="Demo of the Content Engine from link to posted video">
+      <source src="media/demo.mp4" type="video/mp4">
+    </video>
+  </div>
+</section>
+
+<div class="divider"></div>
+
 <!-- PROBLEM -->
 <section class="section problem-section">
   <div class="kicker reveal">The Real Problem</div>
@@ -1231,6 +1377,127 @@ footer {
       </div>
     </div>
   </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- REAL OUTPUT -->
+<section class="section" id="samples">
+  <div style="max-width:620px;">
+    <div class="kicker reveal">Real Output</div>
+    <h2 class="section-title reveal reveal-d1">One script in.<br>Here is what <em>comes out.</em></h2>
+    <p class="body-text reveal reveal-d2" style="margin-top:1.4rem;">A few samples of what the system makes, straight from the render folder. Same pipeline, different looks. Tap any one to watch the full video.</p>
+  </div>
+
+  <div class="sample-group">
+    <div class="sample-group-head reveal">
+      <div class="sample-group-title">Talking avatar + B-roll</div>
+      <div class="sample-group-note">A HeyGen avatar of me · B-roll drawn in code</div>
+    </div>
+    <div class="sample-row">
+      <figure class="sample reveal reveal-d1">
+        <div class="sample-frame">
+          <video class="sample-video" muted loop playsinline preload="none" poster="media/avatar-basic.jpg" data-src="media/avatar-basic-loop.mp4" aria-label="Basic B-roll sample"></video>
+          <button class="sample-play" type="button" data-full="media/avatar-basic.mp4" aria-label="Play the Basic B-roll sample with sound"><span>▶ Tap for sound</span></button>
+        </div>
+        <figcaption><span class="sample-kind">AI avatar · B-roll</span><span class="sample-name">Basic</span></figcaption>
+      </figure>
+      <figure class="sample reveal reveal-d2">
+        <div class="sample-frame">
+          <video class="sample-video" muted loop playsinline preload="none" poster="media/avatar-splitcard.jpg" data-src="media/avatar-splitcard-loop.mp4" aria-label="Split Card + Web sample"></video>
+          <button class="sample-play" type="button" data-full="media/avatar-splitcard.mp4" aria-label="Play the Split Card + Web sample with sound"><span>▶ Tap for sound</span></button>
+        </div>
+        <figcaption><span class="sample-kind">AI avatar · B-roll</span><span class="sample-name">Split Card + Web</span></figcaption>
+      </figure>
+      <figure class="sample reveal reveal-d3">
+        <div class="sample-frame">
+          <video class="sample-video" muted loop playsinline preload="none" poster="media/avatar-letterpress.jpg" data-src="media/avatar-letterpress-loop.mp4" aria-label="Letterpress Split sample"></video>
+          <button class="sample-play" type="button" data-full="media/avatar-letterpress.mp4" aria-label="Play the Letterpress Split sample with sound"><span>▶ Tap for sound</span></button>
+        </div>
+        <figcaption><span class="sample-kind">AI avatar · B-roll</span><span class="sample-name">Letterpress Split</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="sample-group">
+    <div class="sample-group-head reveal">
+      <div class="sample-group-title">Faceless, no camera</div>
+      <div class="sample-group-note">No face on screen · the whole frame comes from the script</div>
+    </div>
+    <div class="sample-row">
+      <figure class="sample reveal reveal-d1">
+        <div class="sample-frame">
+          <video class="sample-video" muted loop playsinline preload="none" poster="media/faceless-papercraft.jpg" data-src="media/faceless-papercraft-loop.mp4" aria-label="Faceless Papercraft sample"></video>
+          <span class="sample-tag">+ Your voiceover on real runs</span>
+          <button class="sample-play" type="button" data-full="media/faceless-papercraft.mp4" aria-label="Play the Faceless Papercraft sample, silent preview"><span>▶ Silent preview</span></button>
+        </div>
+        <figcaption><span class="sample-kind">Faceless</span><span class="sample-name">Papercraft</span><span class="sample-silent">Shown silent here. On your runs it adds your voiceover, the same cloned voice as every other mode.</span></figcaption>
+      </figure>
+      <figure class="sample reveal reveal-d2">
+        <div class="sample-frame">
+          <video class="sample-video" muted loop playsinline preload="none" poster="media/faceless-letterpress.jpg" data-src="media/faceless-letterpress-loop.mp4" aria-label="Faceless Letterpress sample"></video>
+          <span class="sample-tag">+ Your voiceover on real runs</span>
+          <button class="sample-play" type="button" data-full="media/faceless-letterpress.mp4" aria-label="Play the Faceless Letterpress sample, silent preview"><span>▶ Silent preview</span></button>
+        </div>
+        <figcaption><span class="sample-kind">Faceless</span><span class="sample-name">Letterpress</span><span class="sample-silent">Shown silent here. On your runs it adds your voiceover, the same cloned voice as every other mode.</span></figcaption>
+      </figure>
+      <figure class="sample reveal reveal-d3">
+        <div class="sample-frame">
+          <video class="sample-video" muted loop playsinline preload="none" poster="media/faceless-stick.jpg" data-src="media/faceless-stick-loop.mp4" aria-label="Faceless Stick Figure sample"></video>
+          <button class="sample-play" type="button" data-full="media/faceless-stick.mp4" aria-label="Play the Faceless Stick Figure sample with sound"><span>▶ Tap for sound</span></button>
+        </div>
+        <figcaption><span class="sample-kind">Faceless</span><span class="sample-name">Stick Figure</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROOF -->
+<section class="section problem-section" id="proof">
+  <div class="two-col center">
+    <div>
+      <div class="kicker reveal">My Own Numbers</div>
+      <h2 class="section-title reveal reveal-d1">My Facebook page<br>sat dead for <em>3+ years.</em></h2>
+      <p class="body-text reveal reveal-d2" style="margin-top:1.4rem;">Then I started posting educational reels, and kept posting them. These are my own dashboards, not a mock-up. The video walks through them.</p>
+    </div>
+    <div class="proof-video reveal reveal-d2">
+      <video controls playsinline preload="none" poster="media/proof.jpg" aria-label="Walkthrough of my Facebook, Instagram and TikTok analytics">
+        <source src="media/proof.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+  <div class="problem-grid proof-stats">
+    <div class="problem-card reveal reveal-d1">
+      <div class="p-label">Facebook · 28 days</div>
+      <div class="p-value accent">680,218</div>
+      <div class="p-desc">Views, up 473% on the period before.</div>
+    </div>
+    <div class="problem-card reveal reveal-d2">
+      <div class="p-label">Facebook · 28 days</div>
+      <div class="p-value teal">6,021</div>
+      <div class="p-desc">Follows, up 836% on the period before.</div>
+    </div>
+    <div class="problem-card reveal reveal-d3">
+      <div class="p-label">Instagram · 30 days</div>
+      <div class="p-value green">142,894</div>
+      <div class="p-desc">Views, 99.8% of them from Reels.</div>
+    </div>
+    <div class="problem-card reveal reveal-d4">
+      <div class="p-label">TikTok · 60 days</div>
+      <div class="p-value">33.4K</div>
+      <div class="p-desc">Video views, up 106.7% on the period before.</div>
+    </div>
+  </div>
+  <div class="proof-shots">
+    <figure class="proof-shot reveal reveal-d1"><img src="media/proof-instagram.jpg" alt="Instagram account insights, last 30 days: 142,894 views, 99.8% from Reels" width="1211" height="520" loading="lazy"><figcaption>Instagram · last 30 days</figcaption></figure>
+    <figure class="proof-shot reveal reveal-d2"><img src="media/proof-tiktok.jpg" alt="TikTok analytics overview, last 60 days: 33.4K video views, up 106.7%" width="1091" height="805" loading="lazy"><figcaption>TikTok · last 60 days</figcaption></figure>
+  </div>
+  <div style="display:flex; justify-content:center; margin-top:clamp(2.5rem,4vw,3.5rem);" class="reveal">
+    <a href="https://pay.digicuratoragency.com/checkout/5e81adb156b4b1a5f5d772cccbc43b3f" class="btn-primary" target="_blank" rel="noopener">Get the Engine · $97 →</a>
+  </div>
+  <p class="cta-note sale-only reveal">$97 until Sunday 11:59 PM ET, then $147.</p>
 </section>
 
 <div class="divider"></div>
@@ -1282,7 +1549,7 @@ footer {
       <div class="pipe-item reveal reveal-d2"><div class="pipe-left"><div class="pipe-node">3</div><div class="pipe-line"></div></div><div class="pipe-body"><div class="pipe-title">Ten caption sets + Airtable row</div><div class="pipe-desc">TikTok, Instagram, YouTube, Facebook, LinkedIn, X, Threads, Pinterest, Bluesky, Substack Note. Character limits enforced per platform</div></div></div>
       <div class="pipe-item reveal reveal-d3"><div class="pipe-left"><div class="pipe-node teal">4</div><div class="pipe-line"></div></div><div class="pipe-body"><div class="pipe-title">Your cloned voice <span class="tag teal">ElevenLabs V3</span></div><div class="pipe-desc">Locked anti-drift settings so it sounds like you on take 40, not just take 1. Skipped entirely in Record it myself: the audio off your own take is the voiceover</div></div></div>
       <div class="pipe-item reveal reveal-d3"><div class="pipe-left"><div class="pipe-node">5</div><div class="pipe-line"></div></div><div class="pipe-body"><div class="pipe-title">Your talking head <span class="tag">HeyGen Avatar V</span></div><div class="pipe-desc">Lip-synced to your cloned voice, not a stock TTS. Or be the talking head: Record it myself pauses the run, takes the video you filmed, and cleans it. Manual mode takes a HeyGen Studio render. Faceless skips the head entirely</div></div></div>
-      <div class="pipe-item reveal reveal-d4"><div class="pipe-left"><div class="pipe-node">6</div><div class="pipe-line"></div></div><div class="pipe-body"><div class="pipe-title">B-roll drawn in code <span class="tag">Remotion</span></div><div class="pipe-desc">Basic infographics or Split Card + Web. Word-highlighted captions in your brand colors. Title baked into frame 0 so the thumbnail is never black. Faceless mode builds the whole visual instead</div></div></div>
+      <div class="pipe-item reveal reveal-d4"><div class="pipe-left"><div class="pipe-node">6</div><div class="pipe-line"></div></div><div class="pipe-body"><div class="pipe-title">B-roll drawn in code <span class="tag">Remotion + canvas</span></div><div class="pipe-desc">Basic infographics, Split Card + Web, Papercraft Split, or Letterpress Split. Word-highlighted captions in your brand colors. Title baked into frame 0 so the thumbnail is never black. Faceless mode builds the whole visual instead</div></div></div>
       <div class="gate reveal reveal-d4"><div class="pipe-left"><div class="gate-node">✋</div><div class="pipe-line"></div></div><div class="gate-body"><div class="gate-title">Gate 2 · You watch the video, tweak captions</div><div class="pipe-desc">One editable caption box per platform. What you approve is what posts</div></div></div>
       <div class="pipe-item reveal reveal-d5"><div class="pipe-left"><div class="pipe-node green">7</div><div class="pipe-line"></div></div><div class="pipe-body"><div class="pipe-title">Publish to 11 accounts <span class="tag green">Blotato or Zernio</span></div><div class="pipe-desc">Post now, drop into the next free slot per platform, or save only. Two Instagram and two Threads accounts supported</div></div></div>
       <div class="pipe-item reveal reveal-d6"><div class="pipe-left"><div class="pipe-node green">8</div></div><div class="pipe-body"><div class="pipe-title">Arm the DM automation</div><div class="pipe-desc">Comment keyword → freebie DM on Instagram and your Facebook page, created automatically per video on whichever scheduler posted it</div></div></div>
@@ -1324,17 +1591,21 @@ footer {
 <!-- WARDROBE -->
 <section class="section">
   <div style="max-width:620px;">
-    <div class="kicker reveal">2 B-roll Styles + Faceless Mode</div>
-    <h2 class="section-title reveal reveal-d1">Same script.<br>Two looks, or <em>no face at all.</em></h2>
-    <p class="body-text reveal reveal-d2" style="margin-top:1.4rem;">No stock footage. Both B-roll styles are drawn in code from a scene plan Claude writes for that script, so the visuals match what you are saying. Split Card + Web records real websites scrolling in a headless browser and times each site's appearance to the exact word you say it. Faceless mode drops the talking head and builds the entire video from the script, in one of three production tracks and 14 niche styles. Both B-roll styles sit over whichever avatar you picked, including a video you filmed yourself.</p>
+    <div class="kicker reveal">4 B-roll Styles + Faceless Mode</div>
+    <h2 class="section-title reveal reveal-d1">Same script.<br>Four looks, or <em>no face at all.</em></h2>
+    <p class="body-text reveal reveal-d2" style="margin-top:1.4rem;">No stock footage. Every B-roll style is drawn in code from a scene plan Claude writes for that script, so the visuals match what you are saying. Split Card + Web records real websites scrolling in a headless browser and times each site's appearance to the exact word you say it. Papercraft and Letterpress fill the top half with paper models or wood-type proofs and give the whole frame to your head on the key lines. Faceless mode drops the talking head and builds the entire video from the script, in one of five tracks. Every B-roll style sits over whichever avatar you picked, including a video you filmed yourself.</p>
   </div>
   <div class="wardrobe-grid">
     <div class="wardrobe-card reveal reveal-d1"><div class="wardrobe-num">01 · B-roll</div><div class="wardrobe-name">Basic</div><div class="wardrobe-desc">Animated infographics over the talking head. Fastest render.</div></div>
     <div class="wardrobe-card reveal reveal-d1"><div class="wardrobe-num">02 · B-roll</div><div class="wardrobe-name">Split Card + Web</div><div class="wardrobe-desc">Clean UI cards and full-screen tours of up to five sites. Cream or dark glass theme. Drop in your own clip.</div></div>
-    <div class="wardrobe-card reveal reveal-d2"><div class="wardrobe-num">03 · Faceless</div><div class="wardrobe-name">TSX Animation</div><div class="wardrobe-desc">Code-drawn motion graphics. Your cloned voice is the only cost.</div></div>
-    <div class="wardrobe-card reveal reveal-d2"><div class="wardrobe-num">04 · Faceless</div><div class="wardrobe-name">AI Video</div><div class="wardrobe-desc">Generated clips from Kie.ai Seedance, with a spend cap you set per build.</div></div>
-    <div class="wardrobe-card reveal reveal-d3"><div class="wardrobe-num">05 · Faceless</div><div class="wardrobe-name">Vox Collage</div><div class="wardrobe-desc">Paper-collage documentary look. Cutouts, textures, and a music bed if you want one.</div></div>
-    <div class="wardrobe-card reveal reveal-d3" style="border-style:dashed;"><div class="wardrobe-num">+</div><div class="wardrobe-name">Yours</div><div class="wardrobe-desc">It is Remotion and you own the source. Add a style with Claude Code.</div></div>
+    <div class="wardrobe-card reveal reveal-d1"><div class="wardrobe-num">03 · B-roll</div><div class="wardrobe-name">Papercraft Split</div><div class="wardrobe-desc">Printed paper models fold themselves up on a green cutting mat above your head. Paper cards ask for the keyword at the end.</div></div>
+    <div class="wardrobe-card reveal reveal-d1"><div class="wardrobe-num">04 · B-roll</div><div class="wardrobe-name">Letterpress Split</div><div class="wardrobe-desc">A fresh wood-type proof pulled on a press for every beat, with rubber stamps and press sounds.</div></div>
+    <div class="wardrobe-card reveal reveal-d2"><div class="wardrobe-num">05 · Faceless</div><div class="wardrobe-name">TSX Animation</div><div class="wardrobe-desc">Code-drawn motion graphics in Dark editorial or Chess. Your cloned voice is the only cost.</div></div>
+    <div class="wardrobe-card reveal reveal-d2"><div class="wardrobe-num">06 · Faceless</div><div class="wardrobe-name">Vox Collage</div><div class="wardrobe-desc">Paper-collage documentary look. AI image layers, a traveling camera, and a music bed if you want one.</div></div>
+    <div class="wardrobe-card reveal reveal-d2"><div class="wardrobe-num">07 · Faceless</div><div class="wardrobe-name">Papercraft</div><div class="wardrobe-desc">The Papercraft look filling the whole 9:16 frame. Builds in about 5 to 10 minutes.</div></div>
+    <div class="wardrobe-card reveal reveal-d2"><div class="wardrobe-num">08 · Faceless</div><div class="wardrobe-name">Letterpress</div><div class="wardrobe-desc">The Letterpress look filling the whole frame. Same 5 to 10 minute build.</div></div>
+    <div class="wardrobe-card reveal reveal-d3"><div class="wardrobe-num">09 · Faceless</div><div class="wardrobe-name">Stick Figure</div><div class="wardrobe-desc">A stick-figure drawing on beige paper for every line, each with a slow camera move. Images from Kie.ai or Google Flow.</div></div>
+    <div class="wardrobe-card reveal reveal-d3" style="border-style:dashed;"><div class="wardrobe-num">+</div><div class="wardrobe-name">Yours</div><div class="wardrobe-desc">You own the source. Add a style with Claude Code.</div></div>
   </div>
 </section>
 
@@ -1351,7 +1622,7 @@ footer {
     </div>
     <div class="reveal reveal-d2">
       <ul class="fine-list">
-        <li><span class="fl-k">Software fee</span><span class="fl-v">$97 once</span></li>
+        <li><span class="fl-k">Software fee</span><span class="fl-v">$97 once until Sunday, then $147</span></li>
         <li><span class="fl-k">Monthly to me</span><span class="fl-v green">$0</span></li>
         <li><span class="fl-k">Required keys to start</span><span class="fl-v teal">2</span></li>
         <li><span class="fl-k">Avatar cost, record mode</span><span class="fl-v green">No voice or avatar spend</span></li>
@@ -1378,7 +1649,6 @@ footer {
     <div class="include-card reveal reveal-d3"><span class="include-icon">📘</span><div class="include-name">9-Section Setup Guide</div><div class="include-desc">Clone, one-command install, every API key explained, Airtable base, load the extension, license, first video, brand customization, troubleshooting table.</div></div>
     <div class="include-card reveal reveal-d4"><span class="include-icon">🎨</span><div class="include-name">brand.config.js</div><div class="include-desc">Your voice, your audience, your caption colors. Edit one file and every script and video changes with it.</div></div>
     <div class="include-card reveal reveal-d5"><span class="include-icon">🗂️</span><div class="include-name">Airtable Base Spec</div><div class="include-desc">Every video, script, caption set, and posted URL logged in one table you can build on.</div></div>
-    <div class="include-card reveal reveal-d6"><span class="include-icon">🎟️</span><div class="include-name">GrowthOS Credit</div><div class="include-desc">Your $97 counts as full credit toward GrowthOS. Upgrade for $200 more, the same $297 founding member price.</div></div>
   </div>
 </section>
 
@@ -1419,7 +1689,7 @@ footer {
     <div class="lead-card reveal reveal-d3">
       <div class="lead-step">03 · Everything else is normal</div>
       <div class="lead-title">Same B-roll, same DMs, same posting</div>
-      <div class="lead-desc">Your cleaned video is the avatar and its audio is the voiceover, so both B-roll styles, the ten caption sets, the Airtable row, the comment-to-DM automation, and all 11 accounts run unchanged. On-screen captions follow what you actually said, not what the script said.</div>
+      <div class="lead-desc">Your cleaned video is the avatar and its audio is the voiceover, so every B-roll style, the ten caption sets, the Airtable row, the comment-to-DM automation, and all 11 accounts run unchanged. On-screen captions follow what you actually said, not what the script said.</div>
     </div>
   </div>
 </section>
@@ -1435,21 +1705,37 @@ footer {
       Any link to<br><em>9 platforms.</em>
     </h2>
     <div class="price-display reveal reveal-d2">
-      <div><div class="price-number">$97</div><div class="price-once">One-time · No subscription</div></div>
+      <div class="price-was">$147</div>
+      <div><div class="price-number">$97</div><div class="price-once">Intro price · One-time · No subscription</div></div>
+    </div>
+    <div class="price-ladder sale-only reveal reveal-d2">
+      <div class="pl-row is-now"><span class="pl-k">Intro price</span><span class="pl-when">Now until Sunday 11:59 PM ET</span><span class="pl-v">$97</span><span class="pl-here">You are here</span></div>
+      <div class="pl-row"><span class="pl-k">Regular price</span><span class="pl-when">From Monday 26 October</span><span class="pl-v">$147</span><span class="pl-here pl-blank"></span></div>
+    </div>
+    <div class="sale-timer sale-only reveal reveal-d2" data-sale-end="2026-10-26T03:59:59Z">
+      <div class="sale-head"><span class="bdot"></span>The price goes to <strong>$147</strong> in</div>
+      <div class="sale-clock" role="timer" aria-label="Time left at the intro price">
+        <span><b data-u="d">00</b><small>days</small></span>
+        <span><b data-u="h">00</b><small>hrs</small></span>
+        <span><b data-u="m">00</b><small>min</small></span>
+        <span><b data-u="s">00</b><small>sec</small></span>
+      </div>
+      <div class="sale-sub">$97 until Sunday 11:59 PM ET. Instant access.</div>
     </div>
     <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;" class="reveal reveal-d3">
       <a href="https://pay.digicuratoragency.com/checkout/5e81adb156b4b1a5f5d772cccbc43b3f" class="btn-primary" target="_blank" rel="noopener">Get the Engine · $97 →</a>
     </div>
+    <p class="cta-note sale-only reveal reveal-d3">No fake timer. When it hits zero on Sunday night, the price goes to $147.</p>
     <div style="margin-top:clamp(2.5rem,4vw,3.5rem);" class="reveal reveal-d4">
-      <p style="font-family:var(--font-body);font-size:clamp(0.82rem,1vw,0.92rem);color:var(--text-dim);line-height:1.65;max-width:48ch;margin:0 auto clamp(1rem,1.4vw,1.2rem);text-align:center;">Want the Engine plus the other 14 systems? <a href="https://builds.digicuratoragency.com/growth-os/" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">GrowthOS includes it</a>, and your $97 counts in full if you upgrade later.</p>
       <ul class="fine-list" style="text-align:left;">
         <li><span class="fl-k">Sources</span><span class="fl-v">YouTube · IG · TikTok · Articles · Ideas</span></li>
         <li><span class="fl-k">Accounts</span><span class="fl-v teal">11 across 9 platforms</span></li>
         <li><span class="fl-k">Scheduler</span><span class="fl-v">Blotato or Zernio</span></li>
-        <li><span class="fl-k">B-roll styles</span><span class="fl-v">Basic + Split Card + Web</span></li>
+        <li><span class="fl-k">B-roll styles</span><span class="fl-v">Basic · Split Card · Papercraft · Letterpress</span></li>
         <li><span class="fl-k">Avatar modes</span><span class="fl-v teal">Auto · Manual · Record · Faceless</span></li>
         <li><span class="fl-k">DM automation</span><span class="fl-v teal">Instagram + Facebook</span></li>
         <li><span class="fl-k">Source code + license</span><span class="fl-v green">Yours</span></li>
+        <li><span class="fl-k">Engine updates</span><span class="fl-v green">Free for life</span></li>
         <li><span class="fl-k">Coding required</span><span class="fl-v green">Zero to run</span></li>
       </ul>
     </div>
@@ -1469,11 +1755,11 @@ footer {
     <details><summary>Do I need to code?</summary><div class="faq-a">Not to run it. You fill in API keys, edit one brand config file, and load the extension. Changing how it works is where Claude Code comes in, and because you own the source, you can.</div></details>
     <details><summary>What does a video actually cost me?</summary><div class="faq-a">Your own API usage. Claude via OpenRouter writes the script for cents, and that is the one cost every mode shares. ElevenLabs is cents on top whenever you use the cloned voice. HeyGen automatic mode is about $1 per minute of avatar, roughly nine times more than Manual mode on Studio credits. Record it myself calls neither of them, so there is no voice or avatar spend on that run at all. Faceless mode on the TSX track adds nothing beyond the voice. Blotato or Zernio and Airtable are your own plans. I charge nothing per video.</div></details>
     <details><summary>Will it post the same video twice if something fails?</summary><div class="faq-a">No. Every successful post is written to a ledger the moment it lands. Resuming a failed run reports "already posted" for those targets and only fills the gaps.</div></details>
-    <details><summary>What is Faceless mode?</summary><div class="faq-a">Pick Faceless instead of an avatar and the Engine skips the voice-to-head steps and builds the full video from your approved script. Three tracks: TSX Animation (code-drawn, your voice is the only cost), AI Video (Kie.ai Seedance clips, with a spend cap that defaults to $2 per build), and Vox Collage (paper-collage documentary look). Fourteen niche styles or Auto. It needs the Claude Code CLI installed, since a Claude agent does the building.</div></details>
-    <details><summary>What is Record it myself?</summary><div class="faq-a">The fourth avatar option. After you approve the script the run pauses and shows you the clean version to read. Film yourself portrait on your phone or your webcam, upload the MP4, MOV, or WEBM, and the Engine transcribes it on your own machine, cuts the filler words, and shortens any pause over 600ms to 200ms. One ffmpeg pass cuts picture and sound together and re-encodes to h264 at a constant frame rate, so iPhone files work. The cleaned take becomes your avatar and its audio becomes your voiceover, so captions, B-roll, Airtable, the review, DM automation, and posting all run the same, with both B-roll styles. On-screen captions follow what you actually said. It calls no ElevenLabs and no HeyGen. It does need whisper.cpp, a free local transcriber the setup script installs, and the popup tells you if it is missing before you start a run.</div></details>
+    <details><summary>What is Faceless mode?</summary><div class="faq-a">Pick Faceless instead of an avatar and the Engine skips the voice-to-head steps and builds the full video from your approved script. Five tracks: TSX Animation (code-drawn in Dark editorial or Chess, your voice is the only cost), Vox Collage (paper-collage documentary look), Papercraft and Letterpress (those two looks filling the whole frame), and Stick Figure (a drawing for every line). TSX and Vox are built by a Claude agent, so they need the Claude Code CLI installed. Vox and Stick Figure draw their images on Kie.ai, with a spend cap per build, or on Google Flow.</div></details>
+    <details><summary>What is Record it myself?</summary><div class="faq-a">The fourth avatar option. After you approve the script the run pauses and shows you the clean version to read. Film yourself portrait on your phone or your webcam, upload the MP4, MOV, or WEBM, and the Engine transcribes it on your own machine, cuts the filler words, and shortens any pause over 600ms to 200ms. One ffmpeg pass cuts picture and sound together and re-encodes to h264 at a constant frame rate, so iPhone files work. The cleaned take becomes your avatar and its audio becomes your voiceover, so captions, B-roll, Airtable, the review, DM automation, and posting all run the same, with every B-roll style. On-screen captions follow what you actually said. It calls no ElevenLabs and no HeyGen. It does need whisper.cpp, a free local transcriber the setup script installs, and the popup tells you if it is missing before you start a run.</div></details>
     <details><summary>Blotato or Zernio?</summary><div class="faq-a">Either. Add the key for the one you use and pick it per run in the popup. Both post to your accounts and both create the comment-to-DM automation. Zernio comes with a free tier for a couple of accounts if you want to start without a paid scheduler.</div></details>
     <details><summary>Which platforms?</summary><div class="faq-a">TikTok, Instagram (two accounts), YouTube Shorts, Facebook, LinkedIn, X, Threads (two accounts), Pinterest, and Bluesky. A Substack Note caption is written and saved to Airtable for you to post by hand.</div></details>
-    <details><summary>Mac or Windows?</summary><div class="faq-a">Built and run daily on a Mac. The core pipeline is Node and Chrome. The Split Card + Web style needs a Python with Playwright installed, Faceless mode needs the Claude Code CLI, and Record it myself needs whisper.cpp for the transcription it does locally. The one-command setup script installs all three, and nothing you record leaves your machine.</div></details>
+    <details><summary>Mac or Windows?</summary><div class="faq-a">Built and run daily on a Mac. The core pipeline is Node and Chrome. Split Card + Web, Papercraft, and Letterpress need a Python with Playwright installed, the TSX and Vox faceless tracks need the Claude Code CLI, and Record it myself needs whisper.cpp for the transcription it does locally. The one-command setup script installs all three, and nothing you record leaves your machine.</div></details>
   </div>
 </section>
 
@@ -1499,6 +1785,90 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.12 });
 
 document.querySelectorAll('.reveal, .reveal-left').forEach(el => observer.observe(el));
+
+/* Intro sale countdown: every [data-sale-end] block ticks; past the end the body flips to sale-over and they all hide */
+const saleBlocks = document.querySelectorAll('[data-sale-end]');
+function tickSale() {
+  const left = Date.parse(saleBlocks[0].dataset.saleEnd) - Date.now();
+  if (left <= 0) { document.body.classList.replace('has-sale', 'sale-over'); return false; }
+  const sec = Math.floor(left / 1000);
+  const parts = { d: Math.floor(sec / 86400), h: Math.floor(sec / 3600) % 24, H: Math.floor(sec / 3600), m: Math.floor(sec / 60) % 60, s: sec % 60 };
+  saleBlocks.forEach(t => Object.entries(parts).forEach(([u, v]) => {
+    const el = t.querySelector(`[data-u="${u}"]`);
+    if (el) el.textContent = String(v).padStart(2, '0');
+  }));
+  return true;
+}
+if (saleBlocks.length && tickSale()) { const saleIv = setInterval(() => { if (!tickSale()) clearInterval(saleIv); }, 1000); }
+
+/* Sale pop-up: once per visit, after 8s or 40% scroll, whichever comes first */
+const salePop = document.querySelector('.sale-pop');
+if (salePop && document.body.classList.contains('has-sale')) {
+  let seen = false;
+  try { seen = sessionStorage.getItem('ceSalePopSeen') === '1'; } catch (e) {}
+  let lastFocus = null;
+  const onKey = (e) => { if (e.key === 'Escape') closePop(); };
+  const closePop = () => {
+    salePop.hidden = true;
+    document.removeEventListener('keydown', onKey);
+    if (lastFocus) lastFocus.focus();
+  };
+  const onScroll = () => {
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    if (h > 0 && window.scrollY / h > 0.4) openPop();
+  };
+  const openPop = () => {
+    if (seen || !document.body.classList.contains('has-sale')) return;
+    seen = true;
+    try { sessionStorage.setItem('ceSalePopSeen', '1'); } catch (e) {}
+    window.removeEventListener('scroll', onScroll);
+    lastFocus = document.activeElement;
+    salePop.hidden = false;
+    salePop.querySelector('.sp-card').focus({ preventScroll: true });
+    document.addEventListener('keydown', onKey);
+  };
+  salePop.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closePop));
+  if (!seen) {
+    setTimeout(openPop, 8000);
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+}
+
+/* Output samples: silent loop plays in view, tap swaps in the full video with sound */
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const sampleVideos = document.querySelectorAll('.sample-video');
+const sampleObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    const v = e.target;
+    if (e.isIntersecting) {
+      if (v.classList.contains('is-full') || reduceMotion) return;
+      if (!v.getAttribute('src')) v.src = v.dataset.src;
+      v.play().catch(() => {});
+    } else {
+      v.pause();
+    }
+  });
+}, { threshold: 0.35 });
+sampleVideos.forEach(v => sampleObserver.observe(v));
+
+document.querySelectorAll('.sample-play').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const v = btn.parentElement.querySelector('video');
+    document.querySelectorAll('.sample-video.is-full, .proof-video video').forEach(o => { if (o !== v) o.pause(); });
+    v.classList.add('is-full');
+    v.loop = false;
+    v.muted = false;
+    v.controls = true;
+    v.src = btn.dataset.full;
+    btn.remove();
+    v.play().catch(() => {});
+  });
+});
+
+const proofVideo = document.querySelector('.proof-video video');
+if (proofVideo) proofVideo.addEventListener('play', () => {
+  document.querySelectorAll('.sample-video.is-full').forEach(o => o.pause());
+});
 
 /* Duplicate platform logos for seamless infinite scroll */
 const pList = document.getElementById('platformsList');
