@@ -1301,6 +1301,10 @@ footer {
 .co-paypal { margin-top:16px; }
 .co-or { display:flex; align-items:center; gap:12px; margin-bottom:12px; font-family:var(--font-mono); font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); }
 .co-or::before, .co-or::after { content:''; flex:1; height:1px; background:var(--border-hover); }
+.co-paypal-btn { width:100%; height:48px; border:0; border-radius:10px; background:#ffc439; color:#111; font-family:var(--font-body); font-size:1rem; cursor:pointer; transition:filter .15s; }
+.co-paypal-btn b { font-style:italic; font-weight:800; color:#003087; }
+.co-paypal-btn:hover { filter:brightness(0.95); }
+.co-paypal-btn:disabled { opacity:0.6; cursor:wait; }
 .co-submit:disabled { opacity:0.6; cursor:wait; }
 .co-notice { margin:12px 0 0; padding:10px 14px; border-radius:10px; background:var(--accent-hl); border:1px solid var(--accent); font-family:var(--font-body); font-size:0.88rem; color:var(--text-paper); text-align:center; }
 .co-notice[hidden] { display:none; }
@@ -1493,7 +1497,8 @@ footer {
     <p class="co-notice" id="payNotice" hidden>Payment isn't connected yet. This is the design preview.</p>
     <div class="co-paypal" id="paypalWrap" hidden>
       <div class="co-or"><span>or pay with</span></div>
-      <div id="ce-paypal"></div>
+      <button type="button" class="co-paypal-btn" id="paypalButton">Pay with <b>PayPal</b></button>
+      <p class="co-fine co-center">You finish on PayPal, then come straight back here.</p>
     </div>
     <p class="co-fine co-center sale-only">$97 until Sunday 1 November, 11:59 PM ET, then $147.</p>
     <p class="co-fine co-center"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Payments are processed by Stripe. I never see your card number.</p>
@@ -1541,10 +1546,12 @@ const PRICES = { sale: { engine: 97, engineWas: 147, live: 197 }, regular: { eng
  *                                 paypal_currency, success_url,
  *                                 pricing: { currency, engine: {amount_cents}, engine_live: {amount_cents} } }
  *   POST {API}/checkout      { name, email, plan } -> { client_secret, success_url }
- *   POST {API}/paypal/order  { name, email, plan } -> { order_id }
- *   POST {API}/paypal/capture { order_id, name, email, plan } -> { reference, success_url }
+ *   POST {API}/paypal/order  { name, email, plan } -> { order_id, approve_url }
+ * PayPal is a same-tab redirect to approve_url (no pop-up). PayPal sends the buyer
+ * to {API}/paypal/return, which captures and forwards to the thank-you page, or
+ * back here with ?paypal=failed.
  * plan is 'engine' or 'engine_live'. Until CE_CHECKOUT_API is set the page stays
- * a design preview: no Stripe or PayPal script loads and nothing is charged. */
+ * a design preview: no Stripe script loads and nothing is charged. */
 const API_BASE = (window.CE_CHECKOUT_API || '').replace(/\/+$/, '');
 
 const body = document.body;
@@ -1596,7 +1603,7 @@ const payForm = document.getElementById('payForm');
 const payButton = document.getElementById('payButton');
 const payError = document.getElementById('payError');
 const paypalWrap = document.getElementById('paypalWrap');
-let settings = null, stripe = null, elements = null, busy = false, paypalRendered = false;
+let settings = null, stripe = null, elements = null, busy = false;
 
 const plan = () => (liveBox.checked && !body.classList.contains('live-over')) ? 'engine_live' : 'engine';
 function amountCents() {
@@ -1663,30 +1670,26 @@ payForm.addEventListener('submit', async (e) => {
   }
 });
 
-async function renderPayPal() {
-  paypalRendered = true;
-  try {
-    await loadScript('https://www.paypal.com/sdk/js?client-id=' + encodeURIComponent(settings.paypal_client_id)
-      + '&currency=' + encodeURIComponent(settings.paypal_currency || 'USD') + '&intent=capture&components=buttons');
-    window.paypal.Buttons({
-      style: { color: 'gold', shape: 'rect', label: 'paypal', height: 48 },
-      createOrder: async () => {
-        const problem = buyerProblem();
-        if (problem) { showError(problem); throw new Error(problem); }
-        showError('');
-        return (await postJSON('/paypal/order', buyer())).order_id;
-      },
-      onApprove: async data => {
-        setBusy(true);
-        const sale = await postJSON('/paypal/capture', { order_id: data.orderID, ...buyer() });
-        window.location.assign(withParam(sale.success_url || settings.success_url, 'paypal', sale.reference));
-      },
-      onError: () => { setBusy(false); showError('PayPal could not complete that payment. Please try again or pay by card.'); },
-    }).render('#ce-paypal');
-    paypalWrap.hidden = false;
-  } catch (err) {
-    paypalWrap.hidden = true;   // no PayPal is better than a broken PayPal
+const paypalButton = document.getElementById('paypalButton');
+paypalButton.addEventListener('click', async () => {
+  if (busy) return;
+  const problem = buyerProblem();
+  if (problem) {
+    showError(problem);
+    payForm.querySelector('[name="email"]').focus();
+    return;
   }
+  setBusy(true); paypalButton.disabled = true; showError('');
+  try {
+    const order = await postJSON('/paypal/order', buyer());
+    if (!order.approve_url) throw new Error('PayPal is unavailable right now. Please pay by card.');
+    window.location.assign(order.approve_url);
+  } catch (err) {
+    showError(err.message); setBusy(false); paypalButton.disabled = false;
+  }
+});
+if (new URLSearchParams(window.location.search).get('paypal') === 'failed') {
+  showError("PayPal didn't complete that payment. Please try again or pay by card.");
 }
 
 (async function startPayment() {
@@ -1719,7 +1722,7 @@ async function renderPayPal() {
       showError('Card payments are unavailable right now.');
     }
   }
-  if (settings.paypal && settings.paypal_client_id) renderPayPal();
+  if (settings.paypal) paypalWrap.hidden = false;
 })();
 
 /* B-roll walkthrough: silent loop in view, tap for the full video */
