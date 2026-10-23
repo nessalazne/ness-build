@@ -2,7 +2,7 @@
 (() => {
 'use strict';
 const {roundedPoly,puffy,sphere,contactShadow}=window.CLAY;
-const DURATION=20, W=1280, HH=720, TAU=Math.PI*2;
+const DURATION=15, STORY_DURATION=20, TIME_SCALE=DURATION/STORY_DURATION, W=1280, HH=720, TAU=Math.PI*2;
 const hex=H.hex, clamp=H.clamp, mix=H.lerp;
 const palettes={
  butter:['#fff9d5','#ffe49a','#efbc63','#d5a34d','#a77838'],
@@ -136,7 +136,7 @@ function heading(c,t){
  });
 }
 function explainer(c,width,height,t){
- t=clamp(t,0,DURATION);assets();c.save();c.scale(width/W,height/HH);
+ t=clamp(t,0,DURATION)/TIME_SCALE;assets();c.save();c.scale(width/W,height/HH);
  const cam=camera(t);softBackground(c,t,cam);
  c.save();c.translate(640,355);c.scale(cam.z,cam.z);c.translate(-cam.x,-355);
  // Connective floor ribbon establishes a single continuous workshop.
@@ -182,7 +182,22 @@ function explainer(c,width,height,t){
  c.save();c.filter='blur(13px)';bead(c,-50+Math.sin(t*.3)*7,705,88,'mint');bead(c,1345,680+Math.sin(t*.4)*6,120,'lavender');c.restore();
  finish(c);c.restore();
 }
-function scoreSound(k){
+// Retiming shares one scale with the picture; note frequencies stay unchanged.
+function scoreSound(kit){
+ const scaleParams=p=>{
+  const q={...p};
+  for(const key of ['dur','a','hold'])if(typeof q[key]==='number')q[key]*=TIME_SCALE;
+  for(const key of ['f','f2'])if(Array.isArray(q[key]))q[key]=q[key].map(([t,v])=>[t*TIME_SCALE,v]);
+  return q;
+ };
+ const k={
+  hz:kit.hz,
+  tone:(t,p)=>kit.tone(t*TIME_SCALE,scaleParams(p)),
+  noise:(t,p)=>kit.noise(t*TIME_SCALE,scaleParams(p)),
+  play:(name,t,p)=>kit.play(name,t*TIME_SCALE,scaleParams(p)),
+  bed:(name,a,b,p)=>kit.bed(name,a*TIME_SCALE,b*TIME_SCALE,p),
+  music:(name,a,b,p)=>kit.music(name,a*TIME_SCALE,b*TIME_SCALE,{...p,bpm:p.bpm/TIME_SCALE})
+ };
  const landing=(time,note,gain=1,pan=0)=>{
   const f=k.hz(note);
   k.tone(time,{f:[[0,f*.7],[.045,f*1.15],[.2,f]],dur:.23,type:'sine',gain:.2*gain,a:.004,pan});

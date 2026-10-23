@@ -4,12 +4,12 @@ MY SUBJECT
 [Insert my topic, script, or message here. If I have not supplied one, ask for the topic before writing a new story.]
 
 REFERENCE STORY
-The included example is an original 20-second sequence called "One idea. Four formats." A butter-yellow idea tile enters a miniature lavender studio, which reshapes the idea into a coral short-video tile, mint carousel, blue envelope, and lavender article. A continuous camera move follows the process. The final pullback brings the original idea and all four outputs into a clear visual relationship. This demonstrates content repurposing; it makes no claims about publishing speed, reach, or business results.
+The included example is an original 15-second sequence called "One idea. Four formats." A butter-yellow idea tile enters a miniature lavender studio, which reshapes the idea into a coral short-video tile, mint carousel, blue envelope, and lavender article. A continuous camera move follows the process. The final pullback brings the original idea and all four outputs into a clear visual relationship. This demonstrates content repurposing; it makes no claims about publishing speed, reach, or business results.
 
 Use that sequence to understand the medium and the level of finish. Build a new story around my subject. Keep a prop only when it explains the new subject. The studio, the four formats, and the exact words are example content, not mandatory ingredients.
 
 PLAN THE STORY
-Write a compact beat plan before coding. Include the exact words on screen, what changes visually, the connecting action, and the important sound at each beat. Unless I request a review pause, continue through implementation and testing. For a short subject, aim for 15-25 seconds. Give the viewer one clear idea to follow, a visible transformation or cause-and-effect relationship, and a readable final result. Distinguish any assumptions from facts I supplied.
+Write a compact beat plan before coding. Include the exact words on screen, what changes visually, the connecting action, and the important sound at each beat. Unless I request a review pause, continue through implementation and testing. Keep this sample to 15 seconds. Give the viewer one clear idea to follow, a visible transformation or cause-and-effect relationship, and a readable final result. Distinguish any assumptions from facts I supplied.
 
 MATERIAL AND LIGHT
 The objects should feel like thick, softly rounded clay. Use the supplied material primitives to preserve these layers:
@@ -31,12 +31,12 @@ Animate a change that explains the subject. Objects should enter with weight, co
 Carry relevant objects into the next beat instead of rebuilding the whole screen on each beat. Use a camera pan, a traveling object, a growing tube, or a change in arrangement to show the connection. A new scene is appropriate when the meaning changes enough to need one. Use a short final hold, with only small residual motion, so the result can be understood.
 
 The included sample has this timing:
-0.0-2.3: the idea tile arrives and the hook reads "One idea."
-2.3-4.7: the camera follows the same tile into a miniature studio.
-4.7-7.2: the studio compresses and its indicators come on.
-7.2-13.6: four different format objects emerge in a stagger.
-13.6-16.5: the camera pulls back and connective tubes relate the outputs to the original idea.
-16.5-20.0: the complete arrangement holds under "Shape the format. Keep the idea."
+0.0-1.725: the idea tile arrives and the hook reads "One idea."
+1.725-3.525: the camera follows the same tile into a miniature studio.
+3.525-5.4: the studio compresses and its indicators come on.
+5.4-10.2: four different format objects emerge in a stagger.
+10.2-12.375: the camera pulls back and connective tubes relate the outputs to the original idea.
+12.375-15.0: the complete arrangement holds under "Shape the format. Keep the idea."
 
 Build timings for my new subject. Do not keep the example's timing simply because it is already coded.
 

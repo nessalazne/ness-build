@@ -4,12 +4,12 @@ MY SUBJECT
 [Insert my topic, script, or message here. If I have not supplied one, ask for the topic before writing a new story.]
 
 REFERENCE STORY
-The included example is an original 20-second sequence called "One idea. Four formats." A butter-yellow idea tile enters a miniature lavender studio, which reshapes the idea into a coral short-video tile, mint carousel, blue envelope, and lavender article. A continuous camera move follows the process. The final pullback brings the original idea and all four outputs into a clear visual relationship. This demonstrates content repurposing; it makes no claims about publishing speed, reach, or business results.
+The included example is an original 15-second sequence called "One idea. Four formats." A butter-yellow idea tile enters a miniature lavender studio, which reshapes the idea into a coral short-video tile, mint carousel, blue envelope, and lavender article. A continuous camera move follows the process. The final pullback brings the original idea and all four outputs into a clear visual relationship. This demonstrates content repurposing; it makes no claims about publishing speed, reach, or business results.
 
 Use that sequence to understand the medium and the level of finish. Build a new story around my subject. Keep a prop only when it explains the new subject. The studio, the four formats, and the exact words are example content, not mandatory ingredients.
 
 PLAN THE STORY
-Write a compact beat plan before coding. Include the exact words on screen, what changes visually, the connecting action, and the important sound at each beat. Unless I request a review pause, continue through implementation and testing. For a short subject, aim for 15-25 seconds. Give the viewer one clear idea to follow, a visible transformation or cause-and-effect relationship, and a readable final result. Distinguish any assumptions from facts I supplied.
+Write a compact beat plan before coding. Include the exact words on screen, what changes visually, the connecting action, and the important sound at each beat. Unless I request a review pause, continue through implementation and testing. Keep this sample to 15 seconds. Give the viewer one clear idea to follow, a visible transformation or cause-and-effect relationship, and a readable final result. Distinguish any assumptions from facts I supplied.
 
 MATERIAL AND LIGHT
 The objects should feel like thick, softly rounded clay. Use the supplied material primitives to preserve these layers:
@@ -31,12 +31,12 @@ Animate a change that explains the subject. Objects should enter with weight, co
 Carry relevant objects into the next beat instead of rebuilding the whole screen on each beat. Use a camera pan, a traveling object, a growing tube, or a change in arrangement to show the connection. A new scene is appropriate when the meaning changes enough to need one. Use a short final hold, with only small residual motion, so the result can be understood.
 
 The included sample has this timing:
-0.0-2.3: the idea tile arrives and the hook reads "One idea."
-2.3-4.7: the camera follows the same tile into a miniature studio.
-4.7-7.2: the studio compresses and its indicators come on.
-7.2-13.6: four different format objects emerge in a stagger.
-13.6-16.5: the camera pulls back and connective tubes relate the outputs to the original idea.
-16.5-20.0: the complete arrangement holds under "Shape the format. Keep the idea."
+0.0-1.725: the idea tile arrives and the hook reads "One idea."
+1.725-3.525: the camera follows the same tile into a miniature studio.
+3.525-5.4: the studio compresses and its indicators come on.
+5.4-10.2: four different format objects emerge in a stagger.
+10.2-12.375: the camera pulls back and connective tubes relate the outputs to the original idea.
+12.375-15.0: the complete arrangement holds under "Shape the format. Keep the idea."
 
 Build timings for my new subject. Do not keep the example's timing simply because it is already coded.
 
@@ -60,11 +60,11 @@ The following is the complete code for the original clay content studio example.
 
 ```html
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="An original 20-second soft-clay animation built entirely with code. Play the sample and download the complete source and reusable production prompt."><title>One idea. Four formats. · Clay content studio</title>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="An original 15-second soft-clay animation built entirely with code. Play the sample and download the complete source and reusable production prompt."><title>One idea. Four formats. · Clay content studio</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&display=block');
 :root{color-scheme:dark;--bg:#141410;--paper:#f1ede4;--muted:#aaa79a;--accent:#e0ecab}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--paper);font-family:Arial,sans-serif}a{color:inherit;text-decoration:none}button,a{touch-action:manipulation}button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:4px}.page{max-width:1384px;margin:auto;padding:30px 42px 55px}.top{display:flex;justify-content:space-between;font-size:10px;letter-spacing:.12em;color:var(--muted);padding-bottom:25px;border-bottom:1px solid #34362b}.hero{display:flex;align-items:end;justify-content:space-between;gap:30px;margin:37px 0 28px}.eyebrow{color:var(--accent);font:10px monospace;letter-spacing:.13em;margin:0 0 14px}h1{font-family:Fredoka,Arial,sans-serif;font-weight:600;font-size:clamp(35px,4.2vw,59px);line-height:1.04;letter-spacing:-.025em;margin:0}h1 span{color:#d0b6e9}.hero>p{max-width:310px;color:var(--muted);font-size:13px;line-height:1.65;margin:0}.film-wrap{border-radius:12px;overflow:hidden;background:#e9dff0;border:1px solid #494139}canvas{display:block;width:100%;aspect-ratio:16/9}.controls{display:flex;align-items:center;gap:14px;background:#22231c;padding:15px 20px;flex-wrap:wrap}.controls button{background:none;border:1px solid #505241;border-radius:5px;color:var(--paper);padding:9px 12px;font-size:11px}.controls #play{background:var(--accent);color:#27301b;min-width:68px;border-color:var(--accent)}#scrub{flex:1;min-width:100px;accent-color:#cedc9d}#time{font:11px monospace;min-width:94px;color:#c7ccba}.status{font-size:10px;color:var(--muted);margin:13px 0 0}.under{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin:37px 0}.under h2{font-size:16px;font-weight:500;margin:0 0 14px}.under p{font-size:13px;line-height:1.8;color:#bdbbad;margin:0 0 17px}.actions{display:flex;flex-wrap:wrap;gap:9px}.action{border:1px solid #515642;border-radius:5px;padding:13px 16px;font-size:11px;background:transparent;color:var(--paper)}.action.primary{background:var(--accent);border-color:var(--accent);color:#27301b}.beats{display:flex;gap:6px;flex-wrap:wrap}.beats button{font-size:10px;background:#24261c;color:#c7cbb8;border:1px solid #414735;border-radius:4px;padding:9px 11px}footer{border-top:1px solid #34362b;padding-top:22px;font-size:10px;line-height:1.8;color:var(--muted)}.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0)}@media(max-width:700px){.page{padding:20px 16px 35px}.hero{display:block;margin:28px 0 24px}.hero>p{margin-top:18px}.under{grid-template-columns:1fr;gap:22px;margin:28px 0}.controls{gap:8px;padding:12px}.controls button{padding:9px;font-size:10px}#scrub{order:5;flex-basis:100%}#time{margin-left:auto;font-size:10px}.top{font-size:8px}.film-wrap{border-radius:7px}}
-</style></head><body><div class="page"><nav class="top"><span>DIGICURATOR / CLAY CONTENT STUDIO</span><span>DIGICURATOR / WORKING SAMPLE 01</span></nav><header class="hero"><div><p class="eyebrow">SOFT CLAY / ORIGINAL CODE ANIMATION</p><h1>One idea.<br><span>Four formats.</span></h1></div><p>A little clay studio turns one idea into a short video, carousel, email, and article. Every frame and sound is made with code.</p></header><main><div class="film-wrap"><canvas id="film" width="1280" height="720" role="img" aria-label="Soft clay animation showing one idea becoming four content formats"></canvas><div class="controls"><button id="play" disabled aria-pressed="false">Loading…</button><button id="restart" aria-label="Restart animation">↺ Restart</button><label class="sr-only" for="scrub">Animation time</label><input id="scrub" type="range" min="0" max="20" step="0.01" value="0"><output id="time">0.0 / 20.0s</output><button id="sound" aria-pressed="false">Sound off</button><button id="loop" aria-pressed="true">Loop on</button></div></div><p id="status" class="status" role="status">Preparing clay surfaces…</p></main><footer>Original scene, story, and sound score by DigiCurator. Clay material helpers and the audio kit are adapted from the reference document you supplied. No video-generation service was used.</footer></div>
+</style></head><body><div class="page"><nav class="top"><span>DIGICURATOR / CLAY CONTENT STUDIO</span><span>DIGICURATOR / WORKING SAMPLE 01</span></nav><header class="hero"><div><p class="eyebrow">SOFT CLAY / ORIGINAL CODE ANIMATION</p><h1>One idea.<br><span>Four formats.</span></h1></div><p>A little clay studio turns one idea into a short video, carousel, email, and article. Every frame and sound is made with code.</p></header><main><div class="film-wrap"><canvas id="film" width="1280" height="720" role="img" aria-label="Soft clay animation showing one idea becoming four content formats"></canvas><div class="controls"><button id="play" disabled aria-pressed="false">Loading…</button><button id="restart" aria-label="Restart animation">↺ Restart</button><label class="sr-only" for="scrub">Animation time</label><input id="scrub" type="range" min="0" max="15" step="0.01" value="0"><output id="time">0.0 / 15.0s</output><button id="sound" aria-pressed="false">Sound off</button><button id="loop" aria-pressed="true">Loop on</button></div></div><p id="status" class="status" role="status">Preparing clay surfaces…</p></main><footer>Original scene, story, and sound score by DigiCurator. Clay material helpers and the audio kit are adapted from the reference document you supplied. No video-generation service was used.</footer></div>
 <script>
 // Shared helpers + style registry for the style-frame explorations.
 // Every style is a pure function of time: draw(ctx, W, H, t). Same t => same pixels.
@@ -595,7 +595,7 @@ window.CLAY={roundedPoly,puffy,sphere,contactShadow};
 (() => {
 'use strict';
 const {roundedPoly,puffy,sphere,contactShadow}=window.CLAY;
-const DURATION=20, W=1280, HH=720, TAU=Math.PI*2;
+const DURATION=15, STORY_DURATION=20, TIME_SCALE=DURATION/STORY_DURATION, W=1280, HH=720, TAU=Math.PI*2;
 const hex=H.hex, clamp=H.clamp, mix=H.lerp;
 const palettes={
  butter:['#fff9d5','#ffe49a','#efbc63','#d5a34d','#a77838'],
@@ -729,7 +729,7 @@ function heading(c,t){
  });
 }
 function explainer(c,width,height,t){
- t=clamp(t,0,DURATION);assets();c.save();c.scale(width/W,height/HH);
+ t=clamp(t,0,DURATION)/TIME_SCALE;assets();c.save();c.scale(width/W,height/HH);
  const cam=camera(t);softBackground(c,t,cam);
  c.save();c.translate(640,355);c.scale(cam.z,cam.z);c.translate(-cam.x,-355);
  // Connective floor ribbon establishes a single continuous workshop.
@@ -775,7 +775,22 @@ function explainer(c,width,height,t){
  c.save();c.filter='blur(13px)';bead(c,-50+Math.sin(t*.3)*7,705,88,'mint');bead(c,1345,680+Math.sin(t*.4)*6,120,'lavender');c.restore();
  finish(c);c.restore();
 }
-function scoreSound(k){
+// Retiming shares one scale with the picture; note frequencies stay unchanged.
+function scoreSound(kit){
+ const scaleParams=p=>{
+  const q={...p};
+  for(const key of ['dur','a','hold'])if(typeof q[key]==='number')q[key]*=TIME_SCALE;
+  for(const key of ['f','f2'])if(Array.isArray(q[key]))q[key]=q[key].map(([t,v])=>[t*TIME_SCALE,v]);
+  return q;
+ };
+ const k={
+  hz:kit.hz,
+  tone:(t,p)=>kit.tone(t*TIME_SCALE,scaleParams(p)),
+  noise:(t,p)=>kit.noise(t*TIME_SCALE,scaleParams(p)),
+  play:(name,t,p)=>kit.play(name,t*TIME_SCALE,scaleParams(p)),
+  bed:(name,a,b,p)=>kit.bed(name,a*TIME_SCALE,b*TIME_SCALE,p),
+  music:(name,a,b,p)=>kit.music(name,a*TIME_SCALE,b*TIME_SCALE,{...p,bpm:p.bpm/TIME_SCALE})
+ };
  const landing=(time,note,gain=1,pan=0)=>{
   const f=k.hz(note);
   k.tone(time,{f:[[0,f*.7],[.045,f*1.15],[.2,f]],dur:.23,type:'sine',gain:.2*gain,a:.004,pan});
