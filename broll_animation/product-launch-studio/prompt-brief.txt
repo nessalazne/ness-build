@@ -1,0 +1,41 @@
+PRODUCT LAUNCH REVEAL / COMPLETE PRODUCTION PROMPT
+
+Create an original 15-second product reveal around my subject, using the complete working example below as a visual and technical reference.
+
+MY PRODUCT
+[Insert the product, approved features, and any supplied product images or dimensions. Identify a fictional concept explicitly.]
+
+REFERENCE STORY
+The sample introduces LUMA, a fictional product concept. A rounded, graphite-colored object emerges from a dark stage. A moving softbox reflection reveals its edge, an illuminated perimeter comes alive, and light pulses travel across its upper detail. The camera orbits while callouts describe the sculpted edge and illumination. The final hero shot reads "LUMA / A study in light." No availability, price, performance, material certification, or technical capability is claimed.
+
+LOOK AND MATERIAL
+Retain the reference's three-dimensional perspective projection, fine curved edge segments, shaded side walls, broad softbox highlights, grazing rim light, top-surface detail, colored perimeter glow, floor light spill, contact shadow, and fading floor reflection. Use a near-black studio background, softly defocused colored lights, and restrained film grain. Keep the broad metal highlights smooth rather than clipping them to flat white bars.
+
+Use the reference's violet-to-orange gradient accents for illumination and key typography. Let the lighting reveal the shape progressively. A dark silhouette should become a readable product through a key-light rise and a moving specular sweep. Preserve the geometry's thickness and the continuity of the rounded corners as the camera rotates.
+
+The provided object is a fictional visual concept. For a real product, replace its geometry or imagery with an accurate representation and use only supplied or verified specifications. Visual treatment alone does not establish materials, dimensions, or product performance.
+
+TYPE AND COMPOSITION
+Use Inter, bundled locally. Headline text is large and clean, with subtle focus-pull, rise, and fade during its reveal. Use approximately 88-100 px for the product name, 58 px for the design headline, 27 px for callouts, and 34 px for the closing line. Keep secondary copy short. Place callout leaders in clear space and anchor them to the object, not arbitrary screen positions.
+
+TIMELINE
+0.0-1.8 seconds: Show a near-dark silhouette and a controlled rim light. Begin the slow camera orbit.
+1.2-3.5 seconds: Reveal "Meet LUMA." and the fictional-concept label as the key light and perimeter illumination rise.
+4.4-6.5 seconds: Move closer. Reveal "Designed around light." and the sculpted-edge callout while the highlight sweeps across the form.
+7.0-10.0 seconds: Continue the orbit and show the edge-illumination callout. Light pulses travel across the top detail.
+10.8-12.5 seconds: Fade the callouts, pull back, and reveal the final LUMA name and "A study in light."
+12.5-15.0 seconds: Hold the final hero shot with a small residual camera movement and a visible concept-edition label.
+
+MOTION
+Use eased camera keyframes and continuous light movement. Keep the product in the same scene throughout. Avoid abrupt changes of size, unexplained object replacement, or disconnected slides. The object's hover should be subtle and slow. The reflection, shadow, and colored light spill must respond consistently to its position and view angle.
+
+SOUND
+Use restrained low ambience, soft filtered sweeps synchronized to the lighting changes, quiet design-detail tones, and a warm closing chord. Leave room in the mix and avoid loud generic impacts. This sample has no voiceover. Reduce sound effects beneath narration if narration is supplied for another version.
+
+IMPLEMENTATION AND EXPORT
+Deliver a 15-second 1280x720 MP4 at 30 fps with 48 kHz stereo sound, a self-contained offline HTML player, and this prompt followed by the complete source. Include play/pause, restart, scrubber, elapsed time, sound toggle, and loop controls. Start muted. Retain the repaired sound implementation so enabling sound after playback starts and resuming after seeking work correctly.
+
+Expose window.renderReady, window.seek(t), window.DURATION, and window.scoreSound. Wait for the bundled font before rendering. Every frame must depend only on the requested time and seeded randomness. Cache static textures and reuse rendering layers. Verify key frames for shape continuity, readable callouts, clipping, and reflections. Test deterministic seeking, audio at several playback positions, and exact exported runtime.
+
+WORKING SOURCE
+The product geometry, shading, reflection, and typography helpers are adapted from the supplied Product Launch Reveal_prompt.docx. LUMA is an original fictional presentation with a new timeline, camera path, lighting sequence, wording, and sound score. The offline HTML embeds its font; this prompt uses a font import for a shorter reusable source.
