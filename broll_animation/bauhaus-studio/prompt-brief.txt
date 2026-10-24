@@ -1,0 +1,33 @@
+BAUHAUS POSTER / 15-SECOND ORIGINAL SAMPLE
+
+Create a self-contained 1280 × 720 Canvas animation titled “Form in motion.” Use the supplied Bauhaus Poster reference for its printed material treatment, but build an original abstract composition instead of its robot or AI-learning scene. Runtime is exactly 15 seconds.
+
+VISUAL DESIGN
+Use aged cream stock with visible fibers, mottling, foxing spots, softened dark edges, fold creases, and scuffs. Preserve the reference's paper-generation and ink-coverage functions. Print primary yellow, blue, and red with near-black type and rules. Use slightly offset color registration: yellow (2,-1), red (-1.5,1), blue (1,2), black (0,0). Composite the ink layer using multiply. Modulate ink alpha with the reference's seeded noise, mottle 0.22 and speckle 0.004. Finish with fold wear, grain 0.07, and warm vignette 0.18. Embed Space Grotesk Bold for offline text rendering.
+
+COMPOSITION
+A heavy left and bottom rule frames an asymmetric layout. A vertical rule divides a large geometric composition on the left from bold lowercase type on the right. Yellow circle, blue square, and red triangle arrive as distinct forms. They later shift into an overlapping arrangement, joined by a black ring and a diagonal rule. Keep the main shapes visually balanced and all important type inside the frame. No gradients or artificial shadows on the printed shapes; the texture belongs to the paper and ink.
+
+TIMING
+0–1.1 seconds: black grid rules develop and FORM STUDY / 010 appears. The right column begins with “start / simple.”
+1.1–2.3 seconds: a yellow circle stamps onto the sheet with slight overshoot.
+2.3–3.5 seconds: a blue square lands beside it.
+3.5–5.2 seconds: the red triangle completes the initial set. The type names the circle, square, and triangle.
+5.2–8 seconds: preserve the same shapes as they slide, enlarge, and overlap into a poster composition. The right column changes to “find / rhythm.” with “Move the forms. / Let them overlap.”
+8.2–10 seconds: stamp a black ring and extend a diagonal rule through the arrangement. Let the tilted blue square settle upright.
+10–12 seconds: reveal the final title “form / in / motion.” with “A study in balance.” Draw a red underline and set the footer BAUHAUS POSTER / SHAPE / COLOR / SPACE.
+12–15 seconds: hold the finished poster with subtle grain variation.
+
+MOTION
+Use deterministic eased motion and short overshoot for each arriving shape. Maintain continuity through the composition phase. Reveal type through directional print masks. Avoid generic wipes between scenes, bouncing UI panels, or decorative effects outside the printing medium. Main type ranges from 74 to 90 pixels and supporting captions use 30 to 32 pixels.
+
+SOUND
+Build a restrained workshop soundscape: woodblock taps when the colored shapes land, short typesetting ticks when new words appear, a quiet paper-drag texture during rearrangement, and a soft chord on the final poster. Keep ambience below foreground sounds. No narration. Use the existing repaired buffered sound player so enabling sound or seeking mid-video works reliably. Start muted; sound requires a user gesture. Fade the exported audio during the last second.
+
+TECHNICAL DELIVERY
+Render 450 frames at 30 fps into an exactly 15-second H.264 MP4 with stereo AAC. Include a standalone offline HTML player, poster image, editable source, and this reusable prompt followed by the working code. Provide play/pause, restart, scrub, sound, and loop controls. Respect reduced-motion preferences. Await fonts before drawing. Cache static paper textures and noise fields. All randomness must be seeded, and frames must depend only on the requested time. Verify representative frames, deterministic seeking, audio startup at several offsets, browser errors, exported duration, and successful decoding.
+
+PROVENANCE
+Paper, ink, registration, and finishing helpers are adapted from the user-supplied Bauhaus Poster_prompt.docx. The abstract scene, sequence, wording, and sound score are original to this sample. No video-generation service is used.
+
+WORKING SOURCE
