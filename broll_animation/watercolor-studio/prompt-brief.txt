@@ -1,0 +1,34 @@
+WATERCOLOR WASH / 15-SECOND ORIGINAL SAMPLE
+
+Create an original 1280 × 720 Canvas animation titled “Let the color flow.” Paint a quiet lakeside scene in exactly 15 seconds, using the user-supplied Watercolor Wash reference for its materials and rendering methods.
+
+VISUAL MATERIAL
+Preserve the reference's cold-press paper height map, fine and broad paper tooth, warm edge toning, and faint ghost washes. Build transparent pigment through dozens of seeded, deformed polygon layers. Keep irregular wash edges, subtle mottling, pigment pooling along drying boundaries, granulation in the paper pits, and pale cauliflower blooms. Composite paint using multiply. Leave white paper around the picture and reserve a circular light in the sky before adding a warm yellow sun. Use muted cerulean, indigo, sap green, warm rose, and ochre. Do not replace the painting with solid vector shapes or a generic blur.
+
+ORIGINAL SCENE
+A broad sky wash spans the central sheet. Distant blue-gray hills overlap with a lower green ridge. A turquoise lake lies below, with a soft warm reflection and a few broken brush ripples. Several reeds rise at the lower left. Keep the painting within generous paper margins. Use embedded Kalam brush-style handwriting, with pooled text edges and a directional reveal.
+
+TIMING
+0–2.3 seconds: write “Let the color flow.” at the top and lightly sketch the hill contour and waterline in pencil.
+2–4.8 seconds: bloom the sky wash outward, with blue and rose pigment mingling softly.
+3.5–5.2 seconds: glaze the reserved sun area in yellow.
+5–7.8 seconds: develop the distant hills and the lower green ridge.
+7.5–10 seconds: flood the lake wash, preserving pale patches and a warm reflection.
+9.5–10.9 seconds: draw several quiet water ripples with tapered brush ribbons.
+10.5–11.9 seconds: paint the foreground reeds with curved strokes.
+12–13.2 seconds: write “A quiet moment, painted slowly.” beneath the picture.
+13.2–15 seconds: hold the complete watercolor.
+
+MOTION
+Each cached wash reveals through a soft expanding pigment mask. Pencil paths and brush strokes draw progressively. The landscape remains on the same sheet throughout; do not add camera cuts or sliding cards. Keep the paint still after it settles. The headline is 64 pixels and the closing caption is 43 pixels for clear reading.
+
+SOUND
+Use a restrained synthesized score: fine pencil noise during the underdrawing, soft filtered brush sounds as washes arrive, small wet accents, and a gentle closing chord. Keep the room bed almost inaudible. No voiceover. Start the browser player muted; enable sound from a user gesture. Preserve buffered audio playback so sound works after scrubbing. Fade the MP4 audio during the final second.
+
+DELIVERY
+Deliver a 450-frame, 30 fps H.264 MP4 with stereo AAC audio and exactly 15 seconds duration. Include editable source, a poster, a self-contained offline HTML player, and this prompt followed by working code. The player needs play/pause, restart, scrubbing, sound, and looping, plus reduced-motion support. Cache the paper and painted layers. Use fixed seeds and time-based drawing so seeking reproduces identical pixels. Await the embedded font before capturing. Verify representative frames, deterministic seeks, sound startup at multiple offsets, runtime errors, duration, and decoding.
+
+PROVENANCE
+Paper, wash, bloom, granulation, pooling, lettering, and brush helpers are adapted from Watercolor Wash_prompt.docx supplied by the user. The lakeside composition, sequence, wording, and sound score are original to this sample. No video-generation service is used.
+
+WORKING SOURCE
