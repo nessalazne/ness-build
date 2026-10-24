@@ -1323,7 +1323,9 @@ footer {
 .co-missing-note { font-family:var(--font-body); font-size:0.85rem; color:var(--text-paper); line-height:1.5; margin:12px 0; }
 .co-missing-done { display:none; font-family:var(--font-mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--green); font-weight:600; }
 .co-missing.has-live { border-style:solid; padding:12px 16px; }
-.co-missing.has-live .co-missing-done { display:block; }
+.co-missing.has-live .co-missing-done { display:flex; align-items:center; justify-content:space-between; gap:10px 16px; flex-wrap:wrap; }
+.co-missing-remove { font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; font-weight:600; color:var(--text-paper); background:none; border:1px solid var(--border-hover); border-radius:999px; padding:7px 14px; cursor:pointer; }
+.co-missing-remove:hover { border-color:var(--text-paper); }
 .co-missing.has-live .co-missing-body { display:none; }
 [data-theme="light"] .co-missing { border-color:#a07200; background:linear-gradient(180deg, rgba(160,114,0,0.06), transparent 60%); }
 [data-theme="light"] .co-missing-kicker { color:#a07200; }
@@ -1335,7 +1337,7 @@ footer {
 .co-confirm-skip { display:block; width:100%; margin-top:12px; background:none; border:0; padding:8px; font-family:var(--font-body); font-size:0.9rem; color:var(--muted); text-decoration:underline; text-underline-offset:3px; cursor:pointer; }
 .co-confirm-skip:hover { color:var(--text-paper); }
 [data-theme="light"] .co-confirm { background:var(--surface); }
-.co-submit { width:100%; justify-content:center; text-align:center; font-size:clamp(0.85rem,1.4vw,1rem); }
+.co-submit { display:block; width:100%; text-align:center; line-height:1.4; font-size:clamp(0.85rem,1.4vw,1rem); }
 .co-payment { padding:4px 0; }
 .co-payment[hidden], .co-paypal[hidden], .co-error[hidden] { display:none; }
 .co-error { margin:12px 0 0; padding:10px 14px; border-radius:10px; background:rgba(179,38,30,0.12); border:1px solid #b3261e; font-family:var(--font-body); font-size:0.88rem; color:var(--text-paper); text-align:center; }
@@ -1578,7 +1580,7 @@ footer {
         <p class="co-missing-note">These come only with Live Setup. 20 places, closes Sunday 1 November at 11:59 PM ET.</p>
         <button type="button" class="co-lb-add" id="missingAdd">Add Live Setup · +<span data-price="live">$197</span></button>
       </div>
-      <div class="co-missing-done">✓ Live Setup and every bonus are in this order</div>
+      <div class="co-missing-done"><span>✓ Live Setup and every bonus are in this order</span><button type="button" class="co-missing-remove" id="missingRemove">Remove</button></div>
     </div>
 
     <button class="btn-primary co-submit" id="payButton" type="submit"><span id="payLabel">Get the Engine</span> · <span id="btnPrice">$97</span> →</button>
@@ -1776,6 +1778,12 @@ document.getElementById('confirmAdd').addEventListener('click', () => {
   confirmBox.close();
   addLive();
   document.querySelector('.co-summary').scrollIntoView({ behavior: 'smooth', block: 'center' });
+});
+/* Taking Live Setup off is a deliberate choice, so the "Just the Engine?" check is not shown again */
+document.getElementById('missingRemove').addEventListener('click', () => {
+  confirmedEngineOnly = true;
+  liveBox.checked = false;
+  liveBox.dispatchEvent(new Event('change'));
 });
 confirmBox.addEventListener('close', () => { afterConfirm = null; });
 confirmBox.addEventListener('click', (e) => { if (e.target === confirmBox) confirmBox.close(); });
