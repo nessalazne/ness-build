@@ -1,0 +1,30 @@
+CLAYMATION SET / 15-SECOND ORIGINAL SAMPLE
+
+Create an original 1280 × 720 code-drawn claymation scene titled “A little care. Room to grow.” Runtime is exactly 15 seconds. Follow the supplied Claymation Set document for material rendering and stop-motion timing. The subject is a cheerful miniature clay garden.
+
+MATERIAL AND SET
+Preserve the reference's baked plasticine sprites: lumpy silhouettes, blurred height-map shading, warm waxy highlights, fingerprint grooves, tool marks, and soft contact shadows. Use a textured teal clay wall and terracotta tabletop. The pot is pink with a lighter rolled rim. The stem is green, the leaves pale green, the petals warm yellow, and the flower center coral. Every visible piece should look hand-shaped. Use raised Fredoka clay letters with the same shader, rather than flat screen captions. Retain the reference's warm/cool lens grade, 0.42 vignette, 0.03 grain, and slight exposure variation.
+
+STORYBOARD
+0–2 seconds: pale clay letters arrive individually on the wall: “A little care.”
+2–3.5 seconds: a pink pot lands on the table with squash and stretch. Its rolled rim follows. Contact shadows ground the pot.
+3.5–5.5 seconds: a green stem grows upward in nine stepped poses, anchored behind the pot.
+5.5–7 seconds: two leaves pop onto the stem, each with a pressed central vein and fingerprint texture.
+7–9.7 seconds: seven separate yellow clay petals arrive one by one around the top of the stem.
+9.7–11.5 seconds: the coral center lands, followed by two dark eyes and a small smile.
+11.5–13 seconds: raised pale letters appear across the table front: “Room to grow.”
+13–15 seconds: hold the finished garden with subtle stop-motion exposure variation.
+
+MOTION
+Quantize object motion to 12 poses per second while exporting at 30 fps. Reuse the reference's squash/stretch pose sequence. New parts should feel physically placed on the set. Keep the camera fixed, the pot grounded, and the stem anchored. Avoid smooth liquid morphing or generic slide transitions. The flower is a playful clay model, not a botanical time-lapse claim.
+
+AUDIO
+Use short low clay plops for the pot, leaves, petals, and center. Quantize event starts to the same 12 fps grid as the picture. Use quiet taps for clay lettering and a gentle resolving chord as the final message completes. Keep ambience low. No narration. Browser playback begins muted and enables audio after a user gesture. Preserve the buffered sound player so scrubbing and resuming remain reliable. Fade exported audio over the final second.
+
+DELIVERY
+Provide a 450-frame, 30 fps H.264 MP4 with stereo AAC sound and exactly 15 seconds duration, plus editable source, poster, offline HTML player, and this prompt followed by working code. Include play/pause, restart, scrub, sound, and loop controls. Respect reduced-motion settings. Embed Fredoka Bold and wait for fonts before rendering. Cache clay sprites and the background. Every frame must be determined by its requested time with seeded randomness. Verify representative frames, deterministic seeks, sound startup at multiple offsets, runtime errors, duration, and successful decoding. Add the new card inside the Full animations gallery grid.
+
+PROVENANCE
+Clay sprite shading, lettering, fingerprints, set construction, placement, and finishing helpers are adapted from the user-supplied Claymation Set_prompt.docx. The garden story, props, layout, timing, wording, and sound score are original to this sample. No video-generation service is used.
+
+WORKING SOURCE

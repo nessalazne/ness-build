@@ -1,0 +1,713 @@
+CLAYMATION SET / 15-SECOND ORIGINAL SAMPLE
+
+Create an original 1280 × 720 code-drawn claymation scene titled “A little care. Room to grow.” Runtime is exactly 15 seconds. Follow the supplied Claymation Set document for material rendering and stop-motion timing. The subject is a cheerful miniature clay garden.
+
+MATERIAL AND SET
+Preserve the reference's baked plasticine sprites: lumpy silhouettes, blurred height-map shading, warm waxy highlights, fingerprint grooves, tool marks, and soft contact shadows. Use a textured teal clay wall and terracotta tabletop. The pot is pink with a lighter rolled rim. The stem is green, the leaves pale green, the petals warm yellow, and the flower center coral. Every visible piece should look hand-shaped. Use raised Fredoka clay letters with the same shader, rather than flat screen captions. Retain the reference's warm/cool lens grade, 0.42 vignette, 0.03 grain, and slight exposure variation.
+
+STORYBOARD
+0–2 seconds: pale clay letters arrive individually on the wall: “A little care.”
+2–3.5 seconds: a pink pot lands on the table with squash and stretch. Its rolled rim follows. Contact shadows ground the pot.
+3.5–5.5 seconds: a green stem grows upward in nine stepped poses, anchored behind the pot.
+5.5–7 seconds: two leaves pop onto the stem, each with a pressed central vein and fingerprint texture.
+7–9.7 seconds: seven separate yellow clay petals arrive one by one around the top of the stem.
+9.7–11.5 seconds: the coral center lands, followed by two dark eyes and a small smile.
+11.5–13 seconds: raised pale letters appear across the table front: “Room to grow.”
+13–15 seconds: hold the finished garden with subtle stop-motion exposure variation.
+
+MOTION
+Quantize object motion to 12 poses per second while exporting at 30 fps. Reuse the reference's squash/stretch pose sequence. New parts should feel physically placed on the set. Keep the camera fixed, the pot grounded, and the stem anchored. Avoid smooth liquid morphing or generic slide transitions. The flower is a playful clay model, not a botanical time-lapse claim.
+
+AUDIO
+Use short low clay plops for the pot, leaves, petals, and center. Quantize event starts to the same 12 fps grid as the picture. Use quiet taps for clay lettering and a gentle resolving chord as the final message completes. Keep ambience low. No narration. Browser playback begins muted and enables audio after a user gesture. Preserve the buffered sound player so scrubbing and resuming remain reliable. Fade exported audio over the final second.
+
+DELIVERY
+Provide a 450-frame, 30 fps H.264 MP4 with stereo AAC sound and exactly 15 seconds duration, plus editable source, poster, offline HTML player, and this prompt followed by working code. Include play/pause, restart, scrub, sound, and loop controls. Respect reduced-motion settings. Embed Fredoka Bold and wait for fonts before rendering. Cache clay sprites and the background. Every frame must be determined by its requested time with seeded randomness. Verify representative frames, deterministic seeks, sound startup at multiple offsets, runtime errors, duration, and successful decoding. Add the new card inside the Full animations gallery grid.
+
+PROVENANCE
+Clay sprite shading, lettering, fingerprints, set construction, placement, and finishing helpers are adapted from the user-supplied Claymation Set_prompt.docx. The garden story, props, layout, timing, wording, and sound score are original to this sample. No video-generation service is used.
+
+WORKING SOURCE
+
+```html
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="An original 15-second Claymation Set animation with sound, full prompt, working source code, and MP4 download."><title>Claymation Set · Concept Study · AISOCIALHUB</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@700&display=block');
+:root{color-scheme:dark;--bg:#050505;--paper:#f0e8e8;--muted:#9a8f8f;--accent:#d87657}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--paper);font-family:Arial,sans-serif}a{color:inherit;text-decoration:none}button,a{touch-action:manipulation}button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:4px}.page{max-width:1384px;margin:auto;padding:30px 42px 55px}.top{display:flex;justify-content:space-between;font-size:10px;letter-spacing:.12em;color:var(--muted);padding-bottom:25px;border-bottom:1px solid #2a2a2a}.hero{display:flex;align-items:end;justify-content:space-between;gap:30px;margin:37px 0 28px}.eyebrow{color:var(--accent);font:10px monospace;letter-spacing:.13em;margin:0 0 14px}h1{font-family:Inter,Arial,sans-serif;font-weight:600;font-size:clamp(35px,4.2vw,59px);line-height:1.04;letter-spacing:-.025em;margin:0}h1 span{color:#d87657}.hero>p{max-width:310px;color:var(--muted);font-size:13px;line-height:1.65;margin:0}.film-wrap{border-radius:12px;overflow:hidden;background:#111111;border:1px solid #2a2a2a}canvas{display:block;width:100%;aspect-ratio:16/9}.controls{display:flex;align-items:center;gap:14px;background:#111111;padding:15px 20px;flex-wrap:wrap}.controls button{background:none;border:1px solid #2a2a2a;border-radius:5px;color:var(--paper);padding:9px 12px;font-size:11px}.controls #play{background:var(--accent);color:#050505;min-width:68px;border-color:var(--accent)}#scrub{flex:1;min-width:100px;accent-color:#d87657}#time{font:11px monospace;min-width:94px;color:#c8bfbf}.status{font-size:10px;color:var(--muted);margin:13px 0 0}.under{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin:37px 0}.under h2{font-size:16px;font-weight:500;margin:0 0 14px}.under p{font-size:13px;line-height:1.8;color:#c8bfbf;margin:0 0 17px}.actions{display:flex;flex-wrap:wrap;gap:9px}.action{border:1px solid #2a2a2a;border-radius:5px;padding:13px 16px;font-size:11px;background:transparent;color:var(--paper)}.action.primary{background:var(--accent);border-color:var(--accent);color:#050505}.beats{display:flex;gap:6px;flex-wrap:wrap}.beats button{font-size:10px;background:#111111;color:#c8bfbf;border:1px solid #2a2a2a;border-radius:4px;padding:9px 11px}footer{border-top:1px solid #2a2a2a;padding-top:22px;font-size:10px;line-height:1.8;color:var(--muted)}.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0)}@media(max-width:700px){.page{padding:20px 16px 35px}.hero{display:block;margin:28px 0 24px}.hero>p{margin-top:18px}.under{grid-template-columns:1fr;gap:22px;margin:28px 0}.controls{gap:8px;padding:12px}.controls button{padding:9px;font-size:10px}#scrub{order:5;flex-basis:100%}#time{margin-left:auto;font-size:10px}.top{font-size:8px}.film-wrap{border-radius:7px}}
+</style></head><body><div class="page"><nav class="top"><span>AISOCIALHUB / CLAYMATION STUDIO</span><span>AISOCIALHUB / WORKING SAMPLE 13</span></nav><header class="hero"><div><p class="eyebrow">CLAYMATION SET / ORIGINAL CODE ANIMATION</p><h1>A little care.<br><span>Room to grow.</span></h1></div><p>A small clay garden comes to life on a miniature set. A pot, stem, leaves, and flower arrive in stepped poses over 15 seconds, with soft clay sounds.</p></header><main><div class="film-wrap"><canvas id="film" width="1280" height="720" role="img" aria-label="A hand-shaped clay flower grows from a pink pot on a miniature set"></canvas><div class="controls"><button id="play" disabled aria-pressed="false">Loading…</button><button id="restart" aria-label="Restart animation">↺ Restart</button><label class="sr-only" for="scrub">Animation time</label><input id="scrub" type="range" min="0" max="15" step="0.01" value="0"><output id="time">0.0 / 15.0s</output><button id="sound" aria-pressed="false">Sound off</button><button id="loop" aria-pressed="true">Loop on</button></div></div><p id="status" class="status" role="status">Preparing the clay set…</p></main><footer>Original scene, story, and sound score by AISOCIALHUB. Clay shading and set helpers and the audio kit are adapted from the reference document you supplied. No video-generation service was used.</footer></div>
+<script>
+// Shared helpers + style registry for the style-frame explorations.
+// Every style is a pure function of time: draw(ctx, W, H, t). Same t => same pixels.
+(function () {
+  const STYLES = (window.STYLES = window.STYLES || []);
+  window.registerStyle = (s) => STYLES.push(s);
+
+  const H = (window.H = {});
+
+  // ---------- seeded randomness ----------
+  // H.rng(seed) -> r() in [0,1). Extras: r.range(a,b), r.int(a,b), r.pick(arr), r.gauss(), r.chance(p)
+  H.rng = function (seed = 1) {
+    let a = typeof seed === 'string' ? hashStr(seed) : (seed >>> 0) || 1;
+    const r = function () {
+      a |= 0; a = (a + 0x6d2b79f5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+    r.range = (lo, hi) => lo + r() * (hi - lo);
+    r.int = (lo, hi) => Math.floor(lo + r() * (hi - lo + 1));
+    r.pick = (arr) => arr[Math.floor(r() * arr.length)];
+    r.chance = (p) => r() < p;
+    r.gauss = () => { let u = 0, v = 0; while (!u) u = r(); while (!v) v = r(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); };
+    return r;
+  };
+  function hashStr(s) { let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
+
+  // ---------- gradient noise ----------
+  // H.makeNoise(seed) -> { n2(x,y), n3(x,y,z), fbm2(x,y,oct), fbm3(x,y,z,oct) }  (outputs roughly -1..1)
+  H.makeNoise = function (seed = 1) {
+    const r = H.rng(seed), p = new Uint8Array(512), perm = [...Array(256).keys()];
+    for (let i = 255; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [perm[i], perm[j]] = [perm[j], perm[i]]; }
+    for (let i = 0; i < 512; i++) p[i] = perm[i & 255];
+    const fade = (t) => t * t * t * (t * (t * 6 - 15) + 10);
+    const lerp = (a, b, t) => a + (b - a) * t;
+    const g3 = (h, x, y, z) => { h &= 15; const u = h < 8 ? x : y, v = h < 4 ? y : h === 12 || h === 14 ? x : z; return ((h & 1) ? -u : u) + ((h & 2) ? -v : v); };
+    function n3(x, y, z) {
+      const X = Math.floor(x) & 255, Y = Math.floor(y) & 255, Z = Math.floor(z) & 255;
+      x -= Math.floor(x); y -= Math.floor(y); z -= Math.floor(z);
+      const u = fade(x), v = fade(y), w = fade(z);
+      const A = p[X] + Y, AA = p[A] + Z, AB = p[A + 1] + Z, B = p[X + 1] + Y, BA = p[B] + Z, BB = p[B + 1] + Z;
+      return lerp(lerp(lerp(g3(p[AA], x, y, z), g3(p[BA], x - 1, y, z), u), lerp(g3(p[AB], x, y - 1, z), g3(p[BB], x - 1, y - 1, z), u), v),
+        lerp(lerp(g3(p[AA + 1], x, y, z - 1), g3(p[BA + 1], x - 1, y, z - 1), u), lerp(g3(p[AB + 1], x, y - 1, z - 1), g3(p[BB + 1], x - 1, y - 1, z - 1), u), v), w);
+    }
+    const n2 = (x, y) => n3(x, y, 0.5);
+    const fbm3 = (x, y, z, oct = 4) => { let s = 0, a = 0.5, f = 1, norm = 0; for (let i = 0; i < oct; i++) { s += a * n3(x * f, y * f, z * f); norm += a; a *= 0.5; f *= 2; } return s / norm; };
+    const fbm2 = (x, y, oct = 4) => fbm3(x, y, 0.5, oct);
+    return { n2, n3, fbm2, fbm3 };
+  };
+
+  // ---------- math ----------
+  H.lerp = (a, b, t) => a + (b - a) * t;
+  H.clamp = (v, lo = 0, hi = 1) => Math.max(lo, Math.min(hi, v));
+  H.map = (v, a, b, c, d) => c + ((v - a) / (b - a)) * (d - c);
+  H.smooth = (e0, e1, x) => { const t = H.clamp((x - e0) / (e1 - e0)); return t * t * (3 - 2 * t); };
+  H.ease = {
+    inOut: (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2),
+    out: (t) => 1 - Math.pow(1 - t, 3),
+    in: (t) => t * t * t,
+    back: (t) => { const c = 1.70158; return 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2); },
+  };
+
+  // ---------- color ----------
+  H.hex = (h) => { h = h.replace('#', ''); if (h.length === 3) h = h.split('').map((c) => c + c).join(''); const n = parseInt(h, 16); return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; };
+  H.rgba = (hexOrArr, a = 1) => { const [r, g, b] = Array.isArray(hexOrArr) ? hexOrArr : H.hex(hexOrArr); return `rgba(${r | 0},${g | 0},${b | 0},${a})`; };
+  H.mix = (c1, c2, t) => { const a = Array.isArray(c1) ? c1 : H.hex(c1), b = Array.isArray(c2) ? c2 : H.hex(c2); return [0, 1, 2].map((i) => a[i] + (b[i] - a[i]) * t); };
+
+  // ---------- canvas utilities ----------
+  // Offscreen canvas of the same logical size (use for layers, masks, compositing).
+  H.layer = (W, H_, ) => { const c = document.createElement('canvas'); c.width = W; c.height = H_; return c; };
+  // Monochrome grain / film noise over the whole canvas. amount ~ 0.03-0.15
+  H.grain = function (ctx, W, Hh, amount = 0.08, seed = 7, mono = true) {
+    const img = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height), d = img.data, r = H.rng(seed), k = amount * 255;
+    for (let i = 0; i < d.length; i += 4) {
+      const n = (r() - 0.5) * k;
+      if (mono) { d[i] += n; d[i + 1] += n; d[i + 2] += n; }
+      else { d[i] += (r() - 0.5) * k; d[i + 1] += (r() - 0.5) * k; d[i + 2] += (r() - 0.5) * k; }
+    }
+    ctx.putImageData(img, 0, 0);
+  };
+  // Paper-ish texture tile: fills with base color + fibrous noise (cheap; drawn into ctx).
+  H.paper = function (ctx, W, Hh, base = '#f3ecdc', seed = 3, strength = 0.06) {
+    ctx.save(); ctx.fillStyle = base; ctx.fillRect(0, 0, W, Hh);
+    const nz = H.makeNoise(seed), cell = 4, [br, bg, bb] = H.hex(base);
+    for (let y = 0; y < Hh; y += cell) for (let x = 0; x < W; x += cell) {
+      const v = nz.fbm2(x * 0.01, y * 0.01, 3) * 0.6 + nz.n2(x * 0.15, y * 0.04) * 0.4;
+      const s = 1 + v * strength * 2;
+      ctx.fillStyle = `rgb(${br * s | 0},${bg * s | 0},${bb * s | 0})`; ctx.fillRect(x, y, cell, cell);
+    }
+    ctx.restore();
+  };
+  // Vignette
+  H.vignette = function (ctx, W, Hh, strength = 0.5, color = '0,0,0') {
+    const g = ctx.createRadialGradient(W / 2, Hh / 2, Math.min(W, Hh) * 0.3, W / 2, Hh / 2, Math.hypot(W, Hh) * 0.6);
+    g.addColorStop(0, `rgba(${color},0)`); g.addColorStop(1, `rgba(${color},${strength})`);
+    ctx.save(); ctx.fillStyle = g; ctx.fillRect(0, 0, W, Hh); ctx.restore();
+  };
+
+  // ---------- rendering entry ----------
+  // Renders style into canvas at logical 1280x720 (canvas can be any pixel size; it is scaled).
+  H.W = 1280; H.H = 720;
+  H.loadFonts = async function (style) {
+    const specs = style.fonts || [];
+    try { const sample = 'AaZz09' + (window.FONT_SAMPLE || '');
+      await Promise.all(specs.map((f) => document.fonts.load(f, sample))); await document.fonts.ready; } catch (e) { /* render anyway */ }
+  };
+  H.render = function (style, canvas, t) {
+    const ctx = canvas.getContext('2d', { willReadFrequently: !!style.readsPixels });
+    const sx = canvas.width / H.W, sy = canvas.height / H.H;
+    ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over'; ctx.filter = 'none';
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.save(); ctx.scale(sx, sy);
+    style.draw(ctx, H.W, H.H, t == null ? style.frameT || 0 : t);
+    ctx.restore();
+  };
+})();
+
+</script>
+<script>
+// sound.js: a small synthesized sound kit for the style explainers. Plain Web Audio, no audio files.
+// Voiceover mode: SOUND.kit(ctx, { voiceover: true }) drops beds and music, plays anything marked minor
+// (play(..., { minor: true }), tone/noise { minor: true }, or scheduled inside k.withMinor(() => ...)) at about 60%
+// volume instead of full, and sits all effects a little lower, so the narration stays on top while the piece still
+// sounds alive. In the full mix, minor sounds play at full volume. Scores can read k.vo to branch further.
+// A style adds   explainerSound(k) { k.bed('room', 0, D); k.play('pop', 1.25); ... }   and the same
+// call schedules into a live AudioContext (the player) or an OfflineAudioContext (the video render).
+// Times are seconds on the explainer's own clock. Randomness is seeded, so every render is identical.
+(function () {
+  'use strict';
+  const SOUND = (window.SOUND = {});
+  const TINY = 1e-4;
+
+  // seeded random in [0,1), keyed by any string
+  function rand(key) {
+    let h = 2166136261;
+    for (let i = 0; i < key.length; i++) { h ^= key.charCodeAt(i); h = Math.imul(h, 16777619); }
+    let a = h >>> 0 || 1;
+    return () => { a = (a + 0x6d2b79f5) | 0; let t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+  }
+
+  // note names to Hz: 'A4' = 440, 'C#5', 'Eb3'
+  const STEP = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
+  function hz(n) {
+    if (typeof n === 'number') return n;
+    const m = /^([A-G])([#b]?)(-?\d)$/.exec(n);
+    const semis = STEP[m[1]] + (m[2] === '#' ? 1 : m[2] === 'b' ? -1 : 0) + (Number(m[3]) - 4) * 12 - 9;
+    return 440 * Math.pow(2, semis / 12);
+  }
+  SOUND.hz = hz;
+
+  SOUND.kit = function (ctx, opts) {
+    const o = opts || {};
+    const VO = !!o.voiceover;
+    const MINOR = 0.6; // voiceover-mode volume for minor sounds
+    let inMinor = false;
+    const gainOf = (p, d) => (p.gain == null ? d : p.gain) * (VO && (p.minor || inMinor) ? MINOR : 1);
+    const T0 = (o.start || 0) - 0; // explainer time that maps to ctx time `base`
+    const base = ctx.currentTime + (o.delay || 0);
+    // Start times snap to the sample grid (+ a quarter sample): in Chrome a source started a hair off the grid can
+    // spike to about twice its set level.
+    const SR = ctx.sampleRate;
+    const at = (t) => (Math.round((base + (t - T0)) * SR) + 0.25) / SR;
+
+    // ---- buses: sfx, amb, music -> compressor -> master; one shared reverb send
+    const master = ctx.createGain(); master.gain.value = o.master == null ? 0.9 : o.master;
+    const comp = ctx.createDynamicsCompressor();
+    comp.threshold.value = -16; comp.knee.value = 8; comp.ratio.value = 3; comp.attack.value = 0.004; comp.release.value = 0.18;
+    comp.connect(master); master.connect(o.dest || ctx.destination);
+    const bus = {};
+    for (const [name, g] of Object.entries({ sfx: VO ? 0.7 : 0.85, amb: 0.5, music: 0.45 })) { bus[name] = ctx.createGain(); bus[name].gain.value = g; bus[name].connect(comp); }
+
+    // generated room reverb: decaying stereo noise, darker toward the tail
+    const verb = ctx.createConvolver();
+    {
+      const secs = 1.6, n = Math.floor(secs * ctx.sampleRate), ir = ctx.createBuffer(2, n, ctx.sampleRate);
+      for (let c = 0; c < 2; c++) {
+        const r = rand('verb' + c), d = ir.getChannelData(c); let lp = 0;
+        for (let i = 0; i < n; i++) { const u = i / n; lp += (0.6 - 0.45 * u) * ((r() * 2 - 1) - lp); d[i] = lp * Math.pow(1 - u, 3); }
+      }
+      verb.buffer = ir;
+    }
+    const verbIn = ctx.createGain(); verbIn.gain.value = 0.9; verbIn.connect(verb); verb.connect(comp);
+
+    // seeded noise buffers: white, pink-ish and brown
+    const noiseBuf = {};
+    {
+      const n = Math.floor(2.5 * ctx.sampleRate);
+      for (const kind of ['white', 'pink', 'brown']) {
+        const b = ctx.createBuffer(1, n, ctx.sampleRate), d = b.getChannelData(0), r = rand('noise-' + kind);
+        let p0 = 0, p1 = 0, p2 = 0, br = 0;
+        for (let i = 0; i < n; i++) {
+          const w = r() * 2 - 1;
+          if (kind === 'white') d[i] = w;
+          else if (kind === 'pink') { p0 = 0.997 * p0 + 0.029 * w; p1 = 0.985 * p1 + 0.032 * w; p2 = 0.95 * p2 + 0.048 * w; d[i] = (p0 + p1 + p2 + w * 0.05) * 2.2; }
+          else { br = (br + 0.02 * w) / 1.02; d[i] = br * 3.2; }
+        }
+        noiseBuf[kind] = b;
+      }
+    }
+
+    // ---- automation helpers
+    // a value or [[dt, value], ...] from the voice start; ramps are exponential (frequencies)
+    function sweep(param, v, t) {
+      if (!Array.isArray(v)) { param.setValueAtTime(v, t); return; }
+      param.setValueAtTime(v[0][1], t + v[0][0]);
+      for (let i = 1; i < v.length; i++) param.exponentialRampToValueAtTime(Math.max(v[i][1], 1), t + v[i][0]);
+    }
+    // amplitude: linear attack to `gain`, optional hold, exponential release to silence by `dur`
+    function shape(param, t, gain, dur, a, hold) {
+      a = Math.min(a == null ? 0.004 : a, dur * 0.9);
+      hold = Math.min(hold || 0, dur - a);
+      param.setValueAtTime(0, t);
+      param.linearRampToValueAtTime(gain, t + a);
+      if (hold > 0) param.setValueAtTime(gain, t + a + hold);
+      param.exponentialRampToValueAtTime(TINY, t + dur);
+      param.setValueAtTime(0, t + dur + 0.001);
+    }
+    function out(node, p) {
+      const pan = ctx.createStereoPanner(); pan.pan.value = Math.max(-1, Math.min(1, p.pan || 0));
+      node.connect(pan); pan.connect(bus[p.bus || 'sfx']);
+      if (p.verb) { const s = ctx.createGain(); s.gain.value = p.verb; pan.connect(s); s.connect(verbIn); }
+    }
+    function filterNode(p, t) {
+      if (!p.filter) return null;
+      const f = ctx.createBiquadFilter(); f.type = p.filter; f.Q.value = p.q == null ? 1 : p.q;
+      sweep(f.frequency, p.f == null ? 1000 : p.f, t);
+      return f;
+    }
+
+    // ---- primitives
+    // tone(t, { f, type, dur, gain, a, hold, pan, verb, bus, filter, f2 (filter freq), q, detune })
+    function tone(time, p) {
+      const t = at(time), dur = p.dur || 0.2;
+      if (t + dur < ctx.currentTime || (time < T0 - 0.001 && dur < 1.5)) return;
+      const osc = ctx.createOscillator(); osc.type = p.type || 'sine';
+      sweep(osc.frequency, Array.isArray(p.f) ? p.f.map(([d, v]) => [d, hz(v)]) : hz(p.f || 440), t);
+      if (p.detune) osc.detune.value = p.detune;
+      const g = ctx.createGain(); shape(g.gain, t, gainOf(p, 0.3), dur, p.a, p.hold);
+      let node = osc;
+      if (p.filter) { const f = ctx.createBiquadFilter(); f.type = p.filter; f.Q.value = p.q == null ? 0.8 : p.q; sweep(f.frequency, p.f2 || 2000, t); osc.connect(f); node = f; }
+      node.connect(g); out(g, p);
+      osc.start(t); osc.stop(t + dur + 0.02);
+    }
+    // noise(t, { dur, color, filter, f, q, gain, a, hold, pan, verb, bus, rate })
+    function noise(time, p) {
+      const t = at(time), dur = p.dur || 0.2;
+      if (t + dur < ctx.currentTime || (time < T0 - 0.001 && dur < 1.5)) return;
+      const src = ctx.createBufferSource(); src.buffer = noiseBuf[p.color || 'white']; src.loop = true;
+      if (p.rate) src.playbackRate.value = p.rate;
+      const g = ctx.createGain(); shape(g.gain, t, gainOf(p, 0.3), dur, p.a, p.hold);
+      const f = filterNode(p, t);
+      if (f) { src.connect(f); f.connect(g); } else src.connect(g);
+      out(g, p);
+      const off = rand('off' + time + (p.f || ''))() * 2;
+      src.start(t, off); src.stop(t + dur + 0.02);
+    }
+
+    // ---- named sounds. play(name, t, opts): opts.gain scales the whole sound, opts.pan places it.
+    const S = {
+      // UI / motion graphics
+      pop: (t, o) => { tone(t, { f: [[0, o.f || 620], [0.07, (o.f || 620) * 0.45]], dur: 0.1, gain: 0.32 * o.g, pan: o.pan }); noise(t, { dur: 0.012, filter: 'highpass', f: 3000, gain: 0.12 * o.g, pan: o.pan }); },
+      tick: (t, o) => noise(t, { dur: 0.018, filter: 'bandpass', f: o.f || 4200, q: 2.5, gain: 0.3 * o.g, pan: o.pan }),
+      click: (t, o) => { tone(t, { f: o.f || 1900, type: 'square', dur: 0.02, gain: 0.08 * o.g, filter: 'lowpass', f2: 3000, pan: o.pan }); noise(t, { dur: 0.01, filter: 'highpass', f: 2500, gain: 0.15 * o.g, pan: o.pan }); },
+      tock: (t, o) => { tone(t, { f: o.f || 820, dur: 0.07, gain: 0.25 * o.g, pan: o.pan }); noise(t, { dur: 0.05, filter: 'bandpass', f: o.f || 820, q: 9, gain: 0.35 * o.g, pan: o.pan }); },
+      blip: (t, o) => tone(t, { f: o.f || 'E6', type: o.type || 'square', dur: o.dur || 0.07, gain: 0.07 * o.g, a: 0.002, hold: (o.dur || 0.07) * 0.6, pan: o.pan }),
+      whoosh: (t, o) => { const d = o.dur || 0.45; noise(t, { dur: d, color: 'pink', filter: 'bandpass', f: [[0, 350], [d * 0.55, o.top || 2600], [d, 700]], q: 0.9, gain: 0.32 * o.g, a: d * 0.5, pan: o.pan, verb: 0.15 }); },
+      swish: (t, o) => { const d = o.dur || 0.18; noise(t, { dur: d, filter: 'highpass', f: [[0, 1800], [d, 5200]], q: 0.7, gain: 0.22 * o.g, a: d * 0.35, pan: o.pan }); },
+      riser: (t, o) => { const d = o.dur || 0.8; noise(t, { dur: d, color: 'pink', filter: 'bandpass', f: [[0, 300], [d, 4000]], q: 1.2, gain: 0.25 * o.g, a: d * 0.95, pan: o.pan, verb: 0.2 }); tone(t, { f: [[0, 180], [d, 720]], type: 'triangle', dur: d, gain: 0.06 * o.g, a: d * 0.9 }); },
+      thud: (t, o) => { tone(t, { f: [[0, o.f || 130], [0.16, 42]], dur: 0.26, gain: 0.55 * o.g, pan: o.pan }); noise(t, { dur: 0.09, color: 'brown', filter: 'lowpass', f: 500, gain: 0.35 * o.g, pan: o.pan }); },
+      impact: (t, o) => { S.thud(t, o); noise(t, { dur: 0.7, color: 'pink', filter: 'lowpass', f: [[0, 2400], [0.6, 300]], gain: 0.3 * o.g, verb: 0.35, pan: o.pan }); },
+      stamp: (t, o) => { S.thud(t, { ...o, f: 160 }); noise(t, { dur: 0.05, filter: 'bandpass', f: 1300, q: 1.2, gain: 0.4 * o.g, pan: o.pan }); noise(t + 0.004, { dur: 0.012, filter: 'highpass', f: 3500, gain: 0.25 * o.g, pan: o.pan }); },
+      ding: (t, o) => { const f = hz(o.f || 'E6'); tone(t, { f, dur: 1.3, gain: 0.2 * o.g, verb: 0.3, pan: o.pan }); tone(t, { f: f * 2.76, dur: 0.5, gain: 0.05 * o.g, verb: 0.3, pan: o.pan }); },
+      success: (t, o) => { S.ding(t, { ...o, f: o.f || 'C6' }); S.ding(t + 0.09, { ...o, f: hz(o.f || 'C6') * 1.5, g: o.g * 0.9 }); },
+      error: (t, o) => { tone(t, { f: o.f || 'A3', type: 'square', dur: 0.13, gain: 0.09 * o.g, hold: 0.08, filter: 'lowpass', f2: 1400, pan: o.pan }); tone(t + 0.15, { f: hz(o.f || 'A3') * 0.8, type: 'square', dur: 0.22, gain: 0.09 * o.g, hold: 0.14, filter: 'lowpass', f2: 1200, pan: o.pan }); },
+      buzz: (t, o) => { const d = o.dur || 0.3; tone(t, { f: o.f || 110, type: 'sawtooth', dur: d, gain: 0.12 * o.g, hold: d * 0.7, filter: 'lowpass', f2: 900, pan: o.pan }); tone(t, { f: (o.f || 110) * 1.01, type: 'sawtooth', dur: d, gain: 0.1 * o.g, hold: d * 0.7, filter: 'lowpass', f2: 900, pan: o.pan }); },
+      sparkle: (t, o) => { const r = rand('sparkle' + t), notes = ['C6', 'D6', 'E6', 'G6', 'A6', 'C7']; for (let i = 0; i < (o.n || 6); i++) { const ti = t + i * 0.04 + r() * 0.01, f = hz(notes[Math.floor(r() * notes.length)]), pan = r() * 1.2 - 0.6; tone(ti, { f, dur: 0.6, gain: 0.04 * o.g, a: 0.002, verb: 0.35, pan }); tone(ti, { f: f * 2.76, dur: 0.2, gain: 0.012 * o.g, a: 0.002, pan }); } },
+      glitch: (t, o) => { const r = rand('glitch' + t); for (let i = 0; i < 7; i++) tone(t + i * 0.022, { f: 200 + r() * 1800, type: 'square', dur: 0.02, gain: 0.07 * o.g, a: 0.001, hold: 0.015, pan: r() * 1.4 - 0.7 }); noise(t, { dur: 0.16, filter: 'bandpass', f: 2500, q: 0.6, gain: 0.12 * o.g }); },
+      shutter: (t, o) => { S.click(t, o); noise(t + 0.06, { dur: 0.04, filter: 'bandpass', f: 2200, q: 1, gain: 0.2 * o.g, pan: o.pan }); },
+      count: (t, o) => S.tick(t, { ...o, f: o.f || 5200, g: o.g * 0.7 }),
+
+      // hand-made media
+      // stroke: a pen/marker/chalk/pencil stroke over `dur` seconds. material sets the surface sound.
+      stroke: (t, o) => {
+        const d = o.dur || 0.4, m = o.material || 'marker', r = rand('stroke' + m + t);
+        const M = {
+          marker: { f: 2900, q: 2.2, g: 0.16, grain: 0.05 },
+          chalk: { f: 1700, q: 0.6, g: 0.22, grain: 0.028 },
+          pencil: { f: 4600, q: 0.8, g: 0.16, grain: 0.04, filter: 'highpass' },
+          pen: { f: 4200, q: 1.6, g: 0.08, grain: 0.06 },
+          brush: { f: 900, q: 0.5, g: 0.1, grain: 0.09, color: 'pink' },
+          sharpie: { f: 2400, q: 1.4, g: 0.2, grain: 0.045 },
+        }[m];
+        for (let x = 0; x < d; x += M.grain * (0.7 + r() * 0.6)) {
+          const gd = M.grain * (0.8 + r() * 0.9);
+          noise(t + x, { dur: gd, color: M.color, filter: M.filter || 'bandpass', f: M.f * (0.8 + r() * 0.4), q: M.q, gain: M.g * o.g * (0.6 + r() * 0.5), a: gd * 0.3, pan: (o.pan || 0) + (r() - 0.5) * 0.2 });
+        }
+      },
+      // paper: picking up / slapping down / turning a sheet
+      paper: (t, o) => { const d = o.dur || 0.35, r = rand('paper' + t); for (let x = 0; x < d; x += 0.025 + r() * 0.03) noise(t + x, { dur: 0.05, filter: 'bandpass', f: 1200 + r() * 2600, q: 0.9, gain: 0.12 * o.g * (1 - x / d * 0.5), pan: o.pan }); },
+      slap: (t, o) => { noise(t, { dur: 0.07, filter: 'highpass', f: 900, gain: 0.45 * o.g, a: 0.001, pan: o.pan }); tone(t, { f: [[0, 180], [0.06, 70]], dur: 0.1, gain: 0.25 * o.g, pan: o.pan }); },
+      tape: (t, o) => { noise(t, { dur: o.dur || 0.5, filter: 'bandpass', f: [[0, 900], [o.dur || 0.5, 2200]], q: 1.8, gain: 0.18 * o.g, a: 0.02, pan: o.pan }); },
+      press: (t, o) => { S.thud(t, { ...o, f: 95, g: o.g * 0.9 }); noise(t + 0.01, { dur: 0.25, color: 'brown', filter: 'lowpass', f: 700, gain: 0.25 * o.g, pan: o.pan }); },
+      roller: (t, o) => { const d = o.dur || 0.6; noise(t, { dur: d, color: 'brown', filter: 'bandpass', f: 380, q: 1.5, gain: 0.3 * o.g, a: 0.05, hold: d * 0.6, pan: o.pan }); for (let x = 0; x < d; x += 0.07) S.tock(t + x, { f: 300, g: o.g * 0.15, pan: o.pan }); },
+      erase: (t, o) => { const d = o.dur || 0.6, r = rand('erase' + t); for (let x = 0; x < d; x += 0.06 + r() * 0.04) noise(t + x, { dur: 0.08, color: 'pink', filter: 'bandpass', f: 700 + r() * 500, q: 0.8, gain: 0.22 * o.g, a: 0.03, pan: (r() - 0.5) * 0.5 }); },
+
+      // machines and screens
+      key: (t, o) => { const r = rand('key' + t); noise(t, { dur: 0.025, filter: 'bandpass', f: 2600 + r() * 1200, q: 2, gain: 0.25 * o.g, a: 0.001, pan: o.pan }); tone(t, { f: 160 + r() * 40, dur: 0.04, gain: 0.12 * o.g, pan: o.pan }); },
+      typing: (t, o) => { const r = rand('typing' + t), n = o.n || 8, rate = o.rate || 0.09; for (let i = 0; i < n; i++) S.key(t + i * rate * (0.75 + r() * 0.5), { g: o.g * (0.7 + r() * 0.4), pan: o.pan }); },
+      typebar: (t, o) => { S.key(t, o); noise(t + 0.008, { dur: 0.03, filter: 'bandpass', f: 1100, q: 4, gain: 0.35 * o.g, pan: o.pan }); },
+      bell: (t, o) => S.ding(t, { ...o, f: o.f || 'A6' }),
+      boot: (t, o) => { tone(t, { f: [[0, 80], [0.35, 1600]], type: 'sine', dur: 0.5, gain: 0.08 * o.g, a: 0.3 }); S.blip(t + 0.45, { ...o, f: 'C6', dur: 0.12 }); },
+      crtOn: (t, o) => { noise(t, { dur: 0.25, filter: 'highpass', f: 2000, gain: 0.2 * o.g, a: 0.001 }); tone(t, { f: 15700, dur: 1.5, gain: 0.02 * o.g, a: 0.1, hold: 1 }); S.thud(t, { ...o, f: 90, g: o.g * 0.5 }); },
+      neon: (t, o) => { const d = o.dur || 0.25, r = rand('neon' + t); for (let x = 0; x < d; x += 0.035 + r() * 0.04) tone(t + x, { f: 120, type: 'sawtooth', dur: 0.03, gain: 0.3 * o.g * (0.5 + r() * 0.5), filter: 'bandpass', f2: 1200, q: 1.2, pan: o.pan }); },
+      // chip (8-bit console) sounds: raw square/triangle, no filtering
+      coin: (t, o) => { tone(t, { f: 'B5', type: 'square', dur: 0.07, gain: 0.07 * o.g, a: 0.001, hold: 0.06 }); tone(t + 0.07, { f: 'E6', type: 'square', dur: 0.3, gain: 0.07 * o.g, a: 0.001, hold: 0.1 }); },
+      jump: (t, o) => tone(t, { f: [[0, 260], [0.16, 820]], type: 'square', dur: 0.18, gain: 0.07 * o.g, a: 0.001, hold: 0.12 }),
+      hurt: (t, o) => { tone(t, { f: [[0, 600], [0.25, 90]], type: 'square', dur: 0.28, gain: 0.08 * o.g, a: 0.001, hold: 0.2 }); noise(t, { dur: 0.2, filter: 'lowpass', f: 1800, gain: 0.15 * o.g, rate: 0.25 }); },
+      powerup: (t, o) => ['C5', 'E5', 'G5', 'C6', 'E6', 'G6', 'C7'].forEach((n, i) => tone(t + i * 0.045, { f: n, type: 'square', dur: 0.06, gain: 0.06 * o.g, a: 0.001, hold: 0.05 })),
+      select: (t, o) => { S.blip(t, { ...o, f: 'A5', dur: 0.04 }); S.blip(t + 0.05, { ...o, f: 'E6', dur: 0.05 }); },
+      text: (t, o) => { const n = o.n || 10, rate = o.rate || 0.05; for (let i = 0; i < n; i++) tone(t + i * rate, { f: i % 2 ? 'C6' : 'G5', type: 'square', dur: 0.025, gain: 0.04 * o.g, a: 0.001, hold: 0.015 }); },
+    };
+
+    function play(name, t, opts) {
+      const fn = S[name];
+      if (!fn) throw new Error('unknown sound: ' + name);
+      const o2 = Object.assign({}, opts); o2.g = o2.gain == null ? 1 : o2.gain;
+      if (opts && opts.minor) withMinor(() => fn(t, o2)); else fn(t, o2);
+    }
+
+    // everything scheduled inside fn counts as minor (quieter in voiceover mode)
+    function withMinor(fn) { const was = inMinor; inMinor = true; try { fn(); } finally { inMinor = was; } }
+
+    // ---- beds: continuous sound under a stretch of time. bed(name, t0, t1, opts)
+    function bed(name, t0, t1, p) {
+      if (VO) return;
+      p = p || {}; const g = p.gain == null ? 1 : p.gain, d = t1 - t0, fade = Math.min(0.4, d / 4);
+      const long = (q) => Object.assign({ dur: d, a: fade, hold: d - fade * 2, bus: 'amb' }, q);
+      if (name === 'room') noise(t0, long({ color: 'brown', filter: 'lowpass', f: 320, gain: 0.12 * g }));
+      else if (name === 'hiss') noise(t0, long({ color: 'pink', filter: 'highpass', f: 5000, gain: 0.02 * g }));
+      else if (name === 'hum') { tone(t0, long({ f: 60, gain: 0.05 * g })); tone(t0, long({ f: 120, gain: 0.025 * g })); tone(t0, long({ f: 180, type: 'triangle', gain: 0.012 * g })); }
+      else if (name === 'rain') { noise(t0, long({ color: 'pink', filter: 'bandpass', f: 2500, q: 0.4, gain: 0.08 * g })); const r = rand('rain'); for (let x = 0; x < d; x += 0.04 + r() * 0.08) noise(t0 + x, { dur: 0.01, filter: 'highpass', f: 4000, gain: 0.04 * g * r(), bus: 'amb', pan: r() * 1.6 - 0.8 }); }
+      else if (name === 'projector') { noise(t0, long({ color: 'pink', filter: 'highpass', f: 3000, gain: 0.03 * g })); for (let x = 0; x < d; x += 1 / 24) S.tock(t0 + x, { f: 700, g: 0.04 * g, pan: 0.3 }); }
+      else if (name === 'vinyl') { noise(t0, long({ color: 'pink', filter: 'bandpass', f: 1500, q: 0.5, gain: 0.025 * g })); const r = rand('vinyl'); for (let x = 0; x < d; x += 0.08 + r() * 0.4) noise(t0 + x, { dur: 0.006, filter: 'highpass', f: 2500, gain: 0.08 * g * r(), bus: 'amb' }); }
+      else throw new Error('unknown bed: ' + name);
+    }
+
+    // ---- music: optional light beds that sit under the effects. music(name, t0, t1, { bpm, chords, gain })
+    // chords: list of note arrays, one per bar, cycled. e.g. [['C4','E4','G4','B4'], ['A3','C4','E4','G4']]
+    function music(name, t0, t1, p) {
+      if (VO) return;
+      p = p || {}; const g = p.gain == null ? 1 : p.gain, bpm = p.bpm || 100, beat = 60 / bpm, bar = beat * 4;
+      const chords = p.chords || [['C4', 'E4', 'G4', 'B4'], ['A3', 'C4', 'E4', 'G4'], ['F3', 'A3', 'C4', 'E4'], ['G3', 'B3', 'D4', 'F4']];
+      let i = 0;
+      for (let t = t0; t < t1 - 0.05; t += bar, i++) {
+        const ch = chords[i % chords.length], len = Math.min(bar, t1 - t);
+        if (name === 'pad' || name === 'pulse') ch.forEach((n, k) => { tone(t, { f: n, type: 'triangle', dur: len + 0.3, gain: 0.035 * g, a: 0.25, hold: len - 0.3, bus: 'music', filter: 'lowpass', f2: 1400, pan: (k - 1.5) * 0.25, verb: 0.25 }); tone(t, { f: hz(n) * 1.004, type: 'sine', dur: len + 0.3, gain: 0.03 * g, a: 0.3, hold: len - 0.3, bus: 'music' }); });
+        if (name === 'pulse') for (let b = 0; b < 4 && t + b * beat < t1 - 0.05; b++) {
+          const tb = t + b * beat;
+          tone(tb, { f: [[0, 110], [0.1, 50]], dur: 0.18, gain: (b % 2 ? 0.16 : 0.26) * g, bus: 'music' });
+          noise(tb + beat / 2, { dur: 0.04, filter: 'highpass', f: 7000, gain: 0.05 * g, bus: 'music' });
+          tone(tb + beat / 2, { f: hz(ch[0]) / 2, type: 'triangle', dur: beat * 0.45, gain: 0.08 * g, bus: 'music' });
+        }
+        if (name === 'chip') for (let s = 0; s < 8 && t + s * beat / 2 < t1 - 0.05; s++) {
+          const ts = t + s * beat / 2;
+          tone(ts, { f: hz(ch[0]) / 2, type: 'triangle', dur: beat * 0.45, gain: 0.12 * g, a: 0.001, hold: beat * 0.35, bus: 'music' });
+          tone(ts, { f: ch[[0, 1, 2, 3, 2, 1, 2, 3][s]], type: 'square', dur: beat * 0.4, gain: 0.03 * g, a: 0.001, hold: beat * 0.25, bus: 'music' });
+        }
+      }
+    }
+
+    return { play, bed, music, tone, noise, withMinor, hz, vo: VO, sounds: Object.keys(S) };
+  };
+
+  // Render the deterministic score once, then seek within its buffer. Rescheduling a
+  // long ambience/music event from the middle could send negative automation times
+  // to Web Audio. Buffer offsets preserve the exact mix without past-time events.
+  const preparedScores = new WeakMap();
+  let liveContext = null;
+  SOUND.prepare = function (fn, duration, opts = {}) {
+    let entries = preparedScores.get(fn);
+    if (!entries) { entries = new Map(); preparedScores.set(fn, entries); }
+    const key = JSON.stringify([duration, !!opts.voiceover, opts.master ?? 0.9]);
+    if (!entries.has(key)) {
+      const promise = SOUND.renderOffline(fn, duration, 48000, opts).then(result => {
+        const buffer = new AudioBuffer({ numberOfChannels: 2, length: result.frames, sampleRate: result.sr });
+        const left = buffer.getChannelData(0), right = buffer.getChannelData(1);
+        for (let i = 0; i < result.frames; i++) { left[i] = result.inter[i * 2]; right[i] = result.inter[i * 2 + 1]; }
+        return buffer;
+      }).catch(error => { entries.delete(key); throw error; });
+      entries.set(key, promise);
+    }
+    return entries.get(key);
+  };
+  SOUND.live = function (fn, fromT = 0, opts = {}) {
+    const Audio = window.AudioContext || window.webkitAudioContext;
+    if (!Audio) throw new Error('This browser does not expose Web Audio.');
+    if (!liveContext || liveContext.state === 'closed') liveContext = new Audio();
+    const ctx = liveContext, resume = ctx.resume(), requestedAt = performance.now();
+    let stopped = false, source = null;
+    const stop = () => { stopped = true; if (source) { try { source.stop(); } catch (_) {} source.disconnect(); source = null; } };
+    stop.ready = Promise.all([resume, SOUND.prepare(fn, opts.duration || window.DURATION, opts)]).then(([, buffer]) => {
+      if (stopped) return;
+      if (ctx.state !== 'running') throw new Error('Audio playback needs a click to resume.');
+      const offset = Math.max(0, fromT + (performance.now() - requestedAt) / 1000);
+      if (offset >= buffer.duration) return;
+      source = ctx.createBufferSource(); source.buffer = buffer; source.connect(ctx.destination); source.start(ctx.currentTime, offset);
+    });
+    return stop;
+  };
+
+  // Render a style's explainerSound into an OfflineAudioContext; returns interleaved float stereo.
+  SOUND.renderOffline = async function (fn, duration, sampleRate, kitOpts) {
+    const sr = sampleRate || 48000, len = Math.ceil(duration * sr);
+    const ctx = new OfflineAudioContext(2, len, sr);
+    fn(SOUND.kit(ctx, kitOpts || {}));
+    const buf = await ctx.startRendering();
+    const L = buf.getChannelData(0), R = buf.getChannelData(1), inter = new Float32Array(len * 2);
+    let peak = 0;
+    for (let i = 0; i < len; i++) { inter[2 * i] = L[i]; inter[2 * i + 1] = R[i]; peak = Math.max(peak, Math.abs(L[i]), Math.abs(R[i])); }
+    return { inter, peak, frames: len, sr };
+  };
+})();
+
+</script>
+<script>
+(()=>{'use strict';
+  const TAU = Math.PI * 2;
+  const nrm = (a) => { const l = Math.hypot(a[0], a[1], a[2]) || 1; return [a[0] / l, a[1] / l, a[2] / l]; };
+  const LIGHT = nrm([-0.5, -0.66, 0.58]);
+  const HALF = nrm([LIGHT[0], LIGHT[1], LIGHT[2] + 1]);
+
+  // lumpy closed shape from a centre + radius function
+  const lumpy = (c, nz, cx, cy, rx, ry, seed, amp = 0.05, rot = 0) => {
+    c.beginPath();
+    const N = 72, cr = Math.cos(rot), sr = Math.sin(rot);
+    for (let i = 0; i <= N; i++) {
+      const a = (i / N) * TAU, k = 1 + amp * nz.n2(Math.cos(a) * 1.3 + seed, Math.sin(a) * 1.3 + seed * 0.7);
+      const x = Math.cos(a) * rx * k, y = Math.sin(a) * ry * k;
+      const px = cx + x * cr - y * sr, py = cy + x * sr + y * cr;
+      i ? c.lineTo(px, py) : c.moveTo(px, py);
+    }
+    c.closePath();
+    c.fill();
+  };
+
+  let WALL = null; // static set wall: identical every frame, rendered once
+  const SEQ = {
+    pop: [[0.5, 0.42], [1.16, 0.8], [0.9, 1.14], [1.04, 0.97], [1, 1]],
+    lid: [[1, 0.12], [1, 0.38], [1, 0.66], [1, 0.9], [1, 1.05], [1, 1]],
+  };
+  // =====================================================================
+  // EXPLAINER: a fixed clay set; every prop is a baked plasticine lump that
+  // is placed, popped, slid and dropped on twos (12 fps) like a real animator
+  // moving pieces between exposures. Sprites are baked once and cached.
+  // =====================================================================
+  const CLX = {};
+  const cnz = () => CLX.nz || (CLX.nz = H.makeNoise(8));
+  // bake a clay lump; draw(c) paints the silhouette in local coords [0..w]x[0..h]
+  const bake = (key, w, h, o) => {
+    if (CLX[key]) return CLX[key];
+    const nz = cnz(), R = o.R || 14, pad = Math.ceil(R * 2 + 6), ox = o.ox || 0, oy = o.oy || 0;
+    const W2 = Math.ceil(w + pad * 2), H2 = Math.ceil(h + pad * 2);
+    const M = H.layer(W2, H2), mc = M.getContext('2d', { willReadFrequently: true });
+    mc.translate(pad, pad); mc.fillStyle = '#fff'; mc.strokeStyle = '#fff'; o.draw(mc);
+    const ds = 3, sw = Math.ceil(W2 / ds), sh = Math.ceil(H2 / ds);
+    const Bs = H.layer(sw, sh), bsc = Bs.getContext('2d'); bsc.filter = `blur(${R / ds}px)`; bsc.drawImage(M, 0, 0, sw, sh);
+    const B = H.layer(W2, H2), bc = B.getContext('2d', { willReadFrequently: true }); bc.drawImage(Bs, 0, 0, W2, H2);
+    const md = mc.getImageData(0, 0, W2, H2).data, bd = bc.getImageData(0, 0, W2, H2).data;
+    const Hh = new Float32Array(W2 * H2), A = new Float32Array(W2 * H2), lump = o.lump ?? 1.2, seed = o.seed || 1;
+    for (let y = 0; y < H2; y++) for (let x = 0; x < W2; x++) {
+      const i = y * W2 + x, a = bd[i * 4 + 3] / 255, ap = H.clamp((a - 0.42) / 0.58);
+      A[i] = ap;
+      if (!md[i * 4 + 3]) continue;
+      const X = x + ox, Y = y + oy;
+      Hh[i] = Math.sqrt(1 - (1 - ap) * (1 - ap)) * R * (o.dome ?? 1.1) + nz.n2(X * 0.025 + seed, Y * 0.025) * lump + nz.n2(X * 0.11 + (o.boil || 0) * 1.7, Y * 0.11 + seed) * 0.35;
+    }
+    (o.fps || []).forEach((f) => {
+      const R2 = f[2], ang = f[3], ca = Math.cos(ang), sa = Math.sin(ang);
+      for (let y = Math.max(0, Math.floor(f[1] + pad - R2)); y <= Math.min(H2 - 1, f[1] + pad + R2); y++) for (let x = Math.max(0, Math.floor(f[0] + pad - R2)); x <= Math.min(W2 - 1, f[0] + pad + R2); x++) {
+        const dx0 = x - pad - f[0], dy0 = y - pad - f[1], dx = dx0 * ca + dy0 * sa, dy = (-dx0 * sa + dy0 * ca) * 1.45, d = Math.hypot(dx, dy);
+        if (d >= R2) continue;
+        Hh[y * W2 + x] += Math.sin(d * 1.6 + nz.n2(dx * 0.06 + ang, dy * 0.06) * 2.5) * 0.22 * Math.pow(1 - d / R2, 1.5) * H.smooth(-0.6, 0.4, Math.cos(Math.atan2(dy, dx) - ang * 2));
+      }
+    });
+    (o.marks || []).forEach((m) => {
+      const [ax, ay, bx, by] = m.map((v, i) => (i < 4 ? v + pad : v)), vx = bx - ax, vy = by - ay, L2 = vx * vx + vy * vy || 1, dep = m[4] || 1.2;
+      for (let y = Math.max(0, Math.floor(Math.min(ay, by) - 9)); y <= Math.min(H2 - 1, Math.max(ay, by) + 9); y++) for (let x = Math.max(0, Math.floor(Math.min(ax, bx) - 9)); x <= Math.min(W2 - 1, Math.max(ax, bx) + 9); x++) {
+        const u = H.clamp(((x - ax) * vx + (y - ay) * vy) / L2), d = Math.hypot(x - ax - vx * u, y - ay - vy * u);
+        if (d > 8) continue;
+        Hh[y * W2 + x] += Math.sin(Math.PI * Math.min(1, u * 1.05 + 0.02)) * (-dep * Math.exp((-d * d) / (o.markW || 3.2)) + 0.4 * dep * Math.exp(-((d - 3.4) ** 2) / 2));
+      }
+    });
+    const out = mc.createImageData(W2, H2), od = out.data, base = H.hex(o.color), sss = o.sss || [1.12, 0.92, 0.85];
+    for (let y = 1; y < H2 - 1; y++) for (let x = 1; x < W2 - 1; x++) {
+      const i = y * W2 + x, ma = md[i * 4 + 3];
+      if (!ma) continue;
+      const n = nrm([-(Hh[i + 1] - Hh[i - 1]) * 0.5, -(Hh[i + W2] - Hh[i - W2]) * 0.5, 1]);
+      const diff = H.clamp((n[0] * LIGHT[0] + n[1] * LIGHT[1] + n[2] * LIGHT[2] + 0.42) / 1.42);
+      const spec = Math.pow(Math.max(0, n[0] * HALF[0] + n[1] * HALF[1] + n[2] * HALF[2]), 26) * (o.spec ?? 0.3);
+      const k = (0.3 + 0.86 * diff) * (0.72 + 0.28 * Math.min(1, A[i] * 1.4)), sh2 = 1 - diff, k4 = i * 4;
+      od[k4] = Math.min(255, base[0] * k * (1 + (sss[0] - 1) * sh2) + spec * 255);
+      od[k4 + 1] = Math.min(255, base[1] * k * (1 + (sss[1] - 1) * sh2) + spec * 245);
+      od[k4 + 2] = Math.min(255, base[2] * k * (1 + (sss[2] - 1) * sh2) + spec * 230);
+      od[k4 + 3] = ma;
+    }
+    const O = H.layer(W2, H2); O.getContext('2d').putImageData(out, 0, 0); O.pad = pad; O.w = w; O.h = h;
+    return (CLX[key] = O);
+  };
+  // place a sprite: (x,y) = top-left of its shape box; anchor (ax,ay) in local coords for squash/rotate
+  const place = (ctx, spr, x, y, o = {}) => {
+    if (!spr) return;
+    const ax = o.ax ?? spr.w / 2, ay = o.ay ?? spr.h;
+    ctx.save();
+    if (o.shadow !== false) { const s = o.shadow || {}; ctx.shadowColor = `rgba(40,20,10,${s.a ?? 0.4})`; ctx.shadowBlur = s.blur ?? 10; ctx.shadowOffsetX = s.dx ?? 6; ctx.shadowOffsetY = s.dy ?? 7; }
+    ctx.translate(x + ax, y + ay); if (o.rot) ctx.rotate(o.rot); ctx.scale(o.sx ?? 1, o.sy ?? 1); ctx.translate(-ax, -ay);
+    ctx.drawImage(spr, -spr.pad, -spr.pad); ctx.restore();
+  };
+  const prn = (seed, w, h, n, R) => { const r = H.rng(seed); return Array.from({ length: n }, () => [r.range(w * 0.15, w * 0.85), r.range(h * 0.15, h * 0.85), R * r.range(0.7, 1.2), r() * 50]); };
+  const FR = (px) => `700 ${px}px "Fredoka"`;
+  const mctx = () => CLX.m || (CLX.m = H.layer(4, 4).getContext('2d'));
+  const glyph = (ch, px, col) => {
+    const c = mctx(); c.font = FR(px); const w = Math.ceil(c.measureText(ch).width) + 4, h = Math.ceil(px * 1.05);
+    return bake('g' + ch + px + col, w, h, { R: Math.max(4, px * 0.075), dome: 1.3, lump: 0.8, seed: ch.charCodeAt(0), color: col, draw: (x) => { x.font = FR(px); x.fillText(ch, 2, px * 0.82); }, fps: px > 60 ? prn(ch.charCodeAt(0) + px, w, h, 1, px * 0.18) : [] });
+  };
+  const PAL = ['#f2c14e', '#f07b5a', '#f6efe3', '#ef8fb0', '#a8dd8a', '#7fd0e0'];
+
+  const EXPLAIN = (ctx, W, H_, t) => {
+    const nz = cnz();
+    const tq = Math.floor(t * 12) / 12, fr = Math.floor(t * 12);
+    // ---- stepped life of a piece: pops on (squash & stretch), then leaves by falling / sliding ----
+    const life = (st, en = 99, seed = 0, mode = 'fall') => {
+      if (tq + 1e-6 < st) return null;
+      const k = Math.floor((tq - st) * 12 + 1e-6), e = SEQ.pop[Math.min(4, k >> 1)];
+      let sx = e[0], sy = e[1], dx = 0, dy = 0, rot = 0;
+      if (tq >= en) {
+        const d = tq - en + 1 / 12;
+        if (mode === 'fall') { dy = 2400 * d * d; rot = ((((seed * 37) % 10) / 10) - 0.5) * d * 5; }
+        else if (mode === 'right') dx = 2600 * d * d;
+        else if (mode === 'left') dx = -2600 * d * d;
+        if (dy > 900 || Math.abs(dx) > 1500) return null;
+      }
+      return { sx, sy, dx, dy, rot };
+    };
+    const word = (str, x, y, px, st, en, mode = 'fall', cols = PAL, step = 1 / 12, colOff = 0) => {
+      const c = mctx(); c.font = FR(px);
+      let cx = x, i = 0;
+      for (const ch of str) {
+        const w = c.measureText(ch).width;
+        if (ch !== ' ') {
+          const L = life(st + i * step, en == null ? 99 : en + (mode === 'fall' ? i * (1 / 24) : 0), i + colOff, mode);
+          if (L) {
+            const jr = H.rng(ch.charCodeAt(0) * 7 + i + colOff);
+            const col = typeof cols === 'string' ? cols : cols[(i + colOff) % cols.length];
+            place(ctx, glyph(ch, px, col), cx + L.dx, y - px * 0.82 + L.dy, { sx: L.sx, sy: L.sy, rot: (jr() - 0.5) * 0.14 + L.rot, shadow: { blur: px * 0.09, dx: px * 0.05, dy: px * 0.07, a: 0.45 } });
+          }
+        }
+        cx += w + px * 0.04; i++;
+      }
+      return cx;
+    };
+    const wordW = (str, px) => { const c = mctx(); c.font = FR(px); let w = 0; for (const ch of str) w += c.measureText(ch).width + px * 0.04; return w; };
+    const obj = (spr, x, y, L, o = {}) => { if (L) place(ctx, spr, x + L.dx, y + L.dy, { ...o, sx: (o.sx ?? 1) * L.sx, sy: (o.sy ?? 1) * L.sy, rot: (o.rot || 0) + L.rot }); };
+    const boil = fr % 3;
+    // contact AO: one cached blurred ellipse, scaled under anything resting on the table
+    const AO = CLX.ao || (CLX.ao = (() => { const C = H.layer(240, 100), c = C.getContext('2d'); c.filter = 'blur(10px)'; c.fillStyle = 'rgb(70,20,5)'; c.beginPath(); c.ellipse(120, 50, 90, 22, 0, 0, TAU); c.fill(); return C; })());
+    const contact = (cx, cy, rx, ry, a = 0.45) => { ctx.save(); ctx.globalAlpha = a; ctx.drawImage(AO, cx - (rx * 120) / 90, cy - (ry * 50) / 22, (rx * 240) / 90, (ry * 100) / 22); ctx.restore(); };
+
+    // ---------- set: wall + table, baked once ----------
+    if (!CLX.bg) {
+      const C = H.layer(W, H_), c = C.getContext('2d');
+      c.fillStyle = '#3f8593'; c.fillRect(0, 0, W, H_);
+      const wall = bake('wall', W, 520, { R: 4, dome: 0, lump: 3.2, seed: 3, color: '#4f9fae', spec: 0.12, draw: (x) => x.fillRect(-30, -30, W + 60, 580), fps: prn(11, W, 470, 12, 30), markW: 14 });
+      c.save(); c.filter = 'blur(1.6px)'; c.drawImage(wall, -wall.pad, -wall.pad); c.restore();
+      const g = c.createRadialGradient(620, 220, 30, 640, 300, 760); g.addColorStop(0, 'rgba(255,240,200,0.22)'); g.addColorStop(1, 'rgba(10,20,30,0.35)');
+      c.fillStyle = g; c.fillRect(0, 0, W, H_);
+      const tab = bake('table', W + 80, 240, { R: 22, dome: 1.0, lump: 2.4, seed: 80, color: '#d0703f', draw: (x) => { x.beginPath(); x.moveTo(0, 14); for (let X = 0; X <= W + 80; X += 20) x.lineTo(X, 6 + nz.n2(X * 0.01, 3) * 8); x.lineTo(W + 80, 300); x.lineTo(0, 300); x.closePath(); x.fill(); }, fps: prn(81, W, 200, 7, 30), marks: (() => { const r = H.rng(82); return Array.from({ length: 6 }, () => { const x = r.range(40, W), y = r.range(40, 200), a = r() * TAU, l = r.range(50, 110); return [x, y, x + Math.cos(a) * l, y + Math.sin(a) * l, 1.2]; }); })(), markW: 16 });
+      c.save(); c.shadowColor = 'rgba(40,20,10,0.35)'; c.shadowBlur = 30; c.shadowOffsetY = -10; c.drawImage(tab, -40 - tab.pad, 500 - tab.pad); c.restore();
+      const g2 = c.createLinearGradient(0, 600, 0, H_); g2.addColorStop(0, 'rgba(60,20,10,0)'); g2.addColorStop(1, 'rgba(60,20,10,0.35)');
+      c.fillStyle = g2; c.fillRect(0, 600, W, 120);
+      CLX.bg = C;
+    }
+    ctx.drawImage(CLX.bg, 0, 0);
+
+
+    word('A little care.',640-wordW('A little care.',72)/2,88,72,.1,null,'fall','#f6efe3',1/24);
+    const pot=bake('gardenPot',240,145,{R:20,dome:1.1,lump:1.5,seed:201,color:'#ef8fb0',fps:prn(202,240,145,4,25),marks:[[45,28,62,120,1.1],[180,35,166,122,1]],draw:c=>{c.beginPath();c.moveTo(10,5);c.lineTo(230,5);c.lineTo(204,137);c.quadraticCurveTo(120,151,36,137);c.closePath();c.fill();}});
+    const rim=bake('gardenRim',258,38,{R:10,dome:1.2,lump:.9,seed:203,color:'#f4abc3',draw:c=>{c.beginPath();c.roundRect(0,0,258,38,16);c.fill();},fps:prn(203,258,38,3,17)});
+    const stem=bake('gardenStem',36,230,{R:10,dome:1.2,lump:.7,seed:204,color:'#609a4a',draw:c=>{c.beginPath();c.moveTo(11,230);c.bezierCurveTo(29,160,0,70,14,0);c.lineTo(32,0);c.bezierCurveTo(18,70,47,160,27,230);c.closePath();c.fill();}});
+    const leaf=bake('gardenLeaf',115,62,{R:15,dome:1.3,lump:1,seed:205,color:'#a8dd8a',draw:c=>lumpy(c,nz,57,31,57,29,205,.08),marks:[[12,32,100,29,1.7]],fps:prn(206,115,62,2,20)});
+    const petal=bake('gardenPetal',70,118,{R:18,dome:1.3,lump:1.1,seed:207,color:'#f6d061',draw:c=>lumpy(c,nz,35,59,34,58,207,.08),fps:prn(208,70,118,2,20)});
+    const center=bake('gardenCenter',82,82,{R:18,dome:1.35,lump:1.3,seed:209,color:'#f07b5a',draw:c=>lumpy(c,nz,41,41,40,40,209,.09),fps:prn(210,82,82,3,17)});
+    const L=life(2);if(L)contact(640,545,132*L.sx,15,.4);
+    // Stem is placed behind the pot and grows one pose at a time.
+    if(tq>=3.5){const growth=Math.round(H.clamp((tq-3.5)/2)*9)/9;place(ctx,stem,622,250,{sx:1,sy:Math.max(.04,growth),ax:18,ay:230});}
+    obj(pot,520,405,L);obj(rim,511,395,life(2.3));
+    if(tq>=5.5){obj(leaf,527,335,life(5.5),{ax:110,ay:32,rot:.38});obj(leaf,644,315,life(6.2),{ax:5,ay:30,rot:-.4});}
+    // Petals are separate hand-shaped pieces placed radially around the flower head.
+    for(let i=0;i<7;i++){const st=7+i*.35,lifeP=life(st);if(!lifeP)continue;ctx.save();ctx.translate(640,245);ctx.rotate(i*TAU/7);obj(petal,-35,-137,lifeP,{ax:35,ay:118});ctx.restore();}
+    obj(center,599,204,life(9.7));
+    if(tq>=10.5){ctx.save();ctx.fillStyle='#372c29';[625,655].forEach(x=>{ctx.beginPath();ctx.ellipse(x,239,4.5,6,0,0,TAU);ctx.fill();});ctx.strokeStyle='#58312e';ctx.lineWidth=3;ctx.lineCap='round';ctx.beginPath();ctx.arc(640,252,13,.2,Math.PI-.2);ctx.stroke();ctx.restore();}
+    word('Room to grow.',640-wordW('Room to grow.',62)/2,640,62,11.5,null,'fall','#f6efe3',1/24);
+    // ---------- lens finish ----------
+    ctx.save(); ctx.globalCompositeOperation = 'soft-light';
+    const gg = ctx.createLinearGradient(0, 0, W, H_); gg.addColorStop(0, 'rgba(255,220,170,0.5)'); gg.addColorStop(1, 'rgba(40,60,90,0.4)');
+    ctx.fillStyle = gg; ctx.fillRect(0, 0, W, H_); ctx.restore();
+    H.vignette(ctx, W, H_, 0.42, '20,12,8');
+    { const f = (H.rng(900 + fr)() - 0.5) * 0.06; ctx.fillStyle = f > 0 ? `rgba(255,240,220,${f})` : `rgba(0,0,0,${-f})`; ctx.fillRect(0, 0, W, H_); }
+    H.grain(ctx, W, H_, 0.03, 4 + fr);
+  };
+
+function scoreSound(k){k.bed('room',0,14.8,{gain:.05});
+const plop=t=>{t=Math.ceil(t*12)/12;k.tone(t,{f:[[0,200],[.08,85]],dur:.13,gain:.15,a:.004});k.noise(t,{dur:.06,color:'brown',filter:'lowpass',f:700,gain:.15,a:.002});};
+[2,2.3,3.5,5.5,6.2,7,7.35,7.7,8.05,8.4,8.75,9.1,9.7].forEach(plop);
+[.1,11.5].forEach(t=>{for(let i=0;i<10;i++)k.noise(Math.ceil((t+i/24)*12)/12,{dur:.025,color:'brown',filter:'lowpass',f:1000,gain:.07,a:.002});});
+['C4','E4','G4'].forEach((f,i)=>k.tone(12.5+i*.09,{f,type:'sine',dur:1.2,gain:.075,a:.03}));}
+window.CLAYMATION_STUDIO={draw:EXPLAIN,scoreSound,duration:15,width:1280,height:720,assets:()=>{}};window.DURATION=15;window.scoreSound=scoreSound;})();
+
+</script>
+<script>
+(() => {
+'use strict';
+const $=id=>document.getElementById(id), canvas=$('film'),ctx=canvas.getContext('2d');
+let currentT=0,playing=false,muted=true,loop=true,lastTime=0,stopSound=null,ready=false;
+const duration=CLAYMATION_STUDIO.duration;
+const playbackStatus=`${duration} seconds · Canvas + synthesized audio · No generated video`;
+let audioRequest=0;
+function silence(){audioRequest++;if(stopSound){stopSound();stopSound=null;}}
+function startSound(){
+ silence();if(muted||!playing)return;
+ const request=audioRequest;
+ const failed=error=>{if(request!==audioRequest)return;silence();muted=true;$('sound').textContent='Sound off';$('sound').setAttribute('aria-pressed','false');$('status').textContent='Audio could not start. Click Sound off to retry, or play the downloaded MP4.';console.error('Audio playback:',error);};
+ try{stopSound=SOUND.live(scoreSound,currentT,{voiceover:false,master:.85,duration});stopSound.ready.then(()=>{if(request===audioRequest)$('status').textContent=playbackStatus;}).catch(failed);}catch(error){failed(error);}
+}
+function paint(t){
+ currentT=Math.max(0,Math.min(duration,Number(t)||0));
+ ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,canvas.width,canvas.height);
+ CLAYMATION_STUDIO.draw(ctx,canvas.width,canvas.height,currentT);
+ $('scrub').value=currentT;$('time').textContent=`${currentT.toFixed(1)} / ${duration.toFixed(1)}s`;
+}
+function setPlaying(value){playing=value&&ready;lastTime=0;$('play').textContent=playing?'Pause':'Play';$('play').setAttribute('aria-pressed',String(playing));if(playing)startSound();else silence();}
+window.seek=t=>{setPlaying(false);paint(t);};
+window.renderReady=document.fonts.ready.then(async()=>{
+ await Promise.all(['700 72px Fredoka'].map(font=>document.fonts.load(font)));
+ CLAYMATION_STUDIO.assets();ready=true;paint(0);$('status').textContent=playbackStatus;
+ if(!new URLSearchParams(location.search).has('render'))SOUND.prepare(scoreSound,duration,{voiceover:false,master:.85}).catch(error=>console.warn('Audio preparation will retry on playback:',error));
+ $('play').disabled=false;
+ if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&!new URLSearchParams(location.search).has('render'))setPlaying(true);
+});
+function frame(now){
+ requestAnimationFrame(frame);if(!playing||document.hidden){lastTime=0;return;}
+ if(lastTime===0){lastTime=now;return;}
+ const next=currentT+(now-lastTime)/1000;lastTime=now;
+ if(next>=duration){if(loop){paint(next%duration);startSound();}else{paint(duration);setPlaying(false);}}else paint(next);
+}
+requestAnimationFrame(frame);
+$('play').addEventListener('click',()=>{if(currentT>=duration)paint(0);setPlaying(!playing);});
+$('restart').addEventListener('click',()=>{paint(0);setPlaying(true);});
+$('scrub').addEventListener('input',event=>{setPlaying(false);paint(event.target.value);});
+$('sound').addEventListener('click',()=>{muted=!muted;$('sound').textContent=muted?'Sound off':'Sound on';$('sound').setAttribute('aria-pressed',String(!muted));startSound();});
+$('loop').addEventListener('click',()=>{loop=!loop;$('loop').textContent=loop?'Loop on':'Loop off';$('loop').setAttribute('aria-pressed',String(loop));});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){silence();lastTime=0;}else if(playing)startSound();});
+document.addEventListener('keydown',event=>{if(['INPUT','TEXTAREA','BUTTON','SELECT'].includes(document.activeElement.tagName))return;if(event.code==='Space'){event.preventDefault();setPlaying(!playing);}});
+document.querySelectorAll('[data-time]').forEach(button=>button.addEventListener('click',()=>window.seek(button.dataset.time)));
+const promptButton=$('copy');
+if(promptButton)promptButton.addEventListener('click',async()=>{
+ try{const result=await fetch('prompt.txt');if(!result.ok)throw Error('Prompt unavailable');await navigator.clipboard.writeText(await result.text());promptButton.textContent='Full prompt copied';setTimeout(()=>promptButton.textContent='Copy full prompt + code',2500);}
+ catch{promptButton.textContent='Use Download prompt below';}
+});
+})();
+
+</script>
+</body></html>
+
+```
