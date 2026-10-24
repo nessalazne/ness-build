@@ -17,6 +17,7 @@ function promptFor(s) {
 }
 
 function notify(message) {
+  $('style-status').textContent = $('style-dialog').open ? message : '';
   $('toast').textContent = message;
   $('toast').classList.add('show');
   clearTimeout(toastTimer);
@@ -30,6 +31,7 @@ async function copyPrompt(s) {
     notify('Prompt copied');
   } catch {
     if (!$('style-dialog').open || selected?.id !== s.id) openStyle(s);
+    $('prompt-options').open = true;
     $('prompt').focus();
     $('prompt').select();
     notify('Prompt selected. Press Ctrl+C or ⌘C to copy.');
@@ -69,12 +71,17 @@ function openStyle(s) {
     dialog.showModal();
     document.body.style.overflow = 'hidden';
   }
-  dialog.scrollTop = 0;
+  dialog.querySelector('.viewer-scroll').scrollTop = 0;
+  $('style-status').textContent = '';
+  const position = filtered.findIndex(item => item.id === s.id);
+  $('previous').disabled = position <= 0;
+  $('next').disabled = position >= filtered.length - 1;
 }
 
 function changeStyle(direction) {
   const index = filtered.findIndex(s => s.id === selected.id);
-  openStyle(filtered[(index + direction + filtered.length) % filtered.length]);
+  const next = filtered[index + direction];
+  if (next) openStyle(next);
 }
 
 const observer = new IntersectionObserver(entries => {
@@ -110,7 +117,8 @@ function renderGallery() {
     meta.className = 'card-meta';
     const label = document.createElement('span'); label.textContent = s.category.toUpperCase();
     const num = document.createElement('span'); num.textContent = numbered(s.id);
-    meta.append(label, num);
+    num.textContent = '#' + numbered(s.id);
+    meta.append(num, label);
     const bottom = document.createElement('div'); bottom.className = 'card-bottom';
     const title = document.createElement('button'); title.className = 'card-title-button';
     const heading = document.createElement('h2'); heading.textContent = s.name; title.append(heading);
@@ -118,9 +126,12 @@ function renderGallery() {
     const copy = document.createElement('button'); copy.className = 'card-copy'; copy.textContent = 'Copy prompt ↗';
     copy.setAttribute('aria-label', `Copy ${s.name} prompt`);
     copy.addEventListener('click', () => copyPrompt(s));
-    bottom.append(title, copy);
+    bottom.append(title);
     const description = document.createElement('p'); description.className = 'card-description'; description.textContent = s.description;
-    card.append(preview, meta, bottom, description);
+    const body = document.createElement('div'); body.className = 'card-body';
+    body.append(meta, bottom, description, copy);
+    card.append(preview, body);
+    card.addEventListener('click', event => { if (!event.target.closest('button, a')) openStyle(s); });
     fragment.append(card);
     draw(canvas, s, 3.5);
     observer.observe(canvas);
@@ -399,7 +410,7 @@ function animate(now) {
       draw($('detail-canvas'),selected,detailTime);
     }
     detailLast=now;
-  } else if(!paused) {
+  } else if(!paused && !$('sample-dialog').open) {
     let count=0;
     for(const [canvas,s] of visible) {
       if(count++>=8) break;
@@ -417,6 +428,7 @@ $('reset').addEventListener('click',()=>{
 function updateMotionButton() {
   $('motion-toggle').textContent=paused?'Play previews':'Pause previews';
   $('motion-toggle').setAttribute('aria-pressed',String(paused));
+  document.dispatchEvent(new CustomEvent('preview-motion-change', {detail: {paused}}));
 }
 $('motion-toggle').addEventListener('click',()=>{paused=!paused;updateMotionButton();});
 reducedMotion.addEventListener('change',event=>{
@@ -437,7 +449,8 @@ $('format').addEventListener('change',updatePrompt);
 $('previous').addEventListener('click',()=>changeStyle(-1));
 $('next').addEventListener('click',()=>changeStyle(1));
 document.addEventListener('keydown',event=>{
-  if(event.key==='/'&&!$('style-dialog').open&&!['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)){
+  if ($('style-dialog').open && !['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName) && ['ArrowLeft','ArrowRight'].includes(event.key)) { event.preventDefault(); changeStyle(event.key === 'ArrowLeft' ? -1 : 1); }
+  if(event.key==='/'&&!$('sample-dialog').open&&!$('style-dialog').open&&!['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)){
     event.preventDefault();$('search').focus();
   }
 });

@@ -7,17 +7,21 @@
   <meta name="description" content="Explore 86 original B-roll animation directions. Watch live style studies, choose a look, and copy a production prompt for your own topic.">
   <title>B-roll motion library · AISOCIALHUB</title>
   <link rel="icon" href="../favicon.ico">
-  <link rel="stylesheet" href="styles.css?v=aisocialhub-1">
+  <link rel="stylesheet" href="styles.css?v=gallery-2">
   <script src="styles-data.js" defer></script>
-  <script src="gallery.js?v=aisocialhub-1" defer></script>
+  <script src="gallery.js?v=gallery-2" defer></script>
+  <script src="samples.js?v=gallery-2" defer></script>
 </head>
 <body>
   <header class="masthead"><a class="brand" href="../"><img class="brand-mark" src="../logo.png" alt="" width="34" height="34"> AISOCIALHUB<span class="brand-divider">/</span><span class="brand-sub">MOTION LIBRARY</span></a><span class="edition">VOL. 01 <span class="live-dot"></span> 86 STYLES</span></header>
   <main>
     <section class="intro" aria-labelledby="page-title">
       <div><p class="eyebrow">A FIELD GUIDE TO ANIMATED B-ROLL</p><h1 id="page-title">Find your<br><em>kind of motion.</em></h1></div>
-      <div class="intro-note"><span class="note-index">01 / EXPLORE & CREATE</span><p>86 original style directions. <br>Find a look. Watch it move. <br>Copy the prompt and make it yours.</p><p class="fine-print">Live browser studies, not rendered video clips. Each prompt describes a fuller treatment for your own production.</p></div>
+      <div class="intro-note"><span class="note-index">01 / EXPLORE & CREATE</span><p>86 original style directions. <br>Find a look. Watch it move. <br>Copy the prompt and make it yours.</p><p class="fine-print">Watch a full animation or explore a live style study. Click any preview to open it, then use Next to keep browsing.</p></div>
     </section>
+    <section class="samples" aria-labelledby="samples-title">
+      <div class="section-heading"><div><p class="eyebrow">WATCH & CREATE</p><h2 id="samples-title">Full animations</h2></div><button id="motion-toggle" class="quiet-button" aria-pressed="false">Pause previews</button></div>
+      <div id="sample-gallery" class="gallery sample-gallery">
     <a class="sample-feature" href="clay-content-studio/">
       <img src="clay-content-studio/poster.jpg" width="320" height="180" alt="Clay idea tile connected to a video, carousel, email, and article" loading="lazy">
       <div><p class="eyebrow">FULL ANIMATION EXAMPLE / SOFT CLAY</p><h2>One idea. Four formats.</h2><p>Watch the 15-second story with sound. Get the complete prompt, working code, and MP4.</p></div><span class="sample-link">Open sample ↗</span>
@@ -58,8 +62,11 @@
       <img src="bauhaus-studio/poster.jpg" width="320" height="180" alt="Primary shapes and bold type printed on aged cream paper" loading="lazy">
       <div><p class="eyebrow">FULL ANIMATION EXAMPLE / BAUHAUS POSTER</p><h2>Form in motion.</h2><p>A 15-second geometric poster with primary colors, printed texture, and workshop sounds. Includes the full prompt, working code, and MP4.</p></div><span class="sample-link">Open sample ↗</span>
     </a>
+      </div>
+    </section>
     <section class="library" aria-label="Animation styles">
-      <div class="toolbar"><label class="search-wrap"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 5 5"/></svg><span class="sr-only">Search styles</span><input type="search" id="search" placeholder="Search a style, material, or mood…" autocomplete="off"><kbd>/</kbd></label><button id="motion-toggle" class="quiet-button" aria-pressed="false">Pause previews</button></div>
+      <div class="section-heading"><div><p class="eyebrow">EXPLORE THE LIBRARY</p><h2>86 style studies</h2></div><p>Live previews with prompts for your own topic.</p></div>
+      <div class="toolbar"><label class="search-wrap"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 5 5"/></svg><span class="sr-only">Search styles</span><input type="search" id="search" placeholder="Search a style, material, or mood…" autocomplete="off"><kbd>/</kbd></label></div>
       <div id="filters" class="filters" role="group" aria-label="Filter by category"></div>
       <div class="results-bar"><p id="result-count" aria-live="polite">86 styles</p><span>SELECT A STYLE TO GET THE PROMPT <span aria-hidden="true">↗</span></span></div>
       <div id="gallery" class="gallery"></div>
@@ -68,10 +75,36 @@
     </section>
   </main>
   <footer><span>AISOCIALHUB / B-ROLL MOTION LIBRARY</span><span>86 original directions. One place to start.</span><a href="#page-title">Back to top ↑</a></footer>
-  <dialog id="style-dialog" aria-labelledby="modal-title">
-    <div class="dialog-top"><span id="modal-index"></span><button id="close-dialog" class="close-button" aria-label="Close style details">✕</button></div>
-    <div class="dialog-layout"><div class="preview-pane"><canvas id="detail-canvas" width="960" height="540" role="img" aria-label="Animated style study"></canvas><div class="preview-caption"><span>LIVE STYLE STUDY · 12 SECOND LOOP</span><button id="detail-motion" class="quiet-button">Pause</button></div><p id="modal-description"></p><div id="swatches" class="swatches" aria-label="Style palette"></div><p class="preview-note">This preview is a simplified motion study. The prompt includes texture, lighting, and production details beyond the preview.</p></div><div class="prompt-pane"><p id="modal-category" class="eyebrow"></p><h2 id="modal-title"></h2><label class="field-label" for="topic">Your topic <span>OPTIONAL</span></label><input id="topic" placeholder="e.g. how a new idea becomes a product" maxlength="240"><label class="field-label" for="format">Output format</label><select id="format"><option value="vertical">Vertical · 1080 × 1920</option><option value="landscape">Landscape · 1920 × 1080</option></select><div class="prompt-label"><label class="field-label" for="prompt">Production prompt</label><span id="prompt-length"></span></div><textarea id="prompt" readonly spellcheck="false" aria-label="Production prompt"></textarea><button id="copy-prompt" class="primary-button">Copy prompt <span aria-hidden="true">↗</span></button><p class="usage-note">Paste into your preferred creative assistant to plan or build the animation. Adapt it to the tools you use.</p></div></div>
-    <div class="dialog-bottom"><button id="previous" class="quiet-button">← Previous style</button><button id="next" class="quiet-button">Next style →</button></div>
+  <dialog id="style-dialog" class="viewer" aria-labelledby="modal-title">
+    <div class="viewer-scroll">
+      <div class="viewer-media"><canvas id="detail-canvas" width="960" height="540" role="img" aria-label="Animated style study"></canvas><button id="close-dialog" class="close-button" aria-label="Close style details">✕</button><button id="detail-motion" class="media-toggle">Pause</button></div>
+      <div class="viewer-body">
+        <div class="viewer-meta"><span id="modal-index"></span><span id="modal-category"></span></div>
+        <h2 id="modal-title"></h2>
+        <p id="modal-description" class="viewer-description"></p>
+        <div id="swatches" class="swatches" aria-label="Style palette"></div>
+        <p class="preview-note">This is a live motion study. The prompt describes a fuller treatment for your own production.</p>
+        <details id="prompt-options" class="prompt-options"><summary>Customize and view prompt</summary><div class="prompt-pane">
+          <div class="prompt-fields"><div><label class="field-label" for="topic">Your topic <span>OPTIONAL</span></label><input id="topic" placeholder="e.g. how a new idea becomes a product" maxlength="240"></div><div><label class="field-label" for="format">Output format</label><select id="format"><option value="vertical">Vertical · 1080 × 1920</option><option value="landscape">Landscape · 1920 × 1080</option></select></div></div>
+          <div class="prompt-label"><label class="field-label" for="prompt">Production prompt</label><span id="prompt-length"></span></div><textarea id="prompt" readonly spellcheck="false" aria-label="Production prompt"></textarea>
+        </div></details>
+      </div>
+    </div>
+    <div class="dialog-bottom"><div class="viewer-navigation"><button id="previous" class="nav-button">← Prev</button><button id="next" class="nav-button">Next →</button></div><button id="copy-prompt" class="primary-button">Copy prompt</button></div>
+    <p id="style-status" class="viewer-status" role="status" aria-live="polite"></p>
+  </dialog>
+  <dialog id="sample-dialog" class="viewer" aria-labelledby="sample-title">
+    <div class="viewer-scroll">
+      <div class="viewer-media"><video id="sample-video" controls playsinline loop preload="metadata"></video><button id="sample-close" class="close-button" aria-label="Close animation">✕</button></div>
+      <div class="viewer-body">
+        <div class="viewer-meta"><span id="sample-index"></span><span id="sample-category"></span></div>
+        <h2 id="sample-title"></h2><p id="sample-description" class="viewer-description"></p>
+        <div class="sample-downloads"><a id="sample-source" class="text-link">Open full sample ↗</a><a id="sample-mp4" class="text-link" download>Download MP4 ↓</a><a id="sample-prompt-download" class="text-link" download>Download prompt ↓</a></div>
+        <details id="sample-prompt-options" class="prompt-options"><summary>View full prompt and code</summary><textarea id="sample-prompt" readonly aria-label="Full animation prompt" spellcheck="false"></textarea></details>
+      </div>
+    </div>
+    <div class="dialog-bottom"><div class="viewer-navigation"><button id="sample-previous" class="nav-button">← Prev</button><button id="sample-next" class="nav-button">Next →</button></div><button id="sample-copy" class="primary-button">Copy prompt</button></div>
+    <p id="sample-status" class="viewer-status" role="status" aria-live="polite"></p>
   </dialog>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 </body>
