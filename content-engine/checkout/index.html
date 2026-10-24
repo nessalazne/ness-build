@@ -1260,6 +1260,26 @@ footer {
 [data-theme="light"] .co-live-bonuses { border-color:#a07200; background:linear-gradient(180deg, rgba(160,114,0,0.06), transparent 30%); }
 .co-video { position:relative; margin-top:14px; aspect-ratio:16/10; border-radius:14px; overflow:hidden; border:1px solid var(--border-hover); background:#000; }
 .co-video video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.co-video-wide { aspect-ratio:16/9; }
+.co-thumbs-kicker { margin:18px 0 10px; font-family:var(--font-mono); font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); }
+.co-showcase { display:grid; grid-template-columns:3.16fr 1fr 1fr; gap:10px; align-items:start; }
+@media (max-width:640px){ .co-showcase { grid-template-columns:1fr 1fr; } .co-showcase .co-thumb-fig:first-child { grid-column:1 / -1; } }
+.co-fx-row { display:grid; grid-template-columns:repeat(2, minmax(0,130px)); gap:10px; margin-top:12px; }
+.co-thumb-fig { margin:0; min-width:0; }
+.co-thumb-fig figcaption { margin-top:6px; font-family:var(--font-body); font-size:0.82rem; font-weight:600; color:var(--text-paper); }
+.co-thumb-fig .sample-kind { margin-bottom:2px; }
+.co-thumb { position:relative; display:block; width:100%; aspect-ratio:9/16; padding:0; border:1px solid var(--border-hover); border-radius:12px; overflow:hidden; background:#000; cursor:pointer; }
+.co-thumb.is-h { aspect-ratio:16/9; }
+.co-thumb img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; transition:transform .4s var(--ease); }
+.co-thumb span { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; padding-left:3px; background:rgba(0,0,0,0.6); border:1px solid rgba(255,255,255,0.3); color:#fff; font-size:14px; transition:background .3s var(--ease), border-color .3s var(--ease); }
+.co-thumb:hover img { transform:scale(1.04); }
+.co-thumb:hover span, .co-thumb:focus-visible span { background:var(--accent); border-color:var(--accent); color:#120b09; }
+.co-tool p.co-fx-note { margin-top:12px; color:var(--text-paper); }
+.co-lightbox { margin:auto; inset:0; padding:0; border:0; background:transparent; max-width:min(92vw, 1100px); max-height:92vh; overflow:visible; }
+.co-lightbox::backdrop { background:rgba(0,0,0,0.82); }
+.co-lightbox video { display:block; max-width:min(92vw, 1100px); max-height:86vh; border-radius:14px; background:#000; }
+.co-lightbox.is-v video { max-width:92vw; width:auto; height:86vh; aspect-ratio:9/16; }
+.co-lb-close { position:absolute; top:-44px; right:0; width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,0.35); background:rgba(0,0,0,0.6); color:#fff; font-size:18px; line-height:1; cursor:pointer; }
 .co-bonus-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:clamp(1.2rem,2.4vw,1.6rem); }
 @media (max-width:640px){ .co-bonus-grid { grid-template-columns:1fr; } }
 .co-bonus { border:1px solid var(--border-hover); border-radius:16px; overflow:hidden; background:var(--bg-elev); }
@@ -1377,11 +1397,11 @@ footer {
       <div class="co-up-clock" data-live-end="2026-11-02T04:59:59Z">Closes in <b data-u="d">0</b>d <b data-u="h">00</b>h <b data-u="m">00</b>m</div>
     </div>
     <h2 class="co-up-title">Set it up live with me.<br><em>Posting everywhere by the end of the week.</em></h2>
-    <p class="co-up-body">Three live sessions in the week of 2 November. In session one we install the Chrome extension and get it working on your computer, so you leave the first live with it running. In session two we finish the rest of the setup, and after that you can post to every platform. In the third I show you how to add more B-roll explainer styles using only Claude Code, no HyperFrames and no Remotion, picked from the 86-style library. We also cover faceless long-form videos built with those styles and the FX pack. Every session is recorded.</p>
+    <p class="co-up-body">Three live sessions in the week of 2 November. In session one we install the Chrome extension and get it working on your computer, so you leave the first live with it running. In session two we finish the rest of the setup, and after that you can post to every platform. In the third we add the 86-style library and the FX library to your extension, so you pick a style or an effect from a list whenever you want. We also cover faceless long-form videos built with those styles and effects. Every session is recorded.</p>
     <ul class="co-up-list">
       <li><span>01</span><div><b>Session 1 · Working extension</b>Your keys and the extension installed and running, so it works before we finish.</div></li>
       <li><span>02</span><div><b>Session 2 · Finish the setup</b>Accounts, your brand config and your first run.</div></li>
-      <li><span>03</span><div><b>Session 3 · More B-roll, plain Claude Code</b>Turn any of the 86 styles into a B-roll explainer, plus faceless long-form videos.</div></li>
+      <li><span>03</span><div><b>Session 3 · The libraries in your extension</b>The 86 styles and the FX library added to your extension, ready to pick from a list, plus faceless long-form videos.</div></li>
       <li><span>04</span><div><b>Every session recorded</b>Replays are added to your Content Engine area on the hub after each session, and you keep access for life.</div></li>
       <li><span>05</span><div><b>Small group</b>20 places. Session times come by email after you join.</div></li>
       <li><span>06</span><div><b>Plus every Live Setup bonus</b>The 86-style B-roll library, the FX library, the five new tools and both bonus courses, plus everything I add to the library, the FX and the tools later. These come only with Live Setup.</div></li>
@@ -1426,18 +1446,59 @@ footer {
       <div class="co-item-body">
         <div class="co-item-title">86-style B-roll Motion Library <span class="co-tag">Live Setup bonus</span></div>
         <p>86 original animated B-roll directions. Find a look, watch it move, copy its production prompt and make it yours. Pick any of them for your videos.</p>
-        <div class="co-video">
+        <div class="co-video co-video-wide">
           <video class="sample-video" muted loop playsinline preload="none" poster="../media/broll-library.jpg" data-src="../media/broll-library-loop.mp4" aria-label="Scrolling through the 86-style B-roll library"></video>
           <button class="sample-play" type="button" data-full="../media/broll-library.mp4" aria-label="Watch the full B-roll library walkthrough"><span>▶ Watch the walkthrough</span></button>
         </div>
+        <div class="co-thumbs-kicker">The styles in real videos · tap to watch</div>
+        <div class="co-showcase">
+          <figure class="co-thumb-fig">
+            <button class="co-thumb is-h" type="button" data-full="../media/showcase-longform.mp4" aria-label="Watch the long-form YouTube tutorial sample with sound"><img src="../media/showcase-longform.jpg" alt="" width="960" height="540" loading="lazy"><span>▶</span></button>
+            <figcaption><span class="sample-kind">Long form</span>YouTube tutorial</figcaption>
+          </figure>
+          <figure class="co-thumb-fig">
+            <button class="co-thumb" type="button" data-full="../media/showcase-papercraft.mp4" aria-label="Watch the Papercraft short with sound"><img src="../media/showcase-papercraft.jpg" alt="" width="540" height="960" loading="lazy"><span>▶</span></button>
+            <figcaption><span class="sample-kind">Short</span>Papercraft</figcaption>
+          </figure>
+          <figure class="co-thumb-fig">
+            <button class="co-thumb" type="button" data-full="../media/showcase-letterpress.mp4" aria-label="Watch the Letterpress short with sound"><img src="../media/showcase-letterpress.jpg" alt="" width="540" height="960" loading="lazy"><span>▶</span></button>
+            <figcaption><span class="sample-kind">Short</span>Letterpress</figcaption>
+          </figure>
+        </div>
       </div>
+    </div>
+
+    <div class="co-tools">
+      <div class="co-tools-head"><span class="co-step">New tools · Live Setup bonus</span><span class="co-tag new">Rolling out now</span></div>
+      <div class="co-tool"><div class="co-item-num">03</div><div><div class="co-item-title">Style Builder</div><p>Pick a ready-made editing look and caption style, or hand Claude a reel you like and it builds a style that is only yours.</p></div></div>
+      <div class="co-tool"><div class="co-item-num">04</div><div><div class="co-item-title">FX Library · 50 effects</div><p>Visual effects you choose from a list, built into your video for you.</p>
+        <div class="co-fx-row">
+          <figure class="co-thumb-fig">
+            <button class="co-thumb" type="button" data-full="../media/fx-sample-1.mp4" aria-label="Watch FX sample 1 with sound"><img src="../media/fx-sample-1.jpg" alt="" width="540" height="960" loading="lazy"><span>▶</span></button>
+            <figcaption><span class="sample-kind">FX sample</span>01</figcaption>
+          </figure>
+          <figure class="co-thumb-fig">
+            <button class="co-thumb" type="button" data-full="../media/fx-sample-2.mp4" aria-label="Watch FX sample 2 with sound"><img src="../media/fx-sample-2.jpg" alt="" width="540" height="960" loading="lazy"><span>▶</span></button>
+            <figcaption><span class="sample-kind">FX sample</span>02</figcaption>
+          </figure>
+        </div>
+        <p class="co-fx-note">In Live Setup I add the FX library and the 86-style motion library to your Chrome extension with you. After that you pick them from a list whenever you want, no typing prompts into Claude Code or chat.</p>
+      </div></div>
+      <div class="co-tool"><div class="co-item-num">05</div><div><div class="co-item-title">Trial Reel Maker</div><p>One video, several test versions, each with its own hook and look, so you can see which one lands.</p></div></div>
+      <div class="co-tool"><div class="co-item-num">06</div><div><div class="co-item-title">Carousel Maker</div><p>Turn a video into a carousel, or start one from any topic. You approve the slide copy before anything is designed.</p></div></div>
+      <div class="co-tool"><div class="co-item-num">07</div><div><div class="co-item-title">GIF Picker</div><p>Ask for a GIF and Claude finds one that fits the line and drops it into the edit.</p></div></div>
+    </div>
+
+    <div class="co-updates">
+      <div class="co-updates-title">Plus: free updates for life to the bonuses.</div>
+      <p>The 86-style B-roll library, the FX library and the five new tools keep growing. With Live Setup, every style, effect and tool I add to them is yours too. No subscription. No upgrade fee.</p>
     </div>
 
     <div class="co-bonus-grid">
       <div class="co-bonus">
         <img src="../media/aisha-engine-foundations.webp" alt="AISHA Engine Foundations course cover" width="1280" height="720" loading="lazy">
         <div class="co-bonus-body">
-          <div class="co-item-num">03 · Live Setup bonus · $97 value</div>
+          <div class="co-item-num">08 · Live Setup bonus · $97 value</div>
           <div class="co-item-title">AISHA Engine Foundations</div>
           <p>Build, automate and monetize a realistic AI influencer, from the avatar to the content system.</p>
         </div>
@@ -1445,25 +1506,11 @@ footer {
       <div class="co-bonus">
         <img src="../media/the-ai-audit-method.webp" alt="The AI Audit Method crash course cover" width="1280" height="720" loading="lazy">
         <div class="co-bonus-body">
-          <div class="co-item-num">04 · Live Setup bonus · $127 value</div>
+          <div class="co-item-num">09 · Live Setup bonus · $127 value</div>
           <div class="co-item-title">The AI Audit Method</div>
           <p>The crash course on turning your AI skills into a consulting business.</p>
         </div>
       </div>
-    </div>
-
-    <div class="co-tools">
-      <div class="co-tools-head"><span class="co-step">New tools · Live Setup bonus</span><span class="co-tag new">Rolling out now</span></div>
-      <div class="co-tool"><div class="co-item-num">05</div><div><div class="co-item-title">Style Builder</div><p>Pick a ready-made editing look and caption style, or hand Claude a reel you like and it builds a style that is only yours.</p></div></div>
-      <div class="co-tool"><div class="co-item-num">06</div><div><div class="co-item-title">FX Library · 50 effects</div><p>Visual effects you choose from a list, built into your video for you.</p></div></div>
-      <div class="co-tool"><div class="co-item-num">07</div><div><div class="co-item-title">Trial Reel Maker</div><p>One video, several test versions, each with its own hook and look, so you can see which one lands.</p></div></div>
-      <div class="co-tool"><div class="co-item-num">08</div><div><div class="co-item-title">Carousel Maker</div><p>Turn a video into a carousel, or start one from any topic. You approve the slide copy before anything is designed.</p></div></div>
-      <div class="co-tool"><div class="co-item-num">09</div><div><div class="co-item-title">GIF Picker</div><p>Ask for a GIF and Claude finds one that fits the line and drops it into the edit.</p></div></div>
-    </div>
-
-    <div class="co-updates">
-      <div class="co-updates-title">Plus: free updates for life to the bonuses.</div>
-      <p>The 86-style B-roll library, the FX library and the five new tools keep growing. With Live Setup, every style, effect and tool I add to them is yours too. No subscription. No upgrade fee.</p>
     </div>
 
       </div>
@@ -1524,6 +1571,11 @@ footer {
   </section>
 
 </main>
+
+<dialog class="co-lightbox" id="coLightbox" aria-label="Sample video">
+  <button class="co-lb-close" type="button" aria-label="Close video">✕</button>
+  <video controls playsinline preload="none"></video>
+</dialog>
 
 <footer>
   <div class="footer-brand">
@@ -1751,6 +1803,25 @@ document.querySelectorAll('.sample-play').forEach(btn => {
     v.play().catch(() => {});
   });
 });
+
+/* Showcase + FX samples: poster only, nothing loads until tapped, then plays in a pop-up */
+const lightbox = document.getElementById('coLightbox');
+const lightboxVideo = lightbox.querySelector('video');
+document.querySelectorAll('.co-thumb').forEach(btn => {
+  btn.addEventListener('click', () => {
+    lightbox.classList.toggle('is-v', !btn.classList.contains('is-h'));
+    lightboxVideo.src = btn.dataset.full;
+    lightbox.showModal();
+    lightboxVideo.play().catch(() => {});
+  });
+});
+lightbox.addEventListener('close', () => {
+  lightboxVideo.pause();
+  lightboxVideo.removeAttribute('src');
+  lightboxVideo.load();
+});
+lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.close(); });
+lightbox.querySelector('.co-lb-close').addEventListener('click', () => lightbox.close());
 
 // Theme toggle
 const moonIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
