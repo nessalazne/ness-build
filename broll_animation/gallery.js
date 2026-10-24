@@ -237,7 +237,7 @@ function draw(canvas, s, seconds) {
     for (let y = 78; y < 510; y += 34) path([[28,y],[932,y]],a,1);
   }
   c.restore();
-  text('DC / MOTION STUDY', 34, 38, 12);
+  text('AISOCIALHUB / MOTION STUDY', 34, 38, 12);
   text(numbered(s.id), 926, 38, 12, a, 'right');
   c.save(); c.globalAlpha = reveal;
   if (s.motif === 'orbit') {

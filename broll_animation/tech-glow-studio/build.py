@@ -20,7 +20,7 @@ offline = page
 start = offline.index('<div class="under">')
 end = offline.index('</main>', start)
 offline = offline[:start] + offline[end:]
-offline = offline.replace('<a href="../">← B-ROLL MOTION LIBRARY</a>', '<span>DIGICURATOR / TECH GLOW STUDIO</span>')
+offline = offline.replace('<a href="../">← B-ROLL MOTION LIBRARY</a>', '<span>AISOCIALHUB / TECH GLOW STUDIO</span>')
 (root / 'animation.html').write_text(offline)
 
 prompt_html = offline.replace(font_css, "@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&family=Fredoka:wght@600;700&family=Space+Grotesk:wght@700&family=Space+Mono:wght@700&display=block');")
