@@ -2,7 +2,7 @@
 'use strict';
 const $ = id => document.getElementById(id);
 const dialog = $('sample-dialog');
-const player = $('sample-video');
+const frame = $('sample-frame');
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 const samples = [...document.querySelectorAll('.sample-feature')].map(link => {
   const path = link.getAttribute('href');
@@ -40,18 +40,6 @@ async function loadPrompt(sample) {
   }
   return promptCache.get(sample.path);
 }
-async function populatePrompt(sample) {
-  $('sample-prompt').value = 'Loading prompt…';
-  try {
-    const text = await loadPrompt(sample);
-    if (samples[current] === sample && dialog.open) $('sample-prompt').value = text;
-  } catch {
-    if (samples[current] === sample && dialog.open) {
-      $('sample-prompt').value = '';
-      status('The prompt could not load. Try Copy prompt again or open the full sample.');
-    }
-  }
-}
 function openSample(index) {
   if (index < 0 || index >= samples.length) return;
   const sample = samples[index];
@@ -61,23 +49,16 @@ function openSample(index) {
   $('sample-title').textContent = sample.title;
   $('sample-index').textContent = `#${String(index + 1).padStart(2, '0')} / ${samples.length}`;
   $('sample-category').textContent = sample.category;
-  $('sample-description').textContent = sample.description;
-  $('sample-source').href = sample.path;
-  $('sample-mp4').href = sample.video;
-  $('sample-prompt-download').href = `${sample.path}prompt.txt`;
   $('sample-previous').disabled = index === 0;
   $('sample-next').disabled = index === samples.length - 1;
-  player.pause();
-  player.poster = sample.poster;
-  player.src = sample.video;
-  player.setAttribute('aria-label', sample.title);
-  player.muted = true;
-  player.load();
+  frame.title = `${sample.title}: full animation and controls`;
+  frame.style.visibility = 'hidden';
+  frame.setAttribute('aria-busy', 'true');
+  // The original player's render flag starts paused and leaves all controls available.
+  frame.src = `${sample.path}?render=1`;
   if (!dialog.open) { dialog.showModal(); document.body.style.overflow = 'hidden'; }
-  dialog.querySelector('.viewer-scroll').scrollTop = 0;
   syncPreviews();
-  if (!reducedMotion.matches) player.play().catch(() => {});
-  populatePrompt(sample);
+
 }
 async function copySample(index) {
   const sample = samples[index];
@@ -94,9 +75,7 @@ async function copySample(index) {
       }
     } catch {
       if (!dialog.open || current !== index) openSample(index);
-      $('sample-prompt-options').open = true;
-      $('sample-prompt').value = text; $('sample-prompt').focus(); $('sample-prompt').select();
-      status('Prompt selected. Press Ctrl+C or ⌘C to copy.');
+      status('Clipboard access is unavailable. Use Download prompt in the sample.');
     }
   } catch {
     if (!dialog.open) openSample(index);
@@ -133,20 +112,66 @@ $('sample-close').addEventListener('click', () => dialog.close());
 $('sample-previous').addEventListener('click', () => openSample(current - 1));
 $('sample-next').addEventListener('click', () => openSample(current + 1));
 $('sample-copy').addEventListener('click', () => copySample(current));
-player.addEventListener('error', () => { if (dialog.open) status('This video could not load. Open the full sample or download the MP4.'); });
+frame.addEventListener('load', () => {
+  if (!dialog.open || frame.getAttribute('src') === 'about:blank') return;
+  const doc = frame.contentDocument;
+  if (!doc || !doc.getElementById('play')) {
+    frame.style.visibility = 'visible';
+    frame.removeAttribute('aria-busy');
+    status('The sample could not load. Close the popup and try again.');
+    return;
+  }
+  const layout = doc.createElement('style');
+  layout.textContent = `
+    html{color-scheme:dark}body{background:#050505}
+    .page{max-width:1100px;padding:16px 24px 24px}
+    .top{padding-bottom:12px}.hero{margin:18px 0;gap:20px}
+    .hero h1{font-size:32px}.hero .eyebrow{margin-bottom:8px;font-size:9px}
+    .hero>p{font-size:12px;max-width:350px}
+    .film-wrap{width:min(100%,720px,calc((100dvh - 190px)*16/9));margin-inline:auto}
+    .under{gap:28px;margin:26px 0}.controls{gap:10px;padding:12px}
+    @media(max-width:700px){
+      .page{padding:14px 14px 24px}.hero{margin:16px 0}
+      .hero h1{font-size:28px}.hero>p{margin-top:12px;max-width:none}
+      .film-wrap{width:100%}.controls{gap:8px}.under{gap:20px}
+    }
+  `;
+  doc.head.append(layout);
+  doc.querySelector('.top a[href="../"]')?.addEventListener('click', event => { event.preventDefault(); dialog.close(); });
+  doc.addEventListener('keydown', event => {
+    if (event.key === 'Escape') { event.preventDefault(); dialog.close(); }
+    else if (!['INPUT','TEXTAREA','SELECT'].includes(doc.activeElement.tagName) && ['ArrowLeft','ArrowRight'].includes(event.key)) {
+      event.preventDefault(); openSample(current + (event.key === 'ArrowLeft' ? -1 : 1));
+    }
+  });
+  Promise.resolve(frame.contentWindow.renderReady).then(() => {
+    if (!dialog.open || frame.contentDocument !== doc) return;
+    frame.contentWindow.seek(0);
+    frame.style.visibility = 'visible';
+    frame.removeAttribute('aria-busy');
+  }).catch(() => {
+    if (!dialog.open || frame.contentDocument !== doc) return;
+    frame.style.visibility = 'visible';
+    frame.removeAttribute('aria-busy');
+    status('The animation could not initialize. Try the MP4 download in the sample.');
+  });
+});
 dialog.addEventListener('click', event => {
   if (event.target !== dialog) return;
   const box = dialog.getBoundingClientRect();
   if (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom) dialog.close();
 });
 dialog.addEventListener('close', () => {
-  player.pause(); player.removeAttribute('src'); player.load();
+  frame.src = 'about:blank';
   document.body.style.overflow = ''; opener?.focus({preventScroll: true}); syncPreviews();
 });
 new MutationObserver(syncPreviews).observe($('style-dialog'), {attributes: true, attributeFilter: ['open']});
 document.addEventListener('preview-motion-change', event => { paused = event.detail.paused; syncPreviews(); });
-document.addEventListener('visibilitychange', () => { syncPreviews(); if (document.hidden) player.pause(); });
-reducedMotion.addEventListener('change', event => { if (event.matches) player.pause(); });
+document.addEventListener('visibilitychange', syncPreviews);
+reducedMotion.addEventListener('change', event => {
+  const play = frame.contentDocument?.getElementById('play');
+  if (event.matches && play?.getAttribute('aria-pressed') === 'true') play.click();
+});
 document.addEventListener('keydown', event => {
   if (!dialog.open || ['INPUT','TEXTAREA','SELECT','VIDEO'].includes(document.activeElement.tagName)) return;
   if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {

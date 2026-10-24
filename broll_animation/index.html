@@ -7,10 +7,10 @@
   <meta name="description" content="Explore 86 original B-roll animation directions. Watch live style studies, choose a look, and copy a production prompt for your own topic.">
   <title>B-roll motion library · AISOCIALHUB</title>
   <link rel="icon" href="../favicon.ico">
-  <link rel="stylesheet" href="styles.css?v=gallery-2">
+  <link rel="stylesheet" href="styles.css?v=original-popup-3">
   <script src="styles-data.js" defer></script>
-  <script src="gallery.js?v=gallery-2" defer></script>
-  <script src="samples.js?v=gallery-2" defer></script>
+  <script src="gallery.js?v=original-popup-3" defer></script>
+  <script src="samples.js?v=original-popup-3" defer></script>
 </head>
 <body>
   <header class="masthead"><a class="brand" href="../"><img class="brand-mark" src="../logo.png" alt="" width="34" height="34"> AISOCIALHUB<span class="brand-divider">/</span><span class="brand-sub">MOTION LIBRARY</span></a><span class="edition">VOL. 01 <span class="live-dot"></span> 86 STYLES</span></header>
@@ -93,17 +93,10 @@
     <div class="dialog-bottom"><div class="viewer-navigation"><button id="previous" class="nav-button">← Prev</button><button id="next" class="nav-button">Next →</button></div><button id="copy-prompt" class="primary-button">Copy prompt</button></div>
     <p id="style-status" class="viewer-status" role="status" aria-live="polite"></p>
   </dialog>
-  <dialog id="sample-dialog" class="viewer" aria-labelledby="sample-title">
-    <div class="viewer-scroll">
-      <div class="viewer-media"><video id="sample-video" controls playsinline loop preload="metadata"></video><button id="sample-close" class="close-button" aria-label="Close animation">✕</button></div>
-      <div class="viewer-body">
-        <div class="viewer-meta"><span id="sample-index"></span><span id="sample-category"></span></div>
-        <h2 id="sample-title"></h2><p id="sample-description" class="viewer-description"></p>
-        <div class="sample-downloads"><a id="sample-source" class="text-link">Open full sample ↗</a><a id="sample-mp4" class="text-link" download>Download MP4 ↓</a><a id="sample-prompt-download" class="text-link" download>Download prompt ↓</a></div>
-        <details id="sample-prompt-options" class="prompt-options"><summary>View full prompt and code</summary><textarea id="sample-prompt" readonly aria-label="Full animation prompt" spellcheck="false"></textarea></details>
-      </div>
-    </div>
-    <div class="dialog-bottom"><div class="viewer-navigation"><button id="sample-previous" class="nav-button">← Prev</button><button id="sample-next" class="nav-button">Next →</button></div><button id="sample-copy" class="primary-button">Copy prompt</button></div>
+  <dialog id="sample-dialog" class="viewer original-sample-viewer" aria-labelledby="sample-title">
+    <div class="sample-viewer-header"><div class="viewer-meta"><span id="sample-index"></span><span id="sample-category"></span></div><h2 id="sample-title" class="sr-only"></h2><button id="sample-close" class="close-button" aria-label="Close animation">✕</button></div>
+    <iframe id="sample-frame" title="Full animation sample" allow="clipboard-write" src="about:blank"></iframe>
+    <div class="dialog-bottom"><div class="viewer-navigation"><button id="sample-previous" class="nav-button">← Prev</button><button id="sample-next" class="nav-button">Next →</button></div><button id="sample-copy" class="primary-button">Copy full prompt + code</button></div>
     <p id="sample-status" class="viewer-status" role="status" aria-live="polite"></p>
   </dialog>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
