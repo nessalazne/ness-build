@@ -1122,7 +1122,7 @@ footer {
 .sample-group-head { display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 16px; margin-bottom:clamp(1rem,1.6vw,1.4rem); }
 .sample-group-title { font-family:var(--font-display); font-size:clamp(1.5rem,2.4vw,2rem); color:var(--text-paper); line-height:1.1; }
 .sample-group-note { font-family:var(--font-mono); font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:var(--muted); }
-.sample-row { display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(12px,1.8vw,22px); max-width:880px; }
+.sample-row { display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(12px,1.8vw,22px); max-width:1100px; }
 .sample { margin:0; }
 .sample-frame { position:relative; aspect-ratio:9/16; border-radius:22px; overflow:hidden; border:1px solid var(--border-hover); background:#000; box-shadow:0 24px 60px rgba(0,0,0,0.35); }
 .sample-frame video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
@@ -1132,8 +1132,9 @@ footer {
 .sample figcaption { margin-top:12px; }
 .sample-kind { display:block; font-family:var(--font-mono); font-size:10px; color:var(--muted); letter-spacing:0.16em; text-transform:uppercase; margin-bottom:4px; }
 .sample-name { font-family:var(--font-body); font-weight:600; font-size:clamp(0.88rem,1.05vw,0.98rem); color:var(--text-paper); }
+.sample-more { margin-top:clamp(1.6rem,2.6vw,2.2rem); max-width:620px; font-family:var(--font-body); font-size:clamp(0.92rem,1.1vw,1rem); color:var(--text-dim); }
 .sample-silent { display:block; margin-top:4px; font-family:var(--font-body); font-size:0.78rem; color:var(--text-dim); }
-@media (max-width:700px){
+@media (max-width:860px){
   .sample-row { display:flex; overflow-x:auto; scroll-snap-type:x mandatory; gap:12px; padding-bottom:8px; -webkit-overflow-scrolling:touch; }
   .sample { flex:0 0 62%; scroll-snap-align:start; }
 }
@@ -1441,6 +1442,13 @@ footer {
         </div>
         <figcaption><span class="sample-kind">AI avatar · B-roll</span><span class="sample-name">Letterpress Split</span></figcaption>
       </figure>
+      <figure class="sample reveal reveal-d4">
+        <div class="sample-frame">
+          <video class="sample-video" muted loop playsinline preload="none" poster="media/avatar-chalkboard.jpg" data-src="media/avatar-chalkboard-loop.mp4" aria-label="Chalkboard Split sample"></video>
+          <button class="sample-play" type="button" data-full="media/avatar-chalkboard.mp4" aria-label="Play the Chalkboard Split sample with sound"><span>▶ Tap for sound</span></button>
+        </div>
+        <figcaption><span class="sample-kind">AI avatar · B-roll</span><span class="sample-name">Chalkboard Split</span></figcaption>
+      </figure>
     </div>
   </div>
 
@@ -1473,8 +1481,17 @@ footer {
         </div>
         <figcaption><span class="sample-kind">Faceless</span><span class="sample-name">Stick Figure</span></figcaption>
       </figure>
+      <figure class="sample reveal reveal-d4">
+        <div class="sample-frame">
+          <video class="sample-video" muted loop playsinline preload="none" poster="media/faceless-chalkboard.jpg" data-src="media/faceless-chalkboard-loop.mp4" aria-label="Faceless Chalkboard sample"></video>
+          <button class="sample-play" type="button" data-full="media/faceless-chalkboard.mp4" aria-label="Play the Faceless Chalkboard sample with sound"><span>▶ Tap for sound</span></button>
+        </div>
+        <figcaption><span class="sample-kind">Faceless</span><span class="sample-name">Chalkboard</span></figcaption>
+      </figure>
     </div>
   </div>
+
+  <p class="sample-more reveal">More B-roll styles are on the way. Every order gets free Engine updates, so each new style lands in your list to pick from.</p>
 </section>
 
 <div class="divider"></div>
@@ -1574,7 +1591,7 @@ footer {
       <div class="pipe-item reveal reveal-d2"><div class="pipe-left"><div class="pipe-node">3</div><div class="pipe-line"></div></div><div class="pipe-body"><div class="pipe-title">Ten caption sets + Airtable row</div><div class="pipe-desc">TikTok, Instagram, YouTube, Facebook, LinkedIn, X, Threads, Pinterest, Bluesky, Substack Note. Character limits enforced per platform</div></div></div>
       <div class="pipe-item reveal reveal-d3"><div class="pipe-left"><div class="pipe-node teal">4</div><div class="pipe-line"></div></div><div class="pipe-body"><div class="pipe-title">Your cloned voice <span class="tag teal">ElevenLabs V3</span></div><div class="pipe-desc">Locked anti-drift settings so it sounds like you on take 40, not just take 1. Skipped entirely in Record it myself: the audio off your own take is the voiceover</div></div></div>
       <div class="pipe-item reveal reveal-d3"><div class="pipe-left"><div class="pipe-node">5</div><div class="pipe-line"></div></div><div class="pipe-body"><div class="pipe-title">Your talking head <span class="tag">HeyGen Avatar V</span></div><div class="pipe-desc">Lip-synced to your cloned voice, not a stock TTS. Or be the talking head: Record it myself pauses the run, takes the video you filmed, and cleans it. Manual mode takes a HeyGen Studio render. Faceless skips the head entirely</div></div></div>
-      <div class="pipe-item reveal reveal-d4"><div class="pipe-left"><div class="pipe-node">6</div><div class="pipe-line"></div></div><div class="pipe-body"><div class="pipe-title">B-roll drawn in code <span class="tag">Remotion + canvas</span></div><div class="pipe-desc">Basic infographics, Split Card + Web, Papercraft Split, or Letterpress Split. Word-highlighted captions in your brand colors. Title baked into frame 0 so the thumbnail is never black. Faceless mode builds the whole visual instead</div></div></div>
+      <div class="pipe-item reveal reveal-d4"><div class="pipe-left"><div class="pipe-node">6</div><div class="pipe-line"></div></div><div class="pipe-body"><div class="pipe-title">B-roll drawn in code <span class="tag">Remotion + canvas</span></div><div class="pipe-desc">Basic infographics, Split Card + Web, Papercraft Split, Letterpress Split, or Chalkboard Split. Word-highlighted captions in your brand colors. Title baked into frame 0 so the thumbnail is never black. Faceless mode builds the whole visual instead</div></div></div>
       <div class="gate reveal reveal-d4"><div class="pipe-left"><div class="gate-node">✋</div><div class="pipe-line"></div></div><div class="gate-body"><div class="gate-title">Gate 2 · You watch the video, tweak captions</div><div class="pipe-desc">One editable caption box per platform. What you approve is what posts</div></div></div>
       <div class="pipe-item reveal reveal-d5"><div class="pipe-left"><div class="pipe-node green">7</div><div class="pipe-line"></div></div><div class="pipe-body"><div class="pipe-title">Publish to 11 accounts <span class="tag green">Blotato or Zernio</span></div><div class="pipe-desc">Post now, drop into the next free slot per platform, or save only. Two Instagram and two Threads accounts supported</div></div></div>
       <div class="pipe-item reveal reveal-d6"><div class="pipe-left"><div class="pipe-node green">8</div></div><div class="pipe-body"><div class="pipe-title">Arm the DM automation</div><div class="pipe-desc">Comment keyword → freebie DM on Instagram and your Facebook page, created automatically per video on whichever scheduler posted it</div></div></div>
@@ -1616,20 +1633,22 @@ footer {
 <!-- WARDROBE -->
 <section class="section">
   <div style="max-width:620px;">
-    <div class="kicker reveal">4 B-roll Styles + Faceless Mode</div>
-    <h2 class="section-title reveal reveal-d1">Same script.<br>Four looks, or <em>no face at all.</em></h2>
-    <p class="body-text reveal reveal-d2" style="margin-top:1.4rem;">No stock footage. Every B-roll style is drawn in code from a scene plan Claude writes for that script, so the visuals match what you are saying. Split Card + Web records real websites scrolling in a headless browser and times each site's appearance to the exact word you say it. Papercraft and Letterpress fill the top half with paper models or wood-type proofs and give the whole frame to your head on the key lines. Faceless mode drops the talking head and builds the entire video from the script, in one of five tracks. Every B-roll style sits over whichever avatar you picked, including a video you filmed yourself.</p>
+    <div class="kicker reveal">5 B-roll Styles + Faceless Mode</div>
+    <h2 class="section-title reveal reveal-d1">Same script.<br>Five looks, or <em>no face at all.</em></h2>
+    <p class="body-text reveal reveal-d2" style="margin-top:1.4rem;">No stock footage. Every B-roll style is drawn in code from a scene plan Claude writes for that script, so the visuals match what you are saying. Split Card + Web records real websites scrolling in a headless browser and times each site's appearance to the exact word you say it. Papercraft, Letterpress and Chalkboard fill the top half with paper models, wood-type proofs or a chalk lesson and give the whole frame to your head on the key lines. Faceless mode drops the talking head and builds the entire video from the script, in one of six tracks. More styles keep coming with the free updates. Every B-roll style sits over whichever avatar you picked, including a video you filmed yourself.</p>
   </div>
   <div class="wardrobe-grid">
     <div class="wardrobe-card reveal reveal-d1"><div class="wardrobe-num">01 · B-roll</div><div class="wardrobe-name">Basic</div><div class="wardrobe-desc">Animated infographics over the talking head. Fastest render.</div></div>
     <div class="wardrobe-card reveal reveal-d1"><div class="wardrobe-num">02 · B-roll</div><div class="wardrobe-name">Split Card + Web</div><div class="wardrobe-desc">Clean UI cards and full-screen tours of up to five sites. Cream or dark glass theme. Drop in your own clip.</div></div>
     <div class="wardrobe-card reveal reveal-d1"><div class="wardrobe-num">03 · B-roll</div><div class="wardrobe-name">Papercraft Split</div><div class="wardrobe-desc">Printed paper models fold themselves up on a green cutting mat above your head. Paper cards ask for the keyword at the end.</div></div>
     <div class="wardrobe-card reveal reveal-d1"><div class="wardrobe-num">04 · B-roll</div><div class="wardrobe-name">Letterpress Split</div><div class="wardrobe-desc">A fresh wood-type proof pulled on a press for every beat, with rubber stamps and press sounds.</div></div>
-    <div class="wardrobe-card reveal reveal-d2"><div class="wardrobe-num">05 · Faceless</div><div class="wardrobe-name">TSX Animation</div><div class="wardrobe-desc">Code-drawn motion graphics in Dark editorial or Chess. Your cloned voice is the only cost.</div></div>
-    <div class="wardrobe-card reveal reveal-d2"><div class="wardrobe-num">06 · Faceless</div><div class="wardrobe-name">Vox Collage</div><div class="wardrobe-desc">Paper-collage documentary look. AI image layers, a traveling camera, and a music bed if you want one.</div></div>
-    <div class="wardrobe-card reveal reveal-d2"><div class="wardrobe-num">07 · Faceless</div><div class="wardrobe-name">Papercraft</div><div class="wardrobe-desc">The Papercraft look filling the whole 9:16 frame. Builds in about 5 to 10 minutes.</div></div>
-    <div class="wardrobe-card reveal reveal-d2"><div class="wardrobe-num">08 · Faceless</div><div class="wardrobe-name">Letterpress</div><div class="wardrobe-desc">The Letterpress look filling the whole frame. Same 5 to 10 minute build.</div></div>
-    <div class="wardrobe-card reveal reveal-d3"><div class="wardrobe-num">09 · Faceless</div><div class="wardrobe-name">Stick Figure</div><div class="wardrobe-desc">A stick-figure drawing on beige paper for every line, each with a slow camera move. Images from Kie.ai or Google Flow.</div></div>
+    <div class="wardrobe-card reveal reveal-d1"><div class="wardrobe-num">05 · B-roll</div><div class="wardrobe-name">Chalkboard Split</div><div class="wardrobe-desc">A chalk lesson written line by line on a green slate above your head, with the camera sliding along the board.</div></div>
+    <div class="wardrobe-card reveal reveal-d2"><div class="wardrobe-num">06 · Faceless</div><div class="wardrobe-name">TSX Animation</div><div class="wardrobe-desc">Code-drawn motion graphics in Dark editorial or Chess. Your cloned voice is the only cost.</div></div>
+    <div class="wardrobe-card reveal reveal-d2"><div class="wardrobe-num">07 · Faceless</div><div class="wardrobe-name">Vox Collage</div><div class="wardrobe-desc">Paper-collage documentary look. AI image layers, a traveling camera, and a music bed if you want one.</div></div>
+    <div class="wardrobe-card reveal reveal-d2"><div class="wardrobe-num">08 · Faceless</div><div class="wardrobe-name">Papercraft</div><div class="wardrobe-desc">The Papercraft look filling the whole 9:16 frame. Builds in about 5 to 10 minutes.</div></div>
+    <div class="wardrobe-card reveal reveal-d2"><div class="wardrobe-num">09 · Faceless</div><div class="wardrobe-name">Letterpress</div><div class="wardrobe-desc">The Letterpress look filling the whole frame. Same 5 to 10 minute build.</div></div>
+    <div class="wardrobe-card reveal reveal-d2"><div class="wardrobe-num">10 · Faceless</div><div class="wardrobe-name">Chalkboard</div><div class="wardrobe-desc">The chalk lesson filling the whole 9:16 frame, written on as you speak.</div></div>
+    <div class="wardrobe-card reveal reveal-d3"><div class="wardrobe-num">11 · Faceless</div><div class="wardrobe-name">Stick Figure</div><div class="wardrobe-desc">A stick-figure drawing on beige paper for every line, each with a slow camera move. Images from Kie.ai or Google Flow.</div></div>
     <div class="wardrobe-card reveal reveal-d3" style="border-style:dashed;"><div class="wardrobe-num">+</div><div class="wardrobe-name">Yours</div><div class="wardrobe-desc">You own the source. Add a style with Claude Code.</div></div>
   </div>
 </section>
@@ -1756,7 +1775,7 @@ footer {
         <li><span class="fl-k">Sources</span><span class="fl-v">YouTube · IG · TikTok · Articles · Ideas</span></li>
         <li><span class="fl-k">Accounts</span><span class="fl-v teal">11 across 9 platforms</span></li>
         <li><span class="fl-k">Scheduler</span><span class="fl-v">Blotato or Zernio</span></li>
-        <li><span class="fl-k">B-roll styles</span><span class="fl-v">Basic · Split Card · Papercraft · Letterpress</span></li>
+        <li><span class="fl-k">B-roll styles</span><span class="fl-v">Basic · Split Card · Papercraft · Letterpress · Chalkboard</span></li>
         <li><span class="fl-k">Avatar modes</span><span class="fl-v teal">Auto · Manual · Record · Faceless</span></li>
         <li><span class="fl-k">DM automation</span><span class="fl-v teal">Instagram + Facebook</span></li>
         <li><span class="fl-k">Source code + license</span><span class="fl-v green">Yours</span></li>
@@ -1781,7 +1800,7 @@ footer {
     <details><summary>What does a video actually cost me?</summary><div class="faq-a">Your own API usage. Claude via OpenRouter writes the script for cents, and that is the one cost every mode shares. ElevenLabs is cents on top whenever you use the cloned voice. HeyGen automatic mode is about $1 per minute of avatar, roughly nine times more than Manual mode on Studio credits. Record it myself calls neither of them, so there is no voice or avatar spend on that run at all. Faceless mode on the TSX track adds nothing beyond the voice. Blotato or Zernio and Airtable are your own plans. I charge nothing per video.</div></details>
     <details><summary>Will it post the same video twice if something fails?</summary><div class="faq-a">No. Every successful post is written to a ledger the moment it lands. Resuming a failed run reports "already posted" for those targets and only fills the gaps.</div></details>
     <details><summary>What is your refund policy?</summary><div class="faq-a">All Content Engine purchases are final and non-refundable. You get the software, the source code, and the downloadable files the moment you buy, and they can't be taken back. If you aren't sure Content Engine is right for you, email <a href="mailto:ness@digicuratoragency.com" style="color:inherit;text-decoration:underline;">ness@digicuratoragency.com</a> before you purchase and I'll answer your questions so you can buy with confidence.</div></details>
-    <details><summary>What is Faceless mode?</summary><div class="faq-a">Pick Faceless instead of an avatar and the Engine skips the voice-to-head steps and builds the full video from your approved script. Five tracks: TSX Animation (code-drawn in Dark editorial or Chess, your voice is the only cost), Vox Collage (paper-collage documentary look), Papercraft and Letterpress (those two looks filling the whole frame), and Stick Figure (a drawing for every line). TSX and Vox are built by a Claude agent, so they need the Claude Code CLI installed. Vox and Stick Figure draw their images on Kie.ai, with a spend cap per build, or on Google Flow.</div></details>
+    <details><summary>What is Faceless mode?</summary><div class="faq-a">Pick Faceless instead of an avatar and the Engine skips the voice-to-head steps and builds the full video from your approved script. Six tracks: TSX Animation (code-drawn in Dark editorial or Chess, your voice is the only cost), Vox Collage (paper-collage documentary look), Papercraft, Letterpress and Chalkboard (those three looks filling the whole frame), and Stick Figure (a drawing for every line). TSX and Vox are built by a Claude agent, so they need the Claude Code CLI installed. Vox and Stick Figure draw their images on Kie.ai, with a spend cap per build, or on Google Flow.</div></details>
     <details><summary>What is Record it myself?</summary><div class="faq-a">The fourth avatar option. After you approve the script the run pauses and shows you the clean version to read. Film yourself portrait on your phone or your webcam, upload the MP4, MOV, or WEBM, and the Engine transcribes it on your own machine, cuts the filler words, and shortens any pause over 600ms to 200ms. One ffmpeg pass cuts picture and sound together and re-encodes to h264 at a constant frame rate, so iPhone files work. The cleaned take becomes your avatar and its audio becomes your voiceover, so captions, B-roll, Airtable, the review, DM automation, and posting all run the same, with every B-roll style. On-screen captions follow what you actually said. It calls no ElevenLabs and no HeyGen. It does need whisper.cpp, a free local transcriber the setup script installs, and the popup tells you if it is missing before you start a run.</div></details>
     <details><summary>Blotato or Zernio?</summary><div class="faq-a">Either. Add the key for the one you use and pick it per run in the popup. Both post to your accounts and both create the comment-to-DM automation. Zernio comes with a free tier for a couple of accounts if you want to start without a paid scheduler.</div></details>
     <details><summary>Which platforms?</summary><div class="faq-a">TikTok, Instagram (two accounts), YouTube Shorts, Facebook, LinkedIn, X, Threads (two accounts), Pinterest, and Bluesky. A Substack Note caption is written and saved to Airtable for you to post by hand.</div></details>
