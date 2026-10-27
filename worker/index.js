@@ -35,7 +35,7 @@ What's included:
 
 Best for: creators who want a standalone tool to repurpose YouTube content without a big commitment. You watch a live build session and receive the finished Chrome extension.
 
-### Tier 02 · AISocialHub GrowthOS — $297 (founding member price, regular $997)
+### Tier 02 · AISocialHub GrowthOS — $497 (Lifetime Access, paid once, regular $997)
 The AI Business Operating System You Own. A complete web application with 15 integrated AI systems. You own the source code. To run it: $0/mo on your own computer, or ~$5/mo on Railway if you want it live on the web — plus your existing Claude Code plan (~$20/mo). No monthly SaaS subscriptions. Replaces $1,095+/mo in tools.
 
 10 systems ready now:
@@ -83,7 +83,7 @@ Best for: business owners who want the full system but prefer not to build it th
 ## Frequently asked questions
 
 Q: Is this a subscription?
-A: YouTube Repurposer ($97) and GrowthOS ($297) are one-time payments — no subscription. To run GrowthOS: $0/mo on your own computer, or ~$5/mo on Railway if you want it live on the web — plus your existing Claude Code plan (~$20/mo), and API costs for image gen, video, etc., same as any platform. Done For You has a monthly component — ask on the discovery call.
+A: YouTube Repurposer ($97) and GrowthOS ($497) are one-time payments — no subscription. To run GrowthOS: $0/mo on your own computer, or ~$5/mo on Railway if you want it live on the web — plus your existing Claude Code plan (~$20/mo), and API costs for image gen, video, etc., same as any platform. Done For You has a monthly component — ask on the discovery call.
 
 Q: Do I need to know how to code?
 A: Zero coding needed to get started. GrowthOS is built during live Zoom sessions where Ness walks you through every step. If you want to customize things later, Claude Code makes that straightforward — but it's optional.
@@ -95,10 +95,10 @@ Q: What platforms does it post to?
 A: 13 platforms: Instagram, TikTok, YouTube, Twitter/X, LinkedIn, Facebook, Pinterest, Threads, and more via Blotato.
 
 Q: How much does it actually cost to run?
-A: GrowthOS itself is a one-time $297 payment. To run it: $0/mo on your own computer, or ~$5/mo on Railway if you want it live on the web — plus your existing Claude Code plan (~$20/mo). API costs (image generation, video, AI calls) vary by how much you use them — the same APIs you'd pay on any platform. Most users spend $10–30/month total on APIs.
+A: GrowthOS itself is a one-time $497 payment. To run it: $0/mo on your own computer, or ~$5/mo on Railway if you want it live on the web — plus your existing Claude Code plan (~$20/mo). API costs (image generation, video, AI calls) vary by how much you use them — the same APIs you'd pay on any platform. Most users spend $10–30/month total on APIs.
 
-Q: Is the $297 founding member price going up?
-A: Yes — the regular price is $997. The founding member price is available now for early buyers only.
+Q: What does GrowthOS cost?
+A: $497 once for Lifetime Access. The regular price is $997.
 
 Q: What if I have more questions?
 A: Email ness@digicuratoragency.com directly. Ness responds personally.
