@@ -1847,6 +1847,11 @@ async function payByPaypal() {
 if (new URLSearchParams(window.location.search).get('paypal') === 'failed') {
   showError("PayPal didn't complete that payment. Please try again or pay by card.");
 }
+// ?live=1 (the hub's calendar lock) arrives with Live Setup ticked, while it's still open.
+if (new URLSearchParams(window.location.search).get('live') === '1' && !body.classList.contains('live-over')) {
+  addLive();
+  document.getElementById('live').scrollIntoView({ block: 'start' });
+}
 
 (async function startPayment() {
   if (!API_BASE) return;   // design preview
