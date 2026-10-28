@@ -1321,6 +1321,7 @@ footer {
 .co-code-row b { font-family:var(--font-mono); font-size:0.85em; letter-spacing:0.06em; }
 .co-code-remove { margin-left:8px; background:none; border:0; padding:0; font:inherit; font-size:0.8rem; color:var(--muted); text-decoration:underline; text-underline-offset:3px; cursor:pointer; }
 .co-code { margin:0 0 16px; }
+.co-code[hidden], .co-code-toggle[hidden] { display:none; }
 .co-code-toggle { background:none; border:0; padding:0; font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); text-decoration:underline; text-underline-offset:3px; cursor:pointer; }
 .co-code-toggle:hover { color:var(--text-paper); }
 .co-code-box { display:flex; gap:8px; margin-top:10px; }
@@ -1581,7 +1582,7 @@ footer {
       <div class="co-sum-row co-sum-total"><span>Total today</span><span id="totalPrice">$97</span></div>
     </div>
 
-    <div class="co-code">
+    <div class="co-code" id="codeWrap" hidden>
       <button type="button" class="co-code-toggle" id="codeToggle" aria-expanded="false" aria-controls="codeBox">Have a code?</button>
       <div class="co-code-box" id="codeBox" hidden>
         <input type="text" id="codeInput" aria-label="Discount code" placeholder="Your code" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="40">
@@ -1798,8 +1799,9 @@ function onPlanChange() {
 }
 liveBox.addEventListener('change', onPlanChange);
 
-/* Discount code (GrowthOS members). The hub checks it against the email, so the
- * email comes first. A code checked for Live Setup stays dormant while Live Setup is off. */
+/* Discount code (GrowthOS members). Hidden from everyone else: the box only shows on
+ * Ness's link with ?code=. The hub checks the code against the email, so the email comes
+ * first. A code checked for Live Setup stays dormant while Live Setup is off. */
 const codeBox = document.getElementById('codeBox');
 const codeInput = document.getElementById('codeInput');
 const codeApply = document.getElementById('codeApply');
@@ -1851,8 +1853,11 @@ codeApply.addEventListener('click', () => applyCode(codeInput.value));
 codeInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); applyCode(codeInput.value); } });
 document.getElementById('codeRemove').addEventListener('click', () => { setCoupon(null); codeNote(''); codeInput.value = ''; });
 liveBox.addEventListener('change', explainCode);
-// A new email has to be checked again.
-payForm.querySelector('[name="email"]').addEventListener('change', () => { if (coupon) applyCode(coupon.code); });
+// Typing the email applies the code from the link; a new email is checked again.
+payForm.querySelector('[name="email"]').addEventListener('change', () => {
+  if (coupon) applyCode(coupon.code);
+  else if (!document.getElementById('codeWrap').hidden && codeInput.value.trim()) applyCode(codeInput.value);
+});
 
 /* One-time "Just the Engine?" check: the first pay click without Live Setup asks once,
  * then "No thanks" carries on with the payment the buyer started (still inside the click,
@@ -1939,9 +1944,14 @@ async function payByPaypal() {
     showError(err.message); setBusy(false); paypalButton.disabled = false;
   }
 }
-// ?code=GROWTHOS50 opens the code box with the code filled in.
+// ?code=GROWTHOS50 is the only way the code box shows, already open and filled in.
 const urlCode = new URLSearchParams(window.location.search).get('code');
-if (urlCode) { openCodeBox(); codeInput.value = urlCode.trim().toUpperCase().slice(0, 40); }
+if (urlCode) {
+  document.getElementById('codeWrap').hidden = false;
+  document.getElementById('codeToggle').hidden = true;
+  openCodeBox();
+  codeInput.value = urlCode.trim().toUpperCase().slice(0, 40);
+}
 if (new URLSearchParams(window.location.search).get('paypal') === 'failed') {
   showError("PayPal didn't complete that payment. Please try again or pay by card.");
 }
