@@ -1317,6 +1317,21 @@ footer {
 .co-sum-row[hidden] { display:none; }
 .co-sum-total { color:var(--text-paper); font-weight:700; font-size:1.1rem; border-bottom:0; }
 .co-sum-total span:last-child { font-family:var(--font-display); font-weight:400; font-size:2rem; color:var(--accent); line-height:1; }
+.co-code-row span:last-child { color:var(--accent); font-weight:600; }
+.co-code-row b { font-family:var(--font-mono); font-size:0.85em; letter-spacing:0.06em; }
+.co-code-remove { margin-left:8px; background:none; border:0; padding:0; font:inherit; font-size:0.8rem; color:var(--muted); text-decoration:underline; text-underline-offset:3px; cursor:pointer; }
+.co-code { margin:0 0 16px; }
+.co-code-toggle { background:none; border:0; padding:0; font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); text-decoration:underline; text-underline-offset:3px; cursor:pointer; }
+.co-code-toggle:hover { color:var(--text-paper); }
+.co-code-box { display:flex; gap:8px; margin-top:10px; }
+.co-code-box[hidden], .co-code-msg[hidden] { display:none; }
+.co-code-box input { flex:1; min-width:0; font:inherit; font-family:var(--font-mono); font-size:0.95rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-paper); background:var(--bg); border:1px solid var(--border-hover); border-radius:10px; padding:10px 14px; }
+.co-code-box input:focus { outline:none; border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-hl); }
+.co-code-apply { font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; font-weight:600; color:var(--text-paper); background:none; border:1px solid var(--border-hover); border-radius:999px; padding:0 18px; cursor:pointer; }
+.co-code-apply:hover { border-color:var(--text-paper); }
+.co-code-apply:disabled { opacity:0.5; cursor:default; }
+.co-code-msg { margin:8px 0 0; font-family:var(--font-body); font-size:0.85rem; line-height:1.5; color:var(--muted); }
+.co-code-msg.is-bad { color:#e5675d; }
 .co-missing { margin:0 0 16px; border:1.5px dashed var(--teal); border-radius:14px; padding:14px 16px 16px; background:linear-gradient(180deg, rgba(255,222,89,0.06), transparent 60%); }
 .co-missing-kicker { font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.18em; text-transform:uppercase; color:var(--teal); }
 .co-missing ul { list-style:none; padding:0; margin:10px 0 0; display:grid; grid-template-columns:1fr 1fr; gap:6px 18px; }
@@ -1562,7 +1577,17 @@ footer {
     <div class="co-summary">
       <div class="co-sum-row"><span>Content Engine</span><span data-price="engine">$97</span></div>
       <div class="co-sum-row live-row" hidden><span>Live Setup · 3 sessions + bonuses</span><span data-price="live">$197</span></div>
+      <div class="co-sum-row co-code-row" id="codeRow" hidden><span>Code <b id="codeName"></b><button type="button" class="co-code-remove" id="codeRemove">Remove</button></span><span id="codeOff"></span></div>
       <div class="co-sum-row co-sum-total"><span>Total today</span><span id="totalPrice">$97</span></div>
+    </div>
+
+    <div class="co-code">
+      <button type="button" class="co-code-toggle" id="codeToggle" aria-expanded="false" aria-controls="codeBox">Have a code?</button>
+      <div class="co-code-box" id="codeBox" hidden>
+        <input type="text" id="codeInput" aria-label="Discount code" placeholder="Your code" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="40">
+        <button type="button" class="co-code-apply" id="codeApply">Apply</button>
+      </div>
+      <p class="co-code-msg" id="codeMsg" role="status" hidden></p>
     </div>
 
     <div class="co-missing live-only" id="coMissing">
@@ -1652,17 +1677,20 @@ const PRICES = { sale: { engine: 97, engineWas: 147, live: 197 }, regular: { eng
  *   GET  {API}/config        -> { stripe, stripe_publishable_key, paypal, paypal_client_id,
  *                                 paypal_currency, success_url,
  *                                 pricing: { currency, engine: {amount_cents}, engine_live: {amount_cents} } }
- *   POST {API}/checkout      { name, email, plan } -> { client_secret, success_url }
- *   POST {API}/paypal/order  { name, email, plan } -> { order_id, approve_url }
+ *   POST {API}/coupon        { coupon, email, plan } -> { code, amount_off_cents, amount_cents }
+ *   POST {API}/checkout      { name, email, plan, coupon? } -> { client_secret, success_url }
+ *   POST {API}/paypal/order  { name, email, plan, coupon? } -> { order_id, approve_url }
  * PayPal is a same-tab redirect to approve_url (no pop-up). PayPal sends the buyer
  * to {API}/paypal/return, which captures and forwards to the thank-you page, or
  * back here with ?paypal=failed.
+ * A code is checked against the buyer's email (GrowthOS members) and only for the plan it
+ * was applied on; the hub checks it again on every payment call.
  * plan is 'engine' or 'engine_live'. Until CE_CHECKOUT_API is set the page stays
  * a design preview: no Stripe script loads and nothing is charged. */
 const API_BASE = (window.CE_CHECKOUT_API || '').replace(/\/+$/, '');
 
 const body = document.body;
-const money = n => '$' + n;
+const money = n => '$' + (Number.isInteger(n) ? n : n.toFixed(2));
 function prices() { return Date.now() > SALE_END ? PRICES.regular : PRICES.sale; }
 
 function pad(v) { return String(v).padStart(2, '0'); }
@@ -1684,6 +1712,10 @@ function tick() {
 
 const liveBox = document.getElementById('addLive');
 const liveRow = document.querySelector('.live-row');
+const codeRow = document.getElementById('codeRow');
+/* An applied code: { code, off (dollars), amount_cents, plan it was checked for } */
+let coupon = null;
+const codeApplies = () => !!coupon && coupon.plan === plan();
 function renderTotal() {
   const p = prices();
   document.querySelectorAll('[data-price]').forEach(el => {
@@ -1694,10 +1726,14 @@ function renderTotal() {
   liveRow.hidden = !withLive;
   document.getElementById('liveBonuses').classList.toggle('is-unlocked', withLive);
   document.getElementById('coMissing').classList.toggle('has-live', withLive);
-  const total = p.engine + (withLive ? p.live : 0);
+  const off = codeApplies() ? coupon.off : 0;
+  codeRow.hidden = !off;
+  if (off) document.getElementById('codeOff').textContent = '−' + money(off);
+  const total = p.engine + (withLive ? p.live : 0) - off;
   document.getElementById('totalPrice').textContent = money(total);
   document.getElementById('btnPrice').textContent = money(total);
-  document.getElementById('confirmTotal').textContent = money(p.engine + p.live);
+  const liveOff = coupon && coupon.plan === 'engine_live' ? coupon.off : 0;
+  document.getElementById('confirmTotal').textContent = money(p.engine + p.live - liveOff);
   if (!payButton.disabled) document.getElementById('payLabel').textContent = payLabelText();
 }
 const payButton = document.getElementById('payButton');
@@ -1723,6 +1759,7 @@ let settings = null, stripe = null, elements = null, busy = false;
 
 const plan = () => (liveBox.checked && !body.classList.contains('live-over')) ? 'engine_live' : 'engine';
 function amountCents() {
+  if (codeApplies()) return coupon.amount_cents;
   const fromServer = settings && settings.pricing && settings.pricing[plan()];
   if (fromServer) return fromServer.amount_cents;
   const p = prices();
@@ -1730,7 +1767,9 @@ function amountCents() {
 }
 function buyer() {
   const f = new FormData(payForm);
-  return { name: String(f.get('name') || '').trim(), email: String(f.get('email') || '').trim(), plan: plan() };
+  const out = { name: String(f.get('name') || '').trim(), email: String(f.get('email') || '').trim(), plan: plan() };
+  if (codeApplies()) out.coupon = coupon.code;
+  return out;
 }
 function buyerProblem() {
   const { email } = buyer();
@@ -1758,6 +1797,62 @@ function onPlanChange() {
   if (elements) elements.update({ amount: amountCents() });
 }
 liveBox.addEventListener('change', onPlanChange);
+
+/* Discount code (GrowthOS members). The hub checks it against the email, so the
+ * email comes first. A code checked for Live Setup stays dormant while Live Setup is off. */
+const codeBox = document.getElementById('codeBox');
+const codeInput = document.getElementById('codeInput');
+const codeApply = document.getElementById('codeApply');
+const codeMsg = document.getElementById('codeMsg');
+function codeNote(msg, bad) {
+  codeMsg.textContent = msg || '';
+  codeMsg.hidden = !msg;
+  codeMsg.classList.toggle('is-bad', !!bad);
+}
+function openCodeBox() {
+  codeBox.hidden = false;
+  document.getElementById('codeToggle').setAttribute('aria-expanded', 'true');
+}
+function setCoupon(next) {
+  coupon = next;
+  if (coupon) document.getElementById('codeName').textContent = coupon.code;
+  renderTotal();
+  onPlanChange();
+  explainCode();
+}
+function explainCode() {
+  if (!coupon) return;
+  if (codeApplies()) codeNote('Code applied. ' + money(coupon.off) + ' off.');
+  else codeNote('Your code ' + coupon.code + ' works with Live Setup. Add Live Setup to use it.');
+}
+async function applyCode(raw) {
+  const code = String(raw || '').trim().toUpperCase();
+  if (!code) { codeNote('Enter your code.', true); return; }
+  if (!API_BASE) { codeNote("Codes work once payment is connected.", true); return; }
+  if (buyerProblem()) {
+    codeNote('Enter your email above first. The code is checked against it.', true);
+    payForm.querySelector('[name="email"]').focus();
+    return;
+  }
+  codeApply.disabled = true;
+  try {
+    const out = await postJSON('/coupon', { coupon: code, email: buyer().email, plan: plan() });
+    codeInput.value = out.code;
+    setCoupon({ code: out.code, off: out.amount_off_cents / 100, amount_cents: out.amount_cents, plan: plan() });
+  } catch (err) {
+    setCoupon(null);
+    codeNote(err.message, true);
+  } finally {
+    codeApply.disabled = false;
+  }
+}
+document.getElementById('codeToggle').addEventListener('click', () => { openCodeBox(); codeInput.focus(); });
+codeApply.addEventListener('click', () => applyCode(codeInput.value));
+codeInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); applyCode(codeInput.value); } });
+document.getElementById('codeRemove').addEventListener('click', () => { setCoupon(null); codeNote(''); codeInput.value = ''; });
+liveBox.addEventListener('change', explainCode);
+// A new email has to be checked again.
+payForm.querySelector('[name="email"]').addEventListener('change', () => { if (coupon) applyCode(coupon.code); });
 
 /* One-time "Just the Engine?" check: the first pay click without Live Setup asks once,
  * then "No thanks" carries on with the payment the buyer started (still inside the click,
@@ -1844,6 +1939,9 @@ async function payByPaypal() {
     showError(err.message); setBusy(false); paypalButton.disabled = false;
   }
 }
+// ?code=GROWTHOS50 opens the code box with the code filled in.
+const urlCode = new URLSearchParams(window.location.search).get('code');
+if (urlCode) { openCodeBox(); codeInput.value = urlCode.trim().toUpperCase().slice(0, 40); }
 if (new URLSearchParams(window.location.search).get('paypal') === 'failed') {
   showError("PayPal didn't complete that payment. Please try again or pay by card.");
 }
