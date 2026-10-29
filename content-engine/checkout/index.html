@@ -1195,6 +1195,16 @@ footer {
 .has-sale .regular-only { display:none; }
 .sale-over .regular-only { display:inline; }
 .live-over .live-only, .live-over .live-row { display:none !important; }
+/* ?upgrade=1 (the hub's lesson box): a Content Engine buyer adds Live Setup for $197. The hub checks the
+   email owns the Engine, and keeps the upgrade open after Live Setup closes to new buyers, until it is full. */
+/* !important: .co-line, .co-fine etc. set their own display later in this sheet. */
+body:not(.is-upgrade) .upgrade-only { display:none !important; }
+.is-upgrade .engine-only, .is-upgrade .sale-bar, .is-upgrade [data-live-end], .is-upgrade .co-check,
+.is-upgrade #liveNote, .is-upgrade .co-lb-add, .is-upgrade #coMissing, .is-upgrade #codeWrap { display:none !important; }
+body.is-upgrade { --sale-bar-h:0px; }
+/* Once Live Setup closes (or the hub says it is full), new buyers can join the waitlist. */
+body:not(.live-over) .waitlist-only, .is-upgrade .waitlist-only { display:none !important; }
+.co-wl-done { margin:14px 0 0; font-family:var(--font-body); font-size:0.95rem; color:var(--teal); }
 .co-secure { display:inline-flex; align-items:center; gap:8px; font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.16em; text-transform:uppercase; color:var(--text-dim); }
 @media (max-width:560px){ .top-nav .nav-brand span { display:none; } .co-secure { letter-spacing:0.1em; } }
 .co-hero { text-align:center; padding:clamp(1rem,3vw,2rem) 0 clamp(1.6rem,3vw,2.4rem); }
@@ -1406,9 +1416,13 @@ footer {
 
   <!-- HERO -->
   <header class="co-hero">
-    <div class="pricing-badge"><span class="bdot"></span><span class="sale-only">Intro price · $147 from 2 November</span><span class="regular-only">One payment · Instant access</span></div>
-    <h1 class="co-title"><span class="sale-only">Lock in <em>$97</em><br>before it's $147.</span><span class="regular-only">Get the<br><em>Content Engine.</em></span></h1>
-    <div class="sale-timer sale-only" data-sale-end="2026-11-02T04:59:59Z">
+    <div class="upgrade-only">
+      <div class="pricing-badge"><span class="bdot"></span>For Content Engine buyers</div>
+      <h1 class="co-title">Add <em>Live Setup</em><br>for $197.</h1>
+    </div>
+    <div class="pricing-badge engine-only"><span class="bdot"></span><span class="sale-only">Intro price · $147 from 2 November</span><span class="regular-only">One payment · Instant access</span></div>
+    <h1 class="co-title engine-only"><span class="sale-only">Lock in <em>$97</em><br>before it's $147.</span><span class="regular-only">Get the<br><em>Content Engine.</em></span></h1>
+    <div class="sale-timer sale-only engine-only" data-sale-end="2026-11-02T04:59:59Z">
       <div class="sale-head"><span class="bdot"></span>The price goes to <strong>$147</strong> in</div>
       <div class="sale-clock" role="timer" aria-label="Time left at the intro price">
         <span><b data-u="d">00</b><small>days</small></span>
@@ -1423,12 +1437,19 @@ footer {
   <!-- YOUR ORDER -->
   <section class="co-card" id="order">
     <div class="co-step">Your order</div>
-    <div class="co-line">
+    <div class="co-line engine-only">
       <div>
         <div class="co-line-name">AI Social Hub Content Engine</div>
         <div class="co-line-desc">Chrome extension + full source code. One payment, no subscription.</div>
       </div>
       <div class="co-line-price"><s class="sale-only" data-price="engineWas">$147</s><b data-price="engine">$97</b></div>
+    </div>
+    <div class="co-line upgrade-only">
+      <div>
+        <div class="co-line-name">AI Social Hub Content Engine</div>
+        <div class="co-line-desc">Already yours. This order adds Live Setup and its bonuses to the same account.</div>
+      </div>
+      <div class="co-line-price"><b>✓</b></div>
     </div>
   </section>
 
@@ -1453,7 +1474,22 @@ footer {
       <span class="co-box" aria-hidden="true"></span>
       <span class="co-check-text">Yes, add Live Setup and all the bonuses for <b data-price="live">$197</b></span>
     </label>
-    <p class="co-up-note">Live Setup closes Sunday 1 November at 11:59 PM ET. The sessions start Monday 2 November.</p>
+    <p class="co-up-note" id="liveNote">Live Setup closes Sunday 1 November at 11:59 PM ET. The sessions start Monday 2 November.</p>
+    <p class="co-up-note upgrade-only">Upgrade price for Content Engine buyers, while places last. If a session has already happened when you join, you get its replay.</p>
+  </section>
+
+  <!-- WAITLIST (once Live Setup closes) -->
+  <section class="co-card waitlist-only" id="waitlist">
+    <div class="co-step teal">Live Setup · closed for now</div>
+    <h2 class="co-up-title">Want Live Setup <em>when it reopens?</em></h2>
+    <p class="co-up-body">Live Setup is closed right now. Leave your email and I'll send you one email when it opens again.</p>
+    <div class="co-fields">
+      <label class="co-field"><span>Email</span><input type="email" id="wlEmail" autocomplete="email" placeholder="you@example.com"></label>
+      <label class="co-field"><span>Name</span><input type="text" id="wlName" autocomplete="name" placeholder="Your name"></label>
+    </div>
+    <button type="button" class="btn-primary co-submit" id="wlButton">Tell me when it reopens</button>
+    <p class="co-error" id="wlError" role="alert" hidden></p>
+    <p class="co-wl-done" id="wlDone" hidden>You're on the list. I'll email you when Live Setup reopens.</p>
   </section>
 
   <!-- WHAT'S INCLUDED -->
@@ -1474,7 +1510,8 @@ footer {
       <div class="co-lb-head">
         <div class="co-lb-kicker">Live Setup bonuses</div>
         <div class="co-lb-title">Only when you go <em>live with me.</em></div>
-        <p>Everything below comes with the Live Setup upgrade. It is not part of the Content Engine on its own. Tick Live Setup to get all of it. The bonuses close with Live Setup on Sunday 1 November at 11:59 PM ET.</p>
+        <p class="engine-only">Everything below comes with the Live Setup upgrade. It is not part of the Content Engine on its own. Tick Live Setup to get all of it. The bonuses close with Live Setup on Sunday 1 November at 11:59 PM ET.</p>
+        <p class="upgrade-only">Everything below comes with Live Setup, and all of it is in this upgrade.</p>
         <div class="co-lb-state">
           <span class="co-lb-locked">Not in your order yet</span>
           <button type="button" class="co-lb-add" id="lbAdd">Add Live Setup · <span data-price="live">$197</span></button>
@@ -1566,7 +1603,8 @@ footer {
       <label class="co-field"><span>Email</span><input type="email" name="email" autocomplete="email" placeholder="you@example.com" required></label>
       <label class="co-field"><span>Full name</span><input type="text" name="name" autocomplete="name" placeholder="Your name" required></label>
     </div>
-    <p class="co-fine">Your access and receipt go to this email.</p>
+    <p class="co-fine engine-only">Your access and receipt go to this email.</p>
+    <p class="co-fine upgrade-only">Use the email you bought the Content Engine with. Live Setup is added to that account.</p>
 
     <div class="co-step" style="margin-top:clamp(1.6rem,2.6vw,2.2rem);">Step 2 · Payment</div>
     <div class="co-stripe-slot" id="paymentPreview">
@@ -1576,7 +1614,7 @@ footer {
     <div class="co-payment" id="payment-element" hidden></div>
 
     <div class="co-summary">
-      <div class="co-sum-row"><span>Content Engine</span><span data-price="engine">$97</span></div>
+      <div class="co-sum-row engine-only"><span>Content Engine</span><span data-price="engine">$97</span></div>
       <div class="co-sum-row live-row" hidden><span>Live Setup · 3 sessions + bonuses</span><span data-price="live">$197</span></div>
       <div class="co-sum-row co-code-row" id="codeRow" hidden><span>Code <b id="codeName"></b><button type="button" class="co-code-remove" id="codeRemove">Remove</button></span><span id="codeOff"></span></div>
       <div class="co-sum-row co-sum-total"><span>Total today</span><span id="totalPrice">$97</span></div>
@@ -1686,11 +1724,15 @@ const PRICES = { sale: { engine: 97, engineWas: 147, live: 197 }, regular: { eng
  * back here with ?paypal=failed.
  * A code is checked against the buyer's email (GrowthOS members) and only for the plan it
  * was applied on; the hub checks it again on every payment call.
- * plan is 'engine' or 'engine_live'. Until CE_CHECKOUT_API is set the page stays
+ * plan is 'engine', 'engine_live' or 'upgrade' (?upgrade=1: Live Setup alone for a Content Engine owner;
+ *   the hub checks the email and charges $197). POST {API}/waitlist { email, name } once Live Setup closes.
+ * Until CE_CHECKOUT_API is set the page stays
  * a design preview: no Stripe script loads and nothing is charged. */
 const API_BASE = (window.CE_CHECKOUT_API || '').replace(/\/+$/, '');
 
 const body = document.body;
+const isUpgrade = new URLSearchParams(window.location.search).get('upgrade') === '1';
+if (isUpgrade) body.classList.add('is-upgrade');
 const money = n => '$' + (Number.isInteger(n) ? n : n.toFixed(2));
 function prices() { return Date.now() > SALE_END ? PRICES.regular : PRICES.sale; }
 
@@ -1706,7 +1748,7 @@ function tick() {
   const now = Date.now();
   if (now > SALE_END) body.classList.replace('has-sale', 'sale-over');
   else document.querySelectorAll('[data-sale-end]').forEach(el => fill(el, Math.floor((SALE_END - now) / 1000)));
-  if (now > LIVE_END && !body.classList.contains('live-over')) { body.classList.add('live-over'); liveBox.checked = false; setTimeout(onPlanChange, 0); }
+  if (!isUpgrade && now > LIVE_END && !body.classList.contains('live-over')) { body.classList.add('live-over'); liveBox.checked = false; setTimeout(onPlanChange, 0); }
   else document.querySelectorAll('[data-live-end]').forEach(el => fill(el, Math.floor((LIVE_END - now) / 1000)));
   renderTotal();
 }
@@ -1723,14 +1765,14 @@ function renderTotal() {
     const v = p[el.dataset.price];
     if (v !== undefined) el.textContent = money(v);
   });
-  const withLive = liveBox.checked && !body.classList.contains('live-over');
+  const withLive = isUpgrade || (liveBox.checked && !body.classList.contains('live-over'));
   liveRow.hidden = !withLive;
   document.getElementById('liveBonuses').classList.toggle('is-unlocked', withLive);
   document.getElementById('coMissing').classList.toggle('has-live', withLive);
   const off = codeApplies() ? coupon.off : 0;
   codeRow.hidden = !off;
   if (off) document.getElementById('codeOff').textContent = '−' + money(off);
-  const total = p.engine + (withLive ? p.live : 0) - off;
+  const total = (isUpgrade ? 0 : p.engine) + (withLive ? p.live : 0) - off;
   document.getElementById('totalPrice').textContent = money(total);
   document.getElementById('btnPrice').textContent = money(total);
   const liveOff = coupon && coupon.plan === 'engine_live' ? coupon.off : 0;
@@ -1739,6 +1781,7 @@ function renderTotal() {
 }
 const payButton = document.getElementById('payButton');
 function payLabelText() {
+  if (isUpgrade) return 'Add Live Setup';
   if (body.classList.contains('live-over')) return 'Get the Engine';
   return liveBox.checked ? 'Get the Engine + Live Setup' : 'Get the Engine only';
 }
@@ -1758,13 +1801,13 @@ const payError = document.getElementById('payError');
 const paypalWrap = document.getElementById('paypalWrap');
 let settings = null, stripe = null, elements = null, busy = false;
 
-const plan = () => (liveBox.checked && !body.classList.contains('live-over')) ? 'engine_live' : 'engine';
+const plan = () => isUpgrade ? 'upgrade' : (liveBox.checked && !body.classList.contains('live-over')) ? 'engine_live' : 'engine';
 function amountCents() {
   if (codeApplies()) return coupon.amount_cents;
   const fromServer = settings && settings.pricing && settings.pricing[plan()];
   if (fromServer) return fromServer.amount_cents;
   const p = prices();
-  return (p.engine + (plan() === 'engine_live' ? p.live : 0)) * 100;
+  return ((plan() === 'upgrade' ? 0 : p.engine) + (plan() === 'engine' ? 0 : p.live)) * 100;
 }
 function buyer() {
   const f = new FormData(payForm);
@@ -1864,7 +1907,7 @@ payForm.querySelector('[name="email"]').addEventListener('change', () => {
  * so Apple Pay / Google Pay open from a real gesture). */
 const confirmBox = document.getElementById('coConfirm');
 let confirmedEngineOnly = false, afterConfirm = null;
-const needsConfirm = () => !confirmedEngineOnly && !liveBox.checked && !body.classList.contains('live-over');
+const needsConfirm = () => !isUpgrade && !confirmedEngineOnly && !liveBox.checked && !body.classList.contains('live-over');
 function confirmThen(next) {
   if (!needsConfirm()) return next();
   afterConfirm = next;
@@ -1945,7 +1988,7 @@ async function payByPaypal() {
   }
 }
 // ?code=GROWTHOS50 is the only way the code box shows, already open and filled in.
-const urlCode = new URLSearchParams(window.location.search).get('code');
+const urlCode = isUpgrade ? null : new URLSearchParams(window.location.search).get('code');
 if (urlCode) {
   document.getElementById('codeWrap').hidden = false;
   document.getElementById('codeToggle').hidden = true;
@@ -1961,12 +2004,38 @@ if (new URLSearchParams(window.location.search).get('live') === '1' && !body.cla
   document.getElementById('live').scrollIntoView({ block: 'start' });
 }
 
+/* --- waitlist (Live Setup closed) ------------------------------------------- */
+const wlButton = document.getElementById('wlButton');
+wlButton.addEventListener('click', async () => {
+  const email = document.getElementById('wlEmail').value.trim();
+  const name = document.getElementById('wlName').value.trim();
+  const wlError = document.getElementById('wlError');
+  const fail = msg => { wlError.textContent = msg; wlError.hidden = false; };
+  wlError.hidden = true;
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return fail('That email address does not look right.');
+  if (!API_BASE) return fail('The waitlist isn\'t connected yet. This is the design preview.');
+  wlButton.disabled = true;
+  try {
+    await postJSON('/waitlist', { email, name });
+    wlButton.hidden = true;
+    document.getElementById('wlDone').hidden = false;
+  } catch (err) {
+    fail(err.message);
+    wlButton.disabled = false;
+  }
+});
+
 (async function startPayment() {
   if (!API_BASE) return;   // design preview
   try {
     const res = await fetch(API_BASE + '/config');
     if (!res.ok) throw new Error('config');
     settings = await res.json();
+    // The hub leaves a plan out of pricing once it is closed or full.
+    const live = settings.pricing && settings.pricing.engine_live;
+    if (!isUpgrade && !live && !body.classList.contains('live-over')) {
+      body.classList.add('live-over'); liveBox.checked = false; renderTotal();
+    }
   } catch (err) {
     showError('Checkout is unavailable right now. Please try again in a few minutes.');
     return;
