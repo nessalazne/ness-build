@@ -1204,6 +1204,10 @@ body:not(.is-upgrade) .upgrade-only { display:none !important; }
 body.is-upgrade { --sale-bar-h:0px; }
 /* Once Live Setup closes (or the hub says it is full), new buyers can join the waitlist. */
 body:not(.live-over) .waitlist-only, .is-upgrade .waitlist-only { display:none !important; }
+/* Room between the sentence, the two boxes and the button (the shared form styles pack them tight). */
+#waitlist .co-fields { margin-top:clamp(1.2rem,2vw,1.6rem); }
+#waitlist .co-submit { margin-top:clamp(1.2rem,2vw,1.6rem); }
+#waitlist .co-error, #waitlist .co-wl-done { margin-top:clamp(1rem,1.6vw,1.3rem); }
 .co-wl-done { margin:14px 0 0; font-family:var(--font-body); font-size:0.95rem; color:var(--teal); }
 .co-secure { display:inline-flex; align-items:center; gap:8px; font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.16em; text-transform:uppercase; color:var(--text-dim); }
 @media (max-width:560px){ .top-nav .nav-brand span { display:none; } .co-secure { letter-spacing:0.1em; } }
