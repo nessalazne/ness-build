@@ -6,8 +6,9 @@
   const params = new URLSearchParams(window.location.search);
   const token = params.get('ref');
   const validTokens = ['groove', 'founder', 'vibe297'];
-  // The hub checkout (hub.digicuratoragency.com/api/ce) sends buyers here with ?plan=.
-  const validPlans = ['engine', 'engine_live'];
+  // The hub checkout (hub.digicuratoragency.com/api/ce) sends buyers here with ?plan= (engine, engine_live, or
+  // upgrade for a Content Engine buyer adding Live Setup for $197).
+  const validPlans = ['engine', 'engine_live', 'upgrade'];
 
   if (!validTokens.includes(token) && !validPlans.includes(params.get('plan'))) {
     window.location.replace(
@@ -580,6 +581,10 @@ strong { color: var(--accent); font-weight: 500; }
    ================================================================ */
 .live-only { display: none; }
 body.is-live .live-only { display: block; }
+/* ?plan=upgrade: a Content Engine buyer who just added Live Setup. Shows only .upgrade-only, hides the new-buyer page. */
+.upgrade-only { display: none; }
+body.is-upgrade .upgrade-only { display: block; }
+body.is-upgrade .not-upgrade { display: none !important; }
 
 .includes-grid {
   display: grid;
@@ -766,6 +771,64 @@ footer {
     Purchase confirmed
   </div>
 </nav>
+
+
+<!-- ================================================================
+     UPGRADE VERSION (?plan=upgrade): a Content Engine buyer who just added Live Setup for $197.
+     They already have the account, the license key and the setup, so none of the new-buyer page applies.
+     ================================================================ -->
+<div class="upgrade-only" id="upgrade-view">
+  <header class="hero">
+    <div class="checkmark-ring reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+    </div>
+    <div class="hero-eyebrow reveal">Upgrade confirmed</div>
+    <h1 class="hero-title reveal reveal-d1">
+      Live Setup<br>is <em>added.</em>
+    </h1>
+    <p class="hero-sub reveal reveal-d2">
+      Your Live Setup order is confirmed and the bonuses are unlocked in the hub now. Your Content Engine license key stays the same, so there is nothing new to install.
+    </p>
+  </header>
+
+  <section class="section">
+    <div style="max-width:620px; margin-bottom:clamp(1rem,1.5vw,1.4rem);">
+      <div class="kicker teal reveal">What happens next</div>
+      <h2 class="section-title reveal reveal-d1">
+        Your bonuses<br>and <em>your sessions.</em>
+      </h2>
+    </div>
+    <div class="includes-grid">
+      <div class="include-card reveal reveal-d1">
+        <span class="include-icon">🔓</span>
+        <div class="include-name">Your bonuses are unlocked</div>
+        <div class="include-desc">Open your Content Engine page in the hub. The 100+ style B-roll Motion Library, FX Library · 120+ effects, AISHA Engine and The AI Audit Method are all there now.</div>
+      </div>
+      <div class="include-card reveal reveal-d2">
+        <span class="include-icon">📅</span>
+        <div class="include-name">Your 3 live sessions</div>
+        <div class="include-desc">They run in the week of 2 November, and I will email you the times. Each session is recorded, and the replay goes to your Content Engine area in the hub.</div>
+      </div>
+      <div class="include-card reveal reveal-d3">
+        <span class="include-icon">🔑</span>
+        <div class="include-name">Nothing new to set up</div>
+        <div class="include-desc">Your license key, your keys and your extension stay as they are. Live Setup adds the sessions and the bonuses to the account you already have.</div>
+      </div>
+    </div>
+    <div style="margin-top:clamp(2rem,3vw,2.8rem);" class="reveal reveal-d3">
+      <a class="btn-primary" href="https://hub.digicuratoragency.com/content-engine">Open my Content Engine page</a>
+    </div>
+    <p class="body-text reveal reveal-d3" style="margin-top:1.6rem; max-width:620px;">
+      The hub also sends a sign-in email. If you are already signed in, you can ignore it. Questions? Email <strong style="color:var(--accent);">ness@digicuratoragency.com</strong>.
+    </p>
+  </section>
+
+  <div class="divider"></div>
+</div>
+
+<div class="not-upgrade">
 
 
 <!-- ================================================================
@@ -996,6 +1059,9 @@ footer {
 <div class="divider"></div>
 
 
+</div><!-- /.not-upgrade -->
+
+
 <!-- ================================================================
      FOOTER
      ================================================================ -->
@@ -1032,9 +1098,9 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.12 });
 
-if (new URLSearchParams(window.location.search).get('plan') === 'engine_live') {
-  document.body.classList.add('is-live');
-}
+const plan = new URLSearchParams(window.location.search).get('plan');
+if (plan === 'engine_live') document.body.classList.add('is-live');
+if (plan === 'upgrade') document.body.classList.add('is-upgrade');
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
