@@ -1243,6 +1243,7 @@ body:not(.live-over) .waitlist-only, .is-upgrade .waitlist-only { display:none !
 .co-check input:focus-visible + .co-box { outline:2px solid var(--accent); outline-offset:3px; }
 .co-check-text { font-family:var(--font-body); font-weight:600; color:var(--text-paper); }
 .co-check-text b { color:var(--teal); }
+.co-check-value { font-weight:400; color:var(--text-dim); }
 .co-up-note { margin:12px 0 0; font-family:var(--font-mono); font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted); }
 
 .co-included { margin-top:clamp(3rem,6vw,4.5rem); }
@@ -1477,7 +1478,7 @@ body:not(.live-over) .waitlist-only, .is-upgrade .waitlist-only { display:none !
     <label class="co-check">
       <input type="checkbox" id="addLive">
       <span class="co-box" aria-hidden="true"></span>
-      <span class="co-check-text">Yes, add Live Setup and all the bonuses for <b data-price="live">$197</b></span>
+      <span class="co-check-text">Yes, add Live Setup and all the bonuses for <b data-price="live">$197</b> <span class="co-check-value">($830 value)</span></span>
     </label>
     <p class="co-up-note" id="liveNote">Live Setup closes Sunday 1 November at 11:59 PM ET. The sessions start Monday 2 November.</p>
     <p class="co-up-note upgrade-only">Upgrade price for Content Engine buyers, while places last. If a session has already happened when you join, you get its replay.</p>
