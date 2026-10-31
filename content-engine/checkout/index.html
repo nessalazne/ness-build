@@ -1353,6 +1353,7 @@ body:not(.live-over) .waitlist-only, .is-upgrade .waitlist-only { display:none !
 @media (max-width:640px){ .co-missing ul { grid-template-columns:1fr; } }
 .co-missing li { font-family:var(--font-body); font-size:0.88rem; color:var(--text-dim); line-height:1.4; padding-left:18px; position:relative; }
 .co-missing li::before { content:'✕'; position:absolute; left:0; color:var(--muted); }
+.co-missing-total { font-family:var(--font-mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--teal); font-weight:600; margin:12px 0 0; padding-top:10px; border-top:1px solid var(--border); }
 .co-missing-note { font-family:var(--font-body); font-size:0.85rem; color:var(--text-paper); line-height:1.5; margin:12px 0; }
 .co-missing-done { display:none; font-family:var(--font-mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--green); font-weight:600; }
 .co-missing.has-live { border-style:solid; padding:12px 16px; }
@@ -1636,7 +1637,7 @@ body:not(.live-over) .waitlist-only, .is-upgrade .waitlist-only { display:none !
       <div class="co-missing-body">
         <div class="co-missing-kicker">Not in this order</div>
         <ul>
-          <li>3 live setup sessions with me (recorded)</li>
+          <li>3 live setup sessions with me, recorded ($297 value)</li>
           <li>100+ style B-roll Motion Library ($49 value)</li>
           <li>Style Builder ($67 value)</li>
           <li>FX Library · 120+ effects ($37 value)</li>
@@ -1646,6 +1647,7 @@ body:not(.live-over) .waitlist-only, .is-upgrade .waitlist-only { display:none !
           <li>The AI Audit Method ($127 value)</li>
           <li>Free updates for life to the library, FX and tools</li>
         </ul>
+        <p class="co-missing-total">Total value $830 · yours with Live Setup for <span data-price="live">$197</span></p>
         <p class="co-missing-note">These come only with Live Setup. 20 places, closes Sunday 1 November at 11:59 PM ET.</p>
         <button type="button" class="co-lb-add" id="missingAdd">Add Live Setup · +<span data-price="live">$197</span></button>
       </div>
