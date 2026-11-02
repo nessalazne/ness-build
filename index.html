@@ -890,6 +890,10 @@ footer {
 .theme-toggle svg { width: 13px; height: 13px; flex-shrink: 0; }
 [data-theme="light"] .theme-toggle { box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
 </style>
+<script>
+/* Affiliate link: ?ref=CODE is kept for 60 days (last click wins) and sent with the order. The hub checks the code. */
+(function () { try { var m = /[?&]ref=([a-z0-9]{6,20})(?:&|$)/i.exec(location.search); if (m) localStorage.setItem('ceRef', JSON.stringify({ c: m[1].toLowerCase(), t: Date.now() })); } catch (e) {} })();
+</script>
 </head>
 <body>
 

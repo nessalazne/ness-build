@@ -1212,6 +1212,10 @@ footer {
 [data-theme="light"] .sample-frame, [data-theme="light"] .proof-video { box-shadow:0 18px 44px rgba(26,18,16,0.14); }
 [data-theme="light"] .proof-shot figcaption { background:var(--surface); }
 </style>
+<script>
+/* Affiliate link: ?ref=CODE is kept for 60 days (last click wins) and sent with the order. The hub checks the code. */
+(function () { try { var m = /[?&]ref=([a-z0-9]{6,20})(?:&|$)/i.exec(location.search); if (m) localStorage.setItem('ceRef', JSON.stringify({ c: m[1].toLowerCase(), t: Date.now() })); } catch (e) {} })();
+</script>
 </head>
 <body class="sale-over">
 

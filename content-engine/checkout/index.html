@@ -1398,6 +1398,10 @@ body:not(.live-over) .waitlist-only, .is-upgrade .waitlist-only { display:none !
 [data-theme="light"] .co-card, [data-theme="light"] .co-upgrade, [data-theme="light"] .co-bonus, [data-theme="light"] .co-tools { background:var(--surface); }
 [data-theme="light"] .co-upgrade { border-color:#a07200; background:linear-gradient(180deg, rgba(160,114,0,0.07), transparent 60%), var(--surface); }
 </style>
+<script>
+/* Affiliate link: ?ref=CODE is kept for 60 days (last click wins) and sent with the order. The hub checks the code. */
+(function () { try { var m = /[?&]ref=([a-z0-9]{6,20})(?:&|$)/i.exec(location.search); if (m) localStorage.setItem('ceRef', JSON.stringify({ c: m[1].toLowerCase(), t: Date.now() })); } catch (e) {} })();
+</script>
 </head>
 <body class="sale-over live-over">
 
@@ -1462,7 +1466,7 @@ body:not(.live-over) .waitlist-only, .is-upgrade .waitlist-only { display:none !
       <li><span>03</span><div><b>Session 3 · Wednesday · The libraries in your extension</b>I show you how to add the 100+ styles and the FX library to your Chrome extension. Then I show you how to apply the B-roll styles to faceless long-form videos, so you do not need CapCut or any other editing software.</div></li>
       <li><span>04</span><div><b>Every session recorded</b>Replays are added to your Content Engine area on the hub after each session, and you keep access for life.</div></li>
       <li><span>05</span><div><b>Small group</b>20 places in every group, and a new group starts every Monday at 11:30 AM ET.</div></li>
-      <li><span>06</span><div><b>Plus every Live Setup bonus</b>The 100+ style B-roll library, the FX library, the two new tools, the two new apps and both bonus courses, plus everything I add to the library, the FX, the tools and the apps later. These come only with Live Setup.</div></li>
+      <li><span>06</span><div><b>Plus every Live Setup bonus</b>The 100+ style B-roll library, the FX library, the two new tools, the two new apps, the affiliate program and both bonus courses, plus everything I add to the library, the FX, the tools and the apps later. These come only with Live Setup.</div></li>
     </ul>
     <label class="co-check">
       <input type="checkbox" id="addLive">
@@ -1592,6 +1596,11 @@ body:not(.live-over) .waitlist-only, .is-upgrade .waitlist-only { display:none !
       </div>
     </div>
 
+    <div class="co-tools">
+      <div class="co-tools-head"><span class="co-step">Affiliate program · Live Setup bonus</span></div>
+      <div class="co-tool"><div class="co-item-num">09</div><div><div class="co-item-title">Earn 40% on every Content Engine sale you refer</div><p>You get your own link. When someone buys through it, you earn 40% of what they paid, paid to your PayPal each month. A $147 Engine sale pays you $58.80. An Engine + Live Setup sale pays you $137.60. It is yours for as long as you own Live Setup.</p></div></div>
+    </div>
+
       </div>
     </div>
   </section>
@@ -1639,11 +1648,12 @@ body:not(.live-over) .waitlist-only, .is-upgrade .waitlist-only { display:none !
           <li>FX Library · 120+ effects ($37 value)</li>
           <li>Trial Reel Maker ($99 value)</li>
           <li>Carousel Maker ($57 value)</li>
+          <li>Affiliate program: earn 40% on every sale you refer</li>
           <li>AISHA Engine Foundations ($97 value)</li>
           <li>The AI Audit Method ($127 value)</li>
           <li>Free updates for life to the library, FX, tools and apps</li>
         </ul>
-        <p class="co-missing-total">Total value $830 · yours with Live Setup for <span data-price="live">$197</span></p>
+        <p class="co-missing-total">Total value $830, plus the affiliate program · yours with Live Setup for <span data-price="live">$197</span></p>
         <p class="co-missing-note">These come only with Live Setup. 20 places in each weekly group, and the next one starts <span data-group-monday>Monday</span> at 11:30 AM ET.</p>
         <button type="button" class="co-lb-add" id="missingAdd">Add Live Setup · +<span data-price="live">$197</span></button>
       </div>
@@ -1674,7 +1684,7 @@ body:not(.live-over) .waitlist-only, .is-upgrade .waitlist-only { display:none !
       <details><summary>When do I get access?</summary><div class="faq-a">Right after you pay. The email you enter above gets your access and receipt.</div></details>
       <details><summary>Mac or Windows?</summary><div class="faq-a">Built and run daily on a Mac. The core pipeline is Node and Chrome, and the one-command setup script installs what the styles need.</div></details>
       <details><summary>Is it a subscription?</summary><div class="faq-a">No. One payment. Your API usage is billed to your own accounts at cost, and I charge nothing per video.</div></details>
-      <details class="live-only"><summary>Do I get the bonuses without Live Setup?</summary><div class="faq-a">No. The 100+ style B-roll library, the two bonus courses, the new tools and apps and the free updates come only with the Live Setup upgrade. The Content Engine on its own is the extension and its source code.</div></details>
+      <details class="live-only"><summary>Do I get the bonuses without Live Setup?</summary><div class="faq-a">No. The 100+ style B-roll library, the two bonus courses, the new tools and apps, the affiliate program and the free updates come only with the Live Setup upgrade. The Content Engine on its own is the extension and its source code.</div></details>
       <details class="live-only"><summary>When are the live sessions?</summary><div class="faq-a">Every week: session 1 on Monday, session 2 on Tuesday and session 3 on Wednesday, all at 11:30 AM ET. Buy before 11:30 AM ET on a Monday and you join that day's group. Buy after that and you join the next Monday. Each group has 20 places, and every session is recorded.</div></details>
       <details class="live-only"><summary>Are the live sessions recorded?</summary><div class="faq-a">Yes, all three. The replays are added to your Content Engine area on the hub after each session. You keep access to them for life. If you miss a session, you can catch up there.</div></details>
     </div>
@@ -1690,7 +1700,7 @@ body:not(.live-over) .waitlist-only, .is-upgrade .waitlist-only { display:none !
 <dialog class="co-confirm" id="coConfirm" aria-labelledby="coConfirmTitle">
   <div class="co-missing-kicker">Before you pay</div>
   <h3 id="coConfirmTitle">Just the Engine?</h3>
-  <p>Your <span data-price="engine">$147</span> order is the Content Engine on its own. The live sessions, the 100+ style library, the FX library, the two new tools, the two new apps and both bonus courses come only with Live Setup, and Live Setup starts a new group every Monday.</p>
+  <p>Your <span data-price="engine">$147</span> order is the Content Engine on its own. The live sessions, the 100+ style library, the FX library, the two new tools, the two new apps, the affiliate program and both bonus courses come only with Live Setup, and Live Setup starts a new group every Monday.</p>
   <button type="button" class="btn-primary co-confirm-add" id="confirmAdd">Add Live Setup · <span id="confirmTotal">$294</span> total</button>
   <button type="button" class="co-confirm-skip" id="confirmSkip">No thanks, just the Engine · <span data-price="engine">$147</span></button>
 </dialog>
@@ -1748,7 +1758,8 @@ const PRICES = { sale: { engine: 97, engineWas: 147, live: 197 }, regular: { eng
  *                                 pricing: { currency, engine: {amount_cents}, engine_live: {amount_cents} } }
  *   POST {API}/coupon        { coupon, email, plan } -> { code, amount_off_cents, amount_cents }
  *   POST {API}/checkout      { name, email, plan, coupon? } -> { client_secret, success_url }
- *   POST {API}/paypal/order  { name, email, plan, coupon? } -> { order_id, approve_url }
+ *   POST {API}/paypal/order  { name, email, plan, coupon?, ref? } -> { order_id, approve_url }
+ * ref is an affiliate code from ?ref= on the page URL; the hub checks it and ignores a bad one.
  * PayPal is a same-tab redirect to approve_url (no pop-up). PayPal sends the buyer
  * to {API}/paypal/return, which captures and forwards to the thank-you page, or
  * back here with ?paypal=failed.
@@ -1839,10 +1850,20 @@ function amountCents() {
   const p = prices();
   return ((plan() === 'upgrade' ? 0 : p.engine) + (plan() === 'engine' ? 0 : p.live)) * 100;
 }
+/* The affiliate code from a ?ref= link (captured in <head>), if it is under 60 days old. */
+function storedRef() {
+  try {
+    const v = JSON.parse(localStorage.getItem('ceRef') || 'null');
+    if (v && v.c && Date.now() - v.t < 60 * 864e5) return v.c;
+  } catch (e) {}
+  return '';
+}
 function buyer() {
   const f = new FormData(payForm);
   const out = { name: String(f.get('name') || '').trim(), email: String(f.get('email') || '').trim(), plan: plan() };
   if (codeApplies()) out.coupon = coupon.code;
+  const ref = storedRef();
+  if (ref) out.ref = ref;
   return out;
 }
 function buyerProblem() {
