@@ -1195,6 +1195,10 @@ footer {
 .has-sale .regular-only { display:none; }
 .sale-over .regular-only { display:inline; }
 .live-over .live-only, .live-over .live-row { display:none !important; }
+/* Closed: #live and #liveBonuses stay visible as a read-only look at what is in Live Setup; the buy controls go. */
+.live-over .live-open-only, .live-over .co-check, .live-over #liveNote, .live-over .co-up-clock, .live-over .co-lb-state { display:none !important; }
+body:not(.live-over) .live-closed-only { display:none !important; }
+.live-over .co-live-bonuses .co-lb-items { opacity:1 !important; }
 /* ?upgrade=1 (the hub's lesson box): a Content Engine buyer adds Live Setup for $197. The hub checks the
    email owns the Engine, and keeps the upgrade open after Live Setup closes to new buyers, until it is full. */
 /* !important: .co-line, .co-fine etc. set their own display later in this sheet. */
@@ -1444,13 +1448,14 @@ body:not(.live-over) .waitlist-only, .is-upgrade .waitlist-only { display:none !
   </section>
 
   <!-- UPGRADE -->
-  <section class="co-upgrade live-only" id="live">
+  <section class="co-upgrade" id="live">
     <div class="co-up-top">
-      <div class="co-step teal">Optional upgrade · limited to 20 people</div>
+      <div class="co-step teal"><span class="live-open-only">Optional upgrade · limited to 20 people</span><span class="live-closed-only">What is in Live Setup · closed for now</span></div>
       <div class="co-up-clock" data-live-end="2026-11-02T04:59:59Z">Closes in <b data-u="d">0</b>d <b data-u="h">00</b>h <b data-u="m">00</b>m</div>
     </div>
     <h2 class="co-up-title">Set it up live with me.<br><em>Posting everywhere by the end of the week.</em></h2>
-    <p class="co-up-body">Three live sessions in the week of 2 November. In session one we install the Chrome extension and get it working on your computer, so you leave the first live with it running. In session two we finish the rest of the setup, and after that you can post to every platform. In the third, I show you how to add the 100+ style library and the FX library to your extension, so you can pick a style or an effect from a list whenever you want. I also show you how to apply the B-roll styles to faceless long-form videos, so you do not need CapCut or any other editing software. Every session is recorded.</p>
+    <p class="co-up-body live-closed-only">Live Setup is three live sessions with me. In session one we install the Chrome extension and get it working on your computer. In session two we finish the rest of the setup, and after that you can post to every platform. In the third, I show you how to add the 100+ style library and the FX library to your extension, so you can pick a style or an effect from a list whenever you want. I also show you how to apply the B-roll styles to faceless long-form videos, so you do not need CapCut or any other editing software. Every session is recorded.</p>
+    <p class="co-up-body live-open-only">Three live sessions in the week of 2 November. In session one we install the Chrome extension and get it working on your computer, so you leave the first live with it running. In session two we finish the rest of the setup, and after that you can post to every platform. In the third, I show you how to add the 100+ style library and the FX library to your extension, so you can pick a style or an effect from a list whenever you want. I also show you how to apply the B-roll styles to faceless long-form videos, so you do not need CapCut or any other editing software. Every session is recorded.</p>
     <ul class="co-up-list">
       <li><span>01</span><div><b>Session 1 · Working extension</b>Your keys and the extension installed and running, so it works before we finish.</div></li>
       <li><span>02</span><div><b>Session 2 · Finish the setup</b>Accounts, your brand config and your first run.</div></li>
@@ -1465,6 +1470,7 @@ body:not(.live-over) .waitlist-only, .is-upgrade .waitlist-only { display:none !
       <span class="co-check-text">Yes, add Live Setup and all the bonuses for <b data-price="live">$197</b> <span class="co-check-value">($830 value)</span></span>
     </label>
     <p class="co-up-note" id="liveNote">Live Setup closes Sunday 1 November at 11:59 PM ET. The sessions start Monday 2 November.</p>
+    <p class="co-up-note live-closed-only">Live Setup is closed for now. Join the waitlist below to hear first when it reopens, with the dates for the next round.</p>
     <p class="co-up-note upgrade-only">Upgrade price for Content Engine buyers, while places last. If a session has already happened when you join, you get its replay.</p>
   </section>
 
@@ -1496,11 +1502,12 @@ body:not(.live-over) .waitlist-only, .is-upgrade .waitlist-only { display:none !
       </div>
     </div>
 
-    <div class="co-live-bonuses live-only" id="liveBonuses">
+    <div class="co-live-bonuses" id="liveBonuses">
       <div class="co-lb-head">
         <div class="co-lb-kicker">Live Setup bonuses</div>
         <div class="co-lb-title">Only when you go <em>live with me.</em></div>
-        <p class="engine-only">Everything below comes with the Live Setup upgrade. It is not part of the Content Engine on its own. Tick Live Setup to get all of it. The bonuses close with Live Setup on Sunday 1 November at 11:59 PM ET.</p>
+        <p class="live-closed-only">Everything below comes with Live Setup only, and Live Setup is closed for now. Join the waitlist above to hear first when it reopens.</p>
+        <p class="engine-only live-open-only">Everything below comes with the Live Setup upgrade. It is not part of the Content Engine on its own. Tick Live Setup to get all of it. The bonuses close with Live Setup on Sunday 1 November at 11:59 PM ET.</p>
         <p class="upgrade-only">Everything below comes with Live Setup, and all of it is in this upgrade.</p>
         <div class="co-lb-state">
           <span class="co-lb-locked">Not in your order yet</span>
