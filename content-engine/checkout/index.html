@@ -1395,13 +1395,7 @@ body:not(.live-over) .waitlist-only, .is-upgrade .waitlist-only { display:none !
 [data-theme="light"] .co-upgrade { border-color:#a07200; background:linear-gradient(180deg, rgba(160,114,0,0.07), transparent 60%), var(--surface); }
 </style>
 </head>
-<body class="has-sale">
-
-<a class="sale-bar sale-only" href="#order" data-sale-end="2026-11-02T04:59:59Z" aria-label="The $97 price ends Sunday 1 November, 11:59 PM ET">
-  <span class="bdot"></span>
-  <span class="sb-label">$97 price ends in</span>
-  <span class="sb-clock"><b data-u="d">00</b>d <b data-u="h">00</b>:<b data-u="m">00</b>:<b data-u="s">00</b></span>
-</a>
+<body class="sale-over">
 
 <nav class="top-nav">
   <a href="../" class="nav-brand">
@@ -1426,18 +1420,8 @@ body:not(.live-over) .waitlist-only, .is-upgrade .waitlist-only { display:none !
       <div class="pricing-badge"><span class="bdot"></span>For Content Engine buyers</div>
       <h1 class="co-title">Add <em>Live Setup</em><br>for $197.</h1>
     </div>
-    <div class="pricing-badge engine-only"><span class="bdot"></span><span class="sale-only">Intro price · $147 from 2 November</span><span class="regular-only">One payment · Instant access</span></div>
-    <h1 class="co-title engine-only"><span class="sale-only">Lock in <em>$97</em><br>before it's $147.</span><span class="regular-only">Get the<br><em>Content Engine.</em></span></h1>
-    <div class="sale-timer sale-only engine-only" data-sale-end="2026-11-02T04:59:59Z">
-      <div class="sale-head"><span class="bdot"></span>The price goes to <strong>$147</strong> in</div>
-      <div class="sale-clock" role="timer" aria-label="Time left at the intro price">
-        <span><b data-u="d">00</b><small>days</small></span>
-        <span><b data-u="h">00</b><small>hrs</small></span>
-        <span><b data-u="m">00</b><small>min</small></span>
-        <span><b data-u="s">00</b><small>sec</small></span>
-      </div>
-      <div class="sale-sub">$97 until Sunday 1 November, 11:59 PM ET</div>
-    </div>
+    <div class="pricing-badge engine-only"><span class="bdot"></span><span class="regular-only">One payment · Instant access</span></div>
+    <h1 class="co-title engine-only"><span class="regular-only">Get the<br><em>Content Engine.</em></span></h1>
   </header>
 
   <!-- YOUR ORDER -->
@@ -1448,7 +1432,7 @@ body:not(.live-over) .waitlist-only, .is-upgrade .waitlist-only { display:none !
         <div class="co-line-name">AI Social Hub Content Engine</div>
         <div class="co-line-desc">Chrome extension + full source code. One payment, no subscription.</div>
       </div>
-      <div class="co-line-price"><s class="sale-only" data-price="engineWas">$147</s><b data-price="engine">$97</b></div>
+      <div class="co-line-price"><b data-price="engine">$147</b></div>
     </div>
     <div class="co-line upgrade-only">
       <div>
@@ -1619,10 +1603,10 @@ body:not(.live-over) .waitlist-only, .is-upgrade .waitlist-only { display:none !
     <div class="co-payment" id="payment-element" hidden></div>
 
     <div class="co-summary">
-      <div class="co-sum-row engine-only"><span>Content Engine</span><span data-price="engine">$97</span></div>
+      <div class="co-sum-row engine-only"><span>Content Engine</span><span data-price="engine">$147</span></div>
       <div class="co-sum-row live-row" hidden><span>Live Setup · 3 sessions + bonuses</span><span data-price="live">$197</span></div>
       <div class="co-sum-row co-code-row" id="codeRow" hidden><span>Code <b id="codeName"></b><button type="button" class="co-code-remove" id="codeRemove">Remove</button></span><span id="codeOff"></span></div>
-      <div class="co-sum-row co-sum-total"><span>Total today</span><span id="totalPrice">$97</span></div>
+      <div class="co-sum-row co-sum-total"><span>Total today</span><span id="totalPrice">$147</span></div>
     </div>
 
     <div class="co-code" id="codeWrap" hidden>
@@ -1655,7 +1639,7 @@ body:not(.live-over) .waitlist-only, .is-upgrade .waitlist-only { display:none !
       <div class="co-missing-done"><span>✓ Live Setup and every bonus are in this order</span><button type="button" class="co-missing-remove" id="missingRemove">Remove</button></div>
     </div>
 
-    <button class="btn-primary co-submit" id="payButton" type="submit"><span id="payLabel">Get the Engine</span> · <span id="btnPrice">$97</span> →</button>
+    <button class="btn-primary co-submit" id="payButton" type="submit"><span id="payLabel">Get the Engine</span> · <span id="btnPrice">$147</span> →</button>
     <p class="co-error" id="payError" role="alert" hidden></p>
     <p class="co-notice" id="payNotice" hidden>Payment isn't connected yet. This is the design preview.</p>
     <div class="co-paypal" id="paypalWrap" hidden>
@@ -1663,7 +1647,6 @@ body:not(.live-over) .waitlist-only, .is-upgrade .waitlist-only { display:none !
       <button type="button" class="co-paypal-btn" id="paypalButton">Pay with <b>PayPal</b></button>
       <p class="co-fine co-center">You finish on PayPal, then come straight back here.</p>
     </div>
-    <p class="co-fine co-center sale-only">$97 until Sunday 1 November, 11:59 PM ET, then $147.</p>
     <p class="co-fine co-center"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Payments are processed by Stripe. I never see your card number.</p>
   </form>
 
@@ -1696,9 +1679,9 @@ body:not(.live-over) .waitlist-only, .is-upgrade .waitlist-only { display:none !
 <dialog class="co-confirm" id="coConfirm" aria-labelledby="coConfirmTitle">
   <div class="co-missing-kicker">Before you pay</div>
   <h3 id="coConfirmTitle">Just the Engine?</h3>
-  <p>Your <span data-price="engine">$97</span> order is the Content Engine on its own. The live sessions, the 100+ style library, the FX library, the five new tools and both bonus courses come only with Live Setup, and Live Setup closes Sunday 1 November.</p>
+  <p>Your <span data-price="engine">$147</span> order is the Content Engine on its own. The live sessions, the 100+ style library, the FX library, the five new tools and both bonus courses come only with Live Setup, and Live Setup closes Sunday 1 November.</p>
   <button type="button" class="btn-primary co-confirm-add" id="confirmAdd">Add Live Setup · <span id="confirmTotal">$294</span> total</button>
-  <button type="button" class="co-confirm-skip" id="confirmSkip">No thanks, just the Engine · <span data-price="engine">$97</span></button>
+  <button type="button" class="co-confirm-skip" id="confirmSkip">No thanks, just the Engine · <span data-price="engine">$147</span></button>
 </dialog>
 
 <footer>
