@@ -81,7 +81,15 @@ say "Leave this window open until you see the green \"Content Engine is installe
 # ---------------------------------------------------------------- 0. Checks
 step "Checking your Mac"
 
-[ "$(uname -s)" = "Darwin" ] || stop "This installer is for Mac only. On Windows or Linux, email $SUPPORT before you start."
+case "$(uname -s)" in
+  Darwin) ;;
+  MINGW*|MSYS*|CYGWIN*) stop "This line is for Mac. On Windows, open PowerShell (Start menu, type PowerShell, press Enter) and paste this line instead:  irm https://builds.digicuratoragency.com/ce/install.ps1 | iex" ;;
+  Linux) if grep -qi microsoft /proc/version 2>/dev/null; then
+           stop "This line is for Mac. On Windows, close WSL, open PowerShell (Start menu, type PowerShell, press Enter) and paste this line instead:  irm https://builds.digicuratoragency.com/ce/install.ps1 | iex"
+         fi
+         stop "This installer is for Mac and Windows only. On Linux, email $SUPPORT before you start." ;;
+  *) stop "This installer is for Mac only. On Windows, use the PowerShell line in the Windows setup lesson." ;;
+esac
 
 MACOS="$(sw_vers -productVersion)"
 MACOS_MAJOR="${MACOS%%.*}"
