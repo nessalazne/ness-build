@@ -102,7 +102,12 @@ a { color: inherit; }
 .fx-bump-body p { margin: 0 0 8px; }
 .fx-bump-body p:last-child { margin-bottom: 0; }
 .fx-bump.is-on { border-style: solid; background: #fff5ec; }
-.engine-over .engine-open-only { display: none !important; }
+.engine-over .engine-open-only, .live-over .live-open-only { display: none !important; }
+.fx-bump-live { margin-top: 12px; }
+.fx-live-more summary { cursor: pointer; font-weight: 700; color: var(--accent-d); margin: 4px 0 6px; }
+.fx-live-more ul { margin: 6px 0 8px; padding-left: 18px; }
+.fx-live-more li { margin-bottom: 4px; }
+.fx-live-more li b { color: var(--text); }
 
 /* Payment */
 .fx-stripe-slot { border: 1px dashed #d9c6bb; border-radius: 10px; padding: 16px; text-align: center; color: var(--muted); font-size: 0.85rem; }
@@ -230,11 +235,39 @@ a { color: inherit; }
           </div>
         </div>
 
+        <!-- Shown only once the Content Engine is ticked: Live Setup needs the Engine. -->
+        <div class="fx-bump fx-bump-live live-open-only" id="liveAddon" hidden>
+          <label class="fx-bump-yes">
+            <span class="fx-arrow" aria-hidden="true">➜</span>
+            <input type="checkbox" id="addLive">
+            <span>YES, set it up live with me too! <small>(Save $67)</small></span>
+          </label>
+          <div class="fx-bump-body">
+            <p class="fx-bump-offer">Add-on: only <span data-price="live" style="color:inherit;font-weight:800;">$130</span> <span>($794 value)</span></p>
+            <p>Three live sessions where we install the Content Engine on your computer and get you posting, plus every Live Setup bonus. Your group starts <b data-group-monday>Monday</b> at 11:30 AM ET.</p>
+            <details class="fx-live-more">
+              <summary>See what's in Live Setup</summary>
+              <ul>
+                <li><b>3 live sessions with me</b>, Monday, Tuesday and Wednesday at 11:30 AM ET, all recorded ($297 value)</li>
+                <li><b>120+ style B-roll Motion Library</b> ($49 value)</li>
+                <li><b>Trial Reel Maker</b>, rolling out now ($127 value)</li>
+                <li><b>Carousel Maker</b>, rolling out now ($97 value)</li>
+                <li><b>Affiliate program</b>: earn 40% on every sale you refer</li>
+                <li><b>AISHA Engine Foundations</b> course ($97 value)</li>
+                <li><b>The AI Audit Method</b> course ($127 value)</li>
+                <li><b>Free updates for life</b> to the library, the tools and the apps</li>
+              </ul>
+              <p>20 places in each weekly group. Buy before Monday 11:30 AM ET to join that Monday's group.</p>
+            </details>
+          </div>
+        </div>
+
         <p class="fx-label fx-gap">Order summary</p>
         <table class="fx-table">
           <tbody>
             <tr><td>FX Studio + Style Builder</td><td>1</td><td data-price="fx">$67</td></tr>
             <tr id="engineRow" hidden><td>Content Engine</td><td>1</td><td data-price="engine">$147</td></tr>
+            <tr id="liveRow" hidden><td>Live Setup + bonuses</td><td>1</td><td data-price="live">$130</td></tr>
             <tr class="fx-total"><td>Order total</td><td></td><td id="totalPrice">$67</td></tr>
           </tbody>
         </table>
@@ -320,7 +353,7 @@ a { color: inherit; }
       <details><summary>What is Style Builder?</summary><div>It is the Style Guide page in the hub. Every look and caption style is listed with a sketch and a code. You add the ones you want, press Copy prompt, and paste that prompt into Claude Code with your video.</div></details>
       <details><summary>Can I use it on client videos?</summary><div>Yes. You can use it on your own videos and on videos you make for clients. You can't share the pack or resell it.</div></details>
       <details><summary>Is it a subscription?</summary><div>No. One payment. Claude Code runs on your own Claude plan, and I charge nothing per video.</div></details>
-      <details><summary>Does it come with chat or live sessions?</summary><div>An FX Studio order comes with the free hub community. Add the Content Engine and you also get a private chat with me. The live setup sessions are part of Live Setup, which is sold on the Content Engine checkout.</div></details>
+      <details><summary>Does it come with chat or live sessions?</summary><div>An FX Studio order comes with the free hub community. Add the Content Engine and you also get a private chat with me. Once you tick the Content Engine, you can also add Live Setup for $130: three live sessions with me in the next weekly group, plus every Live Setup bonus.</div></details>
     </section>
   </main>
 </div>
@@ -343,12 +376,41 @@ a { color: inherit; }
  *                                 success_url, pricing: { currency, fx: {amount_cents}, fx_engine: {amount_cents} } }
  *   POST {API}/checkout      { name, email, plan, ref? } -> { client_secret, success_url }
  *   POST {API}/paypal/order  { name, email, plan, ref? } -> { order_id, approve_url }
- * plan is 'fx' ($67: FX Studio + Style Builder) or 'fx_engine' ($214: the same + the Content Engine).
+ * plan is 'fx' ($67: FX Studio + Style Builder), 'fx_engine' ($214: the same + the Content Engine) or
+ * 'fx_engine_live' ($344: + Live Setup for $130; only with the Engine, gone from pricing when the week's group is full).
  * The hub sends buyers to /fx-studio/thank-you/?plan=fx|fx_engine. A plan missing from pricing is not on
  * sale: no fx means no payment here, no fx_engine hides the bonus offer. ?engine=1 arrives with it ticked.
  * Until CE_CHECKOUT_API is set the page is a design preview: no Stripe script loads, nothing is charged. */
 const API_BASE = (window.CE_CHECKOUT_API || '').replace(/\/+$/, '');
-const PRICES = { fx: 67, engine: 147 };
+const PRICES = { fx: 67, engine: 147, live: 130 };
+/* Live Setup groups: sessions Monday, Tuesday and Wednesday at 11:30 AM ET. Buy before Monday 11:30 AM ET and
+ * you join that Monday's group, after it the next one. Same rule as the hub (pricing.py group_window_start). */
+const ET = 'America/New_York';
+function etParts(ms) {
+  const o = {};
+  new Intl.DateTimeFormat('en-US', { timeZone: ET, hourCycle: 'h23', year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', weekday: 'short' })
+    .formatToParts(new Date(ms)).forEach(x => { o[x.type] = x.value; });
+  return { y: +o.year, m: +o.month, d: +o.day, h: +o.hour, wd: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(o.weekday) };
+}
+function groupStartAt(y, m, d) {
+  for (const off of [4, 5]) { const t = Date.UTC(y, m, d, 11 + off, 30); const q = etParts(t); if (q.h === 11 && q.d === d) return t; }
+  return Date.UTC(y, m, d, 16, 30);
+}
+function nextGroupStart(ms) {
+  const p = etParts(ms);
+  const back = (p.wd + 6) % 7;
+  for (const weeks of [0, 1]) {
+    const day = new Date(Date.UTC(p.y, p.m - 1, p.d - back + 7 * weeks));
+    const t = groupStartAt(day.getUTCFullYear(), day.getUTCMonth(), day.getUTCDate());
+    if (t > ms) return t;
+  }
+}
+function groupLabel(ms) {
+  const o = {};
+  new Intl.DateTimeFormat('en-US', { timeZone: ET, weekday: 'long', day: 'numeric', month: 'long' }).formatToParts(new Date(ms)).forEach(x => { o[x.type] = x.value; });
+  return `${o.weekday} ${o.day} ${o.month}`;
+}
+document.querySelectorAll('[data-group-monday]').forEach(el => { el.textContent = groupLabel(nextGroupStart(Date.now())); });
 const body = document.body;
 const money = n => '$' + (Number.isInteger(n) ? n : n.toFixed(2));
 const engineBox = document.getElementById('addEngine');
@@ -358,25 +420,33 @@ const payError = document.getElementById('payError');
 const paypalWrap = document.getElementById('paypalWrap');
 let settings = null, stripe = null, elements = null, busy = false;
 
+const liveBox = document.getElementById('addLive');
 const engineOn = () => engineBox.checked && !body.classList.contains('engine-over');
-const plan = () => engineOn() ? 'fx_engine' : 'fx';
-const payLabelText = () => engineOn() ? 'Get FX Studio + Content Engine' : 'Get FX Studio';
+const liveOn = () => engineOn() && liveBox.checked && !body.classList.contains('live-over');
+const plan = () => liveOn() ? 'fx_engine_live' : engineOn() ? 'fx_engine' : 'fx';
+const payLabelText = () => liveOn() ? 'Get FX Studio + Engine + Live Setup' : engineOn() ? 'Get FX Studio + Content Engine' : 'Get FX Studio';
 function amountCents() {
   const fromServer = settings && settings.pricing && settings.pricing[plan()];
   if (fromServer) return fromServer.amount_cents;
-  return (PRICES.fx + (plan() === 'fx_engine' ? PRICES.engine : 0)) * 100;
+  return (PRICES.fx + (engineOn() ? PRICES.engine : 0) + (liveOn() ? PRICES.live : 0)) * 100;
 }
 function renderTotal() {
   document.querySelectorAll('[data-price]').forEach(el => { const v = PRICES[el.dataset.price]; if (v !== undefined) el.textContent = money(v); });
   const on = engineOn();
   document.getElementById('engineRow').hidden = !on;
   document.getElementById('engineAddon').classList.toggle('is-on', on);
+  if (!on) liveBox.checked = false;   // Live Setup needs the Engine
+  document.getElementById('liveAddon').hidden = !on;
+  document.getElementById('liveAddon').classList.toggle('is-on', liveOn());
+  document.getElementById('liveRow').hidden = !liveOn();
   const total = money(amountCents() / 100);
   document.getElementById('totalPrice').textContent = total;
   document.getElementById('btnPrice').textContent = total;
   if (!payButton.disabled) document.getElementById('payLabel').textContent = payLabelText();
 }
-engineBox.addEventListener('change', () => { renderTotal(); if (body.classList.contains('not-open')) document.getElementById('payLabel').textContent = 'Checkout opens soon'; if (elements) elements.update({ amount: amountCents() }); });
+function onPlanChange() { renderTotal(); if (elements) elements.update({ amount: amountCents() }); }
+engineBox.addEventListener('change', onPlanChange);
+liveBox.addEventListener('change', onPlanChange);
 
 function storedRef() {
   try { const v = JSON.parse(localStorage.getItem('ceRef') || 'null'); if (v && v.c && Date.now() - v.t < 60 * 864e5) return v.c; } catch (e) {}
@@ -444,6 +514,7 @@ paypalButton.addEventListener('click', async () => {
 const params = new URLSearchParams(window.location.search);
 if (params.get('paypal') === 'failed') showError("PayPal didn't complete that payment. Please try again or pay by card.");
 if (params.get('engine') === '1') engineBox.checked = true;
+if (params.get('live') === '1') { engineBox.checked = true; liveBox.checked = true; }
 renderTotal();
 
 (async function startPayment() {
@@ -465,6 +536,7 @@ renderTotal();
       return;
     }
     if (!pricing.fx_engine) { body.classList.add('engine-over'); engineBox.checked = false; }
+    if (!pricing.fx_engine_live) { body.classList.add('live-over'); liveBox.checked = false; }   // this week's group is full
     renderTotal();
   } catch (err) {
     showError('Checkout is unavailable right now. Please try again in a few minutes.');

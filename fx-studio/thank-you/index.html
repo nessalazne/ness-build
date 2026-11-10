@@ -3,9 +3,9 @@
 <head>
 <script>
 (function() {
-  // The hub checkout (hub.digicuratoragency.com/api/ce) sends FX Studio buyers here with ?plan=fx or fx_engine.
+  // The hub checkout (hub.digicuratoragency.com/api/ce) sends FX Studio buyers here with ?plan=fx, fx_engine or fx_engine_live.
   var plan = new URLSearchParams(window.location.search).get('plan');
-  if (['fx', 'fx_engine'].indexOf(plan) === -1) window.location.replace('https://builds.digicuratoragency.com/fx-studio/');
+  if (['fx', 'fx_engine', 'fx_engine_live'].indexOf(plan) === -1) window.location.replace('https://builds.digicuratoragency.com/fx-studio/');
 })();
 </script>
 <meta charset="UTF-8" />
@@ -744,6 +744,10 @@ footer {
 .engine-only { display:none; }
 body.is-engine .engine-only { display:block; }
 body.is-engine .fx-only { display:none; }
+.live-only { display:none; }
+body.is-live .live-only { display:block; }
+.live-inline { display:none; }
+body.is-live .live-inline { display:inline; }
 .include-icon { font-family:var(--font-display); }
 </style>
 </head>
@@ -778,7 +782,7 @@ body.is-engine .fx-only { display:none; }
     Your <strong>FX Studio</strong> order is confirmed, with Style Builder included. Your sign-in link for the hub is on its way by email.
   </p>
   <p class="hero-sub reveal reveal-d2 engine-only">
-    Your <strong>FX Studio + Content Engine</strong> order is confirmed, with Style Builder included. Two emails are on their way: your sign-in link for the hub, and your Content Engine license key.
+    Your <strong>FX Studio + Content Engine</strong><span class="live-inline"> + <strong>Live Setup</strong></span> order is confirmed, with Style Builder included. Two emails are on their way: your sign-in link for the hub, and your Content Engine license key.
   </p>
 </header>
 
@@ -865,6 +869,34 @@ body.is-engine .fx-only { display:none; }
   </div>
 </section>
 
+<div class="divider live-only"></div>
+
+<section class="section live-only">
+  <div style="max-width:620px; margin-bottom:clamp(1rem,1.5vw,1.4rem);">
+    <div class="kicker teal reveal">Your Live Setup</div>
+    <h2 class="section-title reveal reveal-d1">
+      Your sessions<br>and <em>your bonuses.</em>
+    </h2>
+  </div>
+  <div class="includes-grid">
+    <div class="include-card reveal reveal-d1">
+      <span class="include-icon">📅</span>
+      <div class="include-name">Your 3 live sessions</div>
+      <div class="include-desc">Monday, Tuesday and Wednesday at 11:30 AM ET. Your group starts the Monday after you buy (the same day, if you bought before 11:30 AM ET on a Monday). I will email you the date. Every session is recorded.</div>
+    </div>
+    <div class="include-card reveal reveal-d2">
+      <span class="include-icon">🔓</span>
+      <div class="include-name">Your bonuses are unlocked</div>
+      <div class="include-desc">Open your Content Engine page in the hub. The 120+ style B-roll Motion Library, AISHA Engine Foundations, The AI Audit Method and your affiliate link are there now.</div>
+    </div>
+    <div class="include-card reveal reveal-d3">
+      <span class="include-icon">🧰</span>
+      <div class="include-name">Before session one</div>
+      <div class="include-desc">Watch Start Here in the hub and have your computer ready. In session one we install the Content Engine together and get it running.</div>
+    </div>
+  </div>
+</section>
+
 <div class="divider"></div>
 
 <section class="section">
@@ -901,7 +933,9 @@ const observer = new IntersectionObserver((entries) => {
     }
   });
 }, { threshold: 0.12 });
-if (new URLSearchParams(window.location.search).get('plan') === 'fx_engine') document.body.classList.add('is-engine');
+const plan = new URLSearchParams(window.location.search).get('plan');
+if (plan === 'fx_engine' || plan === 'fx_engine_live') document.body.classList.add('is-engine');
+if (plan === 'fx_engine_live') document.body.classList.add('is-live');
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 
