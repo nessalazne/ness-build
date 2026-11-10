@@ -150,6 +150,9 @@ a { color: inherit; }
 .fx-h2 { font-family: var(--font-display); font-weight: 400; font-size: clamp(2rem, 4.4vw, 2.8rem); line-height: 1.05; margin: 34px 0 12px; }
 .fx-h2 em { color: var(--accent); }
 .fx-intro { color: var(--dim); font-size: 1.02rem; margin: 0 0 16px; max-width: 600px; }
+.fx-kicker { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin: 40px 0 -22px; }
+.fx-demo video { width: 100%; max-width: 600px; height: auto; aspect-ratio: 16 / 9; border-radius: 14px; background: var(--ink); display: block; box-shadow: 0 12px 30px rgba(5,5,5,0.16); }
+.fx-demo-link { display: inline-block; margin-top: 2px; font-weight: 700; color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
 .fx-important { border-left: 4px solid var(--accent); background: var(--blush-l); border-radius: 0 10px 10px 0; padding: 12px 14px; font-size: 0.92rem; margin: 0 0 26px; max-width: 600px; }
 .fx-important b { color: var(--accent-d); }
 .fx-incl-head { font-weight: 800; font-size: 1.05rem; margin: 0 0 14px; }
@@ -231,6 +234,7 @@ a { color: inherit; }
             <p class="fx-bump-offer">Add-on: only <span data-price="engine" style="color:inherit;font-weight:800;">$147</span> <span>(reg. <s>$297</s>)</span></p>
             <p>FX Studio edits a video you already have. The Content Engine makes the whole short for you: open any YouTube video, Reel, TikTok, article or your own idea, and it writes the script, voices it, adds B-roll and captions, and posts to 11 accounts across 9 platforms, with comment-to-DM automation on Instagram and Facebook.</p>
             <p><b style="color:var(--text);">Use your FX in it too.</b> In the Content Engine you can turn the FX looks you pick into your own custom B-roll style, and every short it makes after that uses them. A lesson shows you how.</p>
+            <p><a class="fx-demo-link" href="#engineDemo">▶ Watch it work (3 min)</a></p>
             <p>You get the extension and its source code, the setup lessons, a private chat with me in the hub, and free Engine updates for life. It runs on your computer with your own accounts.</p>
           </div>
         </div>
@@ -342,6 +346,15 @@ a { color: inherit; }
       <li><div><h3>New effects as I add them</h3><p>The Style Guide lives in the hub, so every new effect and look I add shows up there. No upgrade fee.</p></div></li>
     </ul>
     <p class="fx-closing">Pick the look once, and every video after that takes one prompt.</p>
+
+    <section class="fx-demo engine-open-only" id="engineDemo" aria-labelledby="demoTitle">
+      <p class="fx-kicker">The Content Engine add-on</p>
+      <h2 class="fx-h2" id="demoTitle">One link in.<br>Watch the <em>whole run.</em></h2>
+      <p class="fx-intro">About three minutes, start to finish. It goes from a post open in your browser tab to a finished short, one step at a time. You can add the Engine to your order for <span data-price="engine" style="color:inherit;">$147</span>.</p>
+      <video controls playsinline preload="none" poster="../content-engine/media/demo.jpg" width="1280" height="720" aria-label="Demo of the Content Engine from link to finished short">
+        <source src="../content-engine/media/demo.mp4" type="video/mp4">
+      </video>
+    </section>
 
     <section class="fx-faq">
       <p class="fx-incl-head">Quick answers</p>
