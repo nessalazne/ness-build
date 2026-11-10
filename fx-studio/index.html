@@ -121,6 +121,12 @@ a { color: inherit; }
 .fx-paypal b { color: #003087; font-style: italic; }
 .fx-secure-line { text-align: center; color: var(--muted); font-size: 0.78rem; margin: 14px 0 0; }
 
+/* Works with */
+.fx-works { list-style: none; margin: 22px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; max-width: 600px; }
+.fx-works li { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; font-size: 0.82rem; color: var(--dim); }
+.fx-works b { display: block; color: var(--text); font-size: 0.92rem; margin-bottom: 2px; }
+.fx-works b::before { content: '✓ '; color: var(--accent-d); }
+
 /* Before / after */
 .fx-ba-grid { display: grid; gap: 16px; max-width: 600px; }
 .fx-ba figure { margin: 0; }
@@ -269,6 +275,13 @@ a { color: inherit; }
       </div>
     </div>
 
+    <ul class="fx-works" aria-label="Works with">
+      <li><b>Your own recording</b>filmed on your phone or camera</li>
+      <li><b>AI avatar videos</b>like the ones you make in HeyGen</li>
+      <li><b>Any language you speak</b>captions and text in that language</li>
+      <li><b>Vertical or 16:9</b>Reels, TikToks, Shorts and YouTube</li>
+    </ul>
+
     <section class="fx-ba" aria-labelledby="baTitle">
       <h2 class="fx-h2" id="baTitle">Same take, <em>before and after.</em></h2>
       <p class="fx-intro">My raw recording, then the FX Studio edit of it. I picked the looks in the Style Guide and pasted one prompt into Claude Code. It cut the pauses and added the step cards, the counter and the stamp. It works on 16:9 videos as well as vertical ones.</p>
@@ -300,7 +313,8 @@ a { color: inherit; }
     <section class="fx-faq">
       <p class="fx-incl-head">Quick answers</p>
       <details><summary>When do I get access?</summary><div>Right after you pay. The email you enter gets a sign-in link for the hub, and your FX Studio page is there with the download, the lessons and the Style Guide.</div></details>
-      <details><summary>Do I need my own video?</summary><div>Yes, for FX Studio. It edits a talking-head video you already recorded: you give Claude Code the video and the prompt, and it adds the effects. If you don't want to film, the Content Engine add-on can make the video for you with an AI avatar or in faceless mode, or you record yourself when it asks.</div></details>
+      <details><summary>Do I need my own video?</summary><div>You need a video of someone talking, but it doesn't have to be a raw recording of you. It can be a take you filmed on your phone, an AI avatar video you made in HeyGen, or a clip from a longer video, vertical or 16:9. You give Claude Code the video and the prompt, and it adds the effects. If you'd rather not make the video at all, the Content Engine add-on can make it for you with an AI avatar or in faceless mode.</div></details>
+      <details><summary>Does it work in other languages?</summary><div>Yes. Tell Claude the language in your prompt (for example "my video is in Spanish"). It transcribes in that language, and the captions and on-screen text come out in it too.</div></details>
       <details><summary>What is the Content Engine?</summary><div>A Chrome extension that makes a whole short video for you. Open any YouTube video, Reel, TikTok, article or your own idea and click Run. It writes the script, voices it, adds B-roll and captions, and posts to 11 accounts across 9 platforms, with comment-to-DM automation on Instagram and Facebook. It runs on your computer with your own accounts. With FX Studio you can turn your FX looks into your own B-roll style inside it. <a href="../content-engine/" target="_blank" rel="noopener" style="color:var(--accent-d);font-weight:700;">See how it works</a></div></details>
       <details><summary>Do I need the Content Engine?</summary><div>No. FX Studio works on its own: you give Claude Code a video you recorded and it edits in the effects you picked. The Content Engine is a separate Chrome extension that makes the whole short from a link. You can add it in the order form.</div></details>
       <details><summary>What is Style Builder?</summary><div>It is the Style Guide page in the hub. Every look and caption style is listed with a sketch and a code. You add the ones you want, press Copy prompt, and paste that prompt into Claude Code with your video.</div></details>
