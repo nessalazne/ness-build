@@ -58,8 +58,11 @@ a { color: inherit; }
 .fx-right { position: sticky; top: 16px; margin-top: 24px; }
 @media (max-width: 940px) {
   .fx-wrap { grid-template-columns: minmax(0, 1fr); gap: 0; }
-  .fx-right { position: static; order: -1; margin-top: 20px; }
-  .fx-left { padding-top: 36px; }
+  /* Phone and tablet: the samples come first, then the order form, then the rest. */
+  .fx-left { display: contents; }
+  .fx-left > .fx-samples { order: -2; margin-top: 30px; }
+  .fx-right { position: static; order: -1; margin-top: 22px; }
+  .fx-left > :nth-child(2) { margin-top: 36px; }
 }
 
 /* Order form card */
