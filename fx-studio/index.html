@@ -121,6 +121,14 @@ a { color: inherit; }
 .fx-paypal b { color: #003087; font-style: italic; }
 .fx-secure-line { text-align: center; color: var(--muted); font-size: 0.78rem; margin: 14px 0 0; }
 
+/* Before / after */
+.fx-ba-grid { display: grid; gap: 16px; max-width: 600px; }
+.fx-ba figure { margin: 0; }
+.fx-ba figcaption { font-weight: 700; font-size: 0.92rem; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.fx-ba-tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; background: var(--ink); color: var(--paper); border-radius: 999px; padding: 4px 10px; }
+.fx-ba-tag.is-after { background: var(--accent); color: #fff; }
+.fx-ba video { width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 14px; background: var(--ink); display: block; box-shadow: 0 12px 30px rgba(5,5,5,0.16); }
+
 /* Left column: what you are getting */
 .fx-samples { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; max-width: 560px; }
 @media (max-width: 420px) { .fx-samples { gap: 8px; } .fx-thumb span { width: 40px; height: 40px; font-size: 14px; } }
@@ -211,6 +219,7 @@ a { color: inherit; }
           <div class="fx-bump-body">
             <p class="fx-bump-offer">Add-on: only <span data-price="engine" style="color:inherit;font-weight:800;">$147</span> <span>(reg. <s>$297</s>)</span></p>
             <p>FX Studio edits a video you already have. The Content Engine makes the whole short for you: open any YouTube video, Reel, TikTok, article or your own idea, and it writes the script, voices it, adds B-roll and captions, and posts to 11 accounts across 9 platforms, with comment-to-DM automation on Instagram and Facebook.</p>
+            <p><b style="color:var(--text);">Use your FX in it too.</b> In the Content Engine you can turn the FX looks you pick into your own custom B-roll style, and every short it makes after that uses them. A lesson shows you how.</p>
             <p>You get the extension and its source code, the setup lessons, a private chat with me in the hub, and free Engine updates for life. It runs on your computer with your own accounts.</p>
           </div>
         </div>
@@ -260,6 +269,21 @@ a { color: inherit; }
       </div>
     </div>
 
+    <section class="fx-ba" aria-labelledby="baTitle">
+      <h2 class="fx-h2" id="baTitle">Same take, <em>before and after.</em></h2>
+      <p class="fx-intro">My raw recording, then the FX Studio edit of it. I picked the looks in the Style Guide and pasted one prompt into Claude Code. It cut the pauses and added the step cards, the counter and the stamp. It works on 16:9 videos as well as vertical ones.</p>
+      <div class="fx-ba-grid">
+        <figure>
+          <figcaption><span class="fx-ba-tag">Before</span> Raw take, no edits</figcaption>
+          <video controls playsinline preload="none" poster="media/before-raw.jpg" src="media/before-raw.mp4" width="960" height="540"></video>
+        </figure>
+        <figure>
+          <figcaption><span class="fx-ba-tag is-after">After</span> Edited with FX Studio</figcaption>
+          <video controls playsinline preload="none" poster="media/after-fx.jpg" src="media/after-fx.mp4" width="960" height="540"></video>
+        </figure>
+      </div>
+    </section>
+
     <h2 class="fx-h2">Here is what <em>you are getting.</em></h2>
     <p class="fx-intro">160+ effects and looks for your talking-head videos. You choose them from a list in the hub, copy one prompt, and Claude Code builds them into your video on your own computer.</p>
     <p class="fx-important"><b>Important:</b> you need Claude Code on a Claude Pro or Max plan, and a Mac or Windows computer with Node 22 or newer and about 2 GB free.</p>
@@ -276,6 +300,8 @@ a { color: inherit; }
     <section class="fx-faq">
       <p class="fx-incl-head">Quick answers</p>
       <details><summary>When do I get access?</summary><div>Right after you pay. The email you enter gets a sign-in link for the hub, and your FX Studio page is there with the download, the lessons and the Style Guide.</div></details>
+      <details><summary>Do I need my own video?</summary><div>Yes, for FX Studio. It edits a talking-head video you already recorded: you give Claude Code the video and the prompt, and it adds the effects. If you don't want to film, the Content Engine add-on can make the video for you with an AI avatar or in faceless mode, or you record yourself when it asks.</div></details>
+      <details><summary>What is the Content Engine?</summary><div>A Chrome extension that makes a whole short video for you. Open any YouTube video, Reel, TikTok, article or your own idea and click Run. It writes the script, voices it, adds B-roll and captions, and posts to 11 accounts across 9 platforms, with comment-to-DM automation on Instagram and Facebook. It runs on your computer with your own accounts. With FX Studio you can turn your FX looks into your own B-roll style inside it. <a href="../content-engine/" target="_blank" rel="noopener" style="color:var(--accent-d);font-weight:700;">See how it works</a></div></details>
       <details><summary>Do I need the Content Engine?</summary><div>No. FX Studio works on its own: you give Claude Code a video you recorded and it edits in the effects you picked. The Content Engine is a separate Chrome extension that makes the whole short from a link. You can add it in the order form.</div></details>
       <details><summary>What is Style Builder?</summary><div>It is the Style Guide page in the hub. Every look and caption style is listed with a sketch and a code. You add the ones you want, press Copy prompt, and paste that prompt into Claude Code with your video.</div></details>
       <details><summary>Can I use it on client videos?</summary><div>Yes. You can use it on your own videos and on videos you make for clients. You can't share the pack or resell it.</div></details>
