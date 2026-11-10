@@ -3,15 +3,15 @@
 <head>
 <script>
 (function() {
-  // The hub checkout (hub.digicuratoragency.com/api/ce) sends FX Library buyers here with ?plan=fx or fx_engine.
+  // The hub checkout (hub.digicuratoragency.com/api/ce) sends FX Studio buyers here with ?plan=fx or fx_engine.
   var plan = new URLSearchParams(window.location.search).get('plan');
-  if (['fx', 'fx_engine'].indexOf(plan) === -1) window.location.replace('https://builds.digicuratoragency.com/fx-library/');
+  if (['fx', 'fx_engine'].indexOf(plan) === -1) window.location.replace('https://builds.digicuratoragency.com/fx-studio/');
 })();
 </script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>You're In · FX Library · AISocialHub</title>
-<meta name="description" content="Your FX Library order is confirmed. Check your email for your hub sign-in link." />
+<title>You're In · FX Studio · AISocialHub</title>
+<meta name="description" content="Your FX Studio order is confirmed. Check your email for your hub sign-in link." />
 <meta name="robots" content="noindex, nofollow" />
 <link rel="icon" type="image/x-icon" href="../../favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
@@ -740,7 +740,7 @@ footer {
   .two-col { grid-template-columns: 1fr; }
   footer { flex-direction: column; text-align: center; }
 }
-/* FX Library thank-you: ?plan=fx_engine adds the Content Engine section. */
+/* FX Studio thank-you: ?plan=fx_engine adds the Content Engine section. */
 .engine-only { display:none; }
 body.is-engine .engine-only { display:block; }
 body.is-engine .fx-only { display:none; }
@@ -772,13 +772,13 @@ body.is-engine .fx-only { display:none; }
   </div>
   <div class="hero-eyebrow reveal">You're in</div>
   <h1 class="hero-title reveal reveal-d1">
-    Your FX Library<br>is <em>ready.</em>
+    Your FX Studio<br>is <em>ready.</em>
   </h1>
   <p class="hero-sub reveal reveal-d2 fx-only">
-    Your <strong>FX Library</strong> order is confirmed, with Style Builder included. Your sign-in link for the hub is on its way by email.
+    Your <strong>FX Studio</strong> order is confirmed, with Style Builder included. Your sign-in link for the hub is on its way by email.
   </p>
   <p class="hero-sub reveal reveal-d2 engine-only">
-    Your <strong>FX Library + Content Engine</strong> order is confirmed, with Style Builder included. Two emails are on their way: your sign-in link for the hub, and your Content Engine license key.
+    Your <strong>FX Studio + Content Engine</strong> order is confirmed, with Style Builder included. Two emails are on their way: your sign-in link for the hub, and your Content Engine license key.
   </p>
 </header>
 
@@ -816,7 +816,7 @@ body.is-engine .fx-only { display:none; }
     <div class="include-card reveal reveal-d1">
       <span class="include-icon">1</span>
       <div class="include-name">Install the Style Pack</div>
-      <div class="include-desc">Sign in to the hub and open your FX Library page. Watch the first lesson, download the Style Pack under it, and let Claude install it. It takes about 10 minutes.</div>
+      <div class="include-desc">Sign in to the hub and open your FX Studio page. Watch the first lesson, download the Style Pack under it, and let Claude install it. It takes about 10 minutes.</div>
     </div>
     <div class="include-card reveal reveal-d2">
       <span class="include-icon">2</span>
@@ -830,7 +830,7 @@ body.is-engine .fx-only { display:none; }
     </div>
   </div>
   <div style="margin-top:clamp(2rem,3vw,2.8rem);" class="reveal reveal-d3">
-    <a class="btn-primary" href="https://hub.digicuratoragency.com/fx-library">Open my FX Library</a>
+    <a class="btn-primary" href="https://hub.digicuratoragency.com/fx-studio">Open my FX Studio</a>
   </div>
 </section>
 

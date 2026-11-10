@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>FX Library · Get Instant Access · AISocialHub</title>
+<title>FX Studio · Get Instant Access · AISocialHub</title>
 <meta name="description" content="160+ effects and looks for your talking-head videos, picked from a list and built in by Claude Code. Style Builder included." />
 <link rel="icon" type="image/x-icon" href="../favicon.ico">
-<meta property="og:title" content="FX Library · 160+ effects" />
+<meta property="og:title" content="FX Studio · 160+ effects" />
 <meta property="og:description" content="Pick the effects from a list. Claude Code edits them into your video. Style Builder included." />
 <meta property="og:image" content="https://builds.digicuratoragency.com/content-engine/media/fx-sample-1.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" />
 <style>
-/* FX Library checkout. Laid out like a classic two-step order page (header band, order form with an
+/* FX Studio checkout. Laid out like a classic two-step order page (header band, order form with an
    optional bonus offer, "here is what you are getting" beside it) in the AISocialHub palette, on cream,
    so it reads as its own offer and not as the Content Engine checkout. */
 :root {
@@ -111,6 +111,7 @@ a { color: inherit; }
 .fx-pay { width: 100%; margin-top: 18px; border: 0; border-radius: 12px; background: var(--accent); color: #fff; font: 800 1.05rem var(--font-body); padding: 17px 16px; cursor: pointer; box-shadow: 0 8px 22px rgba(216,118,87,0.35); }
 .fx-pay:hover { background: var(--accent-d); }
 .fx-pay:disabled { opacity: 0.7; cursor: wait; }
+.not-open .fx-pay:disabled { cursor: not-allowed; }
 .fx-pay small { display: block; font-weight: 600; font-size: 0.8rem; opacity: 0.9; margin-top: 2px; }
 .fx-error { margin: 10px 0 0; color: #b42318; font-size: 0.88rem; font-weight: 600; }
 .fx-notice { margin: 10px 0 0; color: var(--dim); font-size: 0.88rem; }
@@ -173,7 +174,7 @@ a { color: inherit; }
     <span class="fx-secure"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Secure checkout</span>
   </div>
   <span class="fx-badge">Half price for a limited time</span>
-  <h1 class="fx-title">FX Library <em>· 160+ effects</em></h1>
+  <h1 class="fx-title">FX Studio <em>· 160+ effects</em></h1>
   <p class="fx-sub">Pick the effects from a list. Claude Code edits them into your video.<span>For talking-head Reels, TikToks and Shorts. Style Builder included.</span></p>
 </header>
 
@@ -182,7 +183,7 @@ a { color: inherit; }
   <!-- RIGHT: ORDER FORM (first on phones) -->
   <aside class="fx-right">
     <form class="fx-form" id="payForm" novalidate>
-      <div class="fx-form-head"><b>Get the FX Library today</b><span>Instant access · one payment · no subscription</span></div>
+      <div class="fx-form-head"><b>Get FX Studio today</b><span>Instant access · one payment · no subscription</span></div>
       <div class="fx-form-body">
         <p class="fx-label">Your details</p>
         <label class="fx-field"><input type="email" name="email" autocomplete="email" placeholder="Email address" aria-label="Email" required></label>
@@ -193,7 +194,7 @@ a { color: inherit; }
         <table class="fx-table">
           <thead><tr><th>Item</th><th>Qty</th><th>Price</th></tr></thead>
           <tbody>
-            <tr><td>FX Library · 160+ effects<small>Style Pack, lessons, every effect</small></td><td>1</td><td><b data-price="fx">$67</b></td></tr>
+            <tr><td>FX Studio · 160+ effects<small>Style Pack, lessons, every effect</small></td><td>1</td><td><b data-price="fx">$67</b></td></tr>
             <tr><td>Style Builder<small>Bonus, $67 value</small></td><td>1</td><td class="fx-free">FREE</td></tr>
           </tbody>
         </table>
@@ -208,7 +209,7 @@ a { color: inherit; }
           </label>
           <div class="fx-bump-body">
             <p class="fx-bump-offer">Add-on: only <span data-price="engine" style="color:inherit;font-weight:800;">$147</span> <span>(reg. <s>$297</s>)</span></p>
-            <p>The FX Library edits a video you already have. The Content Engine makes the whole short for you: open any YouTube video, Reel, TikTok, article or your own idea, and it writes the script, voices it, adds B-roll and captions, and posts to 11 accounts across 9 platforms, with comment-to-DM automation on Instagram and Facebook.</p>
+            <p>FX Studio edits a video you already have. The Content Engine makes the whole short for you: open any YouTube video, Reel, TikTok, article or your own idea, and it writes the script, voices it, adds B-roll and captions, and posts to 11 accounts across 9 platforms, with comment-to-DM automation on Instagram and Facebook.</p>
             <p>You get the extension and its source code, the setup lessons, a private chat with me in the hub, and free Engine updates for life. It runs on your computer with your own accounts.</p>
           </div>
         </div>
@@ -216,7 +217,7 @@ a { color: inherit; }
         <p class="fx-label fx-gap">Order summary</p>
         <table class="fx-table">
           <tbody>
-            <tr><td>FX Library + Style Builder</td><td>1</td><td data-price="fx">$67</td></tr>
+            <tr><td>FX Studio + Style Builder</td><td>1</td><td data-price="fx">$67</td></tr>
             <tr id="engineRow" hidden><td>Content Engine</td><td>1</td><td data-price="engine">$147</td></tr>
             <tr class="fx-total"><td>Order total</td><td></td><td id="totalPrice">$67</td></tr>
           </tbody>
@@ -229,7 +230,7 @@ a { color: inherit; }
         </div>
         <div id="payment-element" hidden></div>
 
-        <button class="fx-pay" id="payButton" type="submit"><span id="payLabel">Get the FX Library</span> · <span id="btnPrice">$67</span><small>Instant access by email</small></button>
+        <button class="fx-pay" id="payButton" type="submit"><span id="payLabel">Get FX Studio</span> · <span id="btnPrice">$67</span><small>Instant access by email</small></button>
         <p class="fx-error" id="payError" role="alert" hidden></p>
         <p class="fx-notice" id="payNotice" hidden>Payment isn't connected yet. This is the design preview.</p>
         <div id="paypalWrap" hidden>
@@ -260,7 +261,7 @@ a { color: inherit; }
 
     <p class="fx-incl-head">What's included:</p>
     <ul class="fx-incl">
-      <li><div><h3>FX Library · 160+ effects</h3><p>Visual effects you choose by code, like stamp drops, boxed serif pops, live cursors and orbit rings. Claude Code builds the ones you pick into your video.</p></div></li>
+      <li><div><h3>FX Studio · 160+ effects</h3><p>Visual effects you choose by code, like stamp drops, boxed serif pops, live cursors and orbit rings. Claude Code builds the ones you pick into your video.</p></div></li>
       <li><div><h3>Style Builder <em>· free bonus</em></h3><p>The Style Guide in the hub. Every look and caption style has a sketch and an Add button. Pick yours, press Copy prompt, and paste it into Claude Code with your video.</p></div></li>
       <li><div><h3>Two step-by-step video lessons</h3><p>The first installs the Style Pack and the video tools it uses. Claude does the installing, and you click Yes when it asks. The second follows one real edit from start to finish.</p></div></li>
       <li><div><h3>New effects as I add them</h3><p>The Style Guide lives in the hub, so every new effect and look I add shows up there. No upgrade fee.</p></div></li>
@@ -269,12 +270,12 @@ a { color: inherit; }
 
     <section class="fx-faq">
       <p class="fx-incl-head">Quick answers</p>
-      <details><summary>When do I get access?</summary><div>Right after you pay. The email you enter gets a sign-in link for the hub, and your FX Library page is there with the download, the lessons and the Style Guide.</div></details>
-      <details><summary>Do I need the Content Engine?</summary><div>No. The FX Library works on its own: you give Claude Code a video you recorded and it edits in the effects you picked. The Content Engine is a separate Chrome extension that makes the whole short from a link. You can add it in the order form.</div></details>
+      <details><summary>When do I get access?</summary><div>Right after you pay. The email you enter gets a sign-in link for the hub, and your FX Studio page is there with the download, the lessons and the Style Guide.</div></details>
+      <details><summary>Do I need the Content Engine?</summary><div>No. FX Studio works on its own: you give Claude Code a video you recorded and it edits in the effects you picked. The Content Engine is a separate Chrome extension that makes the whole short from a link. You can add it in the order form.</div></details>
       <details><summary>What is Style Builder?</summary><div>It is the Style Guide page in the hub. Every look and caption style is listed with a sketch and a code. You add the ones you want, press Copy prompt, and paste that prompt into Claude Code with your video.</div></details>
       <details><summary>Can I use it on client videos?</summary><div>Yes. You can use it on your own videos and on videos you make for clients. You can't share the pack or resell it.</div></details>
       <details><summary>Is it a subscription?</summary><div>No. One payment. Claude Code runs on your own Claude plan, and I charge nothing per video.</div></details>
-      <details><summary>Does it come with chat or live sessions?</summary><div>The FX Library order comes with the free hub community. Add the Content Engine and you also get a private chat with me. The live setup sessions are part of Live Setup, which is sold on the Content Engine checkout.</div></details>
+      <details><summary>Does it come with chat or live sessions?</summary><div>An FX Studio order comes with the free hub community. Add the Content Engine and you also get a private chat with me. The live setup sessions are part of Live Setup, which is sold on the Content Engine checkout.</div></details>
     </section>
   </main>
 </div>
@@ -297,8 +298,8 @@ a { color: inherit; }
  *                                 success_url, pricing: { currency, fx: {amount_cents}, fx_engine: {amount_cents} } }
  *   POST {API}/checkout      { name, email, plan, ref? } -> { client_secret, success_url }
  *   POST {API}/paypal/order  { name, email, plan, ref? } -> { order_id, approve_url }
- * plan is 'fx' ($67: FX Library + Style Builder) or 'fx_engine' ($214: the same + the Content Engine).
- * The hub sends buyers to /fx-library/thank-you/?plan=fx|fx_engine. A plan missing from pricing is not on
+ * plan is 'fx' ($67: FX Studio + Style Builder) or 'fx_engine' ($214: the same + the Content Engine).
+ * The hub sends buyers to /fx-studio/thank-you/?plan=fx|fx_engine. A plan missing from pricing is not on
  * sale: no fx means no payment here, no fx_engine hides the bonus offer. ?engine=1 arrives with it ticked.
  * Until CE_CHECKOUT_API is set the page is a design preview: no Stripe script loads, nothing is charged. */
 const API_BASE = (window.CE_CHECKOUT_API || '').replace(/\/+$/, '');
@@ -314,7 +315,7 @@ let settings = null, stripe = null, elements = null, busy = false;
 
 const engineOn = () => engineBox.checked && !body.classList.contains('engine-over');
 const plan = () => engineOn() ? 'fx_engine' : 'fx';
-const payLabelText = () => engineOn() ? 'Get FX Library + Content Engine' : 'Get the FX Library';
+const payLabelText = () => engineOn() ? 'Get FX Studio + Content Engine' : 'Get FX Studio';
 function amountCents() {
   const fromServer = settings && settings.pricing && settings.pricing[plan()];
   if (fromServer) return fromServer.amount_cents;
@@ -330,7 +331,7 @@ function renderTotal() {
   document.getElementById('btnPrice').textContent = total;
   if (!payButton.disabled) document.getElementById('payLabel').textContent = payLabelText();
 }
-engineBox.addEventListener('change', () => { renderTotal(); if (elements) elements.update({ amount: amountCents() }); });
+engineBox.addEventListener('change', () => { renderTotal(); if (body.classList.contains('not-open')) document.getElementById('payLabel').textContent = 'Checkout opens soon'; if (elements) elements.update({ amount: amountCents() }); });
 
 function storedRef() {
   try { const v = JSON.parse(localStorage.getItem('ceRef') || 'null'); if (v && v.c && Date.now() - v.t < 60 * 864e5) return v.c; } catch (e) {}
@@ -350,7 +351,7 @@ function buyerProblem() {
   return null;
 }
 function showError(msg) { payError.textContent = msg || ''; payError.hidden = !msg; }
-function setBusy(state) { busy = state; payButton.disabled = state; document.getElementById('payLabel').textContent = state ? 'Processing…' : payLabelText(); }
+function setBusy(state) { if (body.classList.contains('not-open')) return; busy = state; payButton.disabled = state; document.getElementById('payLabel').textContent = state ? 'Processing…' : payLabelText(); }
 async function postJSON(path, data) {
   const res = await fetch(API_BASE + path, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data || {}) });
   const out = await res.json().catch(() => ({}));
@@ -407,7 +408,17 @@ renderTotal();
     if (!res.ok) throw new Error('config');
     settings = await res.json();
     const pricing = settings.pricing || {};
-    if (!pricing.fx) throw new Error('not on sale');
+    if (!pricing.fx) {
+      // Published before the hub sells it: show the page, but say checkout isn't open yet (no error, no pay).
+      body.classList.add('not-open');
+      payButton.disabled = true;
+      document.getElementById('payLabel').textContent = 'Checkout opens soon';
+      document.getElementById('btnPrice').textContent = money(amountCents() / 100);
+      const n = document.getElementById('payNotice');
+      n.textContent = "Checkout isn't open yet. Check back soon, or email ness@digicuratoragency.com to hear when it opens.";
+      n.hidden = false;
+      return;
+    }
     if (!pricing.fx_engine) { body.classList.add('engine-over'); engineBox.checked = false; }
     renderTotal();
   } catch (err) {
