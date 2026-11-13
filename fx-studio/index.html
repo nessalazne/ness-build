@@ -111,6 +111,13 @@ a { color: inherit; }
 .fx-live-more ul { margin: 6px 0 8px; padding-left: 18px; }
 .fx-live-more li { margin-bottom: 4px; }
 .fx-live-more li b { color: var(--text); }
+.fx-ml { margin-top: 6px; }
+.fx-ml summary { cursor: pointer; font-weight: 700; color: var(--accent-d); }
+.fx-ml p { margin: 6px 0; color: var(--dim); }
+.fx-ml .fx-thumb-h { width: 100%; aspect-ratio: 16 / 9; margin-top: 8px; }
+.fx-ml-kicker { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin: 14px 0 8px; }
+.fx-ml-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.fx-ml-wide { grid-column: 1 / -1; }
 
 /* Payment */
 .fx-stripe-slot { border: 1px dashed #d9c6bb; border-radius: 10px; padding: 16px; text-align: center; color: var(--muted); font-size: 0.85rem; }
@@ -279,7 +286,30 @@ a { color: inherit; }
               <summary>See what's in Live Setup</summary>
               <ul>
                 <li><b>3 live sessions with me</b>, Monday, Tuesday and Wednesday at 11:30 AM ET, all recorded ($297 value)</li>
-                <li><b>120+ style B-roll Motion Library</b> ($49 value)</li>
+                <li class="fx-ml-li"><b>120+ style B-roll Motion Library</b> ($49 value)
+                  <details class="fx-ml">
+                    <summary>See the Motion Library</summary>
+                    <p>A mix of 2D and 3D animation and motion graphics, with 2.5D effects. Use it in short and long form videos and in carousels. Lessons are included.</p>
+                    <p>36 full animations you can watch with sound, each with its prompt, working code and MP4, plus 86 style studies. Find a look, copy its prompt and make it yours.</p>
+                    <button class="fx-thumb fx-thumb-h" type="button" data-wide="1" data-full="../content-engine/media/broll-library.mp4" aria-label="Watch the full Motion Library walkthrough"><img src="../content-engine/media/broll-library.jpg" alt="" width="960" height="540" loading="lazy"><span>▶</span></button>
+                    <div class="fx-thumb-cap">Watch the walkthrough</div>
+                    <div class="fx-ml-kicker">The styles in real videos · tap to watch</div>
+                    <div class="fx-ml-grid">
+                      <div class="fx-ml-wide">
+                        <button class="fx-thumb fx-thumb-h" type="button" data-wide="1" data-full="../content-engine/media/showcase-longform.mp4" aria-label="Watch the long-form YouTube tutorial sample with sound"><img src="../content-engine/media/showcase-longform.jpg" alt="" width="960" height="540" loading="lazy"><span>▶</span></button>
+                        <div class="fx-thumb-cap">Long form · YouTube tutorial</div>
+                      </div>
+                      <div>
+                        <button class="fx-thumb" type="button" data-full="../content-engine/media/showcase-papercraft.mp4" aria-label="Watch the Papercraft short with sound"><img src="../content-engine/media/showcase-papercraft.jpg" alt="" width="540" height="960" loading="lazy"><span>▶</span></button>
+                        <div class="fx-thumb-cap">Short · Papercraft</div>
+                      </div>
+                      <div>
+                        <button class="fx-thumb" type="button" data-full="../content-engine/media/showcase-letterpress.mp4" aria-label="Watch the Letterpress short with sound"><img src="../content-engine/media/showcase-letterpress.jpg" alt="" width="540" height="960" loading="lazy"><span>▶</span></button>
+                        <div class="fx-thumb-cap">Short · Letterpress</div>
+                      </div>
+                    </div>
+                  </details>
+                </li>
                 <li><b>Trial Reel Maker</b>, rolling out now ($127 value)</li>
                 <li><b>Carousel Maker</b>, rolling out now ($97 value)</li>
                 <li><b>Affiliate program</b>: earn 40% on every sale you refer</li>
@@ -621,6 +651,7 @@ renderTotal();
 const lightbox = document.getElementById('fxLightbox');
 const lightboxVideo = lightbox.querySelector('video');
 document.querySelectorAll('.fx-thumb').forEach(btn => btn.addEventListener('click', () => {
+  lightbox.style.maxWidth = btn.dataset.wide ? 'min(92vw, 900px)' : '';
   lightboxVideo.src = btn.dataset.full; lightbox.showModal(); lightboxVideo.play().catch(() => {});
 }));
 lightbox.addEventListener('close', () => { lightboxVideo.pause(); lightboxVideo.removeAttribute('src'); lightboxVideo.load(); });
