@@ -1293,7 +1293,7 @@ body:not(.bf-on) .bf-only { display:none !important; }
 @media (max-width:640px){ .co-showcase { grid-template-columns:1fr 1fr; } .co-showcase .co-thumb-fig:first-child { grid-column:1 / -1; } }
 .co-tool-anim { margin-top:12px; max-width:360px; aspect-ratio:720/574; border-radius:12px; overflow:hidden; border:1px solid var(--border-hover); background:#0b0b0d; cursor:pointer; }
 .co-tool-anim video { width:100%; height:100%; object-fit:cover; display:block; }
-.co-fx-row { display:grid; grid-template-columns:repeat(2, minmax(0,130px)); gap:10px; margin-top:12px; }
+.co-fx-row { display:grid; grid-template-columns:repeat(3, minmax(0,130px)); gap:10px; margin-top:12px; }
 .co-thumb-fig { margin:0; min-width:0; }
 .co-thumb-fig figcaption { margin-top:6px; font-family:var(--font-body); font-size:0.82rem; font-weight:600; color:var(--text-paper); }
 .co-thumb-fig .sample-kind { margin-bottom:2px; }
@@ -1572,6 +1572,10 @@ body:not(.bf-on) .bf-only { display:none !important; }
           <figure class="co-thumb-fig">
             <button class="co-thumb" type="button" data-full="../media/fx-sample-2.mp4" aria-label="Watch FX sample 2 with sound"><img src="../media/fx-sample-2.jpg" alt="" width="540" height="960" loading="lazy"><span>▶</span></button>
             <figcaption><span class="sample-kind">FX sample</span>02</figcaption>
+          </figure>
+          <figure class="co-thumb-fig">
+            <button class="co-thumb" type="button" data-full="../../fx-studio/media/fx-sample-3.mp4" aria-label="Watch FX sample 3 with sound"><img src="../../fx-studio/media/fx-sample-3.jpg" alt="" width="540" height="960" loading="lazy"><span>▶</span></button>
+            <figcaption><span class="sample-kind">FX sample</span>03</figcaption>
           </figure>
         </div>
         <p class="co-fx-note">In Live Setup, I show you how to add FX Studio and the 120+ style motion library to your Chrome extension. You pick one effect and one style, whichever you like, and we add them together. After the live session, you can add any other effect or style yourself, without my help. From then on you pick them from a list, with no typing prompts into Claude Code or chat.</p>
