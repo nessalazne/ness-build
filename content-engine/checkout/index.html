@@ -1220,6 +1220,11 @@ body:not(.live-over) .waitlist-only, .is-upgrade .waitlist-only { display:none !
 .co-title em { color:var(--accent); }
 .co-up-value { margin:1rem 0 0; font-family:var(--font-mono); font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-dim); }
 .co-up-value b { font-weight:400; color:var(--accent); }
+/* Early Black Friday: .bf-only shows until Cyber Monday 1 Dec 11:59 PM ET (body.bf-on set by the script under <body>) */
+body:not(.bf-on) .bf-only { display:none !important; }
+.live-over .co-bf { display:none !important; }   /* no Black Friday note while Live Setup is closed or full */
+.co-bf { margin:12px 0 0; padding:10px 14px; border:1px solid var(--accent); border-radius:12px; background:var(--accent-hl); font-family:var(--font-mono); font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-paper); }
+.co-bf b { color:var(--accent); font-weight:600; }
 .co-step { font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; }
 .co-step.teal { color:var(--teal); margin-bottom:0; }
 .co-card { border:1px solid var(--border-hover); border-radius:18px; background:var(--bg-elev); padding:clamp(1.3rem,3vw,2rem); margin-top:clamp(1.2rem,2.4vw,1.8rem); }
@@ -1406,6 +1411,7 @@ body:not(.live-over) .waitlist-only, .is-upgrade .waitlist-only { display:none !
 </script>
 </head>
 <body class="sale-over live-over">
+<script>/* Early Black Friday: Live Setup $197 until 2026-12-02T04:59:59Z, then $247 (change prices by hand on 2 Dec) */ if (Date.now() < Date.parse('2026-12-02T04:59:59Z')) document.body.classList.add('bf-on');</script>
 
 <nav class="top-nav">
   <a href="../" class="nav-brand">
@@ -1429,7 +1435,8 @@ body:not(.live-over) .waitlist-only, .is-upgrade .waitlist-only { display:none !
     <div class="upgrade-only">
       <div class="pricing-badge"><span class="bdot"></span>For Content Engine buyers</div>
       <h1 class="co-title">Add <em>Live Setup</em><br>for $197.</h1>
-      <p class="co-up-value">Everything below: <b>$928 value</b>, yours for $197.</p>
+      <p class="co-up-value">Everything below: <b>$1,125 value</b>, yours for $197.</p>
+      <p class="co-bf bf-only">Early Black Friday price: <b>$197</b> until Monday 1 December, 11:59 PM ET. Then $247.</p>
     </div>
     <div class="pricing-badge engine-only"><span class="bdot"></span><span class="regular-only">One payment · Instant access</span></div>
     <h1 class="co-title engine-only"><span class="regular-only">Get the<br><em>Content Engine.</em></span></h1>
@@ -1457,7 +1464,7 @@ body:not(.live-over) .waitlist-only, .is-upgrade .waitlist-only { display:none !
   <!-- UPGRADE -->
   <section class="co-upgrade" id="live">
     <div class="co-up-top">
-      <div class="co-step teal"><span class="live-open-only">Optional upgrade · 20 places in each weekly group</span><span class="live-closed-only">What is in Live Setup · closed for now</span></div>
+      <div class="co-step teal"><span class="live-open-only">Optional upgrade · 20 places in each weekly group</span><span class="live-closed-only">What is in Live Setup · next group starts Monday</span></div>
       <div class="co-up-clock" data-live-end="2026-11-02T04:59:59Z">Closes in <b data-u="d">0</b>d <b data-u="h">00</b>h <b data-u="m">00</b>m</div>
     </div>
     <h2 class="co-up-title">Set it up live with me.<br><em>Posting everywhere by the end of the week.</em></h2>
@@ -1469,13 +1476,14 @@ body:not(.live-over) .waitlist-only, .is-upgrade .waitlist-only { display:none !
       <li><span>03</span><div><b>Session 3 · Wednesday · The libraries in your extension</b>I show you how to add the 120+ styles and FX Studio to your Chrome extension. Then I show you how to apply the B-roll styles to faceless long-form videos, so you do not need CapCut or any other editing software.</div></li>
       <li><span>04</span><div><b>Every session recorded</b>Replays are added to your Content Engine area on the hub after each session, and you keep access for life.</div></li>
       <li><span>05</span><div><b>Small group</b>20 places in every group, and a new group starts every Monday at 11:30 AM ET.</div></li>
-      <li><span>06</span><div><b>Plus every Live Setup bonus</b>The 120+ style B-roll library, FX Studio, the two new tools, the two new apps, the affiliate program and both bonus courses, plus everything I add to the library, the FX, the tools and the apps later. These come only with Live Setup.</div></li>
+      <li><span>06</span><div><b>Plus every Live Setup bonus</b>The 120+ style B-roll library, FX Studio, the two new tools, the three new apps, the affiliate program and both bonus courses, plus everything I add to the library, the FX, the tools and the apps later. These come only with Live Setup.</div></li>
     </ul>
     <label class="co-check">
       <input type="checkbox" id="addLive">
       <span class="co-box" aria-hidden="true"></span>
-      <span class="co-check-text">Yes, add Live Setup and all the bonuses for <b data-price="live">$197</b> <span class="co-check-value">($928 value)</span></span>
+      <span class="co-check-text">Yes, add Live Setup and all the bonuses for <b data-price="live">$197</b> <span class="co-check-value">($1,125 value)</span></span>
     </label>
+    <p class="co-bf bf-only">Early Black Friday price: <b>$197</b> until Monday 1 December, 11:59 PM ET. Then $247.</p>
     <p class="co-up-note" id="liveNote">Buy before 11:30 AM ET on <b data-group-monday>Monday</b> to join the group that starts that day. Buy after that and you join the following Monday. A new group of 20 starts every Monday.</p>
     <p class="co-up-note live-closed-only">This week's group is full. Sign-up opens again on <b data-group-monday>Monday</b> at 11:30 AM ET, and a new group of 20 starts every Monday. Join the waitlist below and I will email you the moment it opens.</p>
     <p class="co-up-note upgrade-only">Upgrade price for Content Engine buyers, while places last. If a session has already happened when you join, you get its replay.</p>
@@ -1483,16 +1491,16 @@ body:not(.live-over) .waitlist-only, .is-upgrade .waitlist-only { display:none !
 
   <!-- WAITLIST (once Live Setup closes) -->
   <section class="co-card waitlist-only" id="waitlist">
-    <div class="co-step teal">Live Setup · closed for now</div>
-    <h2 class="co-up-title">Want Live Setup <em>when it reopens?</em></h2>
-    <p class="co-up-body">Live Setup is closed right now. Join the waitlist to be notified first when it opens. You'll get an email straight away to confirm you're on the list.</p>
+    <div class="co-step teal">Live Setup · next group</div>
+    <h2 class="co-up-title">Want a place in <em>the next group?</em></h2>
+    <p class="co-up-body">This week's group of 20 is full, and a new group starts every Monday. Join the list to hear first when sign-up for the next group opens. You'll get an email straight away to confirm you're on the list.</p>
     <div class="co-fields">
       <label class="co-field"><span>Email</span><input type="email" id="wlEmail" autocomplete="email" placeholder="you@example.com"></label>
       <label class="co-field"><span>Name</span><input type="text" id="wlName" autocomplete="name" placeholder="Your name"></label>
     </div>
     <button type="button" class="btn-primary co-submit" id="wlButton">Join the waitlist</button>
     <p class="co-error" id="wlError" role="alert" hidden></p>
-    <p class="co-wl-done" id="wlDone" hidden>You're on the waitlist. I just sent you an email to confirm it, and you'll hear from me first when Live Setup opens.</p>
+    <p class="co-wl-done" id="wlDone" hidden>You're on the waitlist. I just sent you an email to confirm it, and you'll hear from me first when sign-up for the next group opens.</p>
   </section>
 
   <!-- WHAT'S INCLUDED -->
@@ -1513,7 +1521,7 @@ body:not(.live-over) .waitlist-only, .is-upgrade .waitlist-only { display:none !
       <div class="co-lb-head">
         <div class="co-lb-kicker">Live Setup bonuses</div>
         <div class="co-lb-title">Only when you go <em>live with me.</em></div>
-        <p class="live-closed-only">Everything below comes with Live Setup only, and Live Setup is closed for now. Join the waitlist above to hear first when it reopens.</p>
+        <p class="live-closed-only">Everything below comes with Live Setup only. This week's group is full, so join the list above to hear first when the next group opens.</p>
         <p class="engine-only live-open-only">Everything below comes with the Live Setup upgrade. It is not part of the Content Engine on its own. Tick Live Setup to get all of it.</p>
         <p class="upgrade-only">Everything below comes with Live Setup, and all of it is in this upgrade.</p>
         <div class="co-lb-state">
@@ -1574,18 +1582,19 @@ body:not(.live-over) .waitlist-only, .is-upgrade .waitlist-only { display:none !
       <div class="co-tools-head"><span class="co-step">New apps · Live Setup bonus</span><span class="co-tag new">Rolling out now</span></div>
       <div class="co-tool"><div class="co-item-num">05</div><div><div class="co-item-title">Trial Reel Maker <span class="co-tag">$127 value</span></div><p>A local app that runs on your computer. One video in, several test versions out, each with its own hook and look, posted to Instagram Reels for you, so you can see which one lands. It also arms the comment-to-DM automation on Facebook and Instagram.</p><div class="co-tool-anim" role="button" tabindex="0" aria-label="Replay the Trial Reel Maker animation"><video class="tool-anim" muted playsinline preload="none" poster="../media/tool-trialreel.jpg" data-src="../media/tool-trialreel.mp4" aria-hidden="true"></video></div></div></div>
       <div class="co-tool"><div class="co-item-num">06</div><div><div class="co-item-title">Carousel Maker <span class="co-tag">$97 value</span></div><p>A local app that runs on your computer. Turn a video into a carousel, or start one from any topic. You approve the slide copy before anything is designed, then it posts to LinkedIn, TikTok, Pinterest, Facebook and Instagram for you. It also arms the comment-to-DM automation on Facebook and Instagram.</p><div class="co-tool-anim" role="button" tabindex="0" aria-label="Replay the Carousel Maker animation"><video class="tool-anim" muted playsinline preload="none" poster="../media/tool-carousel.jpg" data-src="../media/tool-carousel.mp4" aria-hidden="true"></video></div></div></div>
+      <div class="co-tool"><div class="co-item-num">07</div><div><div class="co-item-title">Long-Form Studio <span class="co-tag">$197 value</span></div><p>A local app that runs on your computer, for full YouTube videos. Start from a raw 16:9 recording, a faceless script in your cloned voice, or a script read by your HeyGen avatar. It cuts the dead air, plans the B-roll and has Claude Code draw the scenes, and you check the plan before it renders.</p></div></div>
     </div>
 
     <div class="co-updates">
       <div class="co-updates-title">Plus: free updates for life to the bonuses.</div>
-      <p>The 120+ style B-roll library, FX Studio, the two new tools and the two new apps keep growing. With Live Setup, every style, effect, tool and app I add to them is yours too. No subscription. No upgrade fee.</p>
+      <p>The 120+ style B-roll library, FX Studio, the two new tools and the three new apps keep growing. With Live Setup, every style, effect, tool and app I add to them is yours too. No subscription. No upgrade fee.</p>
     </div>
 
     <div class="co-bonus-grid">
       <div class="co-bonus">
         <img src="../media/aisha-engine-foundations.webp" alt="AISHA Engine Foundations course cover" width="1280" height="720" loading="lazy">
         <div class="co-bonus-body">
-          <div class="co-item-num">07 · Live Setup bonus · $97 value</div>
+          <div class="co-item-num">08 · Live Setup bonus · $97 value</div>
           <div class="co-item-title">AISHA Engine Foundations</div>
           <p>Build, automate and monetize a realistic AI influencer, from the avatar to the content system.</p>
         </div>
@@ -1593,7 +1602,7 @@ body:not(.live-over) .waitlist-only, .is-upgrade .waitlist-only { display:none !
       <div class="co-bonus">
         <img src="../media/the-ai-audit-method.webp" alt="The AI Audit Method crash course cover" width="1280" height="720" loading="lazy">
         <div class="co-bonus-body">
-          <div class="co-item-num">08 · Live Setup bonus · $127 value</div>
+          <div class="co-item-num">09 · Live Setup bonus · $127 value</div>
           <div class="co-item-title">The AI Audit Method</div>
           <p>The crash course on turning your AI skills into a consulting business.</p>
         </div>
@@ -1602,7 +1611,7 @@ body:not(.live-over) .waitlist-only, .is-upgrade .waitlist-only { display:none !
 
     <div class="co-tools">
       <div class="co-tools-head"><span class="co-step">Affiliate program · Live Setup bonus</span></div>
-      <div class="co-tool"><div class="co-item-num">09</div><div><div class="co-item-title">Earn 40% on every Content Engine sale you refer</div><p>You get your own link. When someone buys through it, you earn 40% of what they paid, sent to your PayPal each month. Any PayPal fee comes out of your payment, and taxes on your earnings are yours. It is yours for as long as you own Live Setup.</p></div></div>
+      <div class="co-tool"><div class="co-item-num">10</div><div><div class="co-item-title">Earn 40% on every Content Engine sale you refer</div><p>You get your own link. When someone buys through it, you earn 40% of what they paid, sent to your PayPal each month. Any PayPal fee comes out of your payment, and taxes on your earnings are yours. It is yours for as long as you own Live Setup.</p></div></div>
     </div>
 
       </div>
@@ -1652,6 +1661,7 @@ body:not(.live-over) .waitlist-only, .is-upgrade .waitlist-only { display:none !
           <li>FX Studio · 160+ effects ($67 value)</li>
           <li>Trial Reel Maker, with Facebook and Instagram DM automation ($127 value)</li>
           <li>Carousel Maker, with Facebook and Instagram DM automation ($97 value)</li>
+          <li>Long-Form Studio, for full YouTube videos ($197 value)</li>
           <li>Affiliate program: earn 40% on every sale you refer</li>
           <li>AISHA Engine Foundations ($97 value)</li>
           <li>The AI Audit Method ($127 value)</li>
@@ -1704,7 +1714,7 @@ body:not(.live-over) .waitlist-only, .is-upgrade .waitlist-only { display:none !
 <dialog class="co-confirm" id="coConfirm" aria-labelledby="coConfirmTitle">
   <div class="co-missing-kicker">Before you pay</div>
   <h3 id="coConfirmTitle">Just the Engine?</h3>
-  <p>Your <span data-price="engine">$147</span> order is the Content Engine on its own. The live sessions, the 120+ style library, FX Studio, the two new tools, the two new apps, the affiliate program and both bonus courses come only with Live Setup, and Live Setup starts a new group every Monday.</p>
+  <p>Your <span data-price="engine">$147</span> order is the Content Engine on its own. The live sessions, the 120+ style library, FX Studio, the two new tools, the three new apps, the affiliate program and both bonus courses come only with Live Setup, and Live Setup starts a new group every Monday.</p>
   <button type="button" class="btn-primary co-confirm-add" id="confirmAdd">Add Live Setup · <span id="confirmTotal">$294</span> total</button>
   <button type="button" class="co-confirm-skip" id="confirmSkip">No thanks, just the Engine · <span data-price="engine">$147</span></button>
 </dialog>

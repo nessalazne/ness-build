@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="AISocialHub" />
 <meta property="og:url" content="https://builds.digicuratoragency.com/content-engine/" />
 <meta property="og:title" content="AI Social Hub Content Engine: Any Link to 9 Platforms" />
-<meta property="og:description" content="Watch the 3 minute demo. Paste any link or idea and get a finished video posted to 11 accounts on 9 platforms. Source code included, $147 one-time." />
+<meta property="og:description" content="Watch it work. Paste any link or idea and get a finished video posted to 11 accounts on 9 platforms. Source code included, $147 one-time." />
 <meta property="og:image" content="https://builds.digicuratoragency.com/content-engine/media/og-demo.jpg" />
 <meta property="og:image:secure_url" content="https://builds.digicuratoragency.com/content-engine/media/og-demo.jpg" />
 <meta property="og:image:type" content="image/jpeg" />
@@ -26,7 +26,7 @@
 <meta property="og:video:height" content="720" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="AI Social Hub Content Engine: Any Link to 9 Platforms" />
-<meta name="twitter:description" content="Watch the 3 minute demo. Paste any link or idea and get a finished video posted to 11 accounts on 9 platforms." />
+<meta name="twitter:description" content="Watch it work. Paste any link or idea and get a finished video posted to 11 accounts on 9 platforms." />
 <meta name="twitter:image" content="https://builds.digicuratoragency.com/content-engine/media/og-demo.jpg" />
 <meta name="twitter:image:alt" content="Play the Content Engine demo video" />
 
@@ -1138,6 +1138,20 @@ footer {
   .sample-row { display:flex; overflow-x:auto; scroll-snap-type:x mandatory; gap:12px; padding-bottom:8px; -webkit-overflow-scrolling:touch; }
   .sample { flex:0 0 62%; scroll-snap-align:start; }
 }
+/* Demo tabs: one video per way of making it */
+.demo-tabs { display:flex; gap:8px; flex-wrap:wrap; margin-top:clamp(2rem,3vw,2.6rem); }
+.demo-tab { font-family:var(--font-mono); font-size:11.5px; letter-spacing:0.12em; text-transform:uppercase; font-weight:600; padding:11px 18px; border-radius:999px; border:1px solid var(--border-hover); background:transparent; color:var(--text-dim); cursor:pointer; transition:background .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease); }
+.demo-tab:hover { border-color:var(--pink); color:var(--text); }
+.demo-tab[aria-selected="true"] { background:var(--accent); border-color:var(--accent); color:#14100e; }
+.demo-tab:focus-visible { outline:2px solid var(--pink); outline-offset:3px; }
+.demo-panel[hidden] { display:none; }
+.demo-panel-note { margin-top:1.1rem; max-width:640px; font-family:var(--font-body); font-size:clamp(0.92rem,1.1vw,1rem); color:var(--text-dim); }
+.demo-soon { aspect-ratio:16/9; display:grid; place-items:center; text-align:center; border:1px dashed var(--border-hover); border-radius:16px; background:var(--bg-elev); color:var(--muted); padding:2rem; font-family:var(--font-mono); font-size:11.5px; letter-spacing:0.14em; text-transform:uppercase; }
+.demo-soon b { display:block; color:var(--pink); font-family:var(--font-display); font-size:clamp(1.6rem,3vw,2.4rem); letter-spacing:0; text-transform:none; font-weight:400; margin-bottom:0.6rem; }
+@media (max-width:520px){ .demo-tab { flex:1 1 100%; text-align:center; } }
+.include-value { display:inline-block; margin-top:0.8rem; font-family:var(--font-mono); font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--teal); }
+.live-total { margin-top:clamp(1.8rem,3vw,2.4rem); font-family:var(--font-body); color:var(--text-dim); }
+.live-total b { color:var(--text-paper); }
 .proof-video { position:relative; aspect-ratio:16/9; border-radius:16px; overflow:hidden; border:1px solid var(--border-hover); background:#000; }
 .proof-video video { width:100%; height:100%; display:block; }
 .sample-tag { position:absolute; top:12px; left:12px; right:12px; width:max-content; max-width:calc(100% - 24px); z-index:2; pointer-events:none; background:var(--teal); color:#1a1210; border-radius:999px; padding:6px 11px; font-family:var(--font-mono); font-size:9.5px; letter-spacing:0.12em; text-transform:uppercase; font-weight:600; }
@@ -1151,6 +1165,12 @@ footer {
 .sb-clock { font-family:var(--font-mono); font-weight:700; font-size:clamp(0.9rem,1.5vw,1.1rem); letter-spacing:0.06em; color:#f5f0eb; font-variant-numeric:tabular-nums; }
 .sb-clock b { font-weight:700; }
 .has-sale { --sale-bar-h:36px; }
+.sb-short { display:none; }
+@media (max-width:900px){ .sb-long { display:none; } .sb-short { display:inline; } }
+@media (max-width:440px){ .sale-bar { gap:8px; padding:0 10px; } .sb-label { font-size:0.68rem; letter-spacing:0.02em; } .sb-clock { font-size:0.8rem; } }
+.demo-tab[data-pending], .demo-panel[data-pending] { display:none !important; }
+.bf-note { margin-top:clamp(1.2rem,2vw,1.6rem); font-family:var(--font-body); font-size:0.95rem; color:var(--text-dim); }
+.bf-note a { color:var(--text-paper); text-decoration:underline; text-decoration-color:var(--accent); text-underline-offset:4px; }
 .has-sale .top-nav { top:var(--sale-bar-h); }
 @media (prefers-reduced-motion: reduce){ .sale-bar .bdot { animation:none; } }
 .sale-pop { position:fixed; inset:0; z-index:200; display:flex; align-items:center; justify-content:center; padding:16px; }
@@ -1219,11 +1239,21 @@ footer {
 .rv-quote::after { content: ''; position: absolute; left: -4px; right: -4px; top: 54%; height: 3px; border-radius: 3px; background: var(--accent); transform: rotate(-2deg); }
 .rv-title { font-family: var(--font-display); font-weight: 400; font-size: clamp(2.3rem, 5.6vw, 4.8rem); line-height: 1.05; letter-spacing: -0.015em; color: var(--text-paper); margin: 0; }
 .rv-title mark { background: var(--accent); color: #fff; padding: 0 0.16em; border-radius: 4px; font-style: italic; }
-.rv-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1rem, 2vw, 1.6rem); margin-top: clamp(2.2rem, 4vw, 3.2rem); }
-.rv-card { display: flex; gap: 16px; align-items: center; background: #fdf5f0; border: 1px solid transparent; color: #050505; border-radius: 16px; padding: 14px; box-shadow: 6px 8px 0 rgba(216,118,87,0.35); text-decoration: none; transition: transform .25s var(--ease); }
+.rv-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1rem, 2vw, 1.6rem); margin-top: clamp(2.2rem, 4vw, 3.2rem); }
+.rv-card { display: flex; gap: 16px; align-items: center; width: 100%; font: inherit; text-align: left; cursor: pointer; background: #fdf5f0; border: 1px solid transparent; color: #050505; border-radius: 16px; padding: 14px; box-shadow: 6px 8px 0 rgba(216,118,87,0.35); text-decoration: none; transition: transform .25s var(--ease); }
 .rv-card:nth-child(1) { transform: rotate(-1.2deg); }
 .rv-card:nth-child(2) { transform: rotate(0.6deg); }
 .rv-card:nth-child(3) { transform: rotate(1.2deg); }
+.rv-card:nth-child(4) { transform: rotate(-0.6deg); }
+.rv-card:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+.rv-thumb { position: relative; width: 34%; max-width: 120px; flex: none; }
+.rv-thumb img { width: 100% !important; max-width: none !important; }
+.rv-thumb span { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; padding-left: 3px; background: rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.4); color: #fff; font-size: 13px; transition: background .25s var(--ease); }
+.rv-card:hover .rv-thumb span, .rv-card:focus-visible .rv-thumb span { background: var(--accent); border-color: var(--accent); color: #120b09; }
+.rv-lightbox { margin: auto; inset: 0; padding: 0; border: 0; background: transparent; overflow: visible; }
+.rv-lightbox::backdrop { background: rgba(0,0,0,0.85); }
+.rv-lightbox video { display: block; height: 86vh; max-width: 92vw; aspect-ratio: 9 / 16; border-radius: 14px; background: #000; }
+.rv-lb-close { position: absolute; top: -44px; right: 0; width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.35); background: rgba(0,0,0,0.6); color: #fff; font-size: 18px; line-height: 1; cursor: pointer; }
 .rv-card:hover { transform: rotate(0deg) translateY(-4px); }
 .rv-card img { width: 34%; max-width: 120px; flex: none; aspect-ratio: 9 / 16; height: auto; object-fit: cover; border-radius: 10px; border: 2px solid #050505; }
 .rv-num { font-family: var(--font-body); font-weight: 800; font-size: clamp(1.9rem, 3.2vw, 2.6rem); line-height: 1; letter-spacing: -0.03em; }
@@ -1244,7 +1274,15 @@ footer {
 (function () { try { var m = /[?&]ref=([a-z0-9]{6,20})(?:&|$)/i.exec(location.search); if (m) localStorage.setItem('ceRef', JSON.stringify({ c: m[1].toLowerCase(), t: Date.now() })); } catch (e) {} })();
 </script>
 </head>
-<body class="sale-over">
+<body class="has-sale">
+
+<!-- EARLY BLACK FRIDAY: Live Setup $197 until Cyber Monday 1 Dec 11:59 PM ET, then $247. Every .sale-only block hides itself at 2026-12-02T04:59:59Z.
+     After that: change the $197 texts on this page + checkout to $247 and the hub prices (engine_live, upgrade) by hand. -->
+<a class="sale-bar sale-only" href="#live-setup" data-sale-end="2026-12-02T04:59:59Z" aria-label="Early Black Friday: Live Setup and every bonus, a $1,125 value, for $197 until Monday 1 December, 11:59 PM ET, then $247. See what is included">
+  <span class="bdot"></span>
+  <span class="sb-label"><span class="sb-long">Early Black Friday · Live Setup + every bonus ($1,125 value) for $197 · ends in</span><span class="sb-short">Live Setup + bonuses $197 · ends in</span></span>
+  <span class="sb-clock"><b data-u="d">00</b>d <b data-u="h">00</b>:<b data-u="m">00</b>:<b data-u="s">00</b></span>
+</a>
 
 <nav class="top-nav">
   <a href="https://builds.digicuratoragency.com/" class="nav-brand">
@@ -1274,24 +1312,23 @@ footer {
   </h1>
 
   <p class="hero-sub reveal reveal-d2">
-    Not a repurposing tool. A content engine that turns any link or idea into a published video that captures leads in your DMs. Paste a YouTube video, Instagram Reel, TikTok, or article, or type an idea. The Content Engine writes it in your voice, clones your audio, builds your talking head, cleans up a take you filmed yourself, or goes faceless, draws the B-roll in code, publishes to 11 accounts across 9 platforms, and arms your IG and FB DM automation.
+    You have the ideas. What you don't have is three hours per video to write it, film it, cut out every um, write nine captions and answer every comment. Paste a YouTube video, Instagram Reel, TikTok or article, or type an idea. Content Engine writes it in your voice and makes the video with your AI avatar, a take you filmed yourself, or no face at all. It draws the B-roll in code, posts to 11 accounts across 9 platforms, and sends your freebie by DM to everyone who comments your keyword on Instagram and Facebook.
   </p>
 
   <div class="hero-cta-row reveal reveal-d3">
     <a href="checkout/" class="btn-primary">
       Get the Engine <span class="price-inline"><s class="was-inline">$297</s> $147 once</span>
     </a>
-    <a href="#demo" class="btn-ghost">See what it does ↓</a>
+    <a href="#demo" class="btn-ghost">Watch it work ↓</a>
   </div>
 
   <div class="stack-pills reveal reveal-d4">
     <span class="pill">Claude Code or OpenRouter</span>
-    <span class="pill">ElevenLabs V3</span>
+    <span class="pill">ElevenLabs v4</span>
     <span class="pill">HeyGen Avatar IV or V</span>
     <span class="pill">Remotion</span>
-    <span class="pill">Blotato or Zernio</span>
     <span class="pill">Airtable</span>
-    <span class="pill">Claude Code</span>
+    <span class="pill">Mac + Windows</span>
   </div>
 
   <div class="hero-metrics reveal reveal-d5">
@@ -1299,6 +1336,7 @@ footer {
     <div class="metric-item"><div class="metric-value">11</div><div class="metric-label">Accounts posted</div></div>
     <div class="metric-item"><div class="metric-value accent">9</div><div class="metric-label">Platforms</div></div>
     <div class="metric-item"><div class="metric-value">4</div><div class="metric-label">Avatar modes</div></div>
+    <div class="metric-item"><div class="metric-value accent">15</div><div class="metric-label">Video looks</div></div>
     <div class="metric-item"><div class="metric-value teal">2</div><div class="metric-label">Approval gates</div></div>
   </div>
 </header>
@@ -1349,43 +1387,66 @@ footer {
 
 <div class="divider"></div>
 
-<!-- REEL VIEWS -->
-<section class="section" id="views">
-  <div class="kicker reveal">Made With The Engine</div>
-  <p class="rv-quote reveal">&ldquo;AI reels don't get views.&rdquo;</p>
-  <h2 class="rv-title reveal reveal-d1">My top five got <mark>690,000+</mark> views.</h2>
-  <p class="body-text reveal reveal-d2" style="margin-top:1.4rem;">All five came out of the Content Engine and went up on my Facebook page. Here are three of them:</p>
-  <div class="rv-cards">
-    <a class="rv-card reveal reveal-d1" href="https://www.facebook.com/followness/reels/" target="_blank" rel="noopener">
-      <img src="media/reel-407k.jpg" alt="Reel: Top 4 ChatGPT image codes, 407K views on Facebook" width="320" height="563" loading="lazy">
-      <div><div class="rv-num">407,000</div><div class="rv-views">Views</div><div class="rv-name">Top 4 ChatGPT image codes</div><div class="rv-kind">headline + talking head</div></div>
-    </a>
-    <a class="rv-card reveal reveal-d2" href="https://www.facebook.com/followness/reels/" target="_blank" rel="noopener">
-      <img src="media/reel-94k.jpg" alt="Reel: Comment Agent, 94K views on Facebook" width="320" height="563" loading="lazy">
-      <div><div class="rv-num">94,000</div><div class="rv-views">Views</div><div class="rv-name">Comment Agent</div><div class="rv-kind">card + talking head</div></div>
-    </a>
-    <a class="rv-card reveal reveal-d3" href="https://www.facebook.com/followness/reels/" target="_blank" rel="noopener">
-      <img src="media/reel-60k.jpg" alt="Reel: YouTube agent, completely free to use, 60K views on Facebook" width="320" height="563" loading="lazy">
-      <div><div class="rv-num">60,000</div><div class="rv-views">Views</div><div class="rv-name">A YouTube agent that's free to use</div><div class="rv-kind">headline + talking head</div></div>
-    </a>
+<!-- DEMO: one tab per way of making the video -->
+<section class="section" id="demo">
+  <div style="max-width:640px;">
+    <div class="kicker reveal">Watch It Work</div>
+    <h2 class="section-title reveal reveal-d1">Pick how you want<br>to <em>show up.</em></h2>
+    <!-- When the Faceless + My own recording videos are in: drop data-pending on their tabs/panels and swap this copy for "Three ways to make the video. Pick the one that sounds like you. Each one is a real run, from a link to a posted short, and ends with what the latest updates added." -->
+    <p class="body-text reveal reveal-d2" style="margin-top:1.4rem;">Three ways to make the video: with your AI avatar, faceless, or a take you film yourself. Here is a real run with my avatar, from a link to a posted short.</p>
   </div>
-  <p class="rv-note reveal">Views as shown on Facebook on 10 November 2026. Watch them on <a href="https://www.facebook.com/followness/reels/" target="_blank" rel="noopener">my Facebook page ↗</a></p>
+  <div class="demo-tabs reveal reveal-d2" role="tablist" aria-label="Ways to make the video">
+    <button class="demo-tab" type="button" role="tab" id="tab-avatar" aria-controls="panel-avatar" aria-selected="true" data-tab="avatar">With my avatar</button>
+    <button class="demo-tab" type="button" role="tab" id="tab-faceless" aria-controls="panel-faceless" aria-selected="false" tabindex="-1" data-tab="faceless" data-pending>Faceless</button>
+    <button class="demo-tab" type="button" role="tab" id="tab-record" aria-controls="panel-record" aria-selected="false" tabindex="-1" data-tab="record" data-pending>My own recording</button>
+  </div>
+  <div class="demo-panel" role="tabpanel" id="panel-avatar" aria-labelledby="tab-avatar">
+    <div class="proof-video demo-video">
+      <video controls playsinline preload="none" poster="media/demo.jpg" aria-label="Demo: making a video with my AI avatar, from link to posted short">
+        <source src="media/demo.mp4" type="video/mp4">
+      </video>
+    </div>
+    <p class="demo-panel-note">A HeyGen avatar of you, lip-synced to your cloned voice. You approve the script before anything that costs money runs.</p>
+  </div>
+  <div class="demo-panel" role="tabpanel" id="panel-faceless" aria-labelledby="tab-faceless" hidden data-pending>
+    <!-- PENDING: media/demo-faceless.mp4 + .jpg (ce-sales-demo Tab 2). Swap .demo-soon for a .proof-video block like the avatar panel. -->
+    <div class="demo-soon" data-pending="demo-faceless"><div><b>Faceless walkthrough</b>Video coming soon</div></div>
+    <p class="demo-panel-note">No face and no camera. Pick one of eight looks and it builds the whole video from your script, in your cloned voice.</p>
+  </div>
+  <div class="demo-panel" role="tabpanel" id="panel-record" aria-labelledby="tab-record" hidden data-pending>
+    <!-- PENDING: media/demo-record.mp4 + .jpg (ce-sales-demo Tab 3). -->
+    <div class="demo-soon" data-pending="demo-record"><div><b>My own recording walkthrough</b>Video coming soon</div></div>
+    <p class="demo-panel-note">Film it on your phone. It cuts the ums and the long pauses, adds the B-roll and the captions, and spends nothing on an AI voice or avatar.</p>
+  </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- DEMO -->
-<section class="section" id="demo">
-  <div style="max-width:620px;">
-    <div class="kicker reveal">Watch It Work</div>
-    <h2 class="section-title reveal reveal-d1">One link in.<br>Watch the <em>whole run.</em></h2>
-    <p class="body-text reveal reveal-d2" style="margin-top:1.4rem;">About three minutes, start to finish. It goes from a post open in your browser tab to a finished short, one step at a time.</p>
+<!-- REEL VIEWS -->
+<section class="section" id="views">
+  <div class="kicker reveal">Made With The Engine</div>
+  <p class="rv-quote reveal">&ldquo;AI reels don't get views.&rdquo;</p>
+  <h2 class="rv-title reveal reveal-d1">My top five got <mark>740,000+</mark> views.</h2>
+  <p class="body-text reveal reveal-d2" style="margin-top:1.4rem;">All five came out of the Content Engine and went up on my Facebook page. Here are four of my reels. Tap one to watch it right here:</p>
+  <div class="rv-cards">
+    <button class="rv-card reveal reveal-d1" type="button" data-full="media/reel-458k.mp4" aria-label="Watch the reel: Top 4 ChatGPT image codes, 458,000 views on Facebook">
+      <span class="rv-thumb"><img src="media/reel-458k.jpg" alt="" width="360" height="640" loading="lazy"><span aria-hidden="true">▶</span></span>
+      <div><div class="rv-num">458,000</div><div class="rv-views">Views</div><div class="rv-name">Top 4 ChatGPT image codes</div><div class="rv-kind">headline + talking head</div></div>
+    </button>
+    <button class="rv-card reveal reveal-d2" type="button" data-full="media/reel-94k-v2.mp4" aria-label="Watch the reel: Comment Agent, 94,000 views on Facebook">
+      <span class="rv-thumb"><img src="media/reel-94k-v2.jpg" alt="" width="360" height="640" loading="lazy"><span aria-hidden="true">▶</span></span>
+      <div><div class="rv-num">94,000</div><div class="rv-views">Views</div><div class="rv-name">Comment Agent</div><div class="rv-kind">card + talking head</div></div>
+    </button>
+    <button class="rv-card reveal reveal-d1" type="button" data-full="media/reel-60k-v2.mp4" aria-label="Watch the reel: A YouTube agent that's free to use, 60,000 views on Facebook">
+      <span class="rv-thumb"><img src="media/reel-60k-v2.jpg" alt="" width="360" height="640" loading="lazy"><span aria-hidden="true">▶</span></span>
+      <div><div class="rv-num">60,000</div><div class="rv-views">Views</div><div class="rv-name">A YouTube agent that's free to use</div><div class="rv-kind">headline + talking head</div></div>
+    </button>
+    <button class="rv-card reveal reveal-d2" type="button" data-full="media/reel-57k.mp4" aria-label="Watch the reel: Stop building until you install these four MCPs, 57,000 views on Facebook">
+      <span class="rv-thumb"><img src="media/reel-57k.jpg" alt="" width="360" height="640" loading="lazy"><span aria-hidden="true">▶</span></span>
+      <div><div class="rv-num">57,000</div><div class="rv-views">Views</div><div class="rv-name">Install these four MCPs first</div><div class="rv-kind">full-body hook + website tour</div></div>
+    </button>
   </div>
-  <div class="proof-video demo-video reveal reveal-d2">
-    <video controls playsinline preload="none" poster="media/demo.jpg" aria-label="Demo of the Content Engine from link to posted video">
-      <source src="media/demo.mp4" type="video/mp4">
-    </video>
-  </div>
+  <p class="rv-note reveal">Views as shown on Facebook: the image codes and MCPs reels on 16 November 2026, the other two on 10 November 2026. See them all on <a href="https://www.facebook.com/followness/reels/" target="_blank" rel="noopener">my Facebook page ↗</a></p>
 </section>
 
 <div class="divider"></div>
@@ -1400,6 +1461,9 @@ footer {
       </h2>
       <p class="body-text reveal reveal-d2" style="margin-top:1.4rem;">
         You watched a video that said exactly what your audience needs to hear. You had a better take. And it stayed in your head, because turning one idea into a script, a voiceover, a video, nine captions, and a follow-up takes a full afternoon you do not have.
+      </p>
+      <p class="body-text reveal reveal-d3" style="margin-top:1rem;">
+        Or you skip the video altogether, because you don't want to be on camera, or because the last one took a whole evening of cutting out ums and long pauses.
       </p>
       <p class="body-text reveal reveal-d3" style="margin-top:1rem;">
         So you post to two platforms, skip the other seven, and nobody who comments ever hears from you again. That is the gap the Content Engine closes.
@@ -1575,7 +1639,7 @@ footer {
     <div class="include-card reveal reveal-d2"><span class="include-icon">📸</span><div class="include-name">Instagram Reel</div><div class="include-desc">Reels and posts. Audio transcribed if no captions exist. Remix mode keeps the proven hook.</div></div>
     <div class="include-card reveal reveal-d3"><span class="include-icon">🎵</span><div class="include-name">TikTok</div><div class="include-desc">Any TikTok URL, including short links. Same remix treatment.</div></div>
     <div class="include-card reveal reveal-d4"><span class="include-icon">📰</span><div class="include-name">Any article</div><div class="include-desc">Blog posts, docs, newsletters. Reads the page text straight from the tab.</div></div>
-    <div class="include-card reveal reveal-d5"><span class="include-icon">💡</span><div class="include-name">An idea</div><div class="include-desc">Type a sentence or two into the popup. No source page needed. The script is written from your brief.</div></div>
+    <div class="include-card reveal reveal-d5"><span class="include-icon">💡</span><div class="include-name">An idea</div><div class="include-desc">Type a sentence or two into the side panel. No source page needed. The script is written from your brief.</div></div>
   </div>
 </section>
 
@@ -1590,11 +1654,11 @@ footer {
         Eight steps.<br>You approve <span class="teal">two.</span>
       </h2>
       <p class="body-text reveal reveal-d2" style="margin-top:1.4rem;">
-        Nothing that costs money runs before you have read the script. The pipeline lives in the extension's background worker, so you can close the popup, keep browsing, and come back when the badge says it is ready. Manual and Record modes pause once more in between, to take the file you filmed. If a step fails, you resume from that step. It never re-posts something it already posted.
+        Nothing that costs money runs before you have read the script. Content Engine opens in a side panel next to the page you are on, and the work runs in the extension's background worker, so you can switch tabs or close the panel and come back when it is ready. Manual and Record modes pause once more in between, to take the file you filmed. If a step fails, you resume from that step. It never re-posts something it already posted.
       </p>
       <div style="margin-top:clamp(2rem,3vw,2.8rem);" class="reveal reveal-d3">
         <ul class="fine-list">
-          <li><span class="fl-k">Script length</span><span class="fl-v">45 to 55 sec</span></li>
+          <li><span class="fl-k">Video length</span><span class="fl-v">Short, Medium or Long · 45 to 90 sec</span></li>
           <li><span class="fl-k">Caption sets</span><span class="fl-v">10 platforms</span></li>
           <li><span class="fl-k">Output</span><span class="fl-v teal">1080×1920 · 30fps</span></li>
           <li><span class="fl-k">Paid steps before approval</span><span class="fl-v green">Zero</span></li>
@@ -1605,14 +1669,14 @@ footer {
 
     <div class="pipeline-row">
       <div class="pipe-item reveal reveal-d1"><div class="pipe-left"><div class="pipe-node">1</div><div class="pipe-line"></div></div><div class="pipe-body"><div class="pipe-title">Read the source</div><div class="pipe-desc">Transcript, scraped caption, page text, or its own audio transcription as a fallback</div></div></div>
-      <div class="pipe-item reveal reveal-d1"><div class="pipe-left"><div class="pipe-node">2</div><div class="pipe-line"></div></div><div class="pipe-body"><div class="pipe-title">Write the script in your voice <span class="tag">brand.config</span></div><div class="pipe-desc">Hook, value, one-word CTA keyword. Your brand voice and audience live in one config file you edit once. Claude writes it on your Claude Code subscription, or through OpenRouter if you would rather pay per call</div></div></div>
-      <div class="gate reveal reveal-d2"><div class="pipe-left"><div class="gate-node">✋</div><div class="pipe-line"></div></div><div class="gate-body"><div class="gate-title">Gate 1 · You read and edit the script</div><div class="pipe-desc">Inline editor with live word count. Your edits flow into the voice, the captions, and the on-screen text. Close the popup and it keeps working in the background. Press Stop at any point and resume later</div></div></div>
+      <div class="pipe-item reveal reveal-d1"><div class="pipe-left"><div class="pipe-node">2</div><div class="pipe-line"></div></div><div class="pipe-body"><div class="pipe-title">Write the script in your voice <span class="tag">brand.config</span></div><div class="pipe-desc">Hook, value, one-word CTA keyword, written to the length you picked: Short, Medium or Long. Your brand voice and audience live in one config file you edit once. Claude writes it on your Claude Code subscription, or through OpenRouter if you would rather pay per call</div></div></div>
+      <div class="gate reveal reveal-d2"><div class="pipe-left"><div class="gate-node">✋</div><div class="pipe-line"></div></div><div class="gate-body"><div class="gate-title">Gate 1 · You read and edit the script</div><div class="pipe-desc">Inline editor with live word count. Your edits flow into the voice, the captions, and the on-screen text. If your closing line reuses a keyword an older video has, it tells you. Close the panel and it keeps working in the background. Press Stop at any point and resume later</div></div></div>
       <div class="pipe-item reveal reveal-d2"><div class="pipe-left"><div class="pipe-node">3</div><div class="pipe-line"></div></div><div class="pipe-body"><div class="pipe-title">Ten caption sets + Airtable row</div><div class="pipe-desc">TikTok, Instagram, YouTube, Facebook, LinkedIn, X, Threads, Pinterest, Bluesky, Substack Note. Character limits enforced per platform</div></div></div>
-      <div class="pipe-item reveal reveal-d3"><div class="pipe-left"><div class="pipe-node teal">4</div><div class="pipe-line"></div></div><div class="pipe-body"><div class="pipe-title">Your cloned voice <span class="tag teal">ElevenLabs V3</span></div><div class="pipe-desc">Locked anti-drift settings so it sounds like you on take 40, not just take 1. Or let HeyGen speak the script with its own voice. Skipped entirely in Record it myself: the audio off your own take is the voiceover</div></div></div>
+      <div class="pipe-item reveal reveal-d3"><div class="pipe-left"><div class="pipe-node teal">4</div><div class="pipe-line"></div></div><div class="pipe-body"><div class="pipe-title">Your cloned voice <span class="tag teal">ElevenLabs v4</span></div><div class="pipe-desc">Locked anti-drift settings, so take 40 sounds like you the same as take 1. Or let HeyGen speak the script with its own voice. Skipped entirely in Record it myself: the audio off your own take is the voiceover</div></div></div>
       <div class="pipe-item reveal reveal-d3"><div class="pipe-left"><div class="pipe-node">5</div><div class="pipe-line"></div></div><div class="pipe-body"><div class="pipe-title">Your talking head <span class="tag">HeyGen Avatar IV or V</span></div><div class="pipe-desc">Your own HeyGen avatar, rendered on your HeyGen plan credits. Pick Avatar IV for standard credits or Avatar V for the most lifelike look at about twice the credits, and set the shape you filmed it in. Lip-synced to your cloned voice, not a stock TTS. Or be the talking head: Record it myself pauses the run, takes the video you filmed, and cleans it. Manual mode takes a HeyGen Studio render. Faceless skips the head entirely</div></div></div>
-      <div class="pipe-item reveal reveal-d4"><div class="pipe-left"><div class="pipe-node">6</div><div class="pipe-line"></div></div><div class="pipe-body"><div class="pipe-title">B-roll drawn in code <span class="tag">Remotion + canvas</span></div><div class="pipe-desc">Basic infographics, Split Card + Web, Papercraft Split, Letterpress Split, Chalkboard Split, Voxel Diorama Split, or a style you add yourself. Word-highlighted captions in your brand colors. Title baked into frame 0 so the thumbnail is never black. Faceless mode builds the whole visual instead</div></div></div>
+      <div class="pipe-item reveal reveal-d4"><div class="pipe-left"><div class="pipe-node">6</div><div class="pipe-line"></div></div><div class="pipe-body"><div class="pipe-title">B-roll drawn in code <span class="tag">Remotion + canvas</span></div><div class="pipe-desc">Basic infographics, Split Card + Web, Papercraft Split, Letterpress Split, Chalkboard Split, Voxel Diorama Split, Stickman Split, or a style you make in your own brand colours. Word-highlighted captions in your brand colors. Title baked into frame 0 so the thumbnail is never black. Faceless mode builds the whole visual instead</div></div></div>
       <div class="gate reveal reveal-d4"><div class="pipe-left"><div class="gate-node">✋</div><div class="pipe-line"></div></div><div class="gate-body"><div class="gate-title">Gate 2 · You watch the video, tweak captions</div><div class="pipe-desc">One editable caption box per platform. Do not like the B-roll or the avatar? Re-render just that part and the script and voice stay as they are. What you approve is what posts</div></div></div>
-      <div class="pipe-item reveal reveal-d5"><div class="pipe-left"><div class="pipe-node green">7</div><div class="pipe-line"></div></div><div class="pipe-body"><div class="pipe-title">Publish to 11 accounts <span class="tag green">Blotato or Zernio</span></div><div class="pipe-desc">Post now, drop into the next free slot per platform, or save only. Two Instagram and two Threads accounts supported</div></div></div>
+      <div class="pipe-item reveal reveal-d5"><div class="pipe-left"><div class="pipe-node green">7</div><div class="pipe-line"></div></div><div class="pipe-body"><div class="pipe-title">Publish to 11 accounts <span class="tag green">Schedule · Post now · Save</span></div><div class="pipe-desc">Pick on the review screen: the next free slot per platform, post right away, or save only. The result screen shows what really went out, and Resume fills any gap without posting twice. Two Instagram and two Threads accounts supported</div></div></div>
       <div class="pipe-item reveal reveal-d6"><div class="pipe-left"><div class="pipe-node green">8</div></div><div class="pipe-body"><div class="pipe-title">Arm the DM automation</div><div class="pipe-desc">Comment keyword → freebie DM on Instagram and your Facebook page, created automatically per video on whichever scheduler posted it</div></div></div>
     </div>
   </div>
@@ -1631,18 +1695,61 @@ footer {
     <div class="lead-card reveal reveal-d1">
       <div class="lead-step">01 · In the script</div>
       <div class="lead-title">A keyword, not a "link in bio"</div>
-      <div class="lead-desc">Every script ends on a one-word comment CTA unique to that video. Unique keywords mean the automation can safely apply across your whole account.</div>
+      <div class="lead-desc">Every script ends on a one-word comment CTA. Before it writes the script, it checks the keywords your older videos' DMs already use and picks a new one, so a new video never takes over an old one's DM.</div>
     </div>
     <div class="lead-card reveal reveal-d2">
       <div class="lead-step">02 · In the DMs</div>
       <div class="lead-title">The reply that runs while you sleep</div>
-      <div class="lead-desc">Instagram (both accounts) and your Facebook page. The DM half lives in Blotato's cloud, 24/7. A local poller also posts a public "sent it to your DMs" reply so the comment thread keeps working for you.</div>
+      <div class="lead-desc">Instagram (both accounts) and your Facebook page. The DM runs in your posting tool's cloud, day and night. A public "check your DMs" reply goes under each keyword comment too, so the thread keeps working for you.</div>
       <div class="dm-bubble"><small>Auto DM</small>Hey, thanks for commenting REPURPOSE! Here's your freebie: hub.digicuratoragency.com/freebie</div>
     </div>
     <div class="lead-card reveal reveal-d3">
-      <div class="lead-step">03 · Your scheduler</div>
-      <div class="lead-title">Blotato or Zernio, your pick</div>
-      <div class="lead-desc">Choose the scheduler per run from the popup. Both post to your accounts and both create the keyword DM automation, so the loop works whichever one you pay for. Add the key for either and the option lights up.</div>
+      <div class="lead-step">03 · Your posting tool</div>
+      <div class="lead-title">Two options, pick per run</div>
+      <div class="lead-desc">Choose the posting tool per run in the panel. Both options post to your accounts and both set up the keyword DM, so the loop works whichever one you use. One of them has a free tier for a couple of accounts.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- LATEST UPDATES -->
+<section class="section">
+  <div style="max-width:640px;">
+    <div class="kicker reveal">New In The Latest Updates</div>
+    <h2 class="section-title reveal reveal-d1">Free updates.<br>Here is what <em>landed lately.</em></h2>
+    <p class="body-text reveal reveal-d2" style="margin-top:1.4rem;">Every order gets every Engine update for free, each one with its own What's New lesson in the classroom. These came out in the last few weeks.</p>
+  </div>
+  <div class="lead-grid">
+    <div class="lead-card reveal reveal-d1">
+      <div class="lead-step">01 · Side panel</div>
+      <div class="lead-title">Stays open next to your page</div>
+      <div class="lead-desc">Content Engine sits on the right of Chrome while you switch tabs, and it remembers what you typed.</div>
+    </div>
+    <div class="lead-card reveal reveal-d2">
+      <div class="lead-step">02 · Several brands</div>
+      <div class="lead-title">Nothing carries over</div>
+      <div class="lead-desc">Your own brand, a client, your employer. Pick the brand in the panel and that video uses only its voice, captions, closing line, avatar and accounts. Claude Code adds a new brand for you in plain words.</div>
+    </div>
+    <div class="lead-card reveal reveal-d3">
+      <div class="lead-step">03 · Video length</div>
+      <div class="lead-title">Short, Medium or Long</div>
+      <div class="lead-desc">45 to 55, 60 to 75 or 75 to 90 seconds. The script is written to that length, and the B-roll adds scenes so a longer video keeps moving.</div>
+    </div>
+    <div class="lead-card reveal reveal-d1">
+      <div class="lead-step">04 · A new keyword every time</div>
+      <div class="lead-title">One DM per video</div>
+      <div class="lead-desc">It checks the keywords your older videos already use and picks a fresh one, so a new video never takes over an old DM.</div>
+    </div>
+    <div class="lead-card reveal reveal-d2">
+      <div class="lead-step">05 · Your brand's B-roll</div>
+      <div class="lead-title">Your colours, your fonts, your clips</div>
+      <div class="lead-desc">Tell Claude Code your colours and fonts in plain words and it builds a B-roll style that is only yours. It can use your own clips and websites, and updates never touch it.</div>
+    </div>
+    <div class="lead-card reveal reveal-d3">
+      <div class="lead-step">06 · Honest results</div>
+      <div class="lead-title">You see what really went out</div>
+      <div class="lead-desc">Choose Schedule, Post now or Save only before you approve. If a step fails, Resume carries on from there without posting twice, and it picks up a HeyGen render that already started, so you spend no new credits.</div>
     </div>
   </div>
 </section>
@@ -1652,9 +1759,9 @@ footer {
 <!-- WARDROBE -->
 <section class="section">
   <div style="max-width:620px;">
-    <div class="kicker reveal">6 B-roll Styles + Faceless Mode</div>
-    <h2 class="section-title reveal reveal-d1">Same script.<br>Six looks, or <em>no face at all.</em></h2>
-    <p class="body-text reveal reveal-d2" style="margin-top:1.4rem;">No stock footage. Every B-roll style is drawn in code from a scene plan Claude writes for that script, so the visuals match what you are saying. Split Card + Web records real websites scrolling in a headless browser and times each site's appearance to the exact word you say it. Papercraft, Letterpress, Chalkboard and Voxel Diorama fill the top half with paper models, wood-type proofs, a chalk lesson or a toy island built from falling blocks and give the whole frame to your head on the key lines. Faceless mode drops the talking head and builds the entire video from the script, in one of seven tracks. Any style you add yourself shows up in the same list. New styles I build are added to that list in the free updates. Every B-roll style sits over whichever avatar you picked, including a video you filmed yourself.</p>
+    <div class="kicker reveal">7 B-roll Styles + 8 Faceless Looks</div>
+    <h2 class="section-title reveal reveal-d1">Same script.<br>Seven looks with your face,<br><em>eight without.</em></h2>
+    <p class="body-text reveal reveal-d2" style="margin-top:1.4rem;">No stock footage. Every B-roll style is drawn in code from a scene plan Claude writes for that script, so the visuals match what you are saying. Split Card + Web records real websites scrolling in a headless browser and times each site's appearance to the exact word you say it. Papercraft, Letterpress, Chalkboard, Voxel Diorama and Stickman fill the top half with paper models, wood-type proofs, a chalk lesson, a toy island built from falling blocks or a stick character acting out each beat, and give the whole frame to your head on the key lines. Faceless mode drops the talking head and builds the entire video from the script, in one of eight looks. A style you make in your own brand colours shows up in the same list. New styles I build are added to that list in the free updates. Every B-roll style sits over whichever avatar you picked, including a video you filmed yourself.</p>
   </div>
   <div class="wardrobe-grid">
     <div class="wardrobe-card reveal reveal-d1"><div class="wardrobe-num">01 · B-roll</div><div class="wardrobe-name">Basic</div><div class="wardrobe-desc">Animated infographics over the talking head. Fastest render.</div></div>
@@ -1663,14 +1770,16 @@ footer {
     <div class="wardrobe-card reveal reveal-d1"><div class="wardrobe-num">04 · B-roll</div><div class="wardrobe-name">Letterpress Split</div><div class="wardrobe-desc">A fresh wood-type proof pulled on a press for every beat, with rubber stamps and press sounds.</div></div>
     <div class="wardrobe-card reveal reveal-d1"><div class="wardrobe-num">05 · B-roll</div><div class="wardrobe-name">Chalkboard Split</div><div class="wardrobe-desc">A chalk lesson written line by line on a green slate above your head, with the camera sliding along the board.</div></div>
     <div class="wardrobe-card reveal reveal-d1"><div class="wardrobe-num">06 · B-roll</div><div class="wardrobe-name">Voxel Diorama Split</div><div class="wardrobe-desc">A toy island built from falling blocks above your head.</div></div>
-    <div class="wardrobe-card reveal reveal-d2"><div class="wardrobe-num">07 · Faceless</div><div class="wardrobe-name">TSX Animation</div><div class="wardrobe-desc">Code-drawn motion graphics in Dark editorial or Chess. Your cloned voice is the only cost.</div></div>
-    <div class="wardrobe-card reveal reveal-d2"><div class="wardrobe-num">08 · Faceless</div><div class="wardrobe-name">Vox Collage</div><div class="wardrobe-desc">Paper-collage documentary look. AI image layers, a traveling camera, and a music bed if you want one.</div></div>
-    <div class="wardrobe-card reveal reveal-d2"><div class="wardrobe-num">09 · Faceless</div><div class="wardrobe-name">Papercraft</div><div class="wardrobe-desc">The Papercraft look filling the whole 9:16 frame. Builds in about 5 to 10 minutes.</div></div>
-    <div class="wardrobe-card reveal reveal-d2"><div class="wardrobe-num">10 · Faceless</div><div class="wardrobe-name">Letterpress</div><div class="wardrobe-desc">The Letterpress look filling the whole frame. Same 5 to 10 minute build.</div></div>
-    <div class="wardrobe-card reveal reveal-d2"><div class="wardrobe-num">11 · Faceless</div><div class="wardrobe-name">Chalkboard</div><div class="wardrobe-desc">The chalk lesson filling the whole 9:16 frame, written on as you speak.</div></div>
-    <div class="wardrobe-card reveal reveal-d3"><div class="wardrobe-num">12 · Faceless</div><div class="wardrobe-name">Voxel Diorama</div><div class="wardrobe-desc">The toy island built from falling blocks, filling the whole 9:16 frame.</div></div>
-    <div class="wardrobe-card reveal reveal-d3"><div class="wardrobe-num">13 · Faceless</div><div class="wardrobe-name">Stick Figure</div><div class="wardrobe-desc">A stick-figure drawing on beige paper for every line, each with a slow camera move. Images from Kie.ai or Google Flow.</div></div>
-    <div class="wardrobe-card reveal reveal-d3" style="border-style:dashed;"><div class="wardrobe-num">+</div><div class="wardrobe-name">Yours</div><div class="wardrobe-desc">Add your own style and it shows up in the B-roll list. You own the source, so Claude Code can build one with you. Every new style I add comes to you free in an update.</div></div>
+    <div class="wardrobe-card reveal reveal-d1"><div class="wardrobe-num">07 · B-roll</div><div class="wardrobe-name">Stickman Split</div><div class="wardrobe-desc">A hand-drawn stick character acts out each beat in cream-paper rooms above your head. Drawn in code, so no image cost.</div></div>
+    <div class="wardrobe-card reveal reveal-d2"><div class="wardrobe-num">08 · Faceless</div><div class="wardrobe-name">TSX Animation</div><div class="wardrobe-desc">Code-drawn motion graphics in Dark editorial or Chess. Your cloned voice is the only cost.</div></div>
+    <div class="wardrobe-card reveal reveal-d2"><div class="wardrobe-num">09 · Faceless</div><div class="wardrobe-name">Vox Collage</div><div class="wardrobe-desc">Paper-collage documentary look. AI image layers, a traveling camera, and a music bed if you want one.</div></div>
+    <div class="wardrobe-card reveal reveal-d2"><div class="wardrobe-num">10 · Faceless</div><div class="wardrobe-name">Papercraft</div><div class="wardrobe-desc">The Papercraft look filling the whole 9:16 frame. Builds in about 5 to 10 minutes.</div></div>
+    <div class="wardrobe-card reveal reveal-d2"><div class="wardrobe-num">11 · Faceless</div><div class="wardrobe-name">Letterpress</div><div class="wardrobe-desc">The Letterpress look filling the whole frame. Same 5 to 10 minute build.</div></div>
+    <div class="wardrobe-card reveal reveal-d2"><div class="wardrobe-num">12 · Faceless</div><div class="wardrobe-name">Chalkboard</div><div class="wardrobe-desc">The chalk lesson filling the whole 9:16 frame, written on as you speak.</div></div>
+    <div class="wardrobe-card reveal reveal-d3"><div class="wardrobe-num">13 · Faceless</div><div class="wardrobe-name">Voxel Diorama</div><div class="wardrobe-desc">The toy island built from falling blocks, filling the whole 9:16 frame.</div></div>
+    <div class="wardrobe-card reveal reveal-d3"><div class="wardrobe-num">14 · Faceless</div><div class="wardrobe-name">Stickman</div><div class="wardrobe-desc">The stick character on cream paper, filling the whole 9:16 frame. Drawn in code, so your voice is the only cost.</div></div>
+    <div class="wardrobe-card reveal reveal-d3"><div class="wardrobe-num">15 · Faceless</div><div class="wardrobe-name">Stick Figure</div><div class="wardrobe-desc">A stick-figure drawing on beige paper for every line, each with a slow camera move. Images from Kie.ai or Google Flow.</div></div>
+    <div class="wardrobe-card reveal reveal-d3" style="border-style:dashed;"><div class="wardrobe-num">+</div><div class="wardrobe-name">Yours</div><div class="wardrobe-desc">A style that looks like your brand: your colours, your fonts, your own clips. Ask Claude Code in plain words and it shows up in the B-roll list. Updates never touch it, and every new style I add comes to you free.</div></div>
   </div>
 </section>
 
@@ -1711,9 +1820,10 @@ footer {
   <div class="includes-grid">
     <div class="include-card reveal reveal-d1"><span class="include-icon">📁</span><div class="include-name">Full Source Code</div><div class="include-desc">The Chrome extension, the Node backend, and every Remotion composition, as a ZIP. Not a template. The same project I run daily.</div></div>
     <div class="include-card reveal reveal-d2"><span class="include-icon">🔑</span><div class="include-name">License Key</div><div class="include-desc">Activates the extension on your install. Personal use, yours to keep.</div></div>
-    <div class="include-card reveal reveal-d3"><span class="include-icon">📘</span><div class="include-name">9-Section Setup Guide</div><div class="include-desc">Clone, one-command install, every API key explained, Airtable base, load the extension, license, first video, brand customization, troubleshooting table.</div></div>
-    <div class="include-card reveal reveal-d4"><span class="include-icon">🎨</span><div class="include-name">brand.config.js</div><div class="include-desc">Your voice, your audience, your caption colors. Edit one file and every script and video changes with it.</div></div>
+    <div class="include-card reveal reveal-d3"><span class="include-icon">📘</span><div class="include-name">Step-by-Step Video Course</div><div class="include-desc">A one-line install on Mac or Windows, then a short video for every setup phase and every feature, from your first key to your first posted video.</div></div>
+    <div class="include-card reveal reveal-d4"><span class="include-icon">🎨</span><div class="include-name">Your Brand Settings</div><div class="include-desc">Your voice, your audience, your caption colours and your closing line in one place, plus a file per brand if you run more than one.</div></div>
     <div class="include-card reveal reveal-d5"><span class="include-icon">🗂️</span><div class="include-name">Airtable Base Spec</div><div class="include-desc">Every video, script, caption set, and posted URL logged in one table you can build on.</div></div>
+    <div class="include-card reveal reveal-d5"><span class="include-icon">🔄</span><div class="include-name">Free Engine Updates</div><div class="include-desc">Every new style and feature lands in your copy for free, with a What's New lesson for each update.</div></div>
   </div>
 </section>
 
@@ -1761,6 +1871,28 @@ footer {
 
 <div class="divider"></div>
 
+<!-- CLASSROOM -->
+<section class="section problem-section" id="classroom">
+  <div class="two-col center">
+    <div>
+      <div class="kicker reveal">Inside The Classroom</div>
+      <h2 class="section-title reveal reveal-d1">Not sure you can<br>set it up? It's <em>all on video.</em></h2>
+      <p class="body-text reveal reveal-d2" style="margin-top:1.4rem;">You don't need to know code. The classroom walks you through it one short video at a time, on a Mac or a Windows PC. Start with a one-line install, connect your keys phase by phase, and make your first video. After that there is a lesson for every feature, and a What's New lesson whenever an update ships.</p>
+    </div>
+    <div class="reveal reveal-d2">
+      <!-- PENDING: classroom tour video (ce-sales-demo T3) goes in this column, above or instead of the list. -->
+        <ul class="fine-list">
+          <li><span class="fl-k">Setup course</span><span class="fl-v">Phase 0 to Phase 7 · Mac and Windows</span></li>
+          <li><span class="fl-k">Install</span><span class="fl-v teal">One line, copy and paste</span></li>
+          <li><span class="fl-k">Feature lessons</span><span class="fl-v">One for each feature</span></li>
+          <li><span class="fl-k">Each update</span><span class="fl-v green">New ZIP + a What's New lesson</span></li>
+        </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
 <!-- PRICING -->
 <section class="section pricing-section" id="pricing">
   <div class="pricing-box">
@@ -1776,12 +1908,16 @@ footer {
     <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;" class="reveal reveal-d3">
       <a href="checkout/" class="btn-primary">Get the Engine · $147 →</a>
     </div>
+    <p class="bf-note sale-only reveal reveal-d3">Early Black Friday: add Live Setup and every bonus for $197 until Monday 1 December, 11:59 PM ET. Then it's $247. <a href="#live-setup">See what's in it ↓</a></p>
     <div style="margin-top:clamp(2.5rem,4vw,3.5rem);" class="reveal reveal-d4">
       <ul class="fine-list" style="text-align:left;">
         <li><span class="fl-k">Sources</span><span class="fl-v">YouTube · IG · TikTok · Articles · Ideas</span></li>
         <li><span class="fl-k">Accounts</span><span class="fl-v teal">11 across 9 platforms</span></li>
         <li><span class="fl-k">Scheduler</span><span class="fl-v">Blotato or Zernio</span></li>
-        <li><span class="fl-k">B-roll styles</span><span class="fl-v">Basic · Split Card · Papercraft · Letterpress · Chalkboard · Voxel Diorama · more in free updates</span></li>
+        <li><span class="fl-k">B-roll styles</span><span class="fl-v">Basic · Split Card + Web · Papercraft · Letterpress · Chalkboard · Voxel Diorama · Stickman · your own</span></li>
+        <li><span class="fl-k">Faceless looks</span><span class="fl-v">8 + your own</span></li>
+        <li><span class="fl-k">Video length</span><span class="fl-v">45 to 90 sec</span></li>
+        <li><span class="fl-k">Brands</span><span class="fl-v teal">As many as you run</span></li>
         <li><span class="fl-k">Avatar modes</span><span class="fl-v teal">Auto · Manual · Record · Faceless</span></li>
         <li><span class="fl-k">DM automation</span><span class="fl-v teal">Instagram + Facebook</span></li>
         <li><span class="fl-k">Source code + license</span><span class="fl-v green">Yours</span></li>
@@ -1795,6 +1931,42 @@ footer {
 
 <div class="divider"></div>
 
+<!-- LIVE SETUP + BONUSES -->
+<section class="section" id="live-setup">
+  <div style="max-width:660px;">
+    <div class="kicker teal reveal">Set It Up Live, With Me Guiding You</div>
+    <h2 class="section-title reveal reveal-d1">Add Live Setup<br>and get <em>every bonus.</em></h2>
+    <p class="body-text reveal reveal-d2" style="margin-top:1.4rem;">Three live sessions where you set it up and I guide you, all recorded. In the first we install the Chrome extension and get it running on your computer. In the second we finish the setup, and after that you can post to every platform. In the third I show you how to add the B-roll library and FX Studio to your extension, and how to use the B-roll styles on faceless long-form videos. Add it at checkout for $197.</p>
+  </div>
+  <div class="sale-timer sale-only reveal reveal-d3" data-sale-end="2026-12-02T04:59:59Z" style="margin-left:0;">
+    <div class="sale-head"><span class="bdot"></span>Live Setup goes to <strong>$247</strong> in</div>
+    <div class="sale-clock" role="timer" aria-label="Time left at the early Black Friday price">
+      <span><b data-u="d">00</b><small>days</small></span>
+      <span><b data-u="h">00</b><small>hrs</small></span>
+      <span><b data-u="m">00</b><small>min</small></span>
+      <span><b data-u="s">00</b><small>sec</small></span>
+    </div>
+    <div class="sale-sub">Early Black Friday: $197 until Monday 1 December, 11:59 PM ET</div>
+  </div>
+  <div class="includes-grid">
+    <div class="include-card reveal reveal-d1"><span class="include-icon">🎥</span><div class="include-name">3 Live Setup Sessions</div><div class="include-desc">You set it up on your own computer while I guide you, live. Every session is recorded.</div><span class="include-value">$297 value</span></div>
+    <div class="include-card reveal reveal-d1"><span class="include-icon">🎞️</span><div class="include-name">120+ Style B-roll Motion Library</div><div class="include-desc">2D and 3D animation and motion graphics for short videos, long videos and carousels, added to your extension so you pick a style from a list.</div><span class="include-value">$49 value</span></div>
+    <div class="include-card reveal reveal-d2"><span class="include-icon">🎨</span><div class="include-name">Style Builder</div><div class="include-desc">Pick a ready-made editing look and caption style, or hand Claude a reel you like and it builds a style that is only yours.</div><span class="include-value">$67 value</span></div>
+    <div class="include-card reveal reveal-d2"><span class="include-icon">✨</span><div class="include-name">FX Studio · 160+ Effects</div><div class="include-desc">Visual effects you pick from a list, built into your video for you.</div><span class="include-value">$67 value</span></div>
+    <div class="include-card reveal reveal-d3"><span class="include-icon">🧪</span><div class="include-name">Trial Reel Maker</div><div class="include-desc">One video in, several test versions out, each with its own hook and look, posted to Instagram as trial reels. It also arms the comment-to-DM automation on Facebook and Instagram. Tick one box in Content Engine and the finished reel goes straight over.</div><span class="include-value">$127 value</span></div>
+    <div class="include-card reveal reveal-d3"><span class="include-icon">🗂️</span><div class="include-name">Carousel Maker</div><div class="include-desc">Turn the same video into a carousel, or start one from any topic. You approve the slide copy, then it posts to LinkedIn, TikTok, Pinterest, Facebook and Instagram, and arms the comment-to-DM automation on Facebook and Instagram.</div><span class="include-value">$97 value</span></div>
+    <div class="include-card reveal reveal-d4"><span class="include-icon">🎬</span><div class="include-name">Long-Form Studio</div><div class="include-desc">Full YouTube videos from a raw 16:9 recording, a faceless script in your cloned voice, or a script read by your HeyGen avatar. You check the plan before it renders.</div><span class="include-value">$197 value</span></div>
+    <div class="include-card reveal reveal-d4"><span class="include-icon">📚</span><div class="include-name">Two Bonus Courses</div><div class="include-desc">AISHA Engine Foundations ($97 value) and The AI Audit Method ($127 value).</div><span class="include-value">$224 value</span></div>
+    <div class="include-card reveal reveal-d5"><span class="include-icon">💸</span><div class="include-name">Earn 40% As An Affiliate</div><div class="include-desc">Your own link. You earn 40% of every Content Engine sale you refer, paid to your PayPal each month.</div></div>
+  </div>
+  <p class="live-total reveal">Everything above: <b>$1,125 value</b>, yours for $197 when you add Live Setup at checkout. These come only with Live Setup, along with free updates for life to the library, FX Studio, the tools and the apps.</p>
+  <div style="display:flex; margin-top:clamp(1.6rem,2.6vw,2.2rem);" class="reveal">
+    <a href="checkout/?live=1" class="btn-primary">Get the Engine + Live Setup →</a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
 <!-- FAQ -->
 <section class="section">
   <div style="text-align:center;">
@@ -1802,18 +1974,26 @@ footer {
     <h2 class="section-title reveal reveal-d1">Straight <em>answers.</em></h2>
   </div>
   <div class="faq reveal reveal-d2">
-    <details><summary>Do I have to be on camera?</summary><div class="faq-a">No. Faceless mode builds the whole video from your approved script with no face and no camera. Automatic mode puts a HeyGen avatar of you on screen, lip-synced to your cloned voice. Manual mode renders that same avatar in HeyGen Studio on plan credits and you upload the MP4 back into the run. And if you would rather be on camera, Record it myself takes a video you filmed on your phone and cleans it up for you.</div></details>
+    <details><summary>Do I have to be on camera?</summary><div class="faq-a">No. Faceless mode builds the whole video from your approved script with no face and no camera. Automatic mode puts a HeyGen avatar of you on screen, lip-synced to your cloned voice. Manual mode renders that same avatar in HeyGen Studio on plan credits and you upload the MP4 back into the run. And if you would rather be on camera, Record it myself takes a video you filmed on your phone and cleans it up for you. The Faceless and My own recording tabs at the top of the page show both.</div></details>
     <details><summary>Will it run on my Mac or Windows laptop?</summary><div class="faq-a">Yes, on both. Each one has its own one-command setup, and you get the same course and the same free updates. <strong>Mac:</strong> macOS 15 Sequoia or newer, on Apple Silicon or Intel. <strong>Windows:</strong> Windows 11, or Windows 10 version 22H2, 64-bit on an Intel or AMD processor. Windows on ARM (some Surface and Snapdragon laptops) is not supported yet. <strong>Either one:</strong> 8 GB of memory or more (16 GB renders smoother), about 10 GB of free space, an administrator account, and an internet connection. The setup script installs everything else for you, including Google Chrome, the Python and Playwright that Split Card + Web, Papercraft and Letterpress use, the Claude Code CLI for the TSX and Vox faceless tracks, and whisper.cpp for Record it myself. Nothing you record leaves your machine. Not sure about your machine? Email <a href="mailto:ness@digicuratoragency.com" style="color:inherit;text-decoration:underline;">ness@digicuratoragency.com</a> before you buy and I'll check it with you.</div></details>
     <details><summary>Do I need to code?</summary><div class="faq-a">Not to run it. You fill in API keys, edit one brand config file, and load the extension. Changing how it works is where Claude Code comes in, and because you own the source, you can.</div></details>
     <details><summary>What does a video actually cost me?</summary><div class="faq-a">Your own API usage. Claude writes the script on your Claude Code subscription, or through OpenRouter for cents, and that is the one cost every mode shares. ElevenLabs is cents on top whenever you use the cloned voice. HeyGen automatic mode runs on your own HeyGen plan credits, and Avatar V uses about twice the credits of Avatar IV. Record it myself calls neither of them, so there is no voice or avatar spend on that run at all. Faceless mode on the TSX track adds nothing beyond the voice. Blotato or Zernio and Airtable are your own plans. I charge nothing per video.</div></details>
     <details><summary>Will it post the same video twice if something fails?</summary><div class="faq-a">No. Every successful post is written to a ledger the moment it lands. Resuming a failed run reports "already posted" for those targets and only fills the gaps.</div></details>
     <details><summary>What is your refund policy?</summary><div class="faq-a">All Content Engine purchases are final and non-refundable. You get the software, the source code, and the downloadable files the moment you buy, and they can't be taken back. If you aren't sure Content Engine is right for you, email <a href="mailto:ness@digicuratoragency.com" style="color:inherit;text-decoration:underline;">ness@digicuratoragency.com</a> before you purchase and I'll answer your questions so you can buy with confidence.</div></details>
-    <details><summary>What is Faceless mode?</summary><div class="faq-a">Pick Faceless instead of an avatar and the Engine skips the voice-to-head steps and builds the full video from your approved script. Seven tracks: TSX Animation (code-drawn in Dark editorial or Chess, your voice is the only cost), Vox Collage (paper-collage documentary look), Papercraft, Letterpress, Chalkboard and Voxel Diorama (those four looks filling the whole frame), and Stick Figure (a drawing for every line). TSX and Vox are built by a Claude agent, so they need the Claude Code CLI installed. Vox and Stick Figure draw their images on Kie.ai, with a spend cap per build, or on Google Flow.</div></details>
-    <details><summary>What is Record it myself?</summary><div class="faq-a">The fourth avatar option. After you approve the script the run pauses and shows you the clean version to read. Film yourself portrait on your phone or your webcam, upload the MP4, MOV, or WEBM, and the Engine transcribes it on your own machine, cuts the filler words, and shortens any pause over 600ms to 200ms. One ffmpeg pass cuts picture and sound together and re-encodes to h264 at a constant frame rate, so iPhone files work. The cleaned take becomes your avatar and its audio becomes your voiceover, so captions, B-roll, Airtable, the review, DM automation, and posting all run the same, with every B-roll style. On-screen captions follow what you actually said. It calls no ElevenLabs and no HeyGen. It does need whisper.cpp, a free local transcriber the setup script installs, and the popup tells you if it is missing before you start a run.</div></details>
-    <details><summary>Blotato or Zernio?</summary><div class="faq-a">Either. Add the key for the one you use and pick it per run in the popup. Both post to your accounts and both create the comment-to-DM automation. Zernio comes with a free tier for a couple of accounts if you want to start without a paid scheduler.</div></details>
+    <details><summary>What is Faceless mode?</summary><div class="faq-a">Pick Faceless instead of an avatar and the Engine skips the voice-to-head steps and builds the full video from your approved script. Eight looks: TSX Animation (code-drawn in Dark editorial or Chess, your voice is the only cost), Vox Collage (paper-collage documentary look), Papercraft, Letterpress, Chalkboard, Voxel Diorama and Stickman (those five looks filling the whole frame), and Stick Figure (a drawing for every line). Any style you make yourself shows up there too. TSX and Vox are built by a Claude agent, so they need the Claude Code CLI installed. Vox and Stick Figure draw their images on Kie.ai, with a spend cap per build, or on Google Flow.</div></details>
+    <details><summary>What is Record it myself?</summary><div class="faq-a">The fourth avatar option. After you approve the script the run pauses and shows you the clean version to read. Film yourself portrait on your phone or your webcam, upload the MP4, MOV, or WEBM, and the Engine transcribes it on your own machine, cuts the filler words, and shortens any pause over 600ms to 200ms. One ffmpeg pass cuts picture and sound together and re-encodes to h264 at a constant frame rate, so iPhone files work. The cleaned take becomes your avatar and its audio becomes your voiceover, so captions, B-roll, Airtable, the review, DM automation, and posting all run the same, with every B-roll style. On-screen captions follow what you actually said. It calls no ElevenLabs and no HeyGen. It does need whisper.cpp, a free local transcriber the setup script installs, and the panel tells you if it is missing before you start a run.</div></details>
+    <details><summary>Blotato or Zernio?</summary><div class="faq-a">Either. Add the key for the one you use and pick it per run in the panel. Both post to your accounts and both create the comment-to-DM automation. Zernio comes with a free tier for a couple of accounts if you want to start without a paid scheduler.</div></details>
+    <details><summary>Can I run more than one brand?</summary><div class="faq-a">Yes. Ask Claude Code to add a brand in plain words, or add one file per brand, and a Brand menu appears in the panel. Each run uses only that brand's voice, captions, closing line, avatar and accounts, so nothing carries over to the next one. All brands share your one set of logins for HeyGen, ElevenLabs and your posting tool.</div></details>
+    <details><summary>Can I make trial reels and carousels from my videos?</summary><div class="faq-a">Yes, with the Trial Reel Maker and Carousel Maker that come with Live Setup. Tick "Use as trial reel base" on the review screen and the finished reel goes over, so the same script also becomes trial reel versions and a carousel. Both makers post for you and arm the comment-to-DM automation on Facebook and Instagram, the same as Content Engine.</div></details>
+    <details><summary>What comes with Live Setup?</summary><div class="faq-a">Three live setup sessions with me, all recorded, plus every bonus: the 120+ style B-roll Motion Library, Style Builder, FX Studio with 160+ effects, Trial Reel Maker and Carousel Maker (both with comment-to-DM automation), Long-Form Studio, two courses (AISHA Engine Foundations and The AI Audit Method), and 40% on every sale you refer. Add it at checkout for $197.<span class="sale-only"> That's the early Black Friday price until Monday 1 December, 11:59 PM ET. After that it's $247.</span> The Engine on its own is $147.</div></details>
     <details><summary>Which platforms?</summary><div class="faq-a">TikTok, Instagram (two accounts), YouTube Shorts, Facebook, LinkedIn, X, Threads (two accounts), Pinterest, and Bluesky. A Substack Note caption is written and saved to Airtable for you to post by hand.</div></details>
   </div>
 </section>
+
+<dialog class="rv-lightbox" id="rvLightbox" aria-label="Reel">
+  <button class="rv-lb-close" type="button" aria-label="Close video">✕</button>
+  <video controls playsinline preload="none"></video>
+</dialog>
 
 <footer>
   <div class="footer-brand">
@@ -1921,6 +2101,48 @@ const proofVideo = document.querySelector('.proof-video video');
 if (proofVideo) proofVideo.addEventListener('play', () => {
   document.querySelectorAll('.sample-video.is-full').forEach(o => o.pause());
 });
+
+/* Reel cards: play inside the page in a pop-up player, never off to Facebook */
+const rvBox = document.getElementById('rvLightbox');
+const rvVideo = rvBox.querySelector('video');
+document.querySelectorAll('.rv-card[data-full]').forEach(card => {
+  card.addEventListener('click', () => {
+    document.querySelectorAll('video').forEach(v => { if (v !== rvVideo) v.pause(); });
+    rvVideo.src = card.dataset.full;
+    rvBox.showModal();
+    rvVideo.play().catch(() => {});
+  });
+});
+rvBox.addEventListener('close', () => { rvVideo.pause(); rvVideo.removeAttribute('src'); rvVideo.load(); });
+rvBox.addEventListener('click', (e) => { if (e.target === rvBox) rvBox.close(); });
+rvBox.querySelector('.rv-lb-close').addEventListener('click', () => rvBox.close());
+
+/* Demo tabs: arrow keys move between tabs, a switch pauses the other videos, last pick remembered */
+const demoTabs = [...document.querySelectorAll('.demo-tab:not([data-pending])')];
+if (demoTabs.length < 2) { const bar = document.querySelector('.demo-tabs'); if (bar) bar.hidden = true; }
+function showDemoTab(tab, focus) {
+  demoTabs.forEach(t => {
+    const on = t === tab;
+    t.setAttribute('aria-selected', on ? 'true' : 'false');
+    t.tabIndex = on ? 0 : -1;
+    const panel = document.getElementById(t.getAttribute('aria-controls'));
+    panel.hidden = !on;
+    if (!on) panel.querySelectorAll('video').forEach(v => v.pause());
+  });
+  if (focus) tab.focus();
+  try { localStorage.setItem('ceDemoTab', tab.dataset.tab); } catch (e) {}
+}
+demoTabs.forEach((t, i) => {
+  t.addEventListener('click', () => showDemoTab(t));
+  t.addEventListener('keydown', (e) => {
+    const k = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+    if (k) { e.preventDefault(); showDemoTab(demoTabs[(i + k + demoTabs.length) % demoTabs.length], true); }
+  });
+});
+try {
+  const saved = demoTabs.find(t => t.dataset.tab === localStorage.getItem('ceDemoTab'));
+  if (saved) showDemoTab(saved);
+} catch (e) {}
 
 /* Duplicate platform logos for seamless infinite scroll */
 const pList = document.getElementById('platformsList');
