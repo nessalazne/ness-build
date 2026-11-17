@@ -1392,30 +1392,35 @@ footer {
   <div style="max-width:640px;">
     <div class="kicker reveal">Watch It Work</div>
     <h2 class="section-title reveal reveal-d1">Pick how you want<br>to <em>show up.</em></h2>
-    <!-- When the Faceless + My own recording videos are in: drop data-pending on their tabs/panels and swap this copy for "Three ways to make the video. Pick the one that sounds like you. Each one is a real run, from a link to a posted short, and ends with what the latest updates added." -->
-    <p class="body-text reveal reveal-d2" style="margin-top:1.4rem;">Three ways to make the video: with your AI avatar, faceless, or a take you film yourself. Here is a real run with my avatar, from a link to a posted short.</p>
+    <p class="body-text reveal reveal-d2" style="margin-top:1.4rem;">Three ways to make the video. Pick the one that sounds like you. Each one is a real run, from a link to a posted short, and ends with what the latest updates added.</p>
   </div>
   <div class="demo-tabs reveal reveal-d2" role="tablist" aria-label="Ways to make the video">
     <button class="demo-tab" type="button" role="tab" id="tab-avatar" aria-controls="panel-avatar" aria-selected="true" data-tab="avatar">With my avatar</button>
-    <button class="demo-tab" type="button" role="tab" id="tab-faceless" aria-controls="panel-faceless" aria-selected="false" tabindex="-1" data-tab="faceless" data-pending>Faceless</button>
-    <button class="demo-tab" type="button" role="tab" id="tab-record" aria-controls="panel-record" aria-selected="false" tabindex="-1" data-tab="record" data-pending>My own recording</button>
+    <button class="demo-tab" type="button" role="tab" id="tab-faceless" aria-controls="panel-faceless" aria-selected="false" tabindex="-1" data-tab="faceless">Faceless</button>
+    <button class="demo-tab" type="button" role="tab" id="tab-record" aria-controls="panel-record" aria-selected="false" tabindex="-1" data-tab="record">My own recording</button>
   </div>
   <div class="demo-panel" role="tabpanel" id="panel-avatar" aria-labelledby="tab-avatar">
     <div class="proof-video demo-video">
-      <video controls playsinline preload="none" poster="media/demo.jpg" aria-label="Demo: making a video with my AI avatar, from link to posted short">
-        <source src="media/demo.mp4" type="video/mp4">
+      <video controls playsinline preload="none" poster="media/demo.jpg" aria-label="Demo: making a video with my AI avatar, from link to posted short, plus what is new">
+        <source src="media/demo-avatar.mp4" type="video/mp4">
       </video>
     </div>
     <p class="demo-panel-note">A HeyGen avatar of you, lip-synced to your cloned voice. You approve the script before anything that costs money runs.</p>
   </div>
-  <div class="demo-panel" role="tabpanel" id="panel-faceless" aria-labelledby="tab-faceless" hidden data-pending>
-    <!-- PENDING: media/demo-faceless.mp4 + .jpg (ce-sales-demo Tab 2). Swap .demo-soon for a .proof-video block like the avatar panel. -->
-    <div class="demo-soon" data-pending="demo-faceless"><div><b>Faceless walkthrough</b>Video coming soon</div></div>
+  <div class="demo-panel" role="tabpanel" id="panel-faceless" aria-labelledby="tab-faceless" hidden>
+    <div class="proof-video demo-video">
+      <video controls playsinline preload="none" poster="media/demo-faceless.jpg" aria-label="Demo: making a faceless video, no camera, plus what is new">
+        <source src="media/demo-faceless.mp4" type="video/mp4">
+      </video>
+    </div>
     <p class="demo-panel-note">No face and no camera. Pick one of eight looks and it builds the whole video from your script, in your cloned voice.</p>
   </div>
-  <div class="demo-panel" role="tabpanel" id="panel-record" aria-labelledby="tab-record" hidden data-pending>
-    <!-- PENDING: media/demo-record.mp4 + .jpg (ce-sales-demo Tab 3). -->
-    <div class="demo-soon" data-pending="demo-record"><div><b>My own recording walkthrough</b>Video coming soon</div></div>
+  <div class="demo-panel" role="tabpanel" id="panel-record" aria-labelledby="tab-record" hidden>
+    <div class="proof-video demo-video">
+      <video controls playsinline preload="none" poster="media/demo-record.jpg" aria-label="Demo: making a video from a take you filmed yourself, plus what is new">
+        <source src="media/demo-record.mp4" type="video/mp4">
+      </video>
+    </div>
     <p class="demo-panel-note">Film it on your phone. It cuts the ums and the long pauses, adds the B-roll and the captions, and spends nothing on an AI voice or avatar.</p>
   </div>
 </section>
