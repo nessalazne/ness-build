@@ -2152,6 +2152,30 @@ try {
   const saved = demoTabs.find(t => t.dataset.tab === localStorage.getItem('ceDemoTab'));
   if (saved) showDemoTab(saved);
 } catch (e) {}
+/* Anchor links (#demo, #live-setup...) stop just below the fixed sale bar and nav */
+function setAnchorOffset() {
+  const nav = document.querySelector('.top-nav');
+  if (nav) document.documentElement.style.scrollPaddingTop = Math.ceil(nav.getBoundingClientRect().bottom + 12) + 'px';
+}
+setAnchorOffset();
+window.addEventListener('resize', setAnchorOffset);
+/* A link like ?demo=faceless#demo (from the emails) opens that tab, ahead of the remembered one,
+   and lands on the tab buttons so the chosen video is on screen */
+let linkedTab = null;
+try {
+  const want = new URLSearchParams(location.search).get('demo');
+  linkedTab = want && demoTabs.find(t => t.dataset.tab === want.toLowerCase());
+  if (linkedTab) showDemoTab(linkedTab);
+} catch (e) {}
+const landOn = linkedTab ? document.querySelector('.demo-tabs') : (location.hash && document.getElementById(location.hash.slice(1)));
+if (landOn) {
+  const land = () => setTimeout(() => {
+    let y = 0;
+    for (let el = landOn; el; el = el.offsetParent) y += el.offsetTop; /* layout position, ignores the reveal slide-in */
+    window.scrollTo({ top: y - (parseFloat(document.documentElement.style.scrollPaddingTop) || 0), behavior: 'instant' });
+  }, 60);
+  if (document.readyState === 'complete') land(); else window.addEventListener('load', land, { once: true });
+}
 
 /* Duplicate platform logos for seamless infinite scroll */
 const pList = document.getElementById('platformsList');
