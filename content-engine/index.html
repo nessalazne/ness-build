@@ -281,7 +281,9 @@ p, dd, li { text-wrap: pretty; }
 .lfs h3 { font-family: var(--display); font-weight: 400; font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.15; color: var(--ink); }
 .lfs p { color: var(--ink-2); }
 .lfs p b { color: var(--ink); }
-.lfs .win-body { aspect-ratio: 720 / 574; }
+.lfs .win-body { aspect-ratio: 16 / 9; }
+.lfs-video wistia-player { display: block; width: 100%; height: 100%; }
+.lfs-video wistia-player:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/cu4c2qi4ig/swatch'); filter: blur(5px); padding-top: 56.25%; }
 @media (min-width: 860px) { .lfs { grid-template-columns: 1.1fr 1fr; gap: 36px; } }
 .statement .lead { margin-inline: auto; }
 
@@ -541,6 +543,8 @@ body:not(.has-sale) .sale-only { display: none !important; }
 .founder-tag, .stats dd, .spec dt, .sb-short, .sb-long, .sb-go, .lfs-tag, .bonus-head, .bonus-list em, .ticker li,
 .footer-links a, .btn-compact, .flow > li::before { font-size: 0.9375rem; }
 .sample-tag, .sc-tag { font-size: 0.9375rem; line-height: 1.25; }
+/* The Chalkboard tile's tag: a small one-line pill like the older page, so it doesn't cover the board (15px kept for easy reading). */
+.sample-tag { width: max-content; padding: 4px 11px; border: 0; border-radius: 999px; text-transform: none; letter-spacing: 0; font-weight: 700; box-shadow: 0 2px 8px rgba(0,0,0,.25); }
 .stats dd span { font-size: 1rem; }
 .sb-box i { font-size: 0.9375rem; }
 @media (max-width: 559px) {
@@ -1028,10 +1032,10 @@ body:not(.has-sale) .sale-only { display: none !important; }
         <p>An app that runs on your computer, for full YouTube videos of 3 to 20 minutes. Type an idea, or paste a link to a blog post, a YouTube video, an Instagram reel or a TikTok. It writes an outline and then the script, and you approve both. Then it makes the finished video with B-roll: faceless in your cloned voice, with your AI avatar, or from a recording of you with the dead air cut out. You check the B-roll plan before it renders.</p>
         <p><b>$197 value.</b> It comes with Live Setup until Monday 1 December, 11:59 PM ET. After that it's sold on its own. Join before then and you keep it, with free updates for life.</p>
       </div>
-      <!-- DEMO SLOT: replace this animation with the real Long-Form Studio demo when it is ready. -->
-      <div class="win sh-yellow">
+      <!-- Long-Form Studio story video (Wistia cu4c2qi4ig, 1:17, made in HyperFrame_LF_Videos/video-projects/lfs-sales-story). Its cover is set inside Wistia. Sales page only: the checkout keeps tool-longform-v2.mp4. -->
+      <div class="win sh-yellow lfs-video">
         <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i></div>
-        <div class="win-body"><video class="once-video" muted playsinline preload="none" poster="/content-engine/media/tool-longform.jpg" data-src="/content-engine/media/tool-longform.mp4" aria-label="Animation of Long-Form Studio turning a recording into a finished video"></video></div>
+        <div class="win-body"><wistia-player media-id="cu4c2qi4ig" aspect="1.7777777777777777"></wistia-player></div>
       </div>
     </div>
     <div class="cta"><a class="btn" href="checkout/?live=1">Add Live Setup at checkout</a></div>
@@ -1362,21 +1366,25 @@ body:not(.has-sale) .sale-only { display: none !important; }
   vids.forEach(function (v) { io.observe(v); });
 })();
 
-/* Classroom tour: load the Wistia scripts once the section is near the screen, so the rest of the page loads without them. */
+/* Wistia videos (classroom tour in #inside, Long-Form Studio story in #longform): load the scripts once a video is near the screen, so the rest of the page loads without them. player.js loads once. */
 (function () {
-  var host = document.getElementById('inside');
-  if (!host) return;
-  var done = false;
-  function load() {
-    if (done) return; done = true;
-    var a = document.createElement('script'); a.src = 'https://fast.wistia.com/player.js'; a.async = true; document.head.appendChild(a);
-    var b = document.createElement('script'); b.src = 'https://fast.wistia.com/embed/ez3r71l4fq.js'; b.async = true; b.type = 'module'; document.head.appendChild(b);
-  }
-  if (!('IntersectionObserver' in window)) { load(); return; }
-  var io = new IntersectionObserver(function (entries) {
-    if (entries.some(function (e) { return e.isIntersecting; })) { io.disconnect(); load(); }
-  }, { rootMargin: '600px 0px' });
-  io.observe(host);
+  var hosts = [['inside', 'ez3r71l4fq'], ['longform', 'cu4c2qi4ig']];
+  var player = false;
+  hosts.forEach(function (h) {
+    var host = document.getElementById(h[0]);
+    if (!host) return;
+    var done = false;
+    function load() {
+      if (done) return; done = true;
+      if (!player) { player = true; var a = document.createElement('script'); a.src = 'https://fast.wistia.com/player.js'; a.async = true; document.head.appendChild(a); }
+      var b = document.createElement('script'); b.src = 'https://fast.wistia.com/embed/' + h[1] + '.js'; b.async = true; b.type = 'module'; document.head.appendChild(b);
+    }
+    if (!('IntersectionObserver' in window)) { load(); return; }
+    var io = new IntersectionObserver(function (entries) {
+      if (entries.some(function (e) { return e.isIntersecting; })) { io.disconnect(); load(); }
+    }, { rootMargin: '600px 0px' });
+    io.observe(host);
+  });
 })();
 
 /* Links from emails (#live-setup, ?demo=faceless#demo): land the section just under the top bar, even after the bar,
