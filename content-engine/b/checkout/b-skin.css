@@ -1,0 +1,197 @@
+/* ================================================================
+   Version B skin for the Content Engine checkout.
+   Loaded after the live checkout's own stylesheet. It changes only the look:
+   colours, fonts, borders, corners and shadows, to match /content-engine/b/.
+   It never touches display rules, so every state the payment script sets
+   (engine-only, is-upgrade, live-over, bf-on, has-live, is-unlocked) works as on live.
+   ================================================================ */
+
+/* ---------- Tokens: Night (the checkout's default theme) ---------- */
+:root, [data-theme="dark"] {
+  --bg: #161616; --bg-elev: #1F1E1D; --surface: #262423;
+  --border: #383532; --border-hover: #5A544E;
+  --text: #F5EFE7; --text-paper: #F5EFE7; --text-dim: #C2B8AD; --muted: #A79C90;
+  --accent: #D87657; --accent-hl: rgba(216,118,87,0.14); --accent-hl-strong: rgba(216,118,87,0.4); --accent-glow: transparent;
+  --teal: #FFDE59; --teal-glow: transparent;
+  --green: #8FD08F; --pink: #DEB4B4;
+  --font-display: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --b-ink: #F5EFE7; --b-on-accent: #161616; --b-yellow: #FFDE59; --b-pink: #DEB4B4; --b-off: 6px;
+  --b-hl-ink: #1C1714;
+}
+/* ---------- Tokens: Day ---------- */
+[data-theme="light"] {
+  --bg: #FAF6EF; --bg-elev: #F2EBDF; --surface: #FFFDF9;
+  --border: #DCD1C1; --border-hover: #8C7E6E;
+  --text: #1C1714; --text-paper: #1C1714; --text-dim: #55493F; --muted: #6B5E50;
+  --accent: #B34E2C; --accent-hl: rgba(179,78,44,0.09); --accent-hl-strong: rgba(179,78,44,0.3); --accent-glow: transparent;
+  --teal: #7A5200; --teal-glow: transparent;
+  --green: #1A5D1A; --pink: #EFCFCB;
+  --b-ink: #1C1714; --b-on-accent: #FFFFFF; --b-yellow: #FFDE59; --b-pink: #EFCFCB;
+}
+@media (min-width: 720px) { :root { --b-off: 9px; } }
+
+/* ---------- Base: flat brand background, no glow and no dot grid ---------- */
+body { background: var(--bg); color: var(--text); font-size: 1.0625rem; }
+body::before, body::after, [data-theme="light"] body::before, [data-theme="light"] body::after { display: none; }
+::selection { background: var(--b-yellow); color: var(--b-hl-ink); }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--b-ink); outline-offset: 3px; }
+
+/* Small labels: the brand sans in capitals, never under 14px (the live sheet uses a 10px mono). */
+.co-step, .co-tag, .co-lb-kicker, .co-lb-locked, .co-lb-add, .co-lb-unlocked, .co-up-clock, .co-up-note,
+.co-up-value, .co-bf, .co-secure, .co-field span, .co-slot-icons span, .co-thumbs-kicker, .co-missing-kicker,
+.co-missing-total, .co-missing-done, .co-missing-remove, .co-code-toggle, .co-code-apply, .co-or, .co-assure,
+.co-item-num, .co-up-list li > span, .kicker, .pricing-badge, .sample-play, .sample-kind, .nav-brand, .footer-brand {
+  font-family: var(--font-body); font-size: 0.875rem; font-weight: 700; letter-spacing: 0.08em;
+}
+.co-tag { font-size: 0.75rem; letter-spacing: 0.06em; }
+.co-fine, .co-disclaimer, .co-thumb-fig figcaption, .co-missing li, .co-code-msg { font-size: 0.9375rem; }
+.co-up-note { text-transform: none; letter-spacing: 0; font-weight: 500; line-height: 1.5; }
+footer [style*="font-size:10px"] { font-family: var(--font-body) !important; font-size: 0.9375rem !important; font-weight: 600; letter-spacing: 0.04em !important; color: var(--text-dim) !important; }
+
+/* ---------- Nav: the B bar, flat with an ink rule ---------- */
+.top-nav { background: var(--bg); backdrop-filter: none; -webkit-backdrop-filter: none; border-bottom: 1.5px solid var(--b-ink); padding-block: 12px; }
+[data-theme="light"] .top-nav { background: var(--bg); border-bottom-color: var(--b-ink); }
+.nav-brand { color: var(--text); text-transform: none; letter-spacing: 0; font-size: 1.0625rem; }
+.nav-brand img { border-radius: 6px !important; }
+.co-secure { color: var(--text-dim); }
+.theme-toggle { border: 1.5px solid var(--b-ink); border-radius: 0; background: var(--surface); color: var(--text); box-shadow: 4px 4px 0 var(--b-pink); font-family: var(--font-body); font-size: 0.875rem; font-weight: 700; }
+.theme-toggle:hover { border-color: var(--b-ink); color: var(--text); box-shadow: 4px 4px 0 var(--b-yellow); }
+[data-theme="light"] .theme-toggle { box-shadow: 4px 4px 0 var(--b-pink); }
+
+/* ---------- Type ---------- */
+.co-title, .co-up-title, .co-lb-title, .section-title, .co-updates-title, .co-confirm h3 { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.01em; color: var(--text-paper); text-wrap: balance; }
+.co-title { font-size: clamp(2.5rem, 4.4vw + 1.2rem, 4rem); line-height: 1.06; }
+/* Italic accents become the B marker highlight. */
+.co-title em, .co-up-title em, .co-lb-title em, .section-title em {
+  font-style: normal; color: var(--b-hl-ink);
+  background: linear-gradient(transparent 17%, var(--b-yellow) 17%, var(--b-yellow) 93%, transparent 93%);
+  padding: 0 0.12em; box-decoration-break: clone; -webkit-box-decoration-break: clone;
+}
+.co-lb-title em, .co-up-title em { background: linear-gradient(transparent 17%, var(--b-pink) 17%, var(--b-pink) 93%, transparent 93%); }
+.co-up-value b, .co-bf b, .co-check-text b, .co-up-clock b { color: inherit; font-weight: 800; }
+.kicker { color: var(--text-dim); letter-spacing: 0.1em; }
+.kicker::before { display: none; }
+.pricing-badge { color: var(--b-hl-ink); background: var(--b-yellow); border: 1.5px solid #1C1714; border-radius: 0; padding: 6px 14px; letter-spacing: 0.1em; }
+.pricing-badge .bdot { background: #1C1714; box-shadow: none; }
+.co-step { color: var(--accent); letter-spacing: 0.1em; }
+.co-step.teal, .co-lb-kicker, .co-missing-kicker, .co-missing-total, [data-theme="light"] .co-missing-kicker { color: var(--text-paper); }
+
+/* ---------- Boxes: ink border, square corners, solid offset shadow ---------- */
+.co-card, .co-upgrade, .co-tools, .co-bonus, .co-live-bonuses, .co-missing, .co-confirm, .faq {
+  border-radius: 0; border: 1.5px solid var(--b-ink); background: var(--surface);
+}
+[data-theme="light"] .co-card, [data-theme="light"] .co-bonus, [data-theme="light"] .co-tools { background: var(--surface); }
+.co-card { box-shadow: var(--b-off) var(--b-off) 0 var(--b-pink); }
+.co-pay { box-shadow: var(--b-off) var(--b-off) 0 var(--b-yellow), calc(var(--b-off) + 1.5px) calc(var(--b-off) + 1.5px) 0 var(--b-ink); }
+.co-upgrade, [data-theme="light"] .co-upgrade { border: 1.5px solid var(--b-ink); background: var(--surface); box-shadow: var(--b-off) var(--b-off) 0 var(--b-yellow); }
+.co-live-bonuses, [data-theme="light"] .co-live-bonuses { border: 1.5px dashed var(--b-ink); background: var(--bg-elev); }
+.co-live-bonuses.is-unlocked { border-style: solid; }
+.co-tools, .co-bonus { background: var(--bg); }
+.co-missing, [data-theme="light"] .co-missing { border: 1.5px dashed var(--b-ink); background: var(--bg-elev); }
+.co-missing.has-live { border-style: solid; }
+.co-missing li::before, [data-theme="light"] .co-missing li::before { color: var(--accent); }
+.co-confirm, [data-theme="light"] .co-confirm { background: var(--surface); box-shadow: var(--b-off) var(--b-off) 0 var(--b-pink); }
+.co-video, .co-thumb, .co-tool-anim, .co-lightbox video { border-radius: 0; border: 1.5px solid var(--b-ink); }
+.co-bonus img { border-bottom: 1.5px solid var(--b-ink); }
+.co-updates { border-radius: 0; border: 1.5px solid #1C1714; background: var(--b-pink); color: #1C1714; }
+.co-updates-title, .co-updates p { color: #1C1714; }
+.co-bf { border-radius: 0; border: 1.5px solid #1C1714; background: var(--b-yellow); color: #1C1714; letter-spacing: 0.04em; }
+.co-up-clock { border-radius: 0; border: 1.5px solid var(--b-ink); background: var(--bg); }
+.co-stripe-slot { border-radius: 0; border: 2px dashed var(--border-hover); }
+.co-slot-icons span { border-radius: 0; }
+.faq { overflow: hidden; }
+.faq details { border-bottom-color: var(--border); }
+.faq summary { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.15rem, 1vw + 0.9rem, 1.375rem); }
+.faq summary::after { content: '+'; display: grid; place-items: center; flex: none; width: 32px; height: 32px; border: 1.5px solid #1C1714; border-radius: 50%; background: var(--b-pink); color: #1C1714; font-family: var(--font-body); font-weight: 500; transition: transform .25s var(--ease); }
+.faq details[open] summary::after { content: '+'; transform: rotate(45deg); }
+.faq .faq-a { font-size: 1rem; }
+
+/* ---------- Tags ---------- */
+.co-tag { border-radius: 0; border: 1.5px solid #1C1714; background: var(--b-pink); color: #1C1714; }
+.co-tag.new { background: var(--b-yellow); color: #1C1714; }
+.co-tag.in { background: var(--b-yellow); color: #1C1714; border-color: #1C1714; }
+.co-item-body p.co-engine-updates { color: var(--green); }
+
+/* ---------- Buttons: square, bordered, lift on hover ---------- */
+.btn-primary {
+  border: 1.5px solid var(--b-ink); border-radius: 0; background: var(--accent); color: var(--b-on-accent);
+  font-family: var(--font-body); font-weight: 700; letter-spacing: 0.07em; box-shadow: none; min-height: 56px;
+  transition: background-color .2s var(--ease), transform .2s var(--ease), box-shadow .2s var(--ease);
+}
+.btn-primary:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--b-ink); }
+.btn-primary:active { transform: none; box-shadow: none; }
+.co-lb-add { border-radius: 0; border: 1.5px solid #1C1714; background: var(--b-yellow); color: #1C1714; min-height: 44px; padding: 8px 16px; }
+.co-lb-add:hover { box-shadow: 3px 3px 0 var(--b-ink); }
+.co-missing-remove, .co-code-apply { border-radius: 0; border: 1.5px solid var(--b-ink); color: var(--text); min-height: 44px; }
+.co-paypal-btn { border-radius: 0; border: 1.5px solid #1C1714; min-height: 52px; }
+.co-thumb span { border-radius: 50%; }
+.sample-play span { border-radius: 0; border: 1.5px solid #F5EFE7; background: rgba(22,22,22,.86); }
+
+/* ---------- Form ---------- */
+.co-field span { color: var(--text-dim); letter-spacing: 0.06em; }
+.co-field input, .co-code-box input { border-radius: 0; border: 1.5px solid var(--border-hover); background: var(--bg); min-height: 50px; }
+.co-field input:focus, .co-code-box input:focus { border-color: var(--b-ink); box-shadow: 3px 3px 0 var(--b-yellow); }
+.co-check { border-radius: 0; border: 1.5px solid var(--b-ink); background: var(--bg); }
+.co-box { border-radius: 0; border-color: var(--b-ink); }
+.co-check input:checked + .co-box { background: var(--b-yellow); border-color: #1C1714; }
+.co-check input:checked + .co-box::after { border-color: #1C1714; }
+.co-check-text { color: var(--text-paper); }
+.co-sum-total span:last-child { color: var(--text-paper); }
+.co-error, .co-notice { border-radius: 0; }
+.co-assure li::before { color: var(--green); }
+.co-up-list li > span { color: var(--accent); }
+.co-wl-done { color: var(--green); }
+
+/* ---------- Footer ---------- */
+footer { border-top: 1.5px solid var(--b-ink); }
+[data-theme="light"] footer { background: var(--bg-elev); border-top-color: var(--b-ink); }
+.footer-brand { color: var(--text-dim); text-transform: none; letter-spacing: 0; font-size: 1rem; }
+.footer-links a { color: var(--text-dim); font-family: var(--font-body); font-size: 0.875rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+
+/* ---------- No waitlist on version B (Ness, 22 Nov 2026: it confused buyers) ----------
+   Hidden here instead of deleted, because the payment script looks up the waitlist form when the page loads.
+   The two "this week's group is full ... join the list" lines that point to it are hidden too. */
+#waitlist,
+#live .co-up-note.live-closed-only,
+.co-lb-head p.live-closed-only { display: none !important; }
+
+/* ---------- Long-Form Studio: a limited extra until 1 December, styled like the Long-Form card on sales page B ---------- */
+.co-tool.co-lfs { margin: 10px 0 4px; padding: 18px 18px 20px; border: 1.5px solid var(--b-ink); background: var(--surface); box-shadow: var(--b-off) var(--b-off) 0 var(--b-yellow); }
+.co-tools .co-tool.co-lfs { border-top: 1.5px solid var(--b-ink); }
+.co-lfs-tag { display: inline-block; margin-bottom: 8px; padding: 5px 12px; background: var(--b-pink); color: #1C1714; border: 1.5px solid #1C1714; font-size: 0.875rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+.co-tool p.co-lfs-note { margin-top: 10px; color: var(--text-paper); }
+.co-lfs-note b { font-weight: 800; }
+@media (max-width: 559px) { .co-tool.co-lfs { grid-template-columns: 1fr; } .co-tool.co-lfs > .co-item-num { padding-top: 0; } }
+
+/* ---------- Easy reading for every age (22 Nov 2026): no text under 15px, paragraphs at 16px or more, nothing faded ---------- */
+.co-step, .co-lb-kicker, .co-lb-locked, .co-lb-add, .co-lb-unlocked, .co-up-clock, .co-up-value, .co-bf, .co-secure,
+.co-field span, .co-slot-icons span, .co-thumbs-kicker, .co-missing-kicker, .co-missing-total, .co-missing-done,
+.co-missing-remove, .co-code-toggle, .co-code-apply, .co-or, .co-assure, .co-item-num, .co-up-list li > span, .kicker,
+.pricing-badge, .sample-play, .sample-kind, .co-lfs-tag, .co-up-note, .footer-links a { font-size: 0.9375rem; }
+.co-tag { font-size: 0.9375rem; }
+/* The pay button is the most important text on the page: 17px, never smaller. */
+.co-submit, .co-confirm-add { font-size: 1.0625rem; min-height: 60px; padding-block: 14px; }
+.co-up-body, .co-up-list li, .co-item-body p, .co-tool p, .co-bonus-body p, .co-line-desc, .co-lb-head p,
+.co-missing li, .co-missing-note, .co-missing-more summary, .co-confirm p, .co-sum-row, .co-fine, .co-slot-text,
+.co-thumb-fig figcaption, .co-updates p, .faq .faq-a, .co-disclaimer, .co-code-msg { font-size: 1rem; line-height: 1.65; }
+.co-check-text { font-size: 1.0625rem; }
+.co-item-title { font-size: 1.125rem; }
+/* The bonus list was drawn at 72% until Live Setup is ticked. Full strength here: "Not in your order yet" already says it. */
+.co-live-bonuses:not(.is-unlocked) .co-lb-items { opacity: 1; }
+/* The logo link is the only tap target in the phone nav: give it a full 44px. */
+.nav-brand { min-height: 44px; min-width: 44px; }
+@media (max-width: 559px) {
+  body { font-size: 1.0625rem; }
+  .co-up-body, .co-item-body p, .co-tool p, .co-bonus-body p, .faq .faq-a { font-size: 1.0625rem; }
+  .co-tool, .co-item { grid-template-columns: 34px 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-primary, .co-lb-add, .faq summary::after { transition: none; }
+}
+
+/* Day: the orange used for small numbers and step labels is darkened so it reads on the beige boxes too (5.6:1). */
+[data-theme="light"] .co-item-num, [data-theme="light"] .co-up-list li > span, [data-theme="light"] .co-step:not(.teal) { color: #9C4122; }
