@@ -1,6 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google Analytics 4 (22 Nov 2026): counts visits and where they came from (email utm tags, ads). -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3YCQ531SGN"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-3YCQ531SGN');
+</script>
+<script>
+/* GA4: count the sale once. ?plan= says which offer was bought (engine $147, engine_live $344, upgrade $197). */
+(function () {
+  var q = new URLSearchParams(location.search), plan = q.get('plan');
+  var value = { engine: 147, engine_live: 344, upgrade: 197 }[plan];
+  if (!value) return;
+  var tid = q.get('payment_intent') || '';
+  var key = 'ga_purchase_' + (tid || plan);
+  try { if (localStorage.getItem(key)) return; localStorage.setItem(key, '1'); } catch (e) {}
+  var ev = { currency: 'USD', value: value, items: [{ item_id: plan, item_name: 'Content Engine ' + plan, price: value, quantity: 1 }] };
+  if (tid) ev.transaction_id = tid;
+  gtag('event', 'purchase', ev);
+})();
+</script>
 <script>
 (function() {
   const params = new URLSearchParams(window.location.search);
