@@ -195,3 +195,10 @@ footer { border-top: 1.5px solid var(--b-ink); }
 
 /* Day: the orange used for small numbers and step labels is darkened so it reads on the beige boxes too (5.6:1). */
 [data-theme="light"] .co-item-num, [data-theme="light"] .co-up-list li > span, [data-theme="light"] .co-step:not(.teal) { color: #9C4122; }
+
+/* Long-Form animation: as wide as its card, and on phones it runs edge to edge inside the card so its words stay readable. */
+.co-lfs .co-tool-anim { max-width: none; width: 100%; }
+@media (max-width: 559px) {
+  .co-tool.co-lfs { padding: 14px 12px 16px; }
+  .co-lfs .co-tool-anim { width: calc(100% + 24px); margin-inline: -12px; border-left: 0; border-right: 0; }
+}
