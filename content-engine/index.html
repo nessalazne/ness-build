@@ -307,6 +307,11 @@ p, dd, li { text-wrap: pretty; }
 }
 .how-visual { margin-top: clamp(2.5rem, 5vw, 3.5rem); max-width: 760px; margin-inline: auto; }
 .how-visual .placeholder { aspect-ratio: 4 / 3; border-width: 0; background: var(--bg-alt); }
+.yt-tour { position: relative; aspect-ratio: 16 / 9; background: #000; }
+.yt-cover { position: absolute; inset: 0; display: block; width: 100%; height: 100%; padding: 0; border: 0; background: #000; cursor: pointer; }
+.yt-cover img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.yt-cover:hover .big-play, .yt-cover:focus-visible .big-play { transform: scale(1.06); background: #161616; }
+.yt-tour iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
 /* Samples */
 .sample-group + .sample-group { margin-top: clamp(2.5rem, 5vw, 3.5rem); }
@@ -321,6 +326,19 @@ p, dd, li { text-wrap: pretty; }
 .sample-play:hover { background: #161616; }
 .sample-play svg { width: 14px; height: 14px; flex: none; }
 @media (min-width: 720px) { .tiles { grid-template-columns: repeat(4, 1fr); gap: 28px; } .sample-play { left: 12px; right: auto; bottom: 12px; } }
+/* A big round play button in the middle of every non-Wistia video, so it's clear they play. On the demo and proof videos it is a real button (hidden while playing);
+   on the sample and reel tiles it is a picture, and a tap anywhere on the tile plays the video (22 Nov 2026). */
+.big-play { position: absolute; left: 50%; top: 50%; z-index: 2; display: grid; place-items: center; width: 72px; height: 72px; margin: -36px 0 0 -36px; padding: 0; border: 1.5px solid #F5EFE7; border-radius: 50%; background: rgba(22,22,22,.86); color: #F5EFE7; cursor: pointer; transition: transform .2s var(--ease), background-color .2s var(--ease), opacity .2s var(--ease); }
+.big-play svg { width: 28px; height: 28px; margin-left: 4px; }
+.big-play:hover, .win-body:hover > .big-play, .frame.tap-play:hover > .big-play { transform: scale(1.06); background: #161616; }
+.big-play[hidden] { display: none; }
+span.big-play { pointer-events: none; }
+.frame.tap-play { cursor: pointer; }
+.frame .big-play { width: 60px; height: 60px; margin: -30px 0 0 -30px; }
+.frame .big-play svg { width: 24px; height: 24px; }
+.reel .frame .big-play { width: 44px; height: 44px; margin: -22px 0 0 -22px; }
+.reel .frame .big-play svg { width: 18px; height: 18px; margin-left: 3px; }
+@media (min-width: 760px) { .reel .frame .big-play { width: 60px; height: 60px; margin: -30px 0 0 -30px; } .reel .frame .big-play svg { width: 24px; height: 24px; margin-left: 4px; } }
 
 /* Split layouts */
 .split { display: grid; gap: clamp(2.5rem, 5vw, 4.5rem); align-items: center; }
@@ -716,8 +734,14 @@ body:not(.has-sale) .sale-only { display: none !important; }
     <p class="small after-note mid">Close the panel and it keeps working in the background. If a step fails, Resume carries on from there without posting anything twice, and it picks up a HeyGen render that already started, so you spend no new credits.</p>
     <div class="win how-visual">
       <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i></div>
-      <!-- Frame from /content-engine/media/demo-avatar.mp4 at 77.3 s: the script gate, before anything is spent. -->
-      <div class="win-body" style="aspect-ratio:16/9;"><img src="media/v2/how-script-approve.jpg" alt="The Content Engine panel showing a script to review and edit, with Approve and Continue and Reject buttons. Nothing has been spent yet." width="1280" height="720" loading="lazy"></div>
+      <!-- Content Engine app tour (YouTube D2obs4H-fCM, "Content Engine App Tour V 3.2.2", about 2 min). The cover is a local copy of its YouTube thumbnail;
+           the YouTube player loads only when tapped. The old still (media/v2/how-script-approve.jpg) is kept on disk. -->
+      <div class="win-body yt-tour">
+        <button type="button" class="yt-cover" data-yt="D2obs4H-fCM" aria-label="Play the Content Engine app tour, about 2 minutes">
+          <img src="media/v2/how-app-tour.jpg" alt="" width="1280" height="720" loading="lazy">
+          <span class="big-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span>
+        </button>
+      </div>
     </div>
     <div class="cta"><a class="btn" href="#pricing">Get the Content Engine</a></div>
   </div>
@@ -737,19 +761,19 @@ body:not(.has-sale) .sale-only { display: none !important; }
       <p class="group-note">An AI avatar of me, with B-roll drawn in code.</p>
       <div class="tiles">
         <div class="tile frame">
-          <video class="sample-video" muted loop playsinline preload="none" poster="/content-engine/media/avatar-basic.jpg" data-src="/content-engine/media/avatar-basic-loop.mp4" aria-label="Sample video in the Basic B-roll style"></video>
-          <button class="sample-play" type="button" data-full="/content-engine/media/avatar-basic.mp4"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>Basic</button>
+          <video class="sample-video" muted loop playsinline preload="none" data-poster="/content-engine/media/avatar-napkin.jpg" data-src="/content-engine/media/avatar-napkin-loop.mp4" aria-label="Sample video in the Napkin Sketch style"></video>
+          <button class="sample-play" type="button" data-full="/content-engine/media/avatar-napkin.mp4"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>Napkin Sketch</button>
         </div>
         <div class="tile frame">
-          <video class="sample-video" muted loop playsinline preload="none" poster="/content-engine/media/avatar-splitcard.jpg" data-src="/content-engine/media/avatar-splitcard-loop.mp4" aria-label="Sample video in the Split Card + Web style"></video>
+          <video class="sample-video" muted loop playsinline preload="none" data-poster="/content-engine/media/avatar-splitcard.jpg" data-src="/content-engine/media/avatar-splitcard-loop.mp4" aria-label="Sample video in the Split Card + Web style"></video>
           <button class="sample-play" type="button" data-full="/content-engine/media/avatar-splitcard.mp4"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>Split Card + Web</button>
         </div>
         <div class="tile frame">
-          <video class="sample-video" muted loop playsinline preload="none" poster="/content-engine/media/avatar-letterpress.jpg" data-src="/content-engine/media/avatar-letterpress-loop.mp4" aria-label="Sample video in the Letterpress Split style"></video>
+          <video class="sample-video" muted loop playsinline preload="none" data-poster="/content-engine/media/avatar-letterpress.jpg" data-src="/content-engine/media/avatar-letterpress-loop.mp4" aria-label="Sample video in the Letterpress Split style"></video>
           <button class="sample-play" type="button" data-full="/content-engine/media/avatar-letterpress.mp4"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>Letterpress Split</button>
         </div>
         <div class="tile frame">
-          <video class="sample-video" muted loop playsinline preload="none" poster="/content-engine/media/avatar-chalkboard.jpg" data-src="/content-engine/media/avatar-chalkboard-loop.mp4" aria-label="Sample video in the Chalkboard Split style"></video>
+          <video class="sample-video" muted loop playsinline preload="none" data-poster="/content-engine/media/avatar-chalkboard.jpg" data-src="/content-engine/media/avatar-chalkboard-loop.mp4" aria-label="Sample video in the Chalkboard Split style"></video>
           <button class="sample-play" type="button" data-full="/content-engine/media/avatar-chalkboard.mp4"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>Chalkboard Split</button>
         </div>
       </div>
@@ -760,28 +784,28 @@ body:not(.has-sale) .sale-only { display: none !important; }
       <p class="group-note">No face on screen. The whole frame comes from the script.</p>
       <div class="tiles">
         <div class="tile frame sh-yellow">
-          <video class="sample-video" muted loop playsinline preload="none" poster="/content-engine/media/faceless-inktown.jpg" data-src="/content-engine/media/faceless-inktown-loop.mp4" aria-label="Faceless sample video in the Ink Town 3D style"></video>
+          <video class="sample-video" muted loop playsinline preload="none" data-poster="/content-engine/media/faceless-inktown.jpg" data-src="/content-engine/media/faceless-inktown-loop.mp4" aria-label="Faceless sample video in the Ink Town 3D style"></video>
           <button class="sample-play" type="button" data-full="/content-engine/media/faceless-inktown.mp4"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>Ink Town 3D</button>
         </div>
         <div class="tile frame sh-yellow">
-          <video class="sample-video" muted loop playsinline preload="none" poster="/content-engine/media/faceless-darkmacro.jpg" data-src="/content-engine/media/faceless-darkmacro-loop.mp4" aria-label="Faceless sample video in the Dark Macro style"></video>
+          <video class="sample-video" muted loop playsinline preload="none" data-poster="/content-engine/media/faceless-darkmacro.jpg" data-src="/content-engine/media/faceless-darkmacro-loop.mp4" aria-label="Faceless sample video in the Dark Macro style"></video>
           <button class="sample-play" type="button" data-full="/content-engine/media/faceless-darkmacro.mp4"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>Dark Macro</button>
         </div>
         <div class="tile frame sh-yellow">
-          <video class="sample-video" muted loop playsinline preload="none" poster="/content-engine/media/faceless-stick.jpg?v=2" data-src="/content-engine/media/faceless-stick-loop.mp4?v=2" aria-label="Faceless sample video in the Stick Figure style"></video>
+          <video class="sample-video" muted loop playsinline preload="none" data-poster="/content-engine/media/faceless-stick.jpg?v=2" data-src="/content-engine/media/faceless-stick-loop.mp4?v=2" aria-label="Faceless sample video in the Stick Figure style"></video>
           <button class="sample-play" type="button" data-full="/content-engine/media/faceless-stick.mp4?v=2"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>Stick Figure</button>
         </div>
         <div class="tile frame sh-yellow">
-          <video class="sample-video" muted loop playsinline preload="none" poster="/content-engine/media/faceless-chalkboard.jpg" data-src="/content-engine/media/faceless-chalkboard-loop.mp4" aria-label="Faceless sample video in the Chalkboard style"></video>
-          <span class="sample-tag">+ Your voiceover on real runs</span>
-          <button class="sample-play" type="button" data-full="/content-engine/media/faceless-chalkboard.mp4"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>Chalkboard</button>
+          <video class="sample-video" muted loop playsinline preload="none" data-poster="/content-engine/media/faceless-train.jpg" data-src="/content-engine/media/faceless-train-loop.mp4" aria-label="Faceless sample video in the Tiny Diorama style: The 8 O'Clock Train"></video>
+          <span class="sample-tag">+ Your voice on real runs</span>
+          <button class="sample-play" type="button" data-full="/content-engine/media/faceless-train.mp4"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>Tiny Diorama</button>
         </div>
       </div>
     </div>
 
     <!-- Every look in the extension today (matches the live page's 15 cards). -->
     <details class="looks">
-      <summary>See all 15 looks</summary>
+      <summary>See all 15 looks, plus 2 custom ones</summary>
       <div class="looks-body">
         <p class="small">No stock footage. Every B-roll style is drawn in code from a scene plan Claude writes for that script, so the visuals match what you say. Each one sits over whichever avatar you pick, including a video you filmed yourself.</p>
         <h3 class="looks-h">7 B-roll styles, with you on screen</h3>
@@ -807,6 +831,11 @@ body:not(.has-sale) .sale-only { display: none !important; }
         </ul>
         <h3 class="looks-h">+ Yours</h3>
         <p class="small">A style that looks like your brand: your colours, your fonts, your own clips. Ask Claude Code in plain words and it shows up in the B-roll list. Updates never touch it.</p>
+        <p class="small">Two of the samples above use custom styles I made this way:</p>
+        <ul class="looks-list">
+          <li><b>Napkin Sketch</b><span>Marker notes on a crumpled paper napkin on a wooden desk, above your head. My own B-roll style, made by asking Claude Code.</span></li>
+          <li><b>Tiny Diorama</b><span>A little 3D island with a toy train, filling the whole frame, no face. Made from a Full Animation prompt in the Motion Library, a Live Setup bonus.</span></li>
+        </ul>
       </div>
     </details>
     <p class="small after-note mid">More B-roll styles are on the way. Every order gets free Engine updates, so each new style lands in your list to pick from.</p>
@@ -825,28 +854,28 @@ body:not(.has-sale) .sale-only { display: none !important; }
     <div class="reels">
       <div class="reel">
         <div class="frame tilt-l">
-          <video class="sample-video" muted loop playsinline preload="none" poster="media/v2/reel-458k.jpg" data-src="media/v2/reel-458k-loop.mp4" aria-label="Reel: Top 4 ChatGPT image codes"></video>
+          <video class="sample-video" muted loop playsinline preload="none" data-poster="media/v2/reel-458k.jpg" data-src="media/v2/reel-458k-loop.mp4" aria-label="Reel: Top 4 ChatGPT image codes"></video>
           <button class="sample-play" type="button" data-full="/content-engine/media/reel-458k.mp4"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>Play</button>
         </div>
         <div><div class="reel-num num">458,000 <span class="reel-unit">views</span></div><div class="reel-what">Top 4 ChatGPT image codes</div><div class="reel-kind">headline + talking head</div></div>
       </div>
       <div class="reel">
         <div class="frame sh-yellow tilt-r">
-          <video class="sample-video" muted loop playsinline preload="none" poster="media/v2/reel-94k-v2.jpg" data-src="media/v2/reel-94k-v2-loop.mp4" aria-label="Reel: Comment Agent"></video>
+          <video class="sample-video" muted loop playsinline preload="none" data-poster="media/v2/reel-94k-v2.jpg" data-src="media/v2/reel-94k-v2-loop.mp4" aria-label="Reel: Comment Agent"></video>
           <button class="sample-play" type="button" data-full="/content-engine/media/reel-94k-v2.mp4"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>Play</button>
         </div>
         <div><div class="reel-num num">94,000 <span class="reel-unit">views</span></div><div class="reel-what">Comment Agent</div><div class="reel-kind">card + talking head</div></div>
       </div>
       <div class="reel">
         <div class="frame tilt-l">
-          <video class="sample-video" muted loop playsinline preload="none" poster="media/v2/reel-60k-v2.jpg" data-src="media/v2/reel-60k-v2-loop.mp4" aria-label="Reel: A YouTube agent that's free to use"></video>
+          <video class="sample-video" muted loop playsinline preload="none" data-poster="media/v2/reel-60k-v2.jpg" data-src="media/v2/reel-60k-v2-loop.mp4" aria-label="Reel: A YouTube agent that's free to use"></video>
           <button class="sample-play" type="button" data-full="/content-engine/media/reel-60k-v2.mp4"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>Play</button>
         </div>
         <div><div class="reel-num num">60,000 <span class="reel-unit">views</span></div><div class="reel-what">A YouTube agent that's free to use</div><div class="reel-kind">headline + talking head</div></div>
       </div>
       <div class="reel">
         <div class="frame sh-yellow tilt-r">
-          <video class="sample-video" muted loop playsinline preload="none" poster="media/v2/reel-57k.jpg" data-src="media/v2/reel-57k-loop.mp4" aria-label="Reel: Stop building until you install these four MCPs"></video>
+          <video class="sample-video" muted loop playsinline preload="none" data-poster="media/v2/reel-57k.jpg" data-src="media/v2/reel-57k-loop.mp4" aria-label="Reel: Stop building until you install these four MCPs"></video>
           <button class="sample-play" type="button" data-full="/content-engine/media/reel-57k.mp4"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>Play</button>
         </div>
         <div><div class="reel-num num">57,000 <span class="reel-unit">views</span></div><div class="reel-what">Install these four MCPs first</div><div class="reel-kind">full-body hook + website tour</div></div>
@@ -1302,6 +1331,14 @@ body:not(.has-sale) .sale-only { display: none !important; }
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var samples = document.querySelectorAll('.sample-video');
   var mains = document.querySelectorAll('.main-video');
+  /* Tile pictures (data-poster) load as the tile comes within about a screen of view, so opening the page doesn't download all 12 at once. */
+  function poster(v) { if (v.dataset.poster && !v.getAttribute('poster')) v.poster = v.dataset.poster; }
+  if ('IntersectionObserver' in window) {
+    var near = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { poster(e.target); near.unobserve(e.target); } });
+    }, { rootMargin: '900px 0px' });
+    samples.forEach(function (v) { near.observe(v); });
+  } else { samples.forEach(poster); }
   var seen = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
       var v = e.target;
@@ -1338,6 +1375,32 @@ body:not(.has-sale) .sale-only { display: none !important; }
       mains.forEach(function (o) { if (o !== m) o.pause(); });
     });
   });
+
+  /* Big play buttons. Demo + proof videos: a real button in the middle, hidden while the video plays, back when it pauses or ends.
+     Sample + reel tiles: a play picture in the middle, and a tap anywhere on the tile does what the label button does. */
+  var ICON = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>';
+  mains.forEach(function (m) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'big-play'; b.innerHTML = ICON;
+    b.setAttribute('aria-label', 'Play: ' + (m.getAttribute('aria-label') || 'video'));
+    b.addEventListener('click', function () { m.play().catch(function () {}); });
+    m.parentElement.appendChild(b);
+    m.addEventListener('play', function () { b.hidden = true; });
+    m.addEventListener('pause', function () { if (!m.seeking) b.hidden = false; });
+    m.addEventListener('ended', function () { b.hidden = false; });
+  });
+  document.querySelectorAll('.sample-play').forEach(function (btn) {
+    var frame = btn.parentElement;
+    var pic = document.createElement('span');
+    pic.className = 'big-play'; pic.setAttribute('aria-hidden', 'true'); pic.innerHTML = ICON;
+    frame.appendChild(pic);
+    frame.classList.add('tap-play');
+    btn.addEventListener('click', function () { pic.remove(); frame.classList.remove('tap-play'); });
+    frame.addEventListener('click', function (e) {
+      if (!frame.classList.contains('tap-play') || e.target.closest('.sample-play')) return;
+      btn.click();
+    });
+  });
 })();
 
 /* Sale bar stays on top; the nav and anchor links sit just below it. --sale-bar-h follows the bar's real height (0 once the sale is over). */
@@ -1364,6 +1427,22 @@ body:not(.has-sale) .sale-only { display: none !important; }
     });
   }, { threshold: 0.5 });
   vids.forEach(function (v) { io.observe(v); });
+})();
+
+/* App tour in #how: swap the cover for the YouTube player on tap (privacy-enhanced domain, no related videos from other channels). Pauses the page's own videos. */
+(function () {
+  document.querySelectorAll('.yt-cover[data-yt]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('video').forEach(function (v) { v.pause(); });
+      var f = document.createElement('iframe');
+      f.src = 'https://www.youtube-nocookie.com/embed/' + btn.dataset.yt + '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+      f.title = 'Content Engine app tour';
+      f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      f.referrerPolicy = 'strict-origin-when-cross-origin';
+      f.allowFullscreen = true;
+      btn.replaceWith(f);
+    });
+  });
 })();
 
 /* Wistia videos (classroom tour in #inside, Long-Form Studio story in #longform): load the scripts once a video is near the screen, so the rest of the page loads without them. player.js loads once. */
