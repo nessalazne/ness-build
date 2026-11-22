@@ -1055,6 +1055,9 @@ footer {
 .theme-toggle:hover { border-color: var(--accent); color: var(--accent); box-shadow: 0 4px 24px rgba(216,118,87,0.2); }
 .theme-toggle svg { width: 13px; height: 13px; flex-shrink: 0; }
 [data-theme="light"] .theme-toggle { box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
+/* Checkout: below 1100px the floating control sat on top of the total and the form, so it is hidden. The saved theme still applies. */
+@media (max-width: 1100px) { .theme-toggle { display: none; } }
+.footer-links a { display: inline-block; padding: 14px 4px; }
 
 /* ===== CONTENT ENGINE ADDITIONS ===== */
 .source-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:clamp(12px,1.6vw,18px); margin-top:clamp(2.5rem,4vw,4rem); }
@@ -1364,7 +1367,13 @@ body:not(.bf-on) .bf-only { display:none !important; }
 .co-missing ul { list-style:none; padding:0; margin:10px 0 0; display:grid; grid-template-columns:1fr 1fr; gap:6px 18px; }
 @media (max-width:640px){ .co-missing ul { grid-template-columns:1fr; } }
 .co-missing li { font-family:var(--font-body); font-size:0.88rem; color:var(--text-dim); line-height:1.4; padding-left:18px; position:relative; }
-.co-missing li::before { content:'✕'; position:absolute; left:0; color:var(--muted); }
+.co-missing li::before { content:'+'; position:absolute; left:0; color:var(--teal); font-weight:700; }
+.co-missing-kicker + .co-missing-total { border-top:0; padding-top:0; margin-top:8px; }
+.co-missing-more summary { display:inline-flex; align-items:center; min-height:44px; cursor:pointer; font-family:var(--font-body); font-size:0.88rem; color:var(--text-paper); text-decoration:underline; text-underline-offset:3px; }
+.co-missing-more[open] summary { margin-bottom:2px; }
+.co-missing-more ul { margin-top:0; }
+.co-missing-more + .co-missing-note { margin-top:6px; }
+[data-theme="light"] .co-missing li::before { color:#a07200; }
 .co-missing-total { font-family:var(--font-mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--teal); font-weight:600; margin:12px 0 0; padding-top:10px; border-top:1px solid var(--border); }
 .co-missing-note { font-family:var(--font-body); font-size:0.85rem; color:var(--text-paper); line-height:1.5; margin:12px 0; }
 .co-missing-done { display:none; font-family:var(--font-mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--green); font-weight:600; }
@@ -1658,6 +1667,9 @@ body:not(.bf-on) .bf-only { display:none !important; }
     <div class="co-missing live-only" id="coMissing">
       <div class="co-missing-body">
         <div class="co-missing-kicker">Not in this order</div>
+        <p class="co-missing-total">Total value $1,125 · yours with Live Setup for <span data-price="live">$197</span></p>
+        <details class="co-missing-more">
+        <summary>See what Live Setup adds</summary>
         <ul>
           <li>3 live setup sessions with me, recorded ($297 value)</li>
           <li>120+ style B-roll Motion Library ($49 value)</li>
@@ -1671,14 +1683,14 @@ body:not(.bf-on) .bf-only { display:none !important; }
           <li>The AI Audit Method ($127 value)</li>
           <li>Free updates for life to the library, FX, tools and apps</li>
         </ul>
-        <p class="co-missing-total">Total value $1,125 · yours with Live Setup for <span data-price="live">$197</span></p>
+        </details>
         <p class="co-missing-note">These come only with Live Setup. 20 places in each weekly group, and the next one starts <span data-group-monday>Monday</span> at 11:30 AM ET.</p>
         <button type="button" class="co-lb-add" id="missingAdd">Add Live Setup · +<span data-price="live">$197</span></button>
       </div>
       <div class="co-missing-done"><span>✓ Live Setup and every bonus are in this order</span><button type="button" class="co-missing-remove" id="missingRemove">Remove</button></div>
     </div>
 
-    <button class="btn-primary co-submit" id="payButton" type="submit"><span id="payLabel">Get the Engine</span> · <span id="btnPrice">$147</span> →</button>
+    <button class="btn-primary co-submit" id="payButton" type="submit"><span id="payLabel">Get my Engine</span> · <span style="white-space:nowrap;"><span id="btnPrice">$147</span> →</span></button>
     <p class="co-error" id="payError" role="alert" hidden></p>
     <p class="co-notice" id="payNotice" hidden>Payment isn't connected yet. This is the design preview.</p>
     <div class="co-paypal" id="paypalWrap" hidden>
@@ -1686,7 +1698,8 @@ body:not(.bf-on) .bf-only { display:none !important; }
       <button type="button" class="co-paypal-btn" id="paypalButton">Pay with <b>PayPal</b></button>
       <p class="co-fine co-center">You finish on PayPal, then come straight back here.</p>
     </div>
-    <p class="co-fine co-center"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Payments are processed by Stripe. I never see your card number.</p>
+    <p class="co-fine" style="text-align:center;"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="display:inline-block;vertical-align:-1px;margin-right:4px;"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Payments are processed by Stripe. I never see your card number.</p>
+    <p class="co-fine" style="text-align:center;">You get the full source code the moment you pay, so all sales are final. Questions first? <a href="mailto:ness@digicuratoragency.com" style="color:inherit;">ness@digicuratoragency.com</a></p>
     <p class="co-fine co-center" id="coLicense">By buying, you agree to the license terms. Content Engine is licensed to you alone, under your license key. You can change it for your own use and make content for yourself and your clients, including commercially. You may not share, resell, rebrand or redistribute the app, its code or its prompts.</p>
   </form>
 
@@ -1720,7 +1733,7 @@ body:not(.bf-on) .bf-only { display:none !important; }
   <div class="co-missing-kicker">Before you pay</div>
   <h3 id="coConfirmTitle">Just the Engine?</h3>
   <p>Your <span data-price="engine">$147</span> order is the Content Engine on its own. The live sessions, the 120+ style library, FX Studio, the two new tools, the three new apps, the affiliate program and both bonus courses come only with Live Setup, and Live Setup starts a new group every Monday.</p>
-  <button type="button" class="btn-primary co-confirm-add" id="confirmAdd">Add Live Setup · <span id="confirmTotal">$294</span> total</button>
+  <button type="button" class="btn-primary co-confirm-add" id="confirmAdd">Add Live Setup · <span id="confirmTotal">$344</span> total</button>
   <button type="button" class="co-confirm-skip" id="confirmSkip">No thanks, just the Engine · <span data-price="engine">$147</span></button>
 </dialog>
 
@@ -1842,8 +1855,8 @@ function renderTotal() {
 const payButton = document.getElementById('payButton');
 function payLabelText() {
   if (isUpgrade) return 'Add Live Setup';
-  if (body.classList.contains('live-over')) return 'Get the Engine';
-  return liveBox.checked ? 'Get the Engine + Live Setup' : 'Get the Engine only';
+  if (body.classList.contains('live-over')) return 'Get my Engine';
+  return liveBox.checked ? 'Get the Engine + Live Setup' : 'Get my Engine';
 }
 function addLive() {
   liveBox.checked = true;
