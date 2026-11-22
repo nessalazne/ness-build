@@ -1313,6 +1313,10 @@ body:not(.bf-on) .bf-only { display:none !important; }
 .co-lightbox::backdrop { background:rgba(0,0,0,0.82); }
 .co-lightbox video { display:block; max-width:min(92vw, 1100px); max-height:86vh; border-radius:14px; background:#000; }
 .co-lightbox.is-v video { max-width:92vw; width:auto; height:86vh; aspect-ratio:9/16; }
+.co-wistia-body { width:min(92vw, 1100px, calc(86vh * 16 / 9)); aspect-ratio:16/9; border-radius:14px; overflow:hidden; background:#000; }
+.co-wistia-body wistia-player { display:block; width:100%; height:100%; }
+.co-lfs-watch { display:inline-flex; align-items:center; gap:6px; margin-top:12px; padding:0; border:0; background:none; color:var(--accent); font:inherit; font-weight:600; cursor:pointer; text-decoration:underline; text-underline-offset:3px; }
+.co-lfs-watch:hover, .co-lfs-watch:focus-visible { text-decoration-thickness:2px; }
 .co-lb-close { position:absolute; top:-44px; right:0; width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,0.35); background:rgba(0,0,0,0.6); color:#fff; font-size:18px; line-height:1; cursor:pointer; }
 .co-bonus-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:clamp(1.2rem,2.4vw,1.6rem); }
 @media (max-width:640px){ .co-bonus-grid { grid-template-columns:1fr; } }
@@ -1603,7 +1607,7 @@ body:not(.bf-on) .bf-only { display:none !important; }
       <div class="co-tool"><div class="co-item-num">05</div><div><div class="co-item-title">Trial Reel Maker <span class="co-tag">$127 value</span></div><p>A local app that runs on your computer. One video in, several test versions out, each with its own hook and look, posted to Instagram Reels for you, so you can see which one lands. It also arms the comment-to-DM automation on Facebook and Instagram.</p><div class="co-tool-anim" role="button" tabindex="0" aria-label="Replay the Trial Reel Maker animation"><video class="tool-anim" muted playsinline preload="none" poster="/content-engine/media/tool-trialreel.jpg?v=2" data-src="/content-engine/media/tool-trialreel.mp4?v=2" aria-hidden="true"></video></div></div></div>
       <div class="co-tool"><div class="co-item-num">06</div><div><div class="co-item-title">Carousel Maker <span class="co-tag">$97 value</span></div><p>A local app that runs on your computer. Turn a video into a carousel, or start one from any topic. You approve the slide copy before anything is designed, then it posts to LinkedIn, TikTok, Pinterest, Facebook and Instagram for you. It also arms the comment-to-DM automation on Facebook and Instagram.</p><div class="co-tool-anim" role="button" tabindex="0" aria-label="Replay the Carousel Maker animation"><video class="tool-anim" muted playsinline preload="none" poster="/content-engine/media/tool-carousel.jpg?v=2" data-src="/content-engine/media/tool-carousel.mp4?v=2" aria-hidden="true"></video></div></div></div>
       <!-- Long-Form Studio: a limited extra, as on sales page B. Hides itself after the Early Black Friday end (body.bf-on), because from 2 December it is a separate product. -->
-      <div class="co-tool co-lfs bf-only"><div class="co-item-num">07</div><div><span class="co-lfs-tag">Until 1 December only</span><div class="co-item-title">Long-Form Studio <span class="co-tag">$197 value</span></div><p>An app that runs on your computer, for full YouTube videos of 3 to 20 minutes. Type an idea, or paste a link to a blog post, a YouTube video, an Instagram reel or a TikTok. It writes an outline and then the script, and you approve both. Then it makes the finished video with B-roll: faceless in your cloned voice, with your AI avatar, or from a recording of you with the dead air cut out. You check the B-roll plan before it renders.</p><p class="co-lfs-note"><b>Limited offer.</b> It comes with Live Setup until Monday 1 December, 11:59 PM ET. From 2 December it's sold on its own as a separate product. Join before then and you keep it, with free updates for life.</p><div class="co-tool-anim" role="button" tabindex="0" aria-label="Replay the Long-Form Studio animation"><video class="tool-anim" muted playsinline preload="none" poster="/content-engine/media/tool-longform-v2.jpg" data-src="/content-engine/media/tool-longform-v2.mp4" aria-hidden="true"></video></div></div></div>
+      <div class="co-tool co-lfs bf-only"><div class="co-item-num">07</div><div><span class="co-lfs-tag">Until 1 December only</span><div class="co-item-title">Long-Form Studio <span class="co-tag">$197 value</span></div><p>An app that runs on your computer, for full YouTube videos of 3 to 20 minutes. Type an idea, or paste a link to a blog post, a YouTube video, an Instagram reel or a TikTok. It writes an outline and then the script, and you approve both. Then it makes the finished video with B-roll: faceless in your cloned voice, with your AI avatar, or from a recording of you with the dead air cut out. You check the B-roll plan before it renders.</p><p class="co-lfs-note"><b>Limited offer.</b> It comes with Live Setup until Monday 1 December, 11:59 PM ET. From 2 December it's sold on its own as a separate product. Join before then and you keep it, with free updates for life.</p><div class="co-tool-anim" role="button" tabindex="0" aria-label="Replay the Long-Form Studio animation"><video class="tool-anim" muted playsinline preload="none" poster="/content-engine/media/tool-longform-v2.jpg" data-src="/content-engine/media/tool-longform-v2.mp4" aria-hidden="true"></video></div><button class="co-lfs-watch" type="button" data-wistia="cu4c2qi4ig">▶ Watch how it works (1:17)</button></div></div>
     </div>
 
     <div class="co-updates">
@@ -1735,6 +1739,12 @@ body:not(.bf-on) .bf-only { display:none !important; }
 <dialog class="co-lightbox" id="coLightbox" aria-label="Sample video">
   <button class="co-lb-close" type="button" aria-label="Close video">✕</button>
   <video controls playsinline preload="none"></video>
+</dialog>
+
+<!-- Long-Form Studio story video (Wistia cu4c2qi4ig, 1:17), opened by the "Watch how it works" link in item 07. Wistia's scripts load on the first click only. -->
+<dialog class="co-lightbox co-wistia" id="coWistiaBox" aria-label="Long-Form Studio video">
+  <button class="co-lb-close" type="button" aria-label="Close video">✕</button>
+  <div class="co-wistia-body"></div>
 </dialog>
 
 <dialog class="co-confirm" id="coConfirm" aria-labelledby="coConfirmTitle">
@@ -2224,6 +2234,36 @@ lightbox.addEventListener('close', () => {
 });
 lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.close(); });
 lightbox.querySelector('.co-lb-close').addEventListener('click', () => lightbox.close());
+
+/* Long-Form Studio "Watch how it works": Wistia video in a pop-up. Nothing from Wistia loads until the first click; closing removes the player, which stops the sound. */
+const wistiaBox = document.getElementById('coWistiaBox');
+const wistiaBody = wistiaBox.querySelector('.co-wistia-body');
+const wistiaLoaded = new Set();
+function loadWistia(id) {
+  if (!wistiaLoaded.size) { const a = document.createElement('script'); a.src = 'https://fast.wistia.com/player.js'; a.async = true; document.head.appendChild(a); }
+  if (wistiaLoaded.has(id)) return;
+  wistiaLoaded.add(id);
+  const b = document.createElement('script'); b.src = 'https://fast.wistia.com/embed/' + id + '.js'; b.async = true; b.type = 'module'; document.head.appendChild(b);
+}
+document.querySelectorAll('.co-lfs-watch').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const id = btn.dataset.wistia;
+    loadWistia(id);
+    const player = document.createElement('wistia-player');
+    player.setAttribute('media-id', id);
+    player.setAttribute('aspect', '1.7777777777777777');
+    player.setAttribute('autoplay', '');
+    // Backup for browsers that ignore autoplay: start it once Wistia has the video ready (the click allows sound).
+    const start = () => { if (player.isConnected && player.state === 'beforeplay' && typeof player.play === 'function') player.play().catch(() => {}); };
+    player.addEventListener('loaded-media-data', start, { once: true });
+    player.addEventListener('api-ready', start, { once: true });
+    wistiaBody.replaceChildren(player);
+    wistiaBox.showModal();
+  });
+});
+wistiaBox.addEventListener('close', () => wistiaBody.replaceChildren());
+wistiaBox.addEventListener('click', (e) => { if (e.target === wistiaBox) wistiaBox.close(); });
+wistiaBox.querySelector('.co-lb-close').addEventListener('click', () => wistiaBox.close());
 
 // Theme toggle
 const moonIcon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
