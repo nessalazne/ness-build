@@ -4,14 +4,13 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Checkout · Content Engine · AISocialHub</title>
-<!-- A/B test, version B checkout: the live checkout with a version B skin. Every script block below is byte-identical to /content-engine/checkout/. Only the look (the b-skin stylesheet) and the asset paths differ. -->
+<!-- Previous checkout look, kept as a backup since 22 Nov 2026. The current checkout is /content-engine/checkout/. -->
 <meta name="description" content="Secure checkout for the AI Social Hub Content Engine, with the optional Live Setup upgrade." />
 <meta name="robots" content="noindex" />
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" />
 
 <style>
 /* ================================================================
@@ -1420,13 +1419,6 @@ body:not(.bf-on) .bf-only { display:none !important; }
 /* Affiliate link: ?ref=CODE is kept for 60 days (last click wins) and sent with the order. The hub checks the code. */
 (function () { try { var m = /[?&]ref=([a-z0-9]{6,20})(?:&|$)/i.exec(location.search); if (m) localStorage.setItem('ceRef', JSON.stringify({ c: m[1].toLowerCase(), t: Date.now() })); } catch (e) {} })();
 </script>
-<script>
-/* Version B: with no saved theme, use the system setting (the B sales page does the same), so the page doesn't jump from Day to Night at checkout. */
-(function () { try { if (!localStorage.getItem('aish-theme')) localStorage.setItem('aish-theme', window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); } catch (e) {} })();
-/* A/B test: this visitor saw version B. */
-(function () { try { localStorage.setItem('ceAB', 'b'); } catch (e) {} })();
-</script>
-<link rel="stylesheet" href="b-skin.css" />
 </head>
 <body class="sale-over live-over">
 <script>/* Early Black Friday: Live Setup $197 until 2026-12-02T04:59:59Z, then $247 (change prices by hand on 2 Dec) */ if (Date.now() < Date.parse('2026-12-02T04:59:59Z')) document.body.classList.add('bf-on');</script>
@@ -1604,8 +1596,7 @@ body:not(.bf-on) .bf-only { display:none !important; }
       <div class="co-tools-head"><span class="co-step">New apps · Live Setup bonus</span><span class="co-tag new">Rolling out now</span></div>
       <div class="co-tool"><div class="co-item-num">05</div><div><div class="co-item-title">Trial Reel Maker <span class="co-tag">$127 value</span></div><p>A local app that runs on your computer. One video in, several test versions out, each with its own hook and look, posted to Instagram Reels for you, so you can see which one lands. It also arms the comment-to-DM automation on Facebook and Instagram.</p><div class="co-tool-anim" role="button" tabindex="0" aria-label="Replay the Trial Reel Maker animation"><video class="tool-anim" muted playsinline preload="none" poster="/content-engine/media/tool-trialreel.jpg?v=2" data-src="/content-engine/media/tool-trialreel.mp4?v=2" aria-hidden="true"></video></div></div></div>
       <div class="co-tool"><div class="co-item-num">06</div><div><div class="co-item-title">Carousel Maker <span class="co-tag">$97 value</span></div><p>A local app that runs on your computer. Turn a video into a carousel, or start one from any topic. You approve the slide copy before anything is designed, then it posts to LinkedIn, TikTok, Pinterest, Facebook and Instagram for you. It also arms the comment-to-DM automation on Facebook and Instagram.</p><div class="co-tool-anim" role="button" tabindex="0" aria-label="Replay the Carousel Maker animation"><video class="tool-anim" muted playsinline preload="none" poster="/content-engine/media/tool-carousel.jpg?v=2" data-src="/content-engine/media/tool-carousel.mp4?v=2" aria-hidden="true"></video></div></div></div>
-      <!-- Long-Form Studio: a limited extra, as on sales page B. Hides itself after the Early Black Friday end (body.bf-on), because from 2 December it is a separate product. -->
-      <div class="co-tool co-lfs bf-only"><div class="co-item-num">07</div><div><span class="co-lfs-tag">Until 1 December only</span><div class="co-item-title">Long-Form Studio <span class="co-tag">$197 value</span></div><p>An app that runs on your computer, for full YouTube videos. Start from a raw 16:9 recording, a faceless script in your cloned voice, or a script read by your AI avatar. It cuts the dead air and plans the B-roll, and you check the plan before it renders.</p><p class="co-lfs-note"><b>Limited offer.</b> It comes with Live Setup until Monday 1 December, 11:59 PM ET. From 2 December it's sold on its own as a separate product. Join before then and you keep it, with free updates for life.</p><div class="co-tool-anim" role="button" tabindex="0" aria-label="Replay the Long-Form Studio animation"><video class="tool-anim" muted playsinline preload="none" poster="/content-engine/media/tool-longform.jpg" data-src="/content-engine/media/tool-longform.mp4" aria-hidden="true"></video></div></div></div>
+      <div class="co-tool"><div class="co-item-num">07</div><div><div class="co-item-title">Long-Form Studio <span class="co-tag">$197 value</span></div><p>A local app that runs on your computer, for full YouTube videos. Start from a raw 16:9 recording, a faceless script in your cloned voice, or a script read by your HeyGen avatar. It cuts the dead air, plans the B-roll and has Claude Code draw the scenes, and you check the plan before it renders.<span class="bf-only"> It comes with Live Setup until Monday 1 December, 11:59 PM ET. After that it's sold on its own, and if you join before then you keep it, with free updates for life.</span></p><div class="co-tool-anim" role="button" tabindex="0" aria-label="Replay the Long-Form Studio animation"><video class="tool-anim" muted playsinline preload="none" poster="/content-engine/media/tool-longform.jpg" data-src="/content-engine/media/tool-longform.mp4" aria-hidden="true"></video></div></div></div>
     </div>
 
     <div class="co-updates">
@@ -1687,7 +1678,7 @@ body:not(.bf-on) .bf-only { display:none !important; }
           <li>FX Studio · 160+ effects ($67 value)</li>
           <li>Trial Reel Maker, with Facebook and Instagram DM automation ($127 value)</li>
           <li>Carousel Maker, with Facebook and Instagram DM automation ($97 value)</li>
-          <li class="bf-only">Long-Form Studio, for full YouTube videos ($197 value), until 1 December only</li>
+          <li>Long-Form Studio, for full YouTube videos ($197 value)<span class="bf-only">, with Live Setup until 1 December</span></li>
           <li>Affiliate program: earn 40% on every sale you refer</li>
           <li>AISHA Engine Foundations ($97 value)</li>
           <li>The AI Audit Method ($127 value)</li>

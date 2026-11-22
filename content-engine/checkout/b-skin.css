@@ -1,7 +1,7 @@
 /* ================================================================
    Version B skin for the Content Engine checkout.
    Loaded after the live checkout's own stylesheet. It changes only the look:
-   colours, fonts, borders, corners and shadows, to match /content-engine/b/.
+   colours, fonts, borders, corners and shadows, to match the sales page.
    It never touches display rules, so every state the payment script sets
    (engine-only, is-upgrade, live-over, bf-on, has-live, is-unlocked) works as on live.
    ================================================================ */

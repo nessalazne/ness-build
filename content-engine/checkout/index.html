@@ -4,12 +4,14 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Checkout · Content Engine · AISocialHub</title>
+<!-- Checkout, new look (22 Nov 2026). The payment, pricing and order scripts are byte-identical to the previous checkout, now at /content-engine/b/checkout/. Only the look (b-skin.css) and the asset paths differ. -->
 <meta name="description" content="Secure checkout for the AI Social Hub Content Engine, with the optional Live Setup upgrade." />
 <meta name="robots" content="noindex" />
-<link rel="icon" type="image/x-icon" href="../../favicon.ico">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
 
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />
 
 <style>
 /* ================================================================
@@ -1418,13 +1420,18 @@ body:not(.bf-on) .bf-only { display:none !important; }
 /* Affiliate link: ?ref=CODE is kept for 60 days (last click wins) and sent with the order. The hub checks the code. */
 (function () { try { var m = /[?&]ref=([a-z0-9]{6,20})(?:&|$)/i.exec(location.search); if (m) localStorage.setItem('ceRef', JSON.stringify({ c: m[1].toLowerCase(), t: Date.now() })); } catch (e) {} })();
 </script>
+<script>
+/* Version B: with no saved theme, use the system setting (the sales page does the same), so the page doesn't jump from Day to Night at checkout. */
+(function () { try { if (!localStorage.getItem('aish-theme')) localStorage.setItem('aish-theme', window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); } catch (e) {} })();
+</script>
+<link rel="stylesheet" href="b-skin.css" />
 </head>
 <body class="sale-over live-over">
 <script>/* Early Black Friday: Live Setup $197 until 2026-12-02T04:59:59Z, then $247 (change prices by hand on 2 Dec) */ if (Date.now() < Date.parse('2026-12-02T04:59:59Z')) document.body.classList.add('bf-on');</script>
 
 <nav class="top-nav">
   <a href="../" class="nav-brand">
-    <img src="../../logo.png" alt="AISocialHub" width="28" height="28" style="border-radius:4px;">
+    <img src="/logo.png" alt="AISocialHub" width="28" height="28" style="border-radius:4px;">
     <span>AISocialHub</span>
   </a>
   <div class="nav-right">
@@ -1548,21 +1555,21 @@ body:not(.bf-on) .bf-only { display:none !important; }
         <p>A mix of 2D and 3D animation and motion graphics, with 2.5D effects. Use it in short form videos, long form videos and carousels, in any niche: explainers, demos and more. Lessons are included.</p>
         <p>Full animations you can watch with sound, each with its prompt, working code and MP4, plus style studies. Find a look, copy its prompt and make it yours. New styles are added all the time.</p>
         <div class="co-video co-video-lib">
-          <video class="sample-video" muted loop playsinline preload="none" poster="../media/broll-library.jpg?v=121" data-src="../media/broll-library-loop.mp4?v=121" aria-label="Scrolling through the 120+ style B-roll library"></video>
-          <button class="sample-play" type="button" data-full="../media/broll-library.mp4?v=121" aria-label="Watch the full B-roll library walkthrough"><span>▶ Watch the walkthrough</span></button>
+          <video class="sample-video" muted loop playsinline preload="none" poster="/content-engine/media/broll-library.jpg?v=121" data-src="/content-engine/media/broll-library-loop.mp4?v=121" aria-label="Scrolling through the 120+ style B-roll library"></video>
+          <button class="sample-play" type="button" data-full="/content-engine/media/broll-library.mp4?v=121" aria-label="Watch the full B-roll library walkthrough"><span>▶ Watch the walkthrough</span></button>
         </div>
         <div class="co-thumbs-kicker">The styles in real videos · tap to watch</div>
         <div class="co-showcase">
           <figure class="co-thumb-fig">
-            <button class="co-thumb is-h" type="button" data-full="../media/showcase-longform.mp4" aria-label="Watch the long-form YouTube tutorial sample with sound"><img src="../media/showcase-longform.jpg" alt="" width="960" height="540" loading="lazy"><span>▶</span></button>
+            <button class="co-thumb is-h" type="button" data-full="/content-engine/media/showcase-longform.mp4" aria-label="Watch the long-form YouTube tutorial sample with sound"><img src="/content-engine/media/showcase-longform.jpg" alt="" width="960" height="540" loading="lazy"><span>▶</span></button>
             <figcaption><span class="sample-kind">Long form</span>YouTube tutorial</figcaption>
           </figure>
           <figure class="co-thumb-fig">
-            <button class="co-thumb" type="button" data-full="../media/showcase-papercraft.mp4" aria-label="Watch the Papercraft short with sound"><img src="../media/showcase-papercraft.jpg" alt="" width="540" height="960" loading="lazy"><span>▶</span></button>
+            <button class="co-thumb" type="button" data-full="/content-engine/media/showcase-papercraft.mp4" aria-label="Watch the Papercraft short with sound"><img src="/content-engine/media/showcase-papercraft.jpg" alt="" width="540" height="960" loading="lazy"><span>▶</span></button>
             <figcaption><span class="sample-kind">Short</span>Papercraft</figcaption>
           </figure>
           <figure class="co-thumb-fig">
-            <button class="co-thumb" type="button" data-full="../media/showcase-cutpaper.mp4" aria-label="Watch the Cut-Paper Diorama short with sound"><img src="../media/showcase-cutpaper.jpg" alt="" width="540" height="960" loading="lazy"><span>▶</span></button>
+            <button class="co-thumb" type="button" data-full="/content-engine/media/showcase-cutpaper.mp4" aria-label="Watch the Cut-Paper Diorama short with sound"><img src="/content-engine/media/showcase-cutpaper.jpg" alt="" width="540" height="960" loading="lazy"><span>▶</span></button>
             <figcaption><span class="sample-kind">Short</span>Cut-Paper Diorama</figcaption>
           </figure>
         </div>
@@ -1575,15 +1582,15 @@ body:not(.bf-on) .bf-only { display:none !important; }
       <div class="co-tool"><div class="co-item-num">04</div><div><div class="co-item-title">FX Studio · 160+ effects <span class="co-tag">$67 value</span></div><p>Visual effects you choose from a list, built into your video for you.</p>
         <div class="co-fx-row">
           <figure class="co-thumb-fig">
-            <button class="co-thumb" type="button" data-full="../media/fx-sample-1.mp4" aria-label="Watch FX sample 1 with sound"><img src="../media/fx-sample-1.jpg" alt="" width="540" height="960" loading="lazy"><span>▶</span></button>
+            <button class="co-thumb" type="button" data-full="/content-engine/media/fx-sample-1.mp4" aria-label="Watch FX sample 1 with sound"><img src="/content-engine/media/fx-sample-1.jpg" alt="" width="540" height="960" loading="lazy"><span>▶</span></button>
             <figcaption><span class="sample-kind">FX sample</span>01</figcaption>
           </figure>
           <figure class="co-thumb-fig">
-            <button class="co-thumb" type="button" data-full="../media/fx-sample-2.mp4" aria-label="Watch FX sample 2 with sound"><img src="../media/fx-sample-2.jpg" alt="" width="540" height="960" loading="lazy"><span>▶</span></button>
+            <button class="co-thumb" type="button" data-full="/content-engine/media/fx-sample-2.mp4" aria-label="Watch FX sample 2 with sound"><img src="/content-engine/media/fx-sample-2.jpg" alt="" width="540" height="960" loading="lazy"><span>▶</span></button>
             <figcaption><span class="sample-kind">FX sample</span>02</figcaption>
           </figure>
           <figure class="co-thumb-fig">
-            <button class="co-thumb" type="button" data-full="../../fx-studio/media/fx-sample-3.mp4" aria-label="Watch FX sample 3 with sound"><img src="../../fx-studio/media/fx-sample-3.jpg" alt="" width="540" height="960" loading="lazy"><span>▶</span></button>
+            <button class="co-thumb" type="button" data-full="/fx-studio/media/fx-sample-3.mp4" aria-label="Watch FX sample 3 with sound"><img src="/fx-studio/media/fx-sample-3.jpg" alt="" width="540" height="960" loading="lazy"><span>▶</span></button>
             <figcaption><span class="sample-kind">FX sample</span>03</figcaption>
           </figure>
         </div>
@@ -1593,9 +1600,10 @@ body:not(.bf-on) .bf-only { display:none !important; }
 
     <div class="co-tools">
       <div class="co-tools-head"><span class="co-step">New apps · Live Setup bonus</span><span class="co-tag new">Rolling out now</span></div>
-      <div class="co-tool"><div class="co-item-num">05</div><div><div class="co-item-title">Trial Reel Maker <span class="co-tag">$127 value</span></div><p>A local app that runs on your computer. One video in, several test versions out, each with its own hook and look, posted to Instagram Reels for you, so you can see which one lands. It also arms the comment-to-DM automation on Facebook and Instagram.</p><div class="co-tool-anim" role="button" tabindex="0" aria-label="Replay the Trial Reel Maker animation"><video class="tool-anim" muted playsinline preload="none" poster="../media/tool-trialreel.jpg?v=2" data-src="../media/tool-trialreel.mp4?v=2" aria-hidden="true"></video></div></div></div>
-      <div class="co-tool"><div class="co-item-num">06</div><div><div class="co-item-title">Carousel Maker <span class="co-tag">$97 value</span></div><p>A local app that runs on your computer. Turn a video into a carousel, or start one from any topic. You approve the slide copy before anything is designed, then it posts to LinkedIn, TikTok, Pinterest, Facebook and Instagram for you. It also arms the comment-to-DM automation on Facebook and Instagram.</p><div class="co-tool-anim" role="button" tabindex="0" aria-label="Replay the Carousel Maker animation"><video class="tool-anim" muted playsinline preload="none" poster="../media/tool-carousel.jpg?v=2" data-src="../media/tool-carousel.mp4?v=2" aria-hidden="true"></video></div></div></div>
-      <div class="co-tool"><div class="co-item-num">07</div><div><div class="co-item-title">Long-Form Studio <span class="co-tag">$197 value</span></div><p>A local app that runs on your computer, for full YouTube videos. Start from a raw 16:9 recording, a faceless script in your cloned voice, or a script read by your HeyGen avatar. It cuts the dead air, plans the B-roll and has Claude Code draw the scenes, and you check the plan before it renders.<span class="bf-only"> It comes with Live Setup until Monday 1 December, 11:59 PM ET. After that it's sold on its own, and if you join before then you keep it, with free updates for life.</span></p><div class="co-tool-anim" role="button" tabindex="0" aria-label="Replay the Long-Form Studio animation"><video class="tool-anim" muted playsinline preload="none" poster="../media/tool-longform.jpg" data-src="../media/tool-longform.mp4" aria-hidden="true"></video></div></div></div>
+      <div class="co-tool"><div class="co-item-num">05</div><div><div class="co-item-title">Trial Reel Maker <span class="co-tag">$127 value</span></div><p>A local app that runs on your computer. One video in, several test versions out, each with its own hook and look, posted to Instagram Reels for you, so you can see which one lands. It also arms the comment-to-DM automation on Facebook and Instagram.</p><div class="co-tool-anim" role="button" tabindex="0" aria-label="Replay the Trial Reel Maker animation"><video class="tool-anim" muted playsinline preload="none" poster="/content-engine/media/tool-trialreel.jpg?v=2" data-src="/content-engine/media/tool-trialreel.mp4?v=2" aria-hidden="true"></video></div></div></div>
+      <div class="co-tool"><div class="co-item-num">06</div><div><div class="co-item-title">Carousel Maker <span class="co-tag">$97 value</span></div><p>A local app that runs on your computer. Turn a video into a carousel, or start one from any topic. You approve the slide copy before anything is designed, then it posts to LinkedIn, TikTok, Pinterest, Facebook and Instagram for you. It also arms the comment-to-DM automation on Facebook and Instagram.</p><div class="co-tool-anim" role="button" tabindex="0" aria-label="Replay the Carousel Maker animation"><video class="tool-anim" muted playsinline preload="none" poster="/content-engine/media/tool-carousel.jpg?v=2" data-src="/content-engine/media/tool-carousel.mp4?v=2" aria-hidden="true"></video></div></div></div>
+      <!-- Long-Form Studio: a limited extra, as on sales page B. Hides itself after the Early Black Friday end (body.bf-on), because from 2 December it is a separate product. -->
+      <div class="co-tool co-lfs bf-only"><div class="co-item-num">07</div><div><span class="co-lfs-tag">Until 1 December only</span><div class="co-item-title">Long-Form Studio <span class="co-tag">$197 value</span></div><p>An app that runs on your computer, for full YouTube videos. Start from a raw 16:9 recording, a faceless script in your cloned voice, or a script read by your AI avatar. It cuts the dead air and plans the B-roll, and you check the plan before it renders.</p><p class="co-lfs-note"><b>Limited offer.</b> It comes with Live Setup until Monday 1 December, 11:59 PM ET. From 2 December it's sold on its own as a separate product. Join before then and you keep it, with free updates for life.</p><div class="co-tool-anim" role="button" tabindex="0" aria-label="Replay the Long-Form Studio animation"><video class="tool-anim" muted playsinline preload="none" poster="/content-engine/media/tool-longform.jpg" data-src="/content-engine/media/tool-longform.mp4" aria-hidden="true"></video></div></div></div>
     </div>
 
     <div class="co-updates">
@@ -1605,7 +1613,7 @@ body:not(.bf-on) .bf-only { display:none !important; }
 
     <div class="co-bonus-grid">
       <div class="co-bonus">
-        <img src="../media/aisha-engine-foundations.webp" alt="AISHA Engine Foundations course cover" width="1280" height="720" loading="lazy">
+        <img src="/content-engine/media/aisha-engine-foundations.webp" alt="AISHA Engine Foundations course cover" width="1280" height="720" loading="lazy">
         <div class="co-bonus-body">
           <div class="co-item-num">08 · Live Setup bonus · $97 value</div>
           <div class="co-item-title">AISHA Engine Foundations</div>
@@ -1613,7 +1621,7 @@ body:not(.bf-on) .bf-only { display:none !important; }
         </div>
       </div>
       <div class="co-bonus">
-        <img src="../media/the-ai-audit-method.webp" alt="The AI Audit Method crash course cover" width="1280" height="720" loading="lazy">
+        <img src="/content-engine/media/the-ai-audit-method.webp" alt="The AI Audit Method crash course cover" width="1280" height="720" loading="lazy">
         <div class="co-bonus-body">
           <div class="co-item-num">09 · Live Setup bonus · $127 value</div>
           <div class="co-item-title">The AI Audit Method</div>
@@ -1677,7 +1685,7 @@ body:not(.bf-on) .bf-only { display:none !important; }
           <li>FX Studio · 160+ effects ($67 value)</li>
           <li>Trial Reel Maker, with Facebook and Instagram DM automation ($127 value)</li>
           <li>Carousel Maker, with Facebook and Instagram DM automation ($97 value)</li>
-          <li>Long-Form Studio, for full YouTube videos ($197 value)<span class="bf-only">, with Live Setup until 1 December</span></li>
+          <li class="bf-only">Long-Form Studio, for full YouTube videos ($197 value), until 1 December only</li>
           <li>Affiliate program: earn 40% on every sale you refer</li>
           <li>AISHA Engine Foundations ($97 value)</li>
           <li>The AI Audit Method ($127 value)</li>
@@ -1739,7 +1747,7 @@ body:not(.bf-on) .bf-only { display:none !important; }
 
 <footer>
   <div class="footer-brand">
-    <img src="../../logo.png" alt="AISocialHub" width="20" height="20" style="border-radius:3px;">
+    <img src="/logo.png" alt="AISocialHub" width="20" height="20" style="border-radius:3px;">
     AISocialHub · Ness Alazne
   </div>
   <div style="font-family:var(--font-mono);font-size:10px;color:var(--muted);letter-spacing:0.14em;text-transform:uppercase;">Questions? ness@digicuratoragency.com</div>
