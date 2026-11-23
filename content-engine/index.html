@@ -408,6 +408,12 @@ span.big-play { pointer-events: none; }
 @media (min-width: 860px) { .student { grid-template-columns: 1.5fr 1fr; gap: 40px; } }
 .student-video { margin: 0; display: grid; gap: 14px; }
 .student-video video { display: block; aspect-ratio: 16 / 9; }
+/* Anthony's face fills the middle of the frame, so his play button sits small in the top-left corner (over the background) and the browser's own centre play icon is hidden. */
+.student-video .big-play { left: 14px; top: 14px; width: 48px; height: 48px; margin: 0; }
+.student-video .big-play svg { width: 20px; height: 20px; margin-left: 3px; }
+.student-video video::-webkit-media-controls-overlay-play-button,
+.student-video video::-webkit-media-controls-start-playback-button,
+.student-video video::-webkit-media-controls-loading-panel { display: none !important; -webkit-appearance: none; }
 .student-video figcaption { font-size: 0.9375rem; font-weight: 700; color: var(--ink-2); }
 .student .quote { padding: 26px 24px 22px; }
 .quotes.pair { margin-top: clamp(28px, 4vw, 40px); }
