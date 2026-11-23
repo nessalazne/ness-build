@@ -410,6 +410,9 @@ span.big-play { pointer-events: none; }
 .student-video video { display: block; aspect-ratio: 16 / 9; }
 .student-video figcaption { font-size: 0.9375rem; font-weight: 700; color: var(--ink-2); }
 .student .quote { padding: 26px 24px 22px; }
+.quotes.pair { margin-top: clamp(28px, 4vw, 40px); }
+.quotes.pair .quote { padding: 22px 22px 20px; }
+@media (min-width: 860px) { .quotes.pair { grid-template-columns: repeat(2, 1fr); } }
 .quotes { display: grid; gap: 28px; }
 .quotes .box { padding: 10px; }
 .quotes .placeholder { min-height: 190px; height: 100%; border-width: 0; background: transparent; }
@@ -1109,6 +1112,11 @@ body:not(.has-sale) .sale-only { display: none !important; }
         <blockquote>“I also appreciate you taking my feedback about your product and adding new features. I learned a lot from your content engine course and was able to implement my own custom video engine using Claude. The ability to use HeyGen to create an AI avatar clone has been life-changing. I’m still learning about what works for YouTube but watching your growth has inspired me to keep going.”</blockquote>
         <figcaption>Anthony Tran, in the course hub</figcaption>
       </figure>
+    </div>
+    <!-- Lily, Content Engine student: two hub comments, word for word. The second is an excerpt (the parts about another creator, finishing the course and the Tuesday zoom are left out). -->
+    <div class="quotes pair">
+      <figure class="box quote sh-yellow"><blockquote>“Wow, the Heygen is Perfect Ness! I tried to attach it here for you to see but cannot. Much thanks for your help 😊 YAY!!”</blockquote><figcaption>Lily, in the course hub</figcaption></figure>
+      <figure class="box quote"><blockquote>“You are soooo on the right track Ness and with your awesome background and skills, I know that you will FLY into 2027. I am so happy to get to learn from you! … Thank you so much for all your help so far!!”</blockquote><figcaption>Lily, in the course hub</figcaption></figure>
     </div>
     <!-- Clients of an earlier, different product (DigicuratorAgency AI Tools). Quotes copied word for word from digicuratoragency.com/ai-social-hub-one-time-offer. Labelled as a different product on purpose. Ness wants these shown alongside the student proof (22 Nov 2026). -->
     <div class="clients">
