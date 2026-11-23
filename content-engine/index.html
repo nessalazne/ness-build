@@ -411,6 +411,7 @@ span.big-play { pointer-events: none; }
 /* Anthony's face fills the middle of the frame, so his play button sits small in the top-left corner (over the background) and the browser's own centre play icon is hidden. */
 .student-video .big-play { left: 14px; top: 14px; width: 48px; height: 48px; margin: 0; }
 .student-video .big-play svg { width: 20px; height: 20px; margin-left: 3px; }
+.student-video video:not([controls]) { cursor: pointer; }
 .student-video video::-webkit-media-controls-overlay-play-button,
 .student-video video::-webkit-media-controls-start-playback-button,
 .student-video video::-webkit-media-controls-loading-panel { display: none !important; -webkit-appearance: none; }
@@ -1107,7 +1108,7 @@ body:not(.has-sale) .sale-only { display: none !important; }
         <div class="win sh-yellow">
           <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i></div>
           <div class="win-body">
-            <video class="main-video" controls playsinline preload="none" poster="/content-engine/media/testimonial-anthony.jpg" aria-label="Anthony Tran, a Content Engine student, on going from hours per video in Claude to the whole workflow in one place">
+            <video class="main-video" data-controls-on-play playsinline preload="none" poster="/content-engine/media/testimonial-anthony.jpg" aria-label="Anthony Tran, a Content Engine student, on going from hours per video in Claude to the whole workflow in one place">
               <source src="/content-engine/media/testimonial-anthony.mp4" type="video/mp4">
             </video>
           </div>
@@ -1428,6 +1429,12 @@ body:not(.has-sale) .sale-only { display: none !important; }
     m.addEventListener('play', function () { b.hidden = true; });
     m.addEventListener('pause', function () { if (!m.seeking) b.hidden = false; });
     m.addEventListener('ended', function () { b.hidden = false; });
+  });
+  /* Anthony's testimonial starts without native controls: iPhone Safari draws its own big play button over his face whenever controls are on, and CSS can't hide it.
+     The corner button (or a tap on the picture) starts it, and the native controls switch on once it plays. */
+  document.querySelectorAll('video[data-controls-on-play]').forEach(function (v) {
+    v.addEventListener('click', function () { if (!v.controls) v.play().catch(function () {}); });
+    v.addEventListener('play', function () { v.controls = true; });
   });
   document.querySelectorAll('.sample-play').forEach(function (btn) {
     var frame = btn.parentElement;
