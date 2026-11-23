@@ -1431,6 +1431,9 @@ body:not(.bf-on) .bf-only { display:none !important; }
 .co-assure { list-style:none; padding:0; margin:clamp(1.4rem,2.6vw,1.8rem) 0 0; display:flex; justify-content:center; flex-wrap:wrap; gap:8px 22px; font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-dim); }
 .co-assure li::before { content:'✓ '; color:var(--green); }
 .co-faq { margin-top:clamp(3rem,6vw,4.5rem); }
+.co-proof { margin-top:clamp(2.4rem,5vw,3.5rem); }
+.co-proof .testimonial-card { margin:0; }
+.co-proof .testimonial-quote { margin:0; }
 .co-faq .faq { max-width:none; }
 .co-disclaimer { text-align:center; font-family:var(--font-body); font-size:0.75rem; color:var(--muted); padding:0 16px 2rem; margin:0; }
 [data-theme="light"] .co-card, [data-theme="light"] .co-upgrade, [data-theme="light"] .co-bonus, [data-theme="light"] .co-tools { background:var(--surface); }
@@ -1656,6 +1659,22 @@ body:not(.bf-on) .bf-only { display:none !important; }
     </div>
 
       </div>
+    </div>
+  </section>
+
+  <!-- STUDENTS: two short quotes, word for word. Anthony's is a line from his video testimonial (the sales page has the full video);
+       Lily's is her course hub comment. No star ratings: neither of them gave one. -->
+  <section class="co-proof" aria-label="What students say">
+    <div class="kicker">From students</div>
+    <div class="testimonials-grid" style="margin-top:1.2rem;">
+      <figure class="testimonial-card">
+        <blockquote class="testimonial-quote">“I went through her live training, shared feedback, and she built the features I asked for. That kind of responsiveness is rare.”</blockquote>
+        <figcaption class="testimonial-author"><div class="testimonial-name">Anthony Tran</div><div class="testimonial-role">Content Engine student</div></figcaption>
+      </figure>
+      <figure class="testimonial-card">
+        <blockquote class="testimonial-quote">“Wow, the Heygen is Perfect Ness! I tried to attach it here for you to see but cannot. Much thanks for your help 😊 YAY!!”</blockquote>
+        <figcaption class="testimonial-author"><div class="testimonial-name">Lily</div><div class="testimonial-role">Content Engine student</div></figcaption>
+      </figure>
     </div>
   </section>
 
