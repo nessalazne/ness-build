@@ -57,7 +57,7 @@ footer [style*="font-size:10px"] { font-family: var(--font-body) !important; fon
 .nav-brand { color: var(--text); text-transform: none; letter-spacing: 0; font-size: 1.0625rem; }
 .nav-brand img { border-radius: 6px !important; }
 .co-secure { color: var(--text-dim); }
-.theme-toggle { border: 1.5px solid var(--b-ink); border-radius: 0; background: var(--surface); color: var(--text); box-shadow: 4px 4px 0 var(--b-pink); font-family: var(--font-body); font-size: 0.875rem; font-weight: 700; }
+.theme-toggle { border: 1.5px solid var(--b-ink); border-radius: 8px; background: var(--surface); color: var(--text); box-shadow: 4px 4px 0 var(--b-pink); font-family: var(--font-body); font-size: 0.875rem; font-weight: 700; }
 .theme-toggle:hover { border-color: var(--b-ink); color: var(--text); box-shadow: 4px 4px 0 var(--b-yellow); }
 [data-theme="light"] .theme-toggle { box-shadow: 4px 4px 0 var(--b-pink); }
 
@@ -115,20 +115,20 @@ footer [style*="font-size:10px"] { font-family: var(--font-body) !important; fon
 .co-tag.in { background: var(--b-yellow); color: #1C1714; border-color: #1C1714; }
 .co-item-body p.co-engine-updates { color: var(--green); }
 
-/* ---------- Buttons: square, bordered, lift on hover ---------- */
+/* ---------- Buttons: rounded corners (12px big, 8px small) so they stand apart from the square cards; bordered, lift on hover ---------- */
 .btn-primary {
-  border: 1.5px solid var(--b-ink); border-radius: 0; background: var(--accent); color: var(--b-on-accent);
+  border: 1.5px solid var(--b-ink); border-radius: 12px; background: var(--accent); color: var(--b-on-accent);
   font-family: var(--font-body); font-weight: 700; letter-spacing: 0.07em; box-shadow: none; min-height: 56px;
   transition: background-color .2s var(--ease), transform .2s var(--ease), box-shadow .2s var(--ease);
 }
 .btn-primary:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--b-ink); }
 .btn-primary:active { transform: none; box-shadow: none; }
-.co-lb-add { border-radius: 0; border: 1.5px solid #1C1714; background: var(--b-yellow); color: #1C1714; min-height: 44px; padding: 8px 16px; }
+.co-lb-add { border-radius: 8px; border: 1.5px solid #1C1714; background: var(--b-yellow); color: #1C1714; min-height: 44px; padding: 8px 16px; }
 .co-lb-add:hover { box-shadow: 3px 3px 0 var(--b-ink); }
-.co-missing-remove, .co-code-apply { border-radius: 0; border: 1.5px solid var(--b-ink); color: var(--text); min-height: 44px; }
-.co-paypal-btn { border-radius: 0; border: 1.5px solid #1C1714; min-height: 52px; }
+.co-missing-remove, .co-code-apply { border-radius: 8px; border: 1.5px solid var(--b-ink); color: var(--text); min-height: 44px; }
+.co-paypal-btn { border-radius: 12px; border: 1.5px solid #1C1714; min-height: 52px; }
 .co-thumb span { border-radius: 50%; }
-.sample-play span { border-radius: 0; border: 1.5px solid #F5EFE7; background: rgba(22,22,22,.86); }
+.sample-play span { border-radius: 8px; border: 1.5px solid #F5EFE7; background: rgba(22,22,22,.86); }
 
 /* ---------- Form ---------- */
 .co-field span { color: var(--text-dim); letter-spacing: 0.06em; }
