@@ -403,7 +403,13 @@ span.big-play { pointer-events: none; }
 .founder-copy p { color: var(--ink-2); max-width: 52ch; }
 .founder-copy .creds li { color: var(--ink); }
 
-/* Testimonials (placeholders until real ones exist) */
+/* Testimonials: student video + hub comment, then the older clients quotes */
+.student { display: grid; gap: 28px; align-items: center; }
+@media (min-width: 860px) { .student { grid-template-columns: 1.5fr 1fr; gap: 40px; } }
+.student-video { margin: 0; display: grid; gap: 14px; }
+.student-video video { display: block; aspect-ratio: 16 / 9; }
+.student-video figcaption { font-size: 0.9375rem; font-weight: 700; color: var(--ink-2); }
+.student .quote { padding: 26px 24px 22px; }
 .quotes { display: grid; gap: 28px; }
 .quotes .box { padding: 10px; }
 .quotes .placeholder { min-height: 190px; height: 100%; border-width: 0; background: transparent; }
@@ -1078,20 +1084,33 @@ body:not(.has-sale) .sale-only { display: none !important; }
   </div>
 </section>
 
-<!-- 13. Buyers. Placeholders only: replace with real quotes or delete this section. -->
-<!-- HIDDEN for now (Ness, 21 Nov 2026): remove the "hidden" attribute on the next line to show the buyers and clients quotes again. -->
-<section class="section band-white" id="buyers" hidden>
+<!-- 13. Buyers. Shown again 22 Nov 2026 with real Content Engine student proof:
+     Anthony Tran's video testimonial (Google Drive 1gM0X9b7h1v-9Nxuf_LkAyUGz1Ct0oIvh, 39 s, re-encoded to 1280px as media/testimonial-anthony.mp4, poster at 12 s)
+     and his comment in the course hub, quoted word for word (only the line about not having tested the new tools yet is left out). -->
+<section class="section band-white" id="buyers">
   <div class="wrap">
     <div class="intro center">
       <p class="eyebrow">In their words</p>
       <h2 class="headline">What <span class="hl">buyers say.</span></h2>
     </div>
-    <div class="quotes">
-      <div class="box"><div class="placeholder" data-placeholder><b>[TESTIMONIAL]</b><span>A buyer who posted to 9 platforms in their first week. Name, photo, and a link to their account.</span></div></div>
-      <div class="box sh-yellow"><div class="placeholder" data-placeholder><b>[TESTIMONIAL]</b><span>A buyer who does not code and finished setup. How long it took them, in their words.</span></div></div>
-      <div class="box"><div class="placeholder" data-placeholder><b>[TESTIMONIAL]</b><span>A buyer with a view count or lead count from a video the Engine made. Include a screenshot.</span></div></div>
+    <div class="student">
+      <figure class="student-video">
+        <div class="win sh-yellow">
+          <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="win-body">
+            <video class="main-video" controls playsinline preload="none" poster="/content-engine/media/testimonial-anthony.jpg" aria-label="Anthony Tran, a Content Engine student, on going from hours per video in Claude to the whole workflow in one place">
+              <source src="/content-engine/media/testimonial-anthony.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <figcaption>Anthony Tran, Content Engine student</figcaption>
+      </figure>
+      <figure class="box quote">
+        <blockquote>“I also appreciate you taking my feedback about your product and adding new features. I learned a lot from your content engine course and was able to implement my own custom video engine using Claude. The ability to use HeyGen to create an AI avatar clone has been life-changing. I’m still learning about what works for YouTube but watching your growth has inspired me to keep going.”</blockquote>
+        <figcaption>Anthony Tran, in the course hub</figcaption>
+      </figure>
     </div>
-    <!-- Clients of an earlier, different product (DigicuratorAgency AI Tools). Quotes copied word for word from digicuratoragency.com/ai-social-hub-one-time-offer. Labelled as a different product on purpose. Replace with real Content Engine buyers when you have them. -->
+    <!-- Clients of an earlier, different product (DigicuratorAgency AI Tools). Quotes copied word for word from digicuratoragency.com/ai-social-hub-one-time-offer. Labelled as a different product on purpose. Ness wants these shown alongside the student proof (22 Nov 2026). -->
     <div class="clients">
       <div class="group-label"><span>Clients of my AI tools</span></div>
       <p class="small">These come from clients of DigicuratorAgency AI Tools, a different product from the Content Engine.</p>
