@@ -161,27 +161,44 @@ a { color: inherit; }
 .fx-h2 em { color: var(--accent); }
 .fx-intro { color: var(--dim); font-size: 1.02rem; margin: 0 0 16px; max-width: 600px; }
 .fx-kicker { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin: 40px 0 -22px; }
-.fx-demo video { width: 100%; max-width: 600px; height: auto; aspect-ratio: 16 / 9; border-radius: 14px; background: var(--ink); display: block; box-shadow: 0 12px 30px rgba(5,5,5,0.16); }
+/* Content Engine demo: the CE hero's tabbed window, at this page's 600px size */
+.fx-win { max-width: 600px; border: 2px solid var(--ink); border-radius: 14px; overflow: hidden; background: var(--card); box-shadow: 5px 6px 0 var(--blush); }
+.fx-win-bar { display: flex; align-items: center; gap: 7px; height: 30px; padding: 0 12px; border-bottom: 2px solid var(--ink); }
+.fx-win-bar i { width: 10px; height: 10px; border: 1.5px solid var(--ink); border-radius: 50%; }
+.fx-win-bar i:first-child { background: var(--blush); }
+.fx-win-bar i:nth-child(2) { background: var(--yellow); }
+.fx-tabs { display: flex; flex-wrap: wrap; gap: 8px; padding: 10px 12px; border-bottom: 2px solid var(--ink); }
+.fx-tab { min-height: 40px; padding: 0 12px; border: 1.5px solid var(--ink); border-radius: 8px; background: transparent; color: var(--ink); font: inherit; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background-color .2s ease, color .2s ease; }
+.fx-tab:hover { background: var(--blush-l); }
+.fx-tab[aria-selected="true"] { background: var(--accent); color: #fff; }
+.fx-tab:focus-visible { outline: 2px solid var(--accent-d); outline-offset: 2px; }
+.fx-win video { width: 100%; height: auto; aspect-ratio: 16 / 9; background: var(--ink); display: block; }
+.fx-win-note { margin: 0; padding: 12px 14px; border-top: 2px solid var(--ink); color: var(--dim); font-size: 0.92rem; line-height: 1.5; }
+@media (max-width: 519px) { .fx-tab { flex: 1 1 100%; } }
 .fx-rv { margin-top: 30px; max-width: 600px; }
 .fx-rv-quote { position: relative; display: inline-block; font-family: var(--font-display); font-size: 1.5rem; color: var(--muted); margin: 0 0 4px; }
 .fx-rv-quote::after { content: ''; position: absolute; left: -3px; right: -3px; top: 54%; height: 3px; border-radius: 3px; background: var(--accent); transform: rotate(-2deg); }
 .fx-rv-title { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.9rem, 4vw, 2.5rem); line-height: 1.1; margin: 0 0 10px; }
 .fx-rv-title mark { background: var(--accent); color: #fff; padding: 0 0.14em; border-radius: 4px; font-style: italic; }
-.fx-rv-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 18px; }
-.fx-rv-card { display: block; background: var(--card); border: 2px solid var(--ink); border-radius: 14px; padding: 10px; box-shadow: 4px 5px 0 var(--blush); color: var(--text); text-decoration: none; transition: transform .2s ease; }
-.fx-rv-card:nth-child(1) { transform: rotate(-1deg); }
-.fx-rv-card:nth-child(3) { transform: rotate(1deg); }
+.fx-rv-cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 18px; }
+.fx-rv-card { display: block; width: 100%; background: var(--card); border: 2px solid var(--ink); border-radius: 14px; padding: 8px; box-shadow: 4px 5px 0 var(--blush); color: var(--text); font: inherit; text-align: left; cursor: pointer; transition: transform .2s ease; }
+.fx-rv-card:nth-child(odd) { transform: rotate(-1deg); }
+.fx-rv-card:nth-child(even) { transform: rotate(1deg); box-shadow: 4px 5px 0 var(--yellow); }
 .fx-rv-card:hover { transform: translateY(-3px); }
+.fx-rv-card:focus-visible { outline: 2px solid var(--accent-d); outline-offset: 3px; }
+.fx-rv-img { position: relative; display: block; }
 .fx-rv-card img { width: 100%; height: auto; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 8px; display: block; }
-.fx-rv-num { font-weight: 800; font-size: 1.6rem; letter-spacing: -0.03em; line-height: 1; margin-top: 10px; }
-.fx-rv-views { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin: 4px 0 6px; }
-.fx-rv-name { font-weight: 600; font-size: 0.88rem; line-height: 1.3; }
+.fx-rv-play { position: absolute; inset: 0; margin: auto; width: 42px; height: 42px; border-radius: 50%; background: rgba(5,5,5,0.65); color: #fff; display: grid; place-items: center; font-size: 14px; }
+.fx-rv-text { display: block; }
+.fx-rv-num { display: block; font-weight: 800; font-size: 1.3rem; letter-spacing: -0.03em; line-height: 1; margin-top: 10px; }
+.fx-rv-views { display: block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin: 4px 0 6px; }
+.fx-rv-name { display: block; font-weight: 600; font-size: 0.82rem; line-height: 1.3; }
 .fx-rv-note { color: var(--dim); font-size: 0.9rem; margin: 16px 0 0; }
 .fx-rv-note a { color: var(--text); text-decoration-color: var(--accent); text-underline-offset: 3px; }
 @media (max-width: 560px) {
   .fx-rv-cards { grid-template-columns: minmax(0, 1fr); }
   .fx-rv-card { display: flex; gap: 14px; align-items: center; }
-  .fx-rv-card img { width: 92px; flex: none; }
+  .fx-rv-img { width: 92px; flex: none; }
   .fx-rv-num { margin-top: 0; }
 }
 @media (prefers-reduced-motion: reduce) { .fx-rv-card, .fx-rv-card:hover { transform: none; } }
@@ -267,7 +284,7 @@ a { color: inherit; }
             <p class="fx-bump-offer">Add-on: only <span data-price="engine" style="color:inherit;font-weight:800;">$147</span> <span>(reg. <s>$297</s>)</span></p>
             <p>FX Studio edits a video you already have. The Content Engine makes the whole short for you: open any YouTube video, Reel, TikTok, article or your own idea, and it writes the script, voices it, adds B-roll and captions, and posts to 11 accounts across 9 platforms, with comment-to-DM automation on Instagram and Facebook.</p>
             <p><b style="color:var(--text);">Use your FX in it too.</b> In the Content Engine you can turn the FX looks you pick into your own custom B-roll style, and every short it makes after that uses them. A lesson shows you how.</p>
-            <p><a class="fx-demo-link" href="#engineDemo">▶ Watch it work (3 min)</a></p>
+            <p><a class="fx-demo-link" href="#engineDemo">▶ Watch it work (3 ways)</a></p>
             <p>You get the extension and its source code, the setup lessons, a private chat with me in the hub, and free Engine updates for life. It runs on your computer with your own accounts.</p>
           </div>
         </div>
@@ -406,29 +423,56 @@ a { color: inherit; }
     <section class="fx-demo engine-open-only" id="engineDemo" aria-labelledby="demoTitle">
       <p class="fx-kicker">The Content Engine add-on</p>
       <h2 class="fx-h2" id="demoTitle">One link in.<br>Watch the <em>whole run.</em></h2>
-      <p class="fx-intro">About three minutes, start to finish. It goes from a post open in your browser tab to a finished short, one step at a time. You can add the Engine to your order for <span data-price="engine" style="color:inherit;">$147</span>.</p>
-      <video controls playsinline preload="none" poster="../content-engine/media/demo.jpg" width="1280" height="720" aria-label="Demo of the Content Engine from link to finished short">
-        <source src="../content-engine/media/demo.mp4" type="video/mp4">
-      </video>
+      <p class="fx-intro">Pick how you want to make the video: an AI avatar of you, faceless, or a take you film on your phone. Each demo goes from a post open in your browser tab to a finished short. You can add the Engine to your order for <span data-price="engine" style="color:inherit;">$147</span>.</p>
+      <div class="fx-win">
+        <div class="fx-win-bar" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="fx-tabs" role="tablist" aria-label="Ways to make the video">
+          <button class="fx-tab" type="button" role="tab" id="fx-tab-avatar" aria-controls="fx-panel-avatar" aria-selected="true">With my avatar</button>
+          <button class="fx-tab" type="button" role="tab" id="fx-tab-faceless" aria-controls="fx-panel-faceless" aria-selected="false" tabindex="-1">Faceless</button>
+          <button class="fx-tab" type="button" role="tab" id="fx-tab-record" aria-controls="fx-panel-record" aria-selected="false" tabindex="-1">My own recording</button>
+        </div>
+        <div role="tabpanel" id="fx-panel-avatar" aria-labelledby="fx-tab-avatar">
+          <video controls playsinline preload="none" poster="../content-engine/media/demo.jpg" width="1280" height="720" aria-label="Demo: making a video with my AI avatar, from link to posted short">
+            <source src="../content-engine/media/demo-avatar.mp4" type="video/mp4">
+          </video>
+          <p class="fx-win-note">An AI avatar of you, lip-synced to your cloned voice. You approve the script before anything that costs money runs.</p>
+        </div>
+        <div role="tabpanel" id="fx-panel-faceless" aria-labelledby="fx-tab-faceless" hidden>
+          <video controls playsinline preload="none" poster="../content-engine/media/demo-faceless.jpg" width="1280" height="720" aria-label="Demo: making a faceless video, no camera">
+            <source src="../content-engine/media/demo-faceless.mp4" type="video/mp4">
+          </video>
+          <p class="fx-win-note">No face and no camera. Pick one of eight looks and it builds the whole video from your script, in your cloned voice.</p>
+        </div>
+        <div role="tabpanel" id="fx-panel-record" aria-labelledby="fx-tab-record" hidden>
+          <video controls playsinline preload="none" poster="../content-engine/media/demo-record.jpg" width="1280" height="720" aria-label="Demo: making a video from a take you filmed yourself">
+            <source src="../content-engine/media/demo-record.mp4" type="video/mp4">
+          </video>
+          <p class="fx-win-note">Film it on your phone. It cuts the ums and the long pauses, adds the B-roll and the captions, and spends nothing on an AI voice or avatar.</p>
+        </div>
+      </div>
       <div class="fx-rv">
         <p class="fx-rv-quote">&ldquo;AI reels don't get views.&rdquo;</p>
-        <h3 class="fx-rv-title">My top five got <mark>690,000+</mark> views.</h3>
-        <p class="fx-intro" style="margin-bottom:0;">All five came out of the Content Engine and went up on my Facebook page. Here are three of them:</p>
+        <h3 class="fx-rv-title">My top five got <mark>740,000+</mark> views.</h3>
+        <p class="fx-intro" style="margin-bottom:0;">All five came out of the Content Engine and went up on my Facebook page. Here are four of my reels. Tap one to watch it right here.</p>
         <div class="fx-rv-cards">
-          <a class="fx-rv-card" href="https://www.facebook.com/followness/reels/" target="_blank" rel="noopener">
-            <img src="../content-engine/media/reel-407k.jpg" alt="Reel: Top 4 ChatGPT image codes, 407K views on Facebook" width="320" height="563" loading="lazy">
-            <div><div class="fx-rv-num">407,000</div><div class="fx-rv-views">Views</div><div class="fx-rv-name">Top 4 ChatGPT image codes</div></div>
-          </a>
-          <a class="fx-rv-card" href="https://www.facebook.com/followness/reels/" target="_blank" rel="noopener">
-            <img src="../content-engine/media/reel-94k.jpg" alt="Reel: Comment Agent, 94K views on Facebook" width="320" height="563" loading="lazy">
-            <div><div class="fx-rv-num">94,000</div><div class="fx-rv-views">Views</div><div class="fx-rv-name">Comment Agent</div></div>
-          </a>
-          <a class="fx-rv-card" href="https://www.facebook.com/followness/reels/" target="_blank" rel="noopener">
-            <img src="../content-engine/media/reel-60k.jpg" alt="Reel: YouTube agent, completely free to use, 60K views on Facebook" width="320" height="563" loading="lazy">
-            <div><div class="fx-rv-num">60,000</div><div class="fx-rv-views">Views</div><div class="fx-rv-name">A YouTube agent that's free to use</div></div>
-          </a>
+          <button class="fx-rv-card" type="button" data-full="../content-engine/media/reel-458k.mp4" aria-label="Watch the reel Top 4 ChatGPT image codes, 458,000 views on Facebook, with sound">
+            <span class="fx-rv-img"><img src="../content-engine/media/v2/reel-458k.jpg" alt="" width="320" height="563" loading="lazy"><span class="fx-rv-play" aria-hidden="true">▶</span></span>
+            <span class="fx-rv-text"><span class="fx-rv-num">458,000</span><span class="fx-rv-views">Views</span><span class="fx-rv-name">Top 4 ChatGPT image codes</span></span>
+          </button>
+          <button class="fx-rv-card" type="button" data-full="../content-engine/media/reel-94k-v2.mp4" aria-label="Watch the reel Comment Agent, 94,000 views on Facebook, with sound">
+            <span class="fx-rv-img"><img src="../content-engine/media/v2/reel-94k-v2.jpg" alt="" width="320" height="563" loading="lazy"><span class="fx-rv-play" aria-hidden="true">▶</span></span>
+            <span class="fx-rv-text"><span class="fx-rv-num">94,000</span><span class="fx-rv-views">Views</span><span class="fx-rv-name">Comment Agent</span></span>
+          </button>
+          <button class="fx-rv-card" type="button" data-full="../content-engine/media/reel-60k-v2.mp4" aria-label="Watch the reel A YouTube agent that's free to use, 60,000 views on Facebook, with sound">
+            <span class="fx-rv-img"><img src="../content-engine/media/v2/reel-60k-v2.jpg" alt="" width="320" height="563" loading="lazy"><span class="fx-rv-play" aria-hidden="true">▶</span></span>
+            <span class="fx-rv-text"><span class="fx-rv-num">60,000</span><span class="fx-rv-views">Views</span><span class="fx-rv-name">A YouTube agent that's free to use</span></span>
+          </button>
+          <button class="fx-rv-card" type="button" data-full="../content-engine/media/reel-57k.mp4" aria-label="Watch the reel Install these four MCPs first, 57,000 views on Facebook, with sound">
+            <span class="fx-rv-img"><img src="../content-engine/media/v2/reel-57k.jpg" alt="" width="320" height="563" loading="lazy"><span class="fx-rv-play" aria-hidden="true">▶</span></span>
+            <span class="fx-rv-text"><span class="fx-rv-num">57,000</span><span class="fx-rv-views">Views</span><span class="fx-rv-name">Install these four MCPs first</span></span>
+          </button>
         </div>
-        <p class="fx-rv-note">Views as shown on Facebook on 10 November 2026. Watch them on <a href="https://www.facebook.com/followness/reels/" target="_blank" rel="noopener">my Facebook page ↗</a></p>
+        <p class="fx-rv-note">Views as shown on Facebook: the image codes and MCPs reels on 16 November 2026, the other two on 10 November 2026. Watch them on <a href="https://www.facebook.com/followness/reels/" target="_blank" rel="noopener">my Facebook page ↗</a></p>
       </div>
     </section>
 
@@ -458,6 +502,30 @@ a { color: inherit; }
   <video controls playsinline preload="none"></video>
 </dialog>
 
+<script>
+/* Content Engine demo tabs: click or arrow keys switch, and a switch pauses the hidden videos */
+(function () {
+  var tabs = [].slice.call(document.querySelectorAll('.fx-tab'));
+  function show(tab, focus) {
+    tabs.forEach(function (t) {
+      var on = t === tab;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      var panel = document.getElementById(t.getAttribute('aria-controls'));
+      panel.hidden = !on;
+      if (!on) panel.querySelectorAll('video').forEach(function (v) { v.pause(); });
+    });
+    if (focus) tab.focus();
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { show(t); });
+    t.addEventListener('keydown', function (e) {
+      var k = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (k) { e.preventDefault(); show(tabs[(i + k + tabs.length) % tabs.length], true); }
+    });
+  });
+})();
+</script>
 <script>window.CE_CHECKOUT_API = 'https://hub.digicuratoragency.com/api/ce';</script>
 <script>
 /* Same payment backend as the Content Engine checkout (content-engine/checkout):
@@ -650,7 +718,7 @@ renderTotal();
 /* FX samples: poster only, nothing loads until tapped, then plays in a pop-up */
 const lightbox = document.getElementById('fxLightbox');
 const lightboxVideo = lightbox.querySelector('video');
-document.querySelectorAll('.fx-thumb').forEach(btn => btn.addEventListener('click', () => {
+document.querySelectorAll('.fx-thumb, .fx-rv-card').forEach(btn => btn.addEventListener('click', () => {
   lightbox.style.maxWidth = btn.dataset.wide ? 'min(92vw, 900px)' : '';
   lightboxVideo.src = btn.dataset.full; lightbox.showModal(); lightboxVideo.play().catch(() => {});
 }));
