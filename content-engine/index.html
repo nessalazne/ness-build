@@ -416,6 +416,8 @@ span.big-play { pointer-events: none; }
 .student-video video::-webkit-media-controls-start-playback-button,
 .student-video video::-webkit-media-controls-loading-panel { display: none !important; -webkit-appearance: none; }
 .student-video figcaption { font-size: 0.9375rem; font-weight: 700; color: var(--ink-2); }
+/* Anthony's YouTube handle: plain text on purpose (no link), so nobody leaves the sales page. */
+.student-video .handle { display: block; margin-top: 2px; font-size: 0.875rem; font-weight: 500; }
 .student .quote { padding: 26px 24px 22px; }
 .quotes.pair { margin-top: clamp(28px, 4vw, 40px); }
 .quotes.pair .quote { padding: 22px 22px 20px; }
@@ -1113,7 +1115,7 @@ body:not(.has-sale) .sale-only { display: none !important; }
             </video>
           </div>
         </div>
-        <figcaption>Anthony Tran, Content Engine student</figcaption>
+        <figcaption>Anthony Tran, Content Engine student<span class="handle">@AnthonyTranAI on YouTube</span></figcaption>
       </figure>
       <figure class="box quote">
         <blockquote>“I also appreciate you taking my feedback about your product and adding new features. I learned a lot from your content engine course and was able to implement my own custom video engine using Claude. The ability to use HeyGen to create an AI avatar clone has been life-changing. I’m still learning about what works for YouTube but watching your growth has inspired me to keep going.”</blockquote>
