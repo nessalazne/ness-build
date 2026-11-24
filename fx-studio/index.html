@@ -148,6 +148,8 @@ a { color: inherit; }
 .fx-ba figcaption { font-weight: 700; font-size: 0.92rem; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
 .fx-ba-tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; background: var(--ink); color: var(--paper); border-radius: 999px; padding: 4px 10px; }
 .fx-ba-tag.is-after { background: var(--accent); color: #fff; }
+.fx-ba-more { margin-top: 14px; }
+.fx-ba-note { color: var(--dim); font-size: 0.9rem; line-height: 1.5; margin: 10px 0 0; }
 .fx-ba video { width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 14px; background: var(--ink); display: block; box-shadow: 0 12px 30px rgba(5,5,5,0.16); }
 
 /* Left column: what you are getting */
@@ -403,6 +405,11 @@ a { color: inherit; }
         <figure>
           <figcaption><span class="fx-ba-tag is-after">After</span> Edited with FX Studio</figcaption>
           <video controls playsinline preload="none" poster="media/after-fx.jpg" src="media/after-fx.mp4" width="960" height="540"></video>
+        </figure>
+        <figure class="fx-ba-more">
+          <figcaption><span class="fx-ba-tag is-after">Sample 2</span> My AI avatar, before and after</figcaption>
+          <video controls playsinline preload="none" poster="media/ba-avatar-slider.jpg" src="media/ba-avatar-slider.mp4" width="1280" height="720" aria-label="Before and after slider: my HeyGen avatar take on the left, the edited version on the right"></video>
+          <p class="fx-ba-note">A HeyGen avatar take. The line shows the raw take on the left and the edit on the right. The edit uses the C4 captions and the L3 Blue collage board from the Style Guide, with my face moved to a corner while the board plays.</p>
         </figure>
       </div>
     </section>
