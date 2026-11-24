@@ -1434,6 +1434,8 @@ body:not(.bf-on) .bf-only { display:none !important; }
 .co-proof { margin-top:clamp(2.4rem,5vw,3.5rem); }
 .co-proof .testimonial-card { margin:0; }
 .co-proof .testimonial-quote { margin:0; }
+/* Line up the quote and the name line across the student cards: each card spans two rows of the shared grid (quote, then name), so the divider sits at the same height even when one card has an extra line under the name. */
+.co-proof .testimonial-card { display:grid; grid-row:span 2; grid-template-rows:subgrid; row-gap:12px; }
 /* Anthony's YouTube handle: plain text on purpose (no link), so nobody leaves checkout. Keeps its own capitals, unlike the uppercase role line. */
 .testimonial-handle { font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.04em; color:var(--muted); margin-top:4px; }
 .co-faq .faq { max-width:none; }
