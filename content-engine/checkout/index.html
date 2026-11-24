@@ -1434,6 +1434,8 @@ body:not(.bf-on) .bf-only { display:none !important; }
 .co-proof { margin-top:clamp(2.4rem,5vw,3.5rem); }
 .co-proof .testimonial-card { margin:0; }
 .co-proof .testimonial-quote { margin:0; }
+/* Anthony's YouTube handle: plain text on purpose (no link), so nobody leaves checkout. Keeps its own capitals, unlike the uppercase role line. */
+.testimonial-handle { font-family:var(--font-mono); font-size:10.5px; letter-spacing:0.04em; color:var(--muted); margin-top:4px; }
 .co-faq .faq { max-width:none; }
 .co-disclaimer { text-align:center; font-family:var(--font-body); font-size:0.75rem; color:var(--muted); padding:0 16px 2rem; margin:0; }
 [data-theme="light"] .co-card, [data-theme="light"] .co-upgrade, [data-theme="light"] .co-bonus, [data-theme="light"] .co-tools { background:var(--surface); }
@@ -1669,7 +1671,7 @@ body:not(.bf-on) .bf-only { display:none !important; }
     <div class="testimonials-grid" style="margin-top:1.2rem;">
       <figure class="testimonial-card">
         <blockquote class="testimonial-quote">“I went through her live training, shared feedback, and she built the features I asked for. That kind of responsiveness is rare.”</blockquote>
-        <figcaption class="testimonial-author"><div class="testimonial-name">Anthony Tran</div><div class="testimonial-role">Content Engine student</div></figcaption>
+        <figcaption class="testimonial-author"><div class="testimonial-name">Anthony Tran</div><div class="testimonial-role">Content Engine student</div><div class="testimonial-handle">@AnthonyTranAI on YouTube</div></figcaption>
       </figure>
       <figure class="testimonial-card">
         <blockquote class="testimonial-quote">“Wow, the Heygen is Perfect Ness! I tried to attach it here for you to see but cannot. Much thanks for your help 😊 YAY!!”</blockquote>
