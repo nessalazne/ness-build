@@ -4,10 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>FX Studio · Get Instant Access · AISocialHub</title>
-<meta name="description" content="160+ effects and looks for your talking-head videos, picked from a list and built in by Claude Code. Style Builder included." />
+<meta name="description" content="160+ effects and looks for short-form and long-form videos, from a raw take, an AI avatar or just your voice, picked from a list and built in by Claude Code or Codex. Style Builder included." />
 <link rel="icon" type="image/x-icon" href="../favicon.ico">
 <meta property="og:title" content="FX Studio · 160+ effects" />
-<meta property="og:description" content="Pick the effects from a list. Claude Code edits them into your video. Style Builder included." />
+<meta property="og:description" content="Pick the effects from a list. Claude Code or Codex edits them into your video. Style Builder included." />
 <meta property="og:image" content="https://builds.digicuratoragency.com/content-engine/media/fx-sample-1.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" />
@@ -141,6 +141,7 @@ a { color: inherit; }
 .fx-works li { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; font-size: 0.82rem; color: var(--dim); }
 .fx-works b { display: block; color: var(--text); font-size: 0.92rem; margin-bottom: 2px; }
 .fx-works b::before { content: '✓ '; color: var(--accent-d); }
+.fx-works .fx-works-wide { grid-column: 1 / -1; }
 
 /* Before / after */
 .fx-ba-grid { display: grid; gap: 16px; max-width: 600px; }
@@ -149,8 +150,7 @@ a { color: inherit; }
 .fx-ba-tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; background: var(--ink); color: var(--paper); border-radius: 999px; padding: 4px 10px; }
 .fx-ba-tag.is-after { background: var(--accent); color: #fff; }
 .fx-ba-more { margin-top: 14px; }
-.fx-ba-note { color: var(--dim); font-size: 0.9rem; line-height: 1.5; margin: 10px 0 0; }
-.fx-ba video { width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 14px; background: var(--ink); display: block; box-shadow: 0 12px 30px rgba(5,5,5,0.16); }
+.fx-ba-note { color: var(--dim); font-size: 0.9rem; line-height: 1.5; margin: 10px 0 0; }.fx-ba video { width: 100%; height: auto; aspect-ratio: 16 / 9; border-radius: 14px; background: var(--ink); display: block; box-shadow: 0 12px 30px rgba(5,5,5,0.16); }
 
 /* Left column: what you are getting */
 .fx-samples { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; max-width: 560px; }
@@ -250,7 +250,7 @@ a { color: inherit; }
   </div>
   <span class="fx-badge">Half price for a limited time</span>
   <h1 class="fx-title">FX Studio <em>· 160+ effects</em></h1>
-  <p class="fx-sub">Pick the effects from a list. Claude Code edits them into your video.<span>For talking-head Reels, TikToks and Shorts. Style Builder included.</span></p>
+  <p class="fx-sub">Pick the effects from a list. Claude Code or Codex edits them into your video.<span>For Reels, TikToks, Shorts and YouTube, from a raw take, an AI avatar or just your voice. Style Builder included.</span></p>
 </header>
 
 <div class="fx-wrap">
@@ -389,9 +389,10 @@ a { color: inherit; }
 
     <ul class="fx-works" aria-label="Works with">
       <li><b>Your own recording</b>filmed on your phone or camera</li>
-      <li><b>AI avatar videos</b>like the ones you make in HeyGen</li>
-      <li><b>Any language you speak</b>captions and text in that language</li>
-      <li><b>Vertical or 16:9</b>Reels, TikToks, Shorts and YouTube</li>
+      <li><b>AI avatar or AI video</b>from HeyGen or any other avatar tool, or a video made with AI</li>
+      <li><b>Faceless, just your voice</b>FX Studio builds the visuals around your voiceover</li>
+      <li><b>9:16 or 16:9</b>short-form Reels, TikToks and Shorts, or long-form YouTube</li>
+      <li class="fx-works-wide"><b>Any language you speak</b>captions and text in that language</li>
     </ul>
 
     <section class="fx-ba" aria-labelledby="baTitle">
@@ -409,19 +410,19 @@ a { color: inherit; }
         <figure class="fx-ba-more">
           <figcaption><span class="fx-ba-tag is-after">Sample 2</span> My AI avatar, before and after</figcaption>
           <video controls playsinline preload="none" poster="media/ba-avatar-slider.jpg" src="media/ba-avatar-slider.mp4" width="1280" height="720" aria-label="Before and after slider: my HeyGen avatar take on the left, the edited version on the right"></video>
-          <p class="fx-ba-note">A HeyGen avatar take. The line shows the raw take on the left and the edit on the right. The edit uses the C4 captions and the L3 Blue collage board from the Style Guide, with my face moved to a corner while the board plays.</p>
+          <p class="fx-ba-note">This one starts from an AI avatar take, made in HeyGen, though any avatar tool or AI video works. The raw take is on the left of the line and the edit is on the right. It uses the C4 captions and the L3 Blue collage board from the Style Guide, with my face moved to a corner while the board plays. The same looks work on your own raw recording, or on just your voice for a faceless video, in 9:16 for short-form or 16:9 for long-form.</p>
         </figure>
       </div>
     </section>
 
     <h2 class="fx-h2">Here is what <em>you are getting.</em></h2>
-    <p class="fx-intro">160+ effects and looks for your talking-head videos. You choose them from a list in the hub, copy one prompt, and Claude Code builds them into your video on your own computer.</p>
-    <p class="fx-important"><b>Important:</b> you need Claude Code on a Claude Pro or Max plan, and a Mac or Windows computer with Node 22 or newer and about 2 GB free.</p>
+    <p class="fx-intro">160+ effects and looks for your videos, whether you start from a raw take, an AI avatar or just your voice. You choose them from a list in the hub, copy one prompt, and Claude Code or Codex builds them into your video on your own computer.</p>
+    <p class="fx-important"><b>Important:</b> you need Claude Code on a Claude Pro or Max plan, or Codex on a ChatGPT plan that includes it, and a Mac or Windows computer with Node 22 or newer and about 2 GB free.</p>
 
     <p class="fx-incl-head">What's included:</p>
     <ul class="fx-incl">
-      <li><div><h3>FX Studio · 160+ effects</h3><p>Visual effects you choose by code, like stamp drops, boxed serif pops, live cursors and orbit rings. Claude Code builds the ones you pick into your video.</p></div></li>
-      <li><div><h3>Style Builder <em>· free bonus</em></h3><p>The Style Guide in the hub. Every look and caption style has a sketch and an Add button. Pick yours, press Copy prompt, and paste it into Claude Code with your video.</p></div></li>
+      <li><div><h3>FX Studio · 160+ effects</h3><p>Visual effects you choose by code, like stamp drops, boxed serif pops, live cursors and orbit rings. Claude Code or Codex builds the ones you pick into your video.</p></div></li>
+      <li><div><h3>Style Builder <em>· free bonus</em></h3><p>The Style Guide in the hub. Every look and caption style has a sketch and an Add button. Pick yours, press Copy prompt, and paste it into Claude Code or Codex with your video.</p></div></li>
       <li><div><h3>Two step-by-step video lessons</h3><p>The first installs the Style Pack and the video tools it uses. Claude does the installing, and you click Yes when it asks. The second follows one real edit from start to finish.</p></div></li>
       <li><div><h3>New effects as I add them</h3><p>The Style Guide lives in the hub, so every new effect and look I add shows up there. No upgrade fee.</p></div></li>
     </ul>
@@ -486,13 +487,14 @@ a { color: inherit; }
     <section class="fx-faq">
       <p class="fx-incl-head">Quick answers</p>
       <details><summary>When do I get access?</summary><div>Right after you pay. The email you enter gets a sign-in link for the hub, and your FX Studio page is there with the download, the lessons and the Style Guide.</div></details>
-      <details><summary>Do I need my own video?</summary><div>You need a video of someone talking, but it doesn't have to be a raw recording of you. It can be a take you filmed on your phone, an AI avatar video you made in HeyGen, or a clip from a longer video, vertical or 16:9. You give Claude Code the video and the prompt, and it adds the effects. If you'd rather not make the video at all, the Content Engine add-on can make it for you with an AI avatar or in faceless mode.</div></details>
+      <details><summary>Do I need my own video?</summary><div>Not a video of you on camera. You can start from any of three things: a raw take you filmed on your phone or camera, an AI avatar or AI video from any tool (HeyGen or another), or just your voice for a faceless video, where FX Studio builds the visuals around it. A clip from a longer video works too. It can be vertical for short-form or 16:9 for long-form. You give Claude Code or Codex the file and the prompt, and it adds the effects. If you'd rather not make the video at all, the Content Engine add-on can make it for you with an AI avatar or in faceless mode.</div></details>
+      <details><summary>Does it work in Codex too?</summary><div>Yes. Paste the same prompt into Codex instead of Claude Code and it builds the same effects into your video. You need a ChatGPT plan that includes Codex. The video lessons show Claude Code.</div></details>
       <details><summary>Does it work in other languages?</summary><div>Yes. Tell Claude the language in your prompt (for example "my video is in Spanish"). It transcribes in that language, and the captions and on-screen text come out in it too.</div></details>
       <details><summary>What is the Content Engine?</summary><div>A Chrome extension that makes a whole short video for you. Open any YouTube video, Reel, TikTok, article or your own idea and click Run. It writes the script, voices it, adds B-roll and captions, and posts to 11 accounts across 9 platforms, with comment-to-DM automation on Instagram and Facebook. It runs on your computer with your own accounts. With FX Studio you can turn your FX looks into your own B-roll style inside it. <a href="../content-engine/" target="_blank" rel="noopener" style="color:var(--accent-d);font-weight:700;">See how it works</a></div></details>
-      <details><summary>Do I need the Content Engine?</summary><div>No. FX Studio works on its own: you give Claude Code a video you recorded and it edits in the effects you picked. The Content Engine is a separate Chrome extension that makes the whole short from a link. You can add it in the order form.</div></details>
-      <details><summary>What is Style Builder?</summary><div>It is the Style Guide page in the hub. Every look and caption style is listed with a sketch and a code. You add the ones you want, press Copy prompt, and paste that prompt into Claude Code with your video.</div></details>
+      <details><summary>Do I need the Content Engine?</summary><div>No. FX Studio works on its own: you give Claude Code or Codex a video you recorded and it edits in the effects you picked. The Content Engine is a separate Chrome extension that makes the whole short from a link. You can add it in the order form.</div></details>
+      <details><summary>What is Style Builder?</summary><div>It is the Style Guide page in the hub. Every look and caption style is listed with a sketch and a code. You add the ones you want, press Copy prompt, and paste that prompt into Claude Code or Codex with your video.</div></details>
       <details><summary>Can I use it on client videos?</summary><div>Yes. You can use it on your own videos and on videos you make for clients. You can't share the pack or resell it.</div></details>
-      <details><summary>Is it a subscription?</summary><div>No. One payment. Claude Code runs on your own Claude plan, and I charge nothing per video.</div></details>
+      <details><summary>Is it a subscription?</summary><div>No. One payment. Claude Code runs on your own Claude plan (or Codex on your ChatGPT plan), and I charge nothing per video.</div></details>
       <details><summary>Does it come with chat or live sessions?</summary><div>An FX Studio order comes with the free hub community. Add the Content Engine and you also get a private chat with me. Once you tick the Content Engine, you can also add Live Setup for $130: three live sessions with me in the next weekly group, plus every Live Setup bonus.</div></details>
     </section>
   </main>
@@ -501,7 +503,7 @@ a { color: inherit; }
 <footer class="fx-foot">
   <p>AISocialHub · Ness Alazne · ness@digicuratoragency.com</p>
   <p><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms</a></p>
-  <p>Not affiliated with or endorsed by Anthropic, Google, HeyGen or ElevenLabs.</p>
+  <p>Not affiliated with or endorsed by Anthropic, OpenAI, Google, HeyGen or ElevenLabs.</p>
 </footer>
 
 <dialog class="fx-lightbox" id="fxLightbox" aria-label="Sample video">
